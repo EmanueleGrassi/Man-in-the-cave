@@ -4,10 +4,12 @@ using System.Collections;
 public class pg_Script : MonoBehaviour {
 
     public static bool isJumping;
+    public static bool isMoving;
 
 	// Use this for initialization
 	void Start () {
         isJumping = false;
+        isMoving = false;
 	}
 	
 	// Update is called once per frame

@@ -33,6 +33,7 @@ public class moveRight_Script : MonoBehaviour {
                     if (!pg_Script.isJumping)
 					{
                         player.rigidbody.AddForce(new Vector3(3f, 0, 0), ForceMode.VelocityChange);
+                        pg_Script.isMoving = true;
 						if (Time.time>nextPlayAudio) {
 							audio.PlayOneShot(footstep);
 							nextPlayAudio=Time.time+0.3f;
@@ -47,6 +48,7 @@ public class moveRight_Script : MonoBehaviour {
                 if (touch.phase == TouchPhase.Ended && touch.fingerId == finger)
                 {
                     locked = false;
+                    pg_Script.isMoving = false;
                 }
             }
         }
