@@ -5,6 +5,8 @@ public class pg_Script : MonoBehaviour {
 
     public static bool isJumping;
     public static bool isMoving;
+	public AudioClip footstep;
+	float nextPlayAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +15,16 @@ public class pg_Script : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		if(!isJumping && isMoving)
+		{
+			if (Time.time>nextPlayAudio) 
+			{
+				audio.PlayOneShot(footstep);
+				nextPlayAudio=Time.time+0.3f;
+			}
+		}
 	}
     void OnCollisionEnter(Collision col)
     {

@@ -6,8 +6,6 @@ public class moveRight_Script : MonoBehaviour {
     public Transform player;
     bool locked;
     int finger;
-	public AudioClip footstep;
-	float nextPlayAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -34,10 +32,6 @@ public class moveRight_Script : MonoBehaviour {
 					{
                         player.rigidbody.AddForce(new Vector3(3f, 0, 0), ForceMode.VelocityChange);
                         pg_Script.isMoving = true;
-						if (Time.time>nextPlayAudio) {
-							audio.PlayOneShot(footstep);
-							nextPlayAudio=Time.time+0.3f;
-						}
 					}
                     else
 					{
