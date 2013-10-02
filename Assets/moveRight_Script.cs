@@ -6,6 +6,8 @@ public class moveRight_Script : MonoBehaviour {
     public Transform player;
     bool locked;
     int finger;
+	public AudioClip footstep;
+	float nextPlayAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -29,9 +31,18 @@ public class moveRight_Script : MonoBehaviour {
                 if (Physics.Raycast(ray, out hit, 1000) && hit.collider.tag == "mRight" && touch.fingerId == finger)
                 {
                     if (!pg_Script.isJumping)
+					{
                         player.rigidbody.AddForce(new Vector3(3f, 0, 0), ForceMode.VelocityChange);
+						if (Time.time>nextPlayAudio) {
+							audio.PlayOneShot(footstep);
+							nextPlayAudio=Time.time+0.3f;
+						}
+					}
                     else
+					{
                         player.rigidbody.AddForce(new Vector3(1f, 0, 0), ForceMode.VelocityChange);
+						
+					}
                 }
                 if (touch.phase == TouchPhase.Ended && touch.fingerId == finger)
                 {
