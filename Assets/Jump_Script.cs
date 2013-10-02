@@ -12,7 +12,7 @@ public class Jump_Script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.touches.Length > 0)
+        if (Input.touches.Length > 0 && !PauseScript.isPaused)
         {
             foreach (Touch touch in Input.touches)
             {
