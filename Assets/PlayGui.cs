@@ -40,7 +40,7 @@ public class PlayGui : MonoBehaviour {
         }
         
         //left
-        if (GUI.RepeatButton(new Rect(width / 11 * 2, height - width / 11, width / 11, width / 11), left))
+        if (GUI.RepeatButton(new Rect(width / 11, height - width / 11, width / 11, width / 11), left))
         {
             if (!pg_Script.isJumping)
             {
@@ -51,7 +51,7 @@ public class PlayGui : MonoBehaviour {
                 player.rigidbody.AddForce(new Vector3(-1f, 0, 0), ForceMode.VelocityChange);
         }
         //right
-        if (GUI.RepeatButton(new Rect(width / 11 * 4, height - width / 11, width / 11, width / 11), right))
+        if (GUI.RepeatButton(new Rect(width / 11 * 3, height - width / 11, width / 11, width / 11), right))
         {
             if (!pg_Script.isJumping)
             {

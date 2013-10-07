@@ -25,6 +25,10 @@ public class pg_Script : MonoBehaviour {
 				nextPlayAudio=Time.time+0.3f;
 			}
 		}
+        if (rigidbody.velocity == Vector3.zero)
+        {
+            isMoving = false;
+        }
 	}
     void OnCollisionEnter(Collision col)
     {
