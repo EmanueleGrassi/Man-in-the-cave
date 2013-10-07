@@ -18,7 +18,7 @@ public class Cameramuvement : MonoBehaviour
 		
 		transform.position= new Vector3(positionX,  21.51884f  , -1f*Mathf.Sqrt( (1- ((positionX*positionX)/1600))*676 ));
 		nexshot= Time.time+0.01f;
-		print("ok");
+        //print("ok");
 	}
 }
 //

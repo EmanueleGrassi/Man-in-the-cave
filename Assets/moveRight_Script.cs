@@ -36,7 +36,6 @@ public class moveRight_Script : MonoBehaviour {
                     else
 					{
                         player.rigidbody.AddForce(new Vector3(1f, 0, 0), ForceMode.VelocityChange);
-						
 					}
                 }
                 if (touch.phase == TouchPhase.Ended && touch.fingerId == finger)
