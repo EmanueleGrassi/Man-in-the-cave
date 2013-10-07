@@ -5,14 +5,21 @@ public class PlayGui : MonoBehaviour {
 
     public GUISkin custom;
     float width, height;
-    public Texture pause, jump, left, right;
+    public Texture pause, jump, left, right, quit;
     public static bool isPaused;
     public Transform player;
+    public float speed;
+    public float jumpForce;
+    public Vector3 currSpeed;
+    public float maxSpeed;
 
 	// Use this for initialization
 	void Start () {
         width = Screen.width;
         height = Screen.height;
+        speed = 0.6f;
+        jumpForce = 60;
+        maxSpeed = 6;
 	}
 	
 	// Update is called once per frame
@@ -32,37 +39,55 @@ public class PlayGui : MonoBehaviour {
                 isPaused = true;
             }
         }
-        //jump
-        if (GUI.Button(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
+        if (!isPaused)
         {
-            player.rigidbody.AddForce(new Vector3(0, 14f, 0), ForceMode.Impulse);
-            pg_Script.isJumping = true;
-        }
-        
-        //left
-        if (GUI.RepeatButton(new Rect(width / 11, height - width / 11, width / 11, width / 11), left))
-        {
-            if (!pg_Script.isJumping)
+            //jump
+            if (GUI.Button(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
             {
-                player.rigidbody.AddForce(new Vector3(-3f, 0, 0), ForceMode.VelocityChange);
-                pg_Script.isMoving = true;
+                player.rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                pg_Script.isJumping = true;
             }
-            else
-                player.rigidbody.AddForce(new Vector3(-1f, 0, 0), ForceMode.VelocityChange);
-        }
-        //right
-        if (GUI.RepeatButton(new Rect(width / 11 * 3, height - width / 11, width / 11, width / 11), right))
-        {
-            if (!pg_Script.isJumping)
+
+            //left
+            if (GUI.RepeatButton(new Rect(width / 11, height - width / 11, width / 11, width / 11), left))
             {
-                player.rigidbody.AddForce(new Vector3(3f, 0, 0), ForceMode.VelocityChange);
-                pg_Script.isMoving = true;
+                if (!pg_Script.isJumping)
+                {
+                    if (currSpeed.x > -maxSpeed)
+                    {
+                        player.rigidbody.AddForce(new Vector3(-speed, 0, 0), ForceMode.VelocityChange);
+                        pg_Script.isMoving = true;
+                    }
+                }
+                else
+                    if (currSpeed.x > -maxSpeed)
+                    {
+                        player.rigidbody.AddForce(new Vector3(-speed / 3, 0, 0), ForceMode.VelocityChange);
+                    }
             }
-            else
+            //right
+            if (GUI.RepeatButton(new Rect(width / 11 * 3, height - width / 11, width / 11, width / 11), right))
             {
-                player.rigidbody.AddForce(new Vector3(1f, 0, 0), ForceMode.VelocityChange);
+                if (!pg_Script.isJumping)
+                {
+                    if (currSpeed.x < maxSpeed)
+                    {
+                        player.rigidbody.AddForce(new Vector3(speed, 0, 0), ForceMode.VelocityChange);
+                        pg_Script.isMoving = true;
+                    }
+                }
+                else
+                {
+                    if (currSpeed.x < maxSpeed)
+                    {
+                        player.rigidbody.AddForce(new Vector3(speed / 3, 0, 0), ForceMode.VelocityChange);
+                    }
+                }
             }
         }
+        // quit (only for test)
+        if (GUI.Button(new Rect(0, 0, width / 11, width / 11), quit))
+            Application.Quit();
 
 	}
 
