@@ -9,9 +9,9 @@ PlayerSettings:
   targetDevice: 2
   targetGlesGraphics: 1
   targetResolution: 0
-  accelerometerFrequency: 30
-  companyName: DefaultCompany
-  productName: New Unity Project 1
+  accelerometerFrequency: 60
+  companyName: celialab
+  productName: man in the cave
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   defaultScreenWidth: 1024
