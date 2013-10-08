@@ -44,8 +44,11 @@ public class PlayGui : MonoBehaviour {
             //jump
             if (GUI.Button(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
             {
-                player.rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-                pg_Script.isJumping = true;
+                if (!pg_Script.isJumping)
+                {
+                    player.rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+                    pg_Script.isJumping = true;
+                }
             }
 
             //left
