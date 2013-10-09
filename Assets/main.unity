@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74b8c7f6ebe9504883556f5a4fdfa46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footstep: {fileID: 8300000, guid: e8994e4f8c484b241a81acc7e8ae874f, type: 3}
+  footstep: {fileID: 8300000, guid: 4e03dac995592cb438cc98fed56edefd, type: 3}
   jumpForce: 0
   jump: {fileID: 2800000, guid: 46bbab5150e8e58489d6b3412d9528ee, type: 3}
   custom: {fileID: 11400000, guid: 21e31c04130b71f4bb3c1c4c308b8282, type: 2}
