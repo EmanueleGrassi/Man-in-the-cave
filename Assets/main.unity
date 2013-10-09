@@ -1041,9 +1041,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstep: {fileID: 8300000, guid: e8994e4f8c484b241a81acc7e8ae874f, type: 3}
-  jump: {fileID: 2800000, guid: 46bbab5150e8e58489d6b3412d9528ee, type: 3}
-  jumpForce: 0
-  custom: {fileID: 11400000, guid: 21e31c04130b71f4bb3c1c4c308b8282, type: 2}
 --- !u!54 &1272409650
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1051,13 +1048,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1272409643}
   serializedVersion: 2
-<<<<<<< HEAD
   m_Mass: 10
   m_Drag: 0
-=======
-  m_Mass: 5
-  m_Drag: 5
->>>>>>> 556a21761f2a392f11d05454e791c1558446f5f2
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
