@@ -1,8 +1,30 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7db622c90d44e3145a60e5801a129570
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName: {}
+=======
+guid: 85b57986be5d04e24905ccc7acaa28eb
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Camera_DOF
+    100002: Cube
+    100004: DrawObject
+    100006: //RootNode
+    400000: Camera_DOF
+    400002: Cube
+    400004: DrawObject
+    400006: //RootNode
+    2300000: Cube
+    2300002: DrawObject
+    3300000: Cube
+    3300002: DrawObject
+    4300000: Cube
+    7400000: Default Take
+    9500000: //RootNode
+>>>>>>> bd47cf400f1ab98a8d468b8494b81ab9adcdc9bb
   materials:
     importMaterials: 1
     materialName: 0

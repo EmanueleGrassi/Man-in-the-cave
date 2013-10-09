@@ -1,8 +1,30 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 07a58c6581c3d2c48a68634cd61d32f4
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName: {}
+=======
+guid: 9e80e7145687e404fa9b965f2ba22caa
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Camera_DOF
+    100002: //RootNode
+    100004: Cylinder
+    100006: DrawObject
+    400000: Camera_DOF
+    400002: //RootNode
+    400004: Cylinder
+    400006: DrawObject
+    2300000: Cylinder
+    2300002: DrawObject
+    3300000: Cylinder
+    3300002: DrawObject
+    4300000: Cylinder
+    7400000: Default Take
+    9500000: //RootNode
+>>>>>>> bd47cf400f1ab98a8d468b8494b81ab9adcdc9bb
   materials:
     importMaterials: 1
     materialName: 0
