@@ -5,11 +5,11 @@ public class PlayGui : MonoBehaviour {
 
     public GUISkin custom;
     float width, height;
-    public Texture pause, jump, left, right, quit;
+    public Texture pause, left, right, quit;
     public static bool isPaused;
     public Transform player;
     public float speed;
-    public float jumpForce;
+    
     public Vector3 currSpeed;
     public float maxSpeed;
 
@@ -18,7 +18,7 @@ public class PlayGui : MonoBehaviour {
         width = Screen.width;
         height = Screen.height;
         speed = 0.6f;
-        jumpForce = 60;
+        
         maxSpeed = 6;
 	}
 	
@@ -39,18 +39,9 @@ public class PlayGui : MonoBehaviour {
                 isPaused = true;
             }
         }
-        if (!isPaused)
-        {
-            //jump
-            if (GUI.Button(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
-            {
-                if (!pg_Script.isJumping)
-                {
-                    player.rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-                    pg_Script.isJumping = true;
-                }
-            }
 
+        if (!PlayGui.isPaused)
+        {
             //left
             if (GUI.RepeatButton(new Rect(width / 11, height - width / 11, width / 11, width / 11), left))
             {
