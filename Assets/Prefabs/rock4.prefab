@@ -14,8 +14,8 @@ GameObject:
   - 64: {fileID: 6400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: coin
-  m_TagString: coin
+  m_Name: rock4
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,9 +26,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.371531129, y: 11.5960007, z: 7.81018686}
-  m_LocalScale: {x: -.365249127, y: -.358761698, z: -.0432368554}
+  m_LocalRotation: {x: .707106769, y: 0, z: 0, w: .707106888}
+  m_LocalPosition: {x: -5.96098518, y: 13.4551048, z: 7.82996178}
+  m_LocalScale: {x: 1.32090271, y: 1, z: 2.13464308}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
@@ -55,7 +55,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: 07a58c6581c3d2c48a68634cd61d32f4, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 72c940771941ece49b1e6c783402b60e, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -63,8 +63,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 3
+  m_Mass: 1000
+  m_Drag: 2
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -83,7 +83,7 @@ MeshCollider:
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: 07a58c6581c3d2c48a68634cd61d32f4, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 72c940771941ece49b1e6c783402b60e, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,10 +92,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97160bd52b321af43bd4e1d24ab14c59, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b69fb3ada63d8a4a9430442b36afa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

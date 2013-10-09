@@ -11,12 +11,13 @@ public class pg_Script : MonoBehaviour {
     public float jumpForce;
     public Texture jump;
     public GUISkin custom;
+    public static float score;
 
 	// Use this for initialization
 	void Start () {
         isJumping = false;
         isMoving = false; 
-        jumpForce = 60;
+        jumpForce = 200;
         width = Screen.width;
         height = Screen.height;
 	}
@@ -58,5 +59,11 @@ public class pg_Script : MonoBehaviour {
     {
         if (col.gameObject.tag == "ground")
             isJumping = false;
+        if (col.gameObject.tag == "rock")
+        {
+            Debug.Log("hai perso");
+            Destroy(gameObject);
+            PlayGui.isPaused = true;
+        }
     }
 }

@@ -18,7 +18,7 @@ public class PlayGui : MonoBehaviour {
         width = Screen.width;
         height = Screen.height;
         speed = 0.6f;
-        
+        isPaused = false;
         maxSpeed = 6;
 	}
 	
@@ -38,6 +38,11 @@ public class PlayGui : MonoBehaviour {
                 Time.timeScale = 0;
                 isPaused = true;
             }
+        }
+        if (isPaused)
+        {
+            if (GUI.Button(new Rect(width / 2 - width / 8, height / 2 - width / 8, width / 4, width / 4), "reset"))
+                Application.LoadLevel(0);
         }
 
         if (!PlayGui.isPaused)

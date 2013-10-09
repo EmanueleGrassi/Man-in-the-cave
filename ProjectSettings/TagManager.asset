@@ -8,6 +8,10 @@ TagManager:
   - ground
   - Jump
   - Pause
+  - rock
+  - coin
+  - bomb
+  - bound
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
