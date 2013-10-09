@@ -45,7 +45,7 @@ public class pg_Script : MonoBehaviour {
         if (!PlayGui.isPaused)
         {
             //jump
-            if (GUI.Button(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
+            if (GUI.RepeatButton(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
             {
                 if (!pg_Script.isJumping)
                 {
