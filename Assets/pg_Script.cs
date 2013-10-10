@@ -5,6 +5,7 @@ public class pg_Script : MonoBehaviour {
 
     public static bool isJumping;
     public static bool isMoving;
+    public static bool isDestroyed;
 	public AudioClip footstep;
 	float nextPlayAudio;
     float width, height;
@@ -12,6 +13,7 @@ public class pg_Script : MonoBehaviour {
     public Texture jump;
     public GUISkin custom;
     public static float score;
+    Vector3 maxJumpForce;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +22,8 @@ public class pg_Script : MonoBehaviour {
         jumpForce = 200;
         width = Screen.width;
         height = Screen.height;
+        isDestroyed = false;
+        //maxJumpForce = new Vector3(0, 200, 0);
 	}
 	
 	// Update is called once per frame
@@ -47,6 +51,7 @@ public class pg_Script : MonoBehaviour {
             //jump
             if (GUI.RepeatButton(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
             {
+                //Vector3 velocity = transform.rigidbody.velocity;
                 if (!pg_Script.isJumping)
                 {
                     rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
@@ -62,8 +67,8 @@ public class pg_Script : MonoBehaviour {
         if (col.gameObject.tag == "rock")
         {
             Debug.Log("hai perso");
+            isDestroyed = true;
             Destroy(gameObject);
-            PlayGui.isPaused = true;
         }
     }
 }

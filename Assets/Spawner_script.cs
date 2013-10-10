@@ -11,9 +11,9 @@ public class Spawner_script : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         speed = 5;
-        nextShot = 2f;
+        nextShot = 3f;
         //per farli iniziare con un tempo diverso, abbiate fede
-        lastSpawn = Random.Range(1f, 5f);
+        lastSpawn = Random.Range(0f, 4f);
 	}
 	
 	// Update is called once per frame
@@ -23,13 +23,24 @@ public class Spawner_script : MonoBehaviour {
         {
             int num = Random.Range(0, 100);
             if (num <= 15)
+            {
                 Instantiate(coin, transform.position, Quaternion.identity);
+            }
             if (num > 15 && num <= 40)
+            {
                 Instantiate(rock1, transform.position, Quaternion.identity);
+                rock1.rigidbody.AddForce(new Vector3(0, Random.Range(-10,0)));
+            }
             if (num > 40 && num <= 65)
+            {
                 Instantiate(rock2, transform.position, Quaternion.identity);
+                rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+            }
             if (num> 65 && num <= 90)
+            {
                 Instantiate(rock4, transform.position, Quaternion.identity);
+                rock4.rigidbody.AddForce(new Vector3(0, Random.Range(-10,0)));
+            }
             lastSpawn = Time.time;
         }
 	}
