@@ -140,7 +140,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 46137672}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
   m_LocalPosition: {x: 1.20432854, y: 30.9308414, z: 7.36346912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1108,7 +1108,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1272409643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.70921588, z: 7.62682724}
+  m_LocalPosition: {x: 0, y: 1.38, z: 7.62682724}
   m_LocalScale: {x: 1.5, y: 2.79999995, z: 1}
   m_Children:
   - {fileID: 255075355}
@@ -1183,8 +1183,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstep: {fileID: 8300000, guid: 4e03dac995592cb438cc98fed56edefd, type: 3}
-  jumpForce: 0
-  jump: {fileID: 2800000, guid: 46bbab5150e8e58489d6b3412d9528ee, type: 3}
   custom: {fileID: 11400000, guid: 21e31c04130b71f4bb3c1c4c308b8282, type: 2}
 --- !u!54 &1272409650
 Rigidbody:
@@ -1193,8 +1191,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1272409643}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 18
+  m_Drag: 1
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -1971,8 +1969,10 @@ MonoBehaviour:
   left: {fileID: 2800000, guid: ecb1edab333e1f54984e76278211ab67, type: 3}
   right: {fileID: 2800000, guid: 19323aa8fa6360742b22a73e3d52ede1, type: 3}
   quit: {fileID: 2800000, guid: 01b058e761e649048b6b840587186576, type: 3}
+  jump: {fileID: 2800000, guid: 46bbab5150e8e58489d6b3412d9528ee, type: 3}
   player: {fileID: 1272409647}
   speed: 0
+  jumpForce: 0
   currSpeed: {x: 0, y: 0, z: 0}
   maxSpeed: 0
 --- !u!114 &1593875156

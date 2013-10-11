@@ -5,11 +5,11 @@ public class PlayGui : MonoBehaviour {
 
     public GUISkin custom;
     float width, height;
-    public Texture pause, left, right, quit;
+    public Texture pause, left, right, quit, jump;
     public static bool isPaused;
     public Transform player;
     public float speed;
-    
+    public float jumpForce;
     public Vector3 currSpeed;
     public float maxSpeed;
 
@@ -20,6 +20,7 @@ public class PlayGui : MonoBehaviour {
         speed = 0.6f;
         isPaused = false;
         maxSpeed = 6;
+        jumpForce = 200;
 	}
 	
 	// Update is called once per frame
@@ -53,39 +54,33 @@ public class PlayGui : MonoBehaviour {
                 //left
                 if (GUI.RepeatButton(new Rect(width / 11, height - width / 11, width / 11, width / 11), left))
                 {
-                    if (!pg_Script.isJumping)
-                    {
-                        if (currSpeed.x > -maxSpeed)
-                        {
-                            player.rigidbody.AddForce(new Vector3(-speed, 0, 0), ForceMode.VelocityChange);
-                            pg_Script.isMoving = true;
-                        }
-                    }
-                    else
-                        if (currSpeed.x > -maxSpeed)
-                        {
-                            player.rigidbody.AddForce(new Vector3(-speed / 3, 0, 0), ForceMode.VelocityChange);
-                        }
+                    moveLeft();
                 }
                 //right
                 if (GUI.RepeatButton(new Rect(width / 11 * 3, height - width / 11, width / 11, width / 11), right))
                 {
-                    if (!pg_Script.isJumping)
-                    {
-                        if (currSpeed.x < maxSpeed)
-                        {
-                            player.rigidbody.AddForce(new Vector3(speed, 0, 0), ForceMode.VelocityChange);
-                            pg_Script.isMoving = true;
-                        }
-                    }
-                    else
-                    {
-                        if (currSpeed.x < maxSpeed)
-                        {
-                            player.rigidbody.AddForce(new Vector3(speed / 3, 0, 0), ForceMode.VelocityChange);
-                        }
-                    }
+                    moveRight();
                 }
+                //jump
+                if (GUI.RepeatButton(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
+                {
+                    Jump();
+                }
+                //////////// NON FUNZIONANO...
+                //// jump & left
+                //if (GUI.RepeatButton(new Rect(width / 11, height - width / 11, width / 11, width / 11), left)
+                //    && GUI.RepeatButton(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
+                //{
+                //    Jump();
+                //    moveLeft();
+                //}
+                //// jump & right
+                //if (GUI.RepeatButton(new Rect(width / 11 * 3, height - width / 11, width / 11, width / 11), right)
+                //    && GUI.RepeatButton(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
+                //{
+                //    moveRight();
+                //    Jump();
+                //}
             }
             // quit (only for test)
             if (GUI.Button(new Rect(0, 0, width / 11, width / 11), quit))
@@ -93,5 +88,50 @@ public class PlayGui : MonoBehaviour {
         }
 
 	}
+    #region spostamento e salto
+    void moveLeft()
+    {
+        if (!pg_Script.isJumping)
+        {
+            if (currSpeed.x > -maxSpeed)
+            {
+                player.rigidbody.AddForce(new Vector3(-speed, 0, 0), ForceMode.VelocityChange);
+                pg_Script.isMoving = true;
+            }
+        }
+        else
+            if (currSpeed.x > -maxSpeed)
+            {
+                player.rigidbody.AddForce(new Vector3(-speed / 3, 0, 0), ForceMode.VelocityChange);
+            }
+    }
 
+    void moveRight()
+    {
+        if (!pg_Script.isJumping)
+        {
+            if (currSpeed.x < maxSpeed)
+            {
+                player.rigidbody.AddForce(new Vector3(speed, 0, 0), ForceMode.VelocityChange);
+                pg_Script.isMoving = true;
+            }
+        }
+        else
+        {
+            if (currSpeed.x < maxSpeed)
+            {
+                player.rigidbody.AddForce(new Vector3(speed / 3, 0, 0), ForceMode.VelocityChange);
+            }
+        }
+    }
+
+    void Jump()
+    {
+        if (!pg_Script.isJumping)
+        {
+            player.rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+            pg_Script.isJumping = true;
+        }
+    }
+    #endregion
 }
