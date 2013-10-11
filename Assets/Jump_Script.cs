@@ -21,7 +21,8 @@ public class Jump_Script : MonoBehaviour {
 
                 if (Physics.Raycast(ray, out hit, 1000) && hit.collider.tag == "Jump" && !pg_Script.isJumping)
                 {
-                    player.rigidbody.AddForce(new Vector3(0, 14f, 0), ForceMode.Impulse);
+					player.rigidbody.velocity = Vector3.up * 10;
+                    //player.rigidbody.AddForce(new Vector3(0, 14f, 0), ForceMode.Acceleration);
                     pg_Script.isJumping = true;
                 }
             }
