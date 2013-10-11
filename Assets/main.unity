@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock1: {fileID: 400000, guid: 1b4363012479f0d4a94413356cbbe83f, type: 2}
+  rock1: {fileID: 400000, guid: a0b38717515dee0419cb88fc584b0439, type: 2}
   rock2: {fileID: 400000, guid: 4ab7edb13352b6c478201ba45f9a085f, type: 2}
   rock4: {fileID: 400000, guid: bac8f0eb160794645a4559aa8a816263, type: 2}
   coin: {fileID: 400000, guid: 748f538e854a14b449b38720ac5a5fc4, type: 2}
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock1: {fileID: 400000, guid: 1b4363012479f0d4a94413356cbbe83f, type: 2}
+  rock1: {fileID: 400000, guid: a0b38717515dee0419cb88fc584b0439, type: 2}
   rock2: {fileID: 400000, guid: 4ab7edb13352b6c478201ba45f9a085f, type: 2}
   rock4: {fileID: 400000, guid: bac8f0eb160794645a4559aa8a816263, type: 2}
   coin: {fileID: 400000, guid: 748f538e854a14b449b38720ac5a5fc4, type: 2}
@@ -2027,7 +2027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock1: {fileID: 400000, guid: 1b4363012479f0d4a94413356cbbe83f, type: 2}
+  rock1: {fileID: 400000, guid: a0b38717515dee0419cb88fc584b0439, type: 2}
   rock2: {fileID: 400000, guid: 4ab7edb13352b6c478201ba45f9a085f, type: 2}
   rock4: {fileID: 400000, guid: bac8f0eb160794645a4559aa8a816263, type: 2}
   coin: {fileID: 400000, guid: 748f538e854a14b449b38720ac5a5fc4, type: 2}
@@ -2539,6 +2539,14 @@ Prefab:
     - target: {fileID: 400002, guid: 2acf9c8e812eff6459715d2b3dce2c96, type: 2}
       propertyPath: m_LocalScale.z
       value: 6.66666651
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 2acf9c8e812eff6459715d2b3dce2c96, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 2acf9c8e812eff6459715d2b3dce2c96, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2acf9c8e812eff6459715d2b3dce2c96, type: 2}
