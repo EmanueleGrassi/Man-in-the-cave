@@ -36,6 +36,16 @@ public class pg_Script : MonoBehaviour {
         {
             isMoving = false;
         }
+        if (isJumping)
+        {
+            bool added = false;
+            Vector3 velociy = rigidbody.velocity;
+            if (velociy.y < 0.5f && !added)
+            {
+                rigidbody.velocity += new Vector3(0, -1, 0);
+                added = true;
+            }
+        }
 	}
 
     void OnCollisionEnter(Collision col)

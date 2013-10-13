@@ -129,7 +129,8 @@ public class PlayGui : MonoBehaviour {
     {
         if (!pg_Script.isJumping)
         {
-            player.rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+            //player.rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+            player.rigidbody.velocity += new Vector3(0, 10, 0);
             pg_Script.isJumping = true;
         }
     }
