@@ -50,7 +50,7 @@ public class pg_Script : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "ground")
+        if (col.gameObject.tag == "ground" || col.gameObject.tag == "backgroundRock")
             isJumping = false;
         if (col.gameObject.tag == "rock")
         {
