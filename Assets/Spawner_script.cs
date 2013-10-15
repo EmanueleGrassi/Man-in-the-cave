@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Spawner_script : MonoBehaviour {
     
@@ -7,6 +8,7 @@ public class Spawner_script : MonoBehaviour {
     float nextShot;
     float lastSpawn;
     public Transform rock1, rock2, rock4, coin;
+    public Texture marker;
 
 	// Use this for initialization
 	void Start () {
@@ -15,12 +17,12 @@ public class Spawner_script : MonoBehaviour {
         //per farli iniziare con un tempo diverso, abbiate fede
         lastSpawn = Random.Range(0f, 4f);
 	}
-	
+  
 	// Update is called once per frame
 	void Update () {
         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
         if (Time.time > lastSpawn + nextShot)
-        {
+        {            
             int num = Random.Range(0, 100);
             if (num <= 15)
             {
@@ -42,8 +44,10 @@ public class Spawner_script : MonoBehaviour {
                 rock4.rigidbody.AddForce(new Vector3(0, Random.Range(-10,0)));
             }
             lastSpawn = Time.time;
+
         }
 	}
+   
 
     void OnCollisionEnter(Collision col)
     {

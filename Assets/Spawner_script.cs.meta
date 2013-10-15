@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: 37ba08a6f92cbd943a196be52d0243d0
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rock1: {instanceID: 0}
+  - rock2: {instanceID: 0}
+  - rock4: {instanceID: 0}
+  - coin: {instanceID: 0}
+  - marker: {fileID: 2800000, guid: fe1634a39d38c8d49b500a35778089cc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
