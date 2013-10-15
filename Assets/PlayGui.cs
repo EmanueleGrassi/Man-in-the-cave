@@ -10,9 +10,8 @@ public class PlayGui : MonoBehaviour {
     public Transform player;
     public float speed;
     public float jumpForce;
-    public Vector3 currSpeed;
+    public Vector3 currSpeed, gyro, accelerometer;
     public float maxSpeed;
-    bool leftActive, rightActive;
 
 	// Use this for initialization
 	void Start () {
@@ -27,8 +26,6 @@ public class PlayGui : MonoBehaviour {
 	// Update is called once per frame
 	void OnGUI () {
         GUI.skin = custom;
-        leftActive = false;
-        rightActive = false;
 
         if (pg_Script.isDestroyed)
         {
@@ -58,38 +55,48 @@ public class PlayGui : MonoBehaviour {
                 if (GUI.RepeatButton(new Rect(width / 11, height - width / 11, width / 11, width / 11), left))
                 {
                     moveLeft();
-                    leftActive = true;
                 }
                 //right
                 if (GUI.RepeatButton(new Rect(width / 11 * 3, height - width / 11, width / 11, width / 11), right))
                 {
                     moveRight();
-                    rightActive = true;
                 }
                 //jump
                 if (GUI.RepeatButton(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
                 {
                     Jump();
                 }
-                // jump & left
-                if (leftActive && GUI.RepeatButton(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
-                {
-                    Jump();
-                    moveLeft();
-                }
-                // jump & right
-                if (rightActive && GUI.RepeatButton(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
-                {
-                    moveRight();
-                    Jump();
-                }
+                //// maledettissimi bastardi!
+                //// jump & left
+                //if (leftActive && GUI.RepeatButton(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
+                //{
+                //    Jump();
+                //    moveLeft();
+                //}
+                //// jump & right
+                //if (rightActive && GUI.RepeatButton(new Rect(width / 11 * 10, height - width / 11, width / 11, width / 11), jump))
+                //{
+                //    moveRight();
+                //    Jump();
+                //}
             }
             // quit (only for test)
             if (GUI.Button(new Rect(0, 0, width / 11, width / 11), quit))
                 Application.Quit();
+
+            accelerometer = Input.acceleration;
+            //gyro = Input.gyro.
+
+            GUI.Label(new Rect(width / 2, 0, width / 2, height / 3), "Accelerometer x: " + accelerometer.x + @"
+y: " + accelerometer.y + " z: " + accelerometer.z);
+            //        GUI.Label(new Rect(width / 2, height/3, width / 2, height / 3), "Gyro x: " + gyro.x + @"
+            //y: " + gyro.y + " z: " + gyro.z);
         }
 
+        
+
 	}
+
     #region spostamento e salto
     void moveLeft()
     {
