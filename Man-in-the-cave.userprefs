@@ -1,11 +1,27 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Jump_Script.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Cameramuvement.cs">
     <Files>
-      <File FileName="Assets\Jump_Script.cs" Line="24" Column="49" />
-      <File FileName="Assets\Cameramuvement.cs" Line="21" Column="113" />
+      <File FileName="Assets\pg_Script.cs" Line="63" Column="1" />
+      <File FileName="Assets\Jump_Script.cs" Line="30" Column="3" />
+      <File FileName="Assets\Cameramuvement.cs" Line="20" Column="103" />
       <File FileName="Assets\Spawner_script.cs" Line="1" Column="1" />
+      <File FileName="Assets\PlayGui.cs" Line="101" Column="19" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Cameramuvement.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

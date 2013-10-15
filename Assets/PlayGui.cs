@@ -10,7 +10,8 @@ public class PlayGui : MonoBehaviour {
     public Transform player;
     public float speed;
     public float jumpForce;
-    public Vector3 currSpeed, gyro, accelerometer;
+    public Vector3 currSpeed, accelerometer;
+	Quaternion gyro;
     public float maxSpeed;
 
 	// Use this for initialization
@@ -85,12 +86,26 @@ public class PlayGui : MonoBehaviour {
                 Application.Quit();
 
             accelerometer = Input.acceleration;
-            //gyro = Input.gyro.
+            gyro = Input.gyro.attitude;
+			if (Input.gyro.enabled) 
+			{
+				
+			}
+			else 
+			{
+				if(!(accelerometer.x < 0.25 && accelerometer.x > -0.25))
+				{	
+					if(accelerometer.x<0)
+						moveLeft();
+					else 
+						moveRight();
+				}
+			}
 
             GUI.Label(new Rect(width / 2, 0, width / 2, height / 3), "Accelerometer x: " + accelerometer.x + @"
 y: " + accelerometer.y + " z: " + accelerometer.z);
-            //        GUI.Label(new Rect(width / 2, height/3, width / 2, height / 3), "Gyro x: " + gyro.x + @"
-            //y: " + gyro.y + " z: " + gyro.z);
+            GUI.Label(new Rect(width / 2, height/3, width / 2, height / 3), " av: "+ Input.gyro.enabled +" Gyro x: " + gyro.eulerAngles.x+ @"
+            y: " + gyro.y + " z: " + gyro.z);
         }
 
         
