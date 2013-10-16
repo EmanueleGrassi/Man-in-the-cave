@@ -3,11 +3,11 @@ guid: 37ba08a6f92cbd943a196be52d0243d0
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - rock1: {instanceID: 0}
-  - rock2: {instanceID: 0}
-  - rock4: {instanceID: 0}
-  - coin: {instanceID: 0}
-  - marker: {fileID: 2800000, guid: fe1634a39d38c8d49b500a35778089cc, type: 3}
+  - rock1: {fileID: 400000, guid: a0b38717515dee0419cb88fc584b0439, type: 2}
+  - rock2: {fileID: 400000, guid: 4ab7edb13352b6c478201ba45f9a085f, type: 2}
+  - rock4: {fileID: 400000, guid: bac8f0eb160794645a4559aa8a816263, type: 2}
+  - coin: {fileID: 400000, guid: 748f538e854a14b449b38720ac5a5fc4, type: 2}
+  - marker: {fileID: 400000, guid: 5dc701c1cc326ad4b8861c525d4fbf79, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

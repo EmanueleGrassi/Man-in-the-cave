@@ -7,8 +7,7 @@ public class Spawner_script : MonoBehaviour {
     float speed;
     float nextShot;
     float lastSpawn;
-    public Transform rock1, rock2, rock4, coin;
-    public Texture marker;
+    public Transform rock1, rock2, rock4, coin, marker;
 
 	// Use this for initialization
 	void Start () {
@@ -44,7 +43,10 @@ public class Spawner_script : MonoBehaviour {
                 rock4.rigidbody.AddForce(new Vector3(0, Random.Range(-10,0)));
             }
             lastSpawn = Time.time;
-
+			float w= (float)Screen.width;
+			float h = (float)Screen.height;
+			var c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.626827f));
+			Instantiate(marker, new Vector3(transform.position.x, c.y),Quaternion.identity);
         }
 	}
    
