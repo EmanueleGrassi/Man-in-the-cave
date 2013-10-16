@@ -6,6 +6,7 @@ public class Cameramuvement : MonoBehaviour
 	
 	float nexshot = 0.0f;
 	public Transform playerPG;
+    public AudioClip rockSound;
 	// Use this for initialization
 	void Start () {
 	
@@ -13,7 +14,12 @@ public class Cameramuvement : MonoBehaviour
 	
 	// Update is called once per frame    
 	void Update () 
-	{
+	{   
+        if(RockBehaviour.Play)
+        {
+            AudioSource.PlayClipAtPoint(rockSound, RockBehaviour.deathP);
+            RockBehaviour.Play = false;
+        }
         if (!pg_Script.isDestroyed)
         {
             float playerPGxPOW = (playerPG.position.x * playerPG.position.x);

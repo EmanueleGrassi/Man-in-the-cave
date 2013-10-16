@@ -5,7 +5,6 @@ public class RockBehaviour4 : MonoBehaviour {
 
     public Vector3 velocity;
     bool Played = false;
-    public AudioClip rockSound;
     bool getInside;
     // Use this for initialization
     void Start()
@@ -16,11 +15,7 @@ public class RockBehaviour4 : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.tag == "ground" && !Played)
-        {
-            audio.PlayOneShot(rockSound);
-            Played = true;
-        }
+        
         if (gameObject.tag != "ground")
         {
             velocity = gameObject.rigidbody.velocity;

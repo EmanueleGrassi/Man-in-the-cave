@@ -4,8 +4,9 @@ using System.Collections;
 public class RockBehaviour : MonoBehaviour {
     
     public Vector3 velocity;
-    bool Played = false;
+    public static bool Play = false;
     public AudioClip rockSound;
+    public static Vector3 deathP;
 	// Use this for initialization
 	void Start () {
 	
@@ -13,11 +14,6 @@ public class RockBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (gameObject.tag == "ground" && !Played)
-        {
-            audio.PlayOneShot(rockSound);
-            Played = true; 
-        }
         if (gameObject.tag != "ground")
         {
             velocity = gameObject.rigidbody.velocity;
@@ -30,15 +26,22 @@ public class RockBehaviour : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
+        if (col.gameObject.tag == "ground")
+        {
+            Play = true;
+            deathP = transform.position;
+        }
         int rnd = Random.Range(0, 5);
         if (col.gameObject.tag == "ground" && rnd < 3)
         {
-            //DANIELE METTI QUI IL SUONO DELLA ROCCIA CHE SI DISTRUGGE
+            Play = true;
+            deathP = transform.position;
             Destroy(gameObject);
         }
         if (col.gameObject.tag == "backgroundRock")
         {
-            //E PURE QUA!
+            Play = true;
+            deathP = transform.position;
             Destroy(col.gameObject);
             Destroy(gameObject);
         }
