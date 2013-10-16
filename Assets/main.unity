@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock1: {fileID: 400000, guid: a0b38717515dee0419cb88fc584b0439, type: 2}
+  rock1: {fileID: 400000, guid: f9866af3b86815a4585928b0787af54d, type: 2}
   rock2: {fileID: 400000, guid: 4ab7edb13352b6c478201ba45f9a085f, type: 2}
   rock4: {fileID: 400000, guid: bac8f0eb160794645a4559aa8a816263, type: 2}
   coin: {fileID: 400000, guid: 748f538e854a14b449b38720ac5a5fc4, type: 2}
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock1: {fileID: 400000, guid: a0b38717515dee0419cb88fc584b0439, type: 2}
+  rock1: {fileID: 400000, guid: f9866af3b86815a4585928b0787af54d, type: 2}
   rock2: {fileID: 400000, guid: 4ab7edb13352b6c478201ba45f9a085f, type: 2}
   rock4: {fileID: 400000, guid: bac8f0eb160794645a4559aa8a816263, type: 2}
   coin: {fileID: 400000, guid: 748f538e854a14b449b38720ac5a5fc4, type: 2}
@@ -2216,7 +2216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock1: {fileID: 400000, guid: a0b38717515dee0419cb88fc584b0439, type: 2}
+  rock1: {fileID: 400000, guid: f9866af3b86815a4585928b0787af54d, type: 2}
   rock2: {fileID: 400000, guid: 4ab7edb13352b6c478201ba45f9a085f, type: 2}
   rock4: {fileID: 400000, guid: bac8f0eb160794645a4559aa8a816263, type: 2}
   coin: {fileID: 400000, guid: 748f538e854a14b449b38720ac5a5fc4, type: 2}
