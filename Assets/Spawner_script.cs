@@ -45,7 +45,7 @@ public class Spawner_script : MonoBehaviour {
             lastSpawn = Time.time;
             float w = Screen.width;
 			float h = Screen.height;
-			var c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.626827f));
+			var c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
             if (num > 15)
 			    Instantiate(marker, new Vector3(transform.position.x, c.y),Quaternion.identity);
         }
