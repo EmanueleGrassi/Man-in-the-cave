@@ -1,24 +1,26 @@
 fileFormatVersion: 2
-guid: 6a60615822510b242b16ffa9e18c88a9
+guid: a0671a40599c1934aac5a257c9a863b9
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: Camera
-    100002: Camera_DOF
+    100000: -Camera
+    100002: -Scene_Light
     100004: //RootNode
     100006: Cylinder
-    100008: DrawObject
-    100010: Hemi
-    400000: Camera
-    400002: Camera_DOF
+    100008: DrawMesh
+    100010: Render_Shadows
+    100012: Scene_Shadows
+    400000: -Camera
+    400002: -Scene_Light
     400004: //RootNode
     400006: Cylinder
-    400008: DrawObject
-    400010: Hemi
+    400008: DrawMesh
+    400010: Render_Shadows
+    400012: Scene_Shadows
     2300000: Cylinder
-    2300002: DrawObject
+    2300002: DrawMesh
     3300000: Cylinder
-    3300002: DrawObject
+    3300002: DrawMesh
     4300000: Cylinder
     7400000: Default Take
     9500000: //RootNode
@@ -38,7 +40,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .649999976
+    globalScale: .00999999978
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

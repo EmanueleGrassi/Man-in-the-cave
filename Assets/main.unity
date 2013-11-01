@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pause: {fileID: 2800000, guid: 4db3193e0da255b4ab93c10d5cb1133d, type: 3}
   quit: {fileID: 2800000, guid: 01b058e761e649048b6b840587186576, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 67719946}
 --- !u!82 &67719950
 AudioSource:
   m_ObjectHideFlags: 0
@@ -840,7 +840,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 45
+  field of view: 85
   orthographic: 0
   orthographic size: 100
   m_Depth: 0

@@ -22,7 +22,7 @@ public class PlayGui : MonoBehaviour
 	// Update is called once per frame
 	void OnGUI () 
 	{       
-        if (pg_Script.isDestroyed)
+        if (player==null)
         {
             if (GUI.Button(new Rect(width / 2 - width / 8, height / 2 - width / 8, width / 4, width / 4), "reset"))
                 Application.LoadLevel(0);

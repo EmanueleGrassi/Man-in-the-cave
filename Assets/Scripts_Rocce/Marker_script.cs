@@ -4,12 +4,12 @@ using System.Collections;
 public class Marker_script : MonoBehaviour {
 
     float creation;
-    bool play;
+    bool canPlay;
     GameObject pg;
 	// Use this for initialization
 	void Start () {
         creation = Time.time;
-        play = true;
+        canPlay = true;
         pg = GameObject.FindGameObjectWithTag("Player");
 	}
 	
@@ -19,10 +19,10 @@ public class Marker_script : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        if (play && transform.position.x<pg.transform.position.x+10f && transform.position.x>pg.transform.position.x-10f)
+        if (canPlay && transform.position.x<pg.transform.position.x+10f && transform.position.x>pg.transform.position.x-10f)
         {
             audio.Play();
-            play = false;
+            canPlay = false;
         }
 	}
 }

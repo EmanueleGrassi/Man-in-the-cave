@@ -13,7 +13,8 @@ public class RockBehaviour : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
         if (gameObject.tag != "ground")
         {
             velocity = gameObject.rigidbody.velocity;
@@ -30,21 +31,24 @@ public class RockBehaviour : MonoBehaviour {
         {
             Play = true;
             deathP = transform.position;
+			int rnd = Random.Range(0, 5);
+			if ( rnd < 3)
+            	Destroy(gameObject);
         }
-        int rnd = Random.Range(0, 5);
-        if (col.gameObject.tag == "ground" && rnd < 3)
-        {
-            Play = true;
-            deathP = transform.position;
-            Destroy(gameObject);
-        }
-        if (col.gameObject.tag == "backgroundRock")
+        else if (col.gameObject.tag == "backgroundRock")
         {
             Play = true;
             deathP = transform.position;
             Destroy(col.gameObject);
             Destroy(gameObject);
         }
+		else if (col.gameObject.tag == "Player" && gameObject.tag!="backgroundRock") 
+		{
+			//finisce il gioco
+			//la roccia suona l'urlo di morte del pg
+			Destroy(col.gameObject);
+		}
+		
     }
 
 }

@@ -37,16 +37,17 @@ public class CameraScript : MonoBehaviour
         if (!pg_Script.isDestroyed)
         {
             float playerPGxPOW = (playerPG.position.x * playerPG.position.x);
+			/*ellisse 
+			 * semiassi:
+			 * z=6
+			 * x=
+			 */
+            transform.position = new Vector3(playerPG.position.x, Mathf.Sqrt((1 - (playerPGxPOW / 4225)) * 77.44f),
+								-1f * Mathf.Sqrt((1 - (playerPGxPOW / 4225)) * 36f));//y 21.5f			
 			
-            Vector3 currentTransform = new Vector3(playerPG.position.x, Mathf.Sqrt((1 - (playerPGxPOW / 3025)) * 462.25f),
-								-1f * Mathf.Sqrt((1 - (playerPGxPOW / 4225)) * 784));//y 21.5f
-			transform.position= new Vector3( 
-			/* X */	Mathf.SmoothDamp( currentTransform.x, playerPG.position.x, ref velocity.x, smoothTime),
-			/* Y  Mathf.SmoothDamp( currentTransform.y, playerPG.position.y, ref velocity.y, smoothTime),*/ currentTransform.y,
-			/* Z */	currentTransform.z );
-			
-            transform.rotation= Quaternion.Euler(18.5f, Mathf.Tan(-((28*playerPG.position.x)/(65*Mathf.Sqrt(4225-playerPGxPOW)))) *180/Mathf.PI, 0);
-            //transform.Rotate(new Vector3(18.5f, Mathf.Atan(-((13*positionX)/(20*Mathf.Sqrt(1600-(positionX*positionX))))), 0));
+            //transform.rotation= Quaternion.Euler(18.5f, Mathf.Tan(-((28*playerPG.position.x)/(65*Mathf.Sqrt(4225-playerPGxPOW)))) *180/Mathf.PI, 0);
+            transform.rotation= Quaternion.Euler(2.9f, Mathf.Tan(-((28*playerPG.position.x)/(65*Mathf.Sqrt(4225-playerPGxPOW)))) *180/Mathf.PI, 0);
+			//transform.Rotate(new Vector3(18.5f, Mathf.Atan(-((13*positionX)/(20*Mathf.Sqrt(1600-(positionX*positionX))))), 0));
             nexshot = Time.time + 0.01f;
            
         }
@@ -59,7 +60,7 @@ public class CameraScript : MonoBehaviour
 		float margin= Screen.width/60;
 		GUI.DrawTexture(new Rect (margin,margin,height,height), coin, ScaleMode.ScaleToFit, true);		
 		GUI.skin.label.fontSize = (int)height;
-		GUI.Label (new Rect (height+(margin*2), margin/1.5f,/*moltiplicare la metà delle cifre moneta per height*/ 600f ,300f), ""+height);
+		GUI.Label (new Rect (height+(margin*2), margin/1.5f,/*moltiplicare la metà delle cifre moneta per height*/ 600f ,300f), ""+coins);
 		
 		//Visualizza il tempo
 		//GUI.DrawTexture(new Rect (margin,margin,height,height), clock, ScaleMode.ScaleToFit, true);	

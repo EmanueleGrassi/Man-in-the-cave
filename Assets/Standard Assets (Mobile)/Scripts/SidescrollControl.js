@@ -111,18 +111,24 @@ function Update()
 	movement += velocity;	
 	movement += Physics.gravity;
 	movement *= Time.deltaTime;
-	movement.z = 0;
+	//movement.z=0;
 	// Actually move the character	
 	character.Move( movement );
-	
+	//freeez di z
+	//transform.position.z=7.5;
 	if ( character.isGrounded )
 		// Remove any persistent velocity after landing	
 		velocity = Vector3.zero;
 }
 function OnCollisionEnter(collision:Collision) 
 {
- if(collision.gameObject.tag=="coin")
+ if(collision.gameObject.tag=="coinGold" || collision.gameObject.tag=="coinSilver")
  	{
+ 	/*if(collision.gameObject.tag=="coinGold") 	
+ 		CameraScript.coins =5f;
+ 	else
+ 		CameraScript.coins=2f;*/
+ 	
  		random=Random.Range(0,3);
  		switch(random)
  			{

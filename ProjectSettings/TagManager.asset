@@ -9,11 +9,12 @@ TagManager:
   - Jump
   - Pause
   - rock
-  - coin
+  - coinGold
   - bomb
   - bound
   - backgroundRock
   - spawnersin
+  - coinSilver
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

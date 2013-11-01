@@ -8,13 +8,15 @@ public class Spawner_script : MonoBehaviour {
     float nextShot;
     float lastSpawn;
     public Transform rock1, rock2, rock4, coin, marker;
-
+	float w, h;
 	// Use this for initialization
 	void Start () {
         speed = 5;
         nextShot = 3f;
         //per farli iniziare con un tempo diverso, abbiate fede
         lastSpawn = Random.Range(0f, 4f);
+		 w = Screen.width;
+		 h = Screen.height;
 	}
   
 	// Update is called once per frame
@@ -49,14 +51,12 @@ public class Spawner_script : MonoBehaviour {
                 Instantiate(rock4, transform.position, Quaternion.Euler(90,0,0));
                 rock4.rigidbody.AddForce(new Vector3(0, Random.Range(-10,0)));
             }
-            lastSpawn = Time.time;
-            float w = Screen.width;
-			float h = Screen.height;
+            lastSpawn = Time.time;            
 			var c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
             if (num > 15)
-			    Instantiate(marker, new Vector3(transform.position.x, c.y),Quaternion.identity);
+			    Instantiate(marker, new Vector3(transform.position.x, c.y, 5.3f),Quaternion.identity);
         }
-	}
+	} 
    
 
     void OnCollisionEnter(Collision col)
