@@ -7,9 +7,10 @@ public class RockBehaviour : MonoBehaviour {
     public static bool Play = false;
     public AudioClip rockSound;
     public static Vector3 deathP;
+	GameObject pg;
 	// Use this for initialization
 	void Start () {
-	
+		pg=GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -31,6 +32,8 @@ public class RockBehaviour : MonoBehaviour {
         {
             Play = true;
             deathP = transform.position;
+			if(deathP.x<pg.transform.position.x+10f && deathP.x>pg.transform.position.x-10f)
+				PlayGui.playShout=true;
 			int rnd = Random.Range(0, 5);
 			if ( rnd < 3)
             	Destroy(gameObject);

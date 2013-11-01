@@ -29,6 +29,7 @@ var  footstep:AudioClip;
 var  collected1 : AudioClip;
 var  collected2 : AudioClip;
 var  collected3 : AudioClip;
+
 var random : int;
 private var nextPlayAudio:float;
 

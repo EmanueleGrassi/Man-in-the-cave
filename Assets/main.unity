@@ -199,6 +199,10 @@ MonoBehaviour:
   collected1: {fileID: 8300000, guid: beb809e6ac89bd34d9666d3e4e3561d4, type: 3}
   collected2: {fileID: 8300000, guid: beb809e6ac89bd34d9666d3e4e3561d4, type: 3}
   collected3: {fileID: 8300000, guid: 58f1898b3edce49479007fe61b4ccd63, type: 3}
+  shout1: {fileID: 0}
+  shout2: {fileID: 0}
+  shout3: {fileID: 0}
+  shout4: {fileID: 0}
   random: 0
 --- !u!143 &67719948
 CharacterController:

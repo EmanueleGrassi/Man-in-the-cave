@@ -6,8 +6,14 @@ public class PlayGui : MonoBehaviour
     float width, height;
     public Texture pause, quit;
     public static bool isPaused;
-    public Transform player;    
+    public Transform player; 
+	public AudioClip shout1;
+	public AudioClip shout2;	
+	public AudioClip shout3;
+	public AudioClip shout4;
+    public static bool playShout;
     bool locked;
+	int random;
     int finger;
 
 	// Use this for initialization
@@ -141,6 +147,27 @@ public class PlayGui : MonoBehaviour
 
             //            #endregion
         }
+		
+	//suono urlo
+    if(playShout) {
+    	playShout=false;
+    	random=Random.Range(0,4);
+ 		switch(random)
+ 			{
+ 				case 0:
+ 					AudioSource.PlayClipAtPoint(shout1,transform.position);
+ 					break;
+ 				case 1:
+ 					AudioSource.PlayClipAtPoint(shout2,transform.position);
+ 					break;
+ 				case 2:
+ 					AudioSource.PlayClipAtPoint(shout3,transform.position);
+ 					break;
+ 				case 3:
+ 					AudioSource.PlayClipAtPoint(shout4,transform.position);
+ 					break;
+ 			}
+    }
     }
 
     public void pauseUnpause()
