@@ -196,6 +196,10 @@ MonoBehaviour:
   jumpSpeed: 17
   inAirMultiplier: .300000012
   footstep: {fileID: 8300000, guid: 4e03dac995592cb438cc98fed56edefd, type: 3}
+  collected1: {fileID: 8300000, guid: beb809e6ac89bd34d9666d3e4e3561d4, type: 3}
+  collected2: {fileID: 8300000, guid: beb809e6ac89bd34d9666d3e4e3561d4, type: 3}
+  collected3: {fileID: 8300000, guid: 58f1898b3edce49479007fe61b4ccd63, type: 3}
+  random: 0
 --- !u!143 &67719948
 CharacterController:
   m_ObjectHideFlags: 0
