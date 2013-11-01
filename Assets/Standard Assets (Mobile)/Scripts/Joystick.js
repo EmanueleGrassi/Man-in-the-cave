@@ -202,7 +202,7 @@ function Update()
 				{					
 					// Change the location of the joystick graphic to match where the touch is
 					gui.pixelInset.x =  Mathf.Clamp( guiTouchPos.x, guiBoundary.min.x, guiBoundary.max.x );
-					gui.pixelInset.y =  Mathf.Clamp( guiTouchPos.y, guiBoundary.min.y, guiBoundary.max.y );		
+					//gui.pixelInset.y =  Mathf.Clamp( guiTouchPos.y, guiBoundary.min.y, guiBoundary.max.y );		
 				}
 				
 				if ( touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled )

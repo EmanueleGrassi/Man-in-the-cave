@@ -11,7 +11,7 @@ public class Marker_script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.time > creation + 2)
+        if (Time.time > creation + 3.5f)
         {
             Destroy(gameObject);
         }

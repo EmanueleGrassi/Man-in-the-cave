@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: 81d59ad3ab9985945844cdd61e3d647e
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerPG: {instanceID: 0}
+  - rockSound: {fileID: 8300000, guid: f179fbcd0c22da0448a15023efffb0ab, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

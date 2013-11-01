@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 67719946}
-  smoothTime: .300000012
+  smoothTime: .400000006
 --- !u!81 &458439270
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1171,11 +1171,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13100002, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
       propertyPath: m_PixelInset.width
-      value: 220
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 13100002, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
       propertyPath: m_PixelInset.x
-      value: 150
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1184,6 +1184,18 @@ Prefab:
     - target: {fileID: 11400000, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13100002, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: ab5bb3eb247a4492fa9900f6ac0db050, type: 3}
+    - target: {fileID: 11400004, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
+      propertyPath: touchPad
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
+      propertyPath: smoothTime
+      value: .400000006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
@@ -2172,7 +2184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb10c595af974ea6ba0313a749d5c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchPad: 1
+  touchPad: 0
   touchZone:
     serializedVersion: 2
     x: 0
@@ -2191,13 +2203,13 @@ GUITexture:
   m_PrefabInternal: {fileID: 848349907}
   m_GameObject: {fileID: 1680461525}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 400c2f66c145548b6a08e6ac69655ea2, type: 3}
+  m_Texture: {fileID: 2800000, guid: ab5bb3eb247a4492fa9900f6ac0db050, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .150000006}
   m_PixelInset:
     serializedVersion: 2
-    x: 150
+    x: 140
     y: 0
-    width: 220
+    width: 200
     height: 200
   m_LeftBorder: 0
   m_RightBorder: 0
