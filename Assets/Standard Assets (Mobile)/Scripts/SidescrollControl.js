@@ -57,7 +57,7 @@ function OnEndGame()
 function Update()
 {
 	var movement = Vector3.zero;
-
+	thisTransform.transform.position.z = 7.5;
 	// Apply movement from move joystick
 	if ( moveTouchPad.position.x > 0 )
 		movement = Vector3.right * forwardSpeed * moveTouchPad.position.x;
