@@ -4,7 +4,6 @@ using System.Collections;
 public class CoinScript : MonoBehaviour {
 
     public float value;
-
 	// Use this for initialization
 	void Start () {
 	    value = 5;
@@ -18,7 +17,10 @@ public class CoinScript : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "ground")
+        {
+            audio.Play();
             value = 0;
+        }
         if (col.gameObject.tag == "Player")
         {
             Vector3 position = transform.position;
