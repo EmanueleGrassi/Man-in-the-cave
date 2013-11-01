@@ -12,18 +12,18 @@ public class Cameramuvement : MonoBehaviour
 	Vector2 velocity= new Vector2();
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame    
 	void Update () 
 	{
-        if (!audio.isPlaying)
-        {
-            audio.clip = background;
+        if (!audio.isPlaying)  
+		{
+			audio.clip = background;		
             audio.Play();
-            audio.volume = 0.05f;
-        }
+			audio.volume = 0.05f;
+		}
 
         if(RockBehaviour.Play)
         {
