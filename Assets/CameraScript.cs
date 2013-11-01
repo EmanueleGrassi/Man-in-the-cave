@@ -1,20 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Cameramuvement : MonoBehaviour 
+public class CameraScript : MonoBehaviour 
 {
 	
 	float nexshot = 0.0f;
 	public Transform playerPG;
     public AudioClip rockSound;
     public AudioClip background;
+	
 	float smoothTime = 0.3f;
 	public float Volume=0.2f;
 	Vector2 velocity= new Vector2();
-	// Use this for initialization
-	void Start () {
-		
-	}
+	public Texture coin;
 	
 	// Update is called once per frame    
 	void Update () 
@@ -47,6 +45,23 @@ public class Cameramuvement : MonoBehaviour
             nexshot = Time.time + 0.01f;
            
         }
+	}
+	
+	void OnGUI()
+	{		
+		// Visualizza moneta. Lo script si adatta atutte le risoluzioni
+		float height= Screen.width/20;
+		float margin= Screen.width/60;
+		GUI.DrawTexture(new Rect (margin,margin,height,height), coin, ScaleMode.ScaleToFit, true);		
+		GUI.skin.label.fontSize = (int)height;
+		GUI.Label (new Rect (height+(margin*2), margin/1.5f,/*moltiplicare la metà delle cifre moneta per height*/ 600f ,300f), ""+height);
+		
+		//Visualizza il tempo
+		//GUI.DrawTexture(new Rect (margin,margin,height,height), clock, ScaleMode.ScaleToFit, true);	
+		GUI.Label(new Rect( (float)Screen.width - (height*2.5f +margin), 
+							margin/1.5f, 
+							height*4.5f, /*moltiplicare la metà delle cifre tempo per height*/
+							300.0f), "02:37");
 	}
 }
 //

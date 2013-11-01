@@ -1,15 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Cameramuvement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script_FlussoDiGioco\PlayGui.cs">
     <Files>
-      <File FileName="Assets\Cameramuvement.cs" Line="12" Column="25" />
+      <File FileName="Assets\Script_FlussoDiGioco\PlayGui.cs" Line="17" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Cameramuvement.cs" selected="True" />
+              <Node name="Script_FlussoDiGioco" expanded="True">
+                <Node name="PlayGui.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

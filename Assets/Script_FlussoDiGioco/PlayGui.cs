@@ -1,37 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayGui : MonoBehaviour {
-
-    public GUISkin custom;
+public class PlayGui : MonoBehaviour 
+{
     float width, height;
-    public Texture pause, left, right, quit, jump;
+    public Texture pause, quit;
     public static bool isPaused;
-    public Transform player;
-    public float speed;
-    public float jumpForce;
-    public Vector3 currSpeed, accelerometer;
-	Quaternion gyro;
-    public float maxSpeed;
-    bool locked, accelerometerIsOn;
+    public Transform player;    
+    bool locked;
     int finger;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
         width = Screen.width;
-        height = Screen.height;
-        speed = 0.6f;
-        isPaused = false;
-        maxSpeed = 6;
-        jumpForce = 250;
+        height = Screen.height;       
+        isPaused = false;        
         locked = false;
-        accelerometerIsOn = false;
 	}
 	
 	// Update is called once per frame
-	void OnGUI () {
-        GUI.skin = custom;
-
+	void OnGUI () 
+	{       
         if (pg_Script.isDestroyed)
         {
             if (GUI.Button(new Rect(width / 2 - width / 8, height / 2 - width / 8, width / 4, width / 4), "reset"))
@@ -118,7 +108,7 @@ public class PlayGui : MonoBehaviour {
             //    }
             //}
             // quit (only for test)
-            if (GUI.Button(new Rect(0, 0, width / 11, width / 11), quit))
+            if (GUI.Button(new Rect(width-200, 0, width / 11, width / 11), quit))
                 Application.Quit();
             //            #region accelerometro e giroscopio
             //            if (GUI.Button(new Rect(width/2, 0, height/3, height/8), "Activate accelerometer"))
@@ -152,52 +142,4 @@ public class PlayGui : MonoBehaviour {
             //            #endregion
         }
     }
-           
-    #region spostamento e salto
-    void moveLeft()
-    {
-        if (!pg_Script.isJumping)
-        {
-            if (currSpeed.x > -maxSpeed)
-            {
-                player.rigidbody.AddForce(new Vector3(-speed, 0, 0), ForceMode.VelocityChange);
-                pg_Script.isMoving = true;
-            }
-        }
-        else
-            if (currSpeed.x > -maxSpeed)
-            {
-                player.rigidbody.AddForce(new Vector3(-speed / 3, 0, 0), ForceMode.VelocityChange);
-            }
-    }
-
-    void moveRight()
-    {
-        if (!pg_Script.isJumping)
-        {
-            if (currSpeed.x < maxSpeed)
-            {
-                player.rigidbody.AddForce(new Vector3(speed, 0, 0), ForceMode.VelocityChange);
-                pg_Script.isMoving = true;
-            }
-        }
-        else
-        {
-            if (currSpeed.x < maxSpeed)
-            {
-                player.rigidbody.AddForce(new Vector3(speed / 3, 0, 0), ForceMode.VelocityChange);
-            }
-        }
-    }
-
-    void Jump()
-    {
-        if (!pg_Script.isJumping)
-        {
-            //player.rigidbody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-            player.rigidbody.velocity += new Vector3(0, 10, 0);
-            pg_Script.isJumping = true;
-        }
-    }
-    #endregion
 }

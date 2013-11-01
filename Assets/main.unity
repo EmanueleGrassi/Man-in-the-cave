@@ -222,18 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cefc48940b359e40b2e7bb63c15d326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  custom: {fileID: 11400000, guid: 21e31c04130b71f4bb3c1c4c308b8282, type: 2}
   pause: {fileID: 2800000, guid: 4db3193e0da255b4ab93c10d5cb1133d, type: 3}
-  left: {fileID: 0}
-  right: {fileID: 0}
   quit: {fileID: 2800000, guid: 01b058e761e649048b6b840587186576, type: 3}
-  jump: {fileID: 0}
   player: {fileID: 0}
-  speed: 0
-  jumpForce: 0
-  currSpeed: {x: 0, y: 0, z: 0}
-  accelerometer: {x: 0, y: 0, z: 0}
-  maxSpeed: 0
 --- !u!82 &67719950
 AudioSource:
   m_ObjectHideFlags: 0
@@ -871,6 +862,7 @@ MonoBehaviour:
   rockSound: {fileID: 8300000, guid: f179fbcd0c22da0448a15023efffb0ab, type: 3}
   background: {fileID: 8300000, guid: e301f57e5ae1ff04dac119ae6fd84b0f, type: 3}
   Volume: .200000003
+  coin: {fileID: 2800000, guid: a1880e698b8ed4b48bca2e2d4b344eaa, type: 3}
 --- !u!1 &514176785
 GameObject:
   m_ObjectHideFlags: 0
