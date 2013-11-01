@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class CameraScript : MonoBehaviour 
 {
@@ -14,9 +15,13 @@ public class CameraScript : MonoBehaviour
 	Vector2 velocity= new Vector2();
 	public Texture coin;
 	
+	public static int coins=0;
+	public static float PlayTime=0;
+	
 	// Update is called once per frame    
 	void Update () 
 	{
+		PlayTime+=Time.deltaTime;
         if (!audio.isPlaying)  
 		{
 			audio.clip = background;		
@@ -58,10 +63,11 @@ public class CameraScript : MonoBehaviour
 		
 		//Visualizza il tempo
 		//GUI.DrawTexture(new Rect (margin,margin,height,height), clock, ScaleMode.ScaleToFit, true);	
-		GUI.Label(new Rect( (float)Screen.width - (height*2.5f +margin), 
-							margin/1.5f, 
+		var t= (TimeSpan.FromSeconds(PlayTime));
+		GUI.Label(new Rect( (float)Screen.width - (height*3f +margin), 
+							margin/1.5f,
 							height*4.5f, /*moltiplicare la metà delle cifre tempo per height*/
-							300.0f), "02:37");
+							300.0f), string.Format("{0}:{1:00}",t.Minutes, t.Seconds ));
 	}
 }
 //
