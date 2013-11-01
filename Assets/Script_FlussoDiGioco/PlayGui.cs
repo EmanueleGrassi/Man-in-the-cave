@@ -29,20 +29,20 @@ public class PlayGui : MonoBehaviour
         }
         else
         {
-            //pause
-            if (GUI.Button(new Rect(width / 12 * 11, 0, width / 12, width / 12), pause))
-            {
-                if (isPaused)
-                {
-                    Time.timeScale = 1;
-                    isPaused = false;
-                }
-                else
-                {
-                    Time.timeScale = 0;
-                    isPaused = true;
-                }
-            }
+            //////////pause
+            ////////if (GUI.Button(new Rect(width / 12 * 11, 0, width / 12, width / 12), pause))
+            ////////{
+            ////////    if (isPaused)
+            ////////    {
+            ////////        Time.timeScale = 1;
+            ////////        isPaused = false;
+            ////////    }
+            ////////    else
+            ////////    {
+            ////////        Time.timeScale = 0;
+            ////////        isPaused = true;
+            ////////    }
+            ////////}
 
             //if (!isPaused)
             //{
@@ -140,6 +140,20 @@ public class PlayGui : MonoBehaviour
             //        }
 
             //            #endregion
+        }
+    }
+
+    public void pauseUnpause()
+    {
+        if (isPaused)
+        {
+            Time.timeScale = 1;
+            isPaused = false;
+        }
+        else
+        {
+            Time.timeScale = 0;
+            isPaused = true;
         }
     }
 }
