@@ -19,6 +19,13 @@ public class Spawner_script : MonoBehaviour {
   
 	// Update is called once per frame
 	void Update () {
+        if (gameObject.tag == "spawnersin")
+        {
+            if (transform.position.y > 28 && transform.position.y < 35)
+                transform.position += new Vector3(0, Mathf.Abs(speed) * Time.deltaTime, 0);
+            else
+                transform.position = new Vector3(transform.position.x, 28.1f, transform.position.z);
+        }
         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
         if (Time.time > lastSpawn + nextShot)
         {            
@@ -54,6 +61,7 @@ public class Spawner_script : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        speed = -speed;
+        if (col.gameObject.tag == "bound")
+            speed = -speed;
     }
 }

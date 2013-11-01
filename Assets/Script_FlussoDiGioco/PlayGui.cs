@@ -54,102 +54,103 @@ public class PlayGui : MonoBehaviour {
                 }
             }
 
-            if (!isPaused)
-            {
-                //left
-                if (Input.touches.Length > 0 && !isPaused)
-                {
-                    foreach (Touch touch in Input.touches)
-                    {
-                        RaycastHit hit;
-                        Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                        if (touch.phase == TouchPhase.Began && !locked)
-                        {
-                            finger = touch.fingerId;
-                            locked = true;
-                        }
+            //if (!isPaused)
+            //{
+            //    //left
+            //    if (Input.touches.Length > 0 && !isPaused)
+            //    {
+            //        foreach (Touch touch in Input.touches)
+            //        {
+            //            RaycastHit hit;
+            //            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            //            if (touch.phase == TouchPhase.Began && !locked)
+            //            {
+            //                finger = touch.fingerId;
+            //                locked = true;
+            //            }
 
-                        if (Physics.Raycast(ray, out hit, 10) && hit.collider.tag == "mLeft" && touch.fingerId == finger)
-                        {
-                            moveLeft();
-                        }
-                        if (touch.phase == TouchPhase.Ended && touch.fingerId == finger)
-                        {
-                            locked = false;
-                            pg_Script.isMoving = false;
-                        }
-                    }
-                }
-                //right
-                if (Input.touches.Length > 0 && !isPaused)
-                {
-                    foreach (Touch touch in Input.touches)
-                    {
-                        RaycastHit hit;
-                        Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                        if (touch.phase == TouchPhase.Began && !locked)
-                        {
-                            finger = touch.fingerId;
-                            locked = true;
-                        }
+            //            if (Physics.Raycast(ray, out hit, 10) && hit.collider.tag == "mLeft" && touch.fingerId == finger)
+            //            {
+            //                moveLeft();
+            //            }
+            //            if (touch.phase == TouchPhase.Ended && touch.fingerId == finger)
+            //            {
+            //                locked = false;
+            //                pg_Script.isMoving = false;
+            //            }
+            //        }
+            //    }
+            //    //right
+            //    if (Input.touches.Length > 0 && !isPaused)
+            //    {
+            //        foreach (Touch touch in Input.touches)
+            //        {
+            //            RaycastHit hit;
+            //            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            //            if (touch.phase == TouchPhase.Began && !locked)
+            //            {
+            //                finger = touch.fingerId;
+            //                locked = true;
+            //            }
 
-                        if (Physics.Raycast(ray, out hit, 10) && hit.collider.tag == "mRight" && touch.fingerId == finger)
-                        {
-                            moveRight();
-                        }
-                        if (touch.phase == TouchPhase.Ended && touch.fingerId == finger)
-                        {
-                            locked = false;
-                            pg_Script.isMoving = false;
-                        }
-                    }
-                }
-                //jump
-                if (Input.touches.Length > 0 && !isPaused)
-                {
-                    foreach (Touch touch in Input.touches)
-                    {
-                        RaycastHit hit;
-                        Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            //            if (Physics.Raycast(ray, out hit, 10) && hit.collider.tag == "mRight" && touch.fingerId == finger)
+            //            {
+            //                moveRight();
+            //            }
+            //            if (touch.phase == TouchPhase.Ended && touch.fingerId == finger)
+            //            {
+            //                locked = false;
+            //                pg_Script.isMoving = false;
+            //            }
+            //        }
+            //    }
+            //    //jump
+            //    if (Input.touches.Length > 0 && !isPaused)
+            //    {
+            //        foreach (Touch touch in Input.touches)
+            //        {
+            //            RaycastHit hit;
+            //            Ray ray = Camera.main.ScreenPointToRay(touch.position);
 
-                        if (Physics.Raycast(ray, out hit, 10) && hit.collider.tag == "Jump" && !pg_Script.isJumping)
-                            Jump();
-                    }
-                }
-            }
+            //            if (Physics.Raycast(ray, out hit, 10) && hit.collider.tag == "Jump" && !pg_Script.isJumping)
+            //                Jump();
+            //        }
+            //    }
+            //}
             // quit (only for test)
             if (GUI.Button(new Rect(0, 0, width / 11, width / 11), quit))
                 Application.Quit();
-            #region accelerometro e giroscopio
-            if (GUI.Button(new Rect(width/2, 0, height/3, height/8), "Activate accelerometer"))
-                accelerometerIsOn = !accelerometerIsOn;
-            if (accelerometerIsOn)
-            {
-                accelerometer = Input.acceleration;
-                gyro = Input.gyro.attitude;
-			    if (Input.gyro.enabled) 
-			    {
-				
-			    }
-			    else 
-			    {
-				    if(!(accelerometer.x < 0.25 && accelerometer.x > -0.25))
-				    {	
-					    if(accelerometer.x<0)
-						    moveLeft();
-					    else 
-						    moveRight();
-				    }
-			    }
-           
-            GUI.Label(new Rect(width / 2, 0, width / 2, height / 3), "Accelerometer x: " + accelerometer.x + @"
-    y: " + accelerometer.y + " z: " + accelerometer.z);
-            GUI.Label(new Rect(width / 2, height/3, width / 2, height / 3), " av: "+ Input.gyro.enabled +" Gyro x: " + gyro.eulerAngles.x+ @"
-            y: " + gyro.y + " z: " + gyro.z);
-            }
+            //            #region accelerometro e giroscopio
+            //            if (GUI.Button(new Rect(width/2, 0, height/3, height/8), "Activate accelerometer"))
+            //                accelerometerIsOn = !accelerometerIsOn;
+            //            if (accelerometerIsOn)
+            //            {
+            //                accelerometer = Input.acceleration;
+            //                gyro = Input.gyro.attitude;
+            //                if (Input.gyro.enabled) 
+            //                {
+
+            //                }
+            //                else 
+            //                {
+            //                    if(!(accelerometer.x < 0.25 && accelerometer.x > -0.25))
+            //                    {	
+            //                        if(accelerometer.x<0)
+            //                            moveLeft();
+            //                        else 
+            //                            moveRight();
+            //                    }
+            //                }
+
+            //            GUI.Label(new Rect(width / 2, 0, width / 2, height / 3), "Accelerometer x: " + accelerometer.x + @"
+            //    y: " + accelerometer.y + " z: " + accelerometer.z);
+            //            GUI.Label(new Rect(width / 2, height/3, width / 2, height / 3), " av: "+ Input.gyro.enabled +" Gyro x: " + gyro.eulerAngles.x+ @"
+            //            y: " + gyro.y + " z: " + gyro.z);
+            //            }
+            //        }
+
+            //            #endregion
         }
-        
-            #endregion
     }
            
     #region spostamento e salto
