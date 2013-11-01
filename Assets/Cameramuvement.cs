@@ -9,6 +9,7 @@ public class Cameramuvement : MonoBehaviour
     public AudioClip rockSound;
     public AudioClip background;
 	float smoothTime = 0.3f;
+	public float Volume=0.2f;
 	Vector2 velocity= new Vector2();
 	// Use this for initialization
 	void Start () {
@@ -22,7 +23,7 @@ public class Cameramuvement : MonoBehaviour
 		{
 			audio.clip = background;		
             audio.Play();
-			audio.volume = 0.05f;
+			audio.volume = Volume;
 		}
 
         if(RockBehaviour.Play)
