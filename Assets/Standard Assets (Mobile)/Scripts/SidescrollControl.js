@@ -16,7 +16,7 @@ var jumpTouchPad : Joystick;
 
 var forwardSpeed : float = 4;
 var backwardSpeed : float = 4;
-var jumpSpeed : float = 16;
+var jumpSpeed : float = 22;
 var inAirMultiplier : float = 0.25;					// Limiter for ground speed while jumping
 
 private var thisTransform : Transform;

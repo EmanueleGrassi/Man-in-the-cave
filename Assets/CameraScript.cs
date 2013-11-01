@@ -5,19 +5,28 @@ using System;
 public class CameraScript : MonoBehaviour 
 {
 	
-	float nexshot = 0.0f;
+	float nexshot;
 	public Transform playerPG;
     public AudioClip rockSound;
     public AudioClip background;
 	
-	float smoothTime = 0.3f;
-	public float Volume=0.2f;
+	float smoothTime;
+	public float Volume;
 	Vector2 velocity= new Vector2();
 	public Texture coin;
 	
-	public static int coins=0;
-	public static float PlayTime=0;
-	
+	public static int coins;
+	public static float PlayTime;
+
+    void Start()
+    {
+        nexshot = 0.0f;
+        smoothTime = 0.3f;
+        Volume = 0.2f;
+        coins = 0;
+        PlayTime = 0;
+    }
+
 	// Update is called once per frame    
 	void Update () 
 	{
