@@ -7,6 +7,7 @@ public class Cameramuvement : MonoBehaviour
 	float nexshot = 0.0f;
 	public Transform playerPG;
     public AudioClip rockSound;
+    public AudioClip background;
 	float smoothTime = 0.3f;
 	Vector2 velocity= new Vector2();
 	// Use this for initialization
@@ -16,7 +17,14 @@ public class Cameramuvement : MonoBehaviour
 	
 	// Update is called once per frame    
 	void Update () 
-	{   
+	{
+        if (!audio.isPlaying)
+        {
+            audio.clip = background;
+            audio.Play();
+            audio.volume = 0.05f;
+        }
+
         if(RockBehaviour.Play)
         {
             AudioSource.PlayClipAtPoint(rockSound, RockBehaviour.deathP);
