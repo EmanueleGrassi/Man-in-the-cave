@@ -1,33 +1,7 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script_FlussoDiGioco\buttonsforpause_script.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CameraScript.cs">
     <Files>
-<<<<<<< HEAD
-      <File FileName="Assets\Script_FlussoDiGioco\PlayGui.cs" Line="25" Column="15" />
-      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts_Rocce\RockBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script_FlussoDiGioco\buttonsforpause_script.cs" Line="13" Column="50" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Script_FlussoDiGioco" expanded="True">
-                <Node name="buttonsforpause_script.cs" selected="True" />
-              </Node>
-              <Node name="Scripts_Rocce" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="Assembly-UnityScript" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Standard Assets (Mobile)" expanded="True">
-                <Node name="Scripts" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-=======
       <File FileName="Assets\Script_FlussoDiGioco\PlayGui.cs" Line="178" Column="19" />
       <File FileName="Assets\CameraScript.cs" Line="90" Column="18" />
       <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="1" Column="1" />
@@ -38,7 +12,6 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True" />
->>>>>>> d3a1fe048e97605f788d562a2c10e1d5bff5819c
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
