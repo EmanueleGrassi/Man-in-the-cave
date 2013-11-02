@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayGui : MonoBehaviour 
 {
     float width, height;
-    public Texture pause, quit;
+    
     public Transform player; 
 	public AudioClip shout1;
 	public AudioClip shout2;	
@@ -34,14 +34,12 @@ public class PlayGui : MonoBehaviour
 	
 	// Update is called once per frame
 	void OnGUI () 
-	{       
-        if (player==null)
+	{
+		/*if (player==null)
         {
             if (GUI.Button(new Rect(width / 2 - width / 8, height / 2 - width / 8, width / 4, width / 4), "reset"))
                 Application.LoadLevel(0);
-        }
-        else
-        {
+        }*/
             //////////pause
             ////////if (GUI.Button(new Rect(width / 12 * 11, 0, width / 12, width / 12), pause))
             ////////{
@@ -121,8 +119,7 @@ public class PlayGui : MonoBehaviour
             //    }
             //}
             // quit (only for test)
-            if (GUI.Button(new Rect(width-200, 0, width / 11, width / 11), quit))
-                Application.Quit();
+            
             //            #region accelerometro e giroscopio
             //            if (GUI.Button(new Rect(width/2, 0, height/3, height/8), "Activate accelerometer"))
             //                accelerometerIsOn = !accelerometerIsOn;
@@ -153,31 +150,32 @@ public class PlayGui : MonoBehaviour
             //        }
 
             //            #endregion
-        }
+        
 		
-	//suono urlo
-    if(playShout) {
-    	playShout=false;
-    	random=Random.Range(0,4);
- 		switch(random)
- 			{
- 				case 0:
- 					AudioSource.PlayClipAtPoint(shout1,transform.position);
- 					break;
- 				case 1:
- 					AudioSource.PlayClipAtPoint(shout2,transform.position);
- 					break;
- 				case 2:
- 					AudioSource.PlayClipAtPoint(shout3,transform.position);
- 					break;
- 				case 3:
- 					AudioSource.PlayClipAtPoint(shout4,transform.position);
- 					break;
- 			}
-    }
+	    //suono urlo
+        if(playShout) 
+        {
+    	    playShout=false;
+    	    random=Random.Range(0,4);
+ 		    switch(random)
+ 			    {
+ 				    case 0:
+ 					    AudioSource.PlayClipAtPoint(shout1,transform.position);
+ 					    break;
+ 				    case 1:
+ 					    AudioSource.PlayClipAtPoint(shout2,transform.position);
+ 					    break;
+ 				    case 2:
+ 					    AudioSource.PlayClipAtPoint(shout3,transform.position);
+ 					    break;
+ 				    case 3:
+ 					    AudioSource.PlayClipAtPoint(shout4,transform.position);
+ 					    break;
+ 			    }
+        }
     }
 
-    public void pauseUnpause()
+    public static void pauseUnpause()
     {
         if (State == PlayState.pause)
         {
