@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script_FlussoDiGioco\PlayGui.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script_FlussoDiGioco\buttonsforpause_script.cs">
     <Files>
-      <File FileName="Assets\Script_FlussoDiGioco\PlayGui.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="118" Column="4" />
+      <File FileName="Assets\Script_FlussoDiGioco\PlayGui.cs" Line="25" Column="15" />
+      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts_Rocce\RockBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script_FlussoDiGioco\buttonsforpause_script.cs" Line="13" Column="50" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,7 +13,7 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Script_FlussoDiGioco" expanded="True">
-                <Node name="PlayGui.cs" selected="True" />
+                <Node name="buttonsforpause_script.cs" selected="True" />
               </Node>
               <Node name="Scripts_Rocce" expanded="True" />
             </Node>

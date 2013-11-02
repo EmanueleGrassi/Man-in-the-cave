@@ -10,7 +10,7 @@ public class buttonsforpause_script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!PlayGui.isPaused)
+        if (PlayGui.State==PlayGui.PlayState.play)
             renderer.enabled = true;
         else
             renderer.enabled = false;

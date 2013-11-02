@@ -5,7 +5,6 @@ public class PlayGui : MonoBehaviour
 {
     float width, height;
     public Texture pause, quit;
-    public static bool isPaused;
     public Transform player; 
 	public AudioClip shout1;
 	public AudioClip shout2;	
@@ -15,13 +14,21 @@ public class PlayGui : MonoBehaviour
     bool locked;
 	int random;
     int finger;
-
+	
+	public enum PlayState
+	{
+		menu,
+		play,
+		pause,
+		result
+	}	
+	public static PlayState State = PlayState.menu;
+	
 	// Use this for initialization
 	void Start () 
 	{
         width = Screen.width;
-        height = Screen.height;       
-        isPaused = false;        
+        height = Screen.height; 
         locked = false;
 	}
 	
@@ -172,15 +179,15 @@ public class PlayGui : MonoBehaviour
 
     public void pauseUnpause()
     {
-        if (isPaused)
+        if (State == PlayState.pause)
         {
             Time.timeScale = 1;
-            isPaused = false;
+			State= PlayState.play;
         }
         else
         {
             Time.timeScale = 0;
-            isPaused = true;
+			State= PlayState.pause;
         }
     }
 }
