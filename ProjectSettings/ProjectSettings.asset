@@ -112,6 +112,9 @@ PlayerSettings:
   - m_BuildTarget: WP8
     m_StaticBatching: 1
     m_DynamicBatching: 1
+  - m_BuildTarget: Android
+    m_StaticBatching: 1
+    m_DynamicBatching: 1
   webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}
   wiiRegion: 1
@@ -148,7 +151,13 @@ PlayerSettings:
   ps3SaveGameSlots: 1
   ps3TrialMode: 0
   flashStrippingLevel: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    data:
+      first: 4
+      second: 
+    data:
+      first: 7
+      second: 
   metroPackageName: New Unity Project 1
   metroPackageLogo: 
   metroPackageVersion: 
