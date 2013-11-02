@@ -34,7 +34,14 @@ public class PlayGui : MonoBehaviour
 	
 	// Update is called once per frame
 	void OnGUI () 
-	{       
+	{
+        if (!(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WP8Player))
+        {
+            if (GUI.Button(new Rect(width / 12 * 11, 0, width / 12, width / 12), pause))
+            {
+                pauseUnpause();
+            }
+        }
         if (player==null)
         {
             if (GUI.Button(new Rect(width / 2 - width / 8, height / 2 - width / 8, width / 4, width / 4), "reset"))
@@ -155,26 +162,27 @@ public class PlayGui : MonoBehaviour
             //            #endregion
         }
 		
-	//suono urlo
-    if(playShout) {
-    	playShout=false;
-    	random=Random.Range(0,4);
- 		switch(random)
- 			{
- 				case 0:
- 					AudioSource.PlayClipAtPoint(shout1,transform.position);
- 					break;
- 				case 1:
- 					AudioSource.PlayClipAtPoint(shout2,transform.position);
- 					break;
- 				case 2:
- 					AudioSource.PlayClipAtPoint(shout3,transform.position);
- 					break;
- 				case 3:
- 					AudioSource.PlayClipAtPoint(shout4,transform.position);
- 					break;
- 			}
-    }
+	    //suono urlo
+        if(playShout) 
+        {
+    	    playShout=false;
+    	    random=Random.Range(0,4);
+ 		    switch(random)
+ 			    {
+ 				    case 0:
+ 					    AudioSource.PlayClipAtPoint(shout1,transform.position);
+ 					    break;
+ 				    case 1:
+ 					    AudioSource.PlayClipAtPoint(shout2,transform.position);
+ 					    break;
+ 				    case 2:
+ 					    AudioSource.PlayClipAtPoint(shout3,transform.position);
+ 					    break;
+ 				    case 3:
+ 					    AudioSource.PlayClipAtPoint(shout4,transform.position);
+ 					    break;
+ 			    }
+        }
     }
 
     public void pauseUnpause()
