@@ -149,7 +149,11 @@ PlayerSettings:
   ps3TrialMode: 0
   flashStrippingLevel: 2
   scriptingDefineSymbols: {}
+<<<<<<< HEAD
   metroPackageName: New Unity Project 1
+=======
+  metroPackageName: maninthecave
+>>>>>>> d3a1fe048e97605f788d562a2c10e1d5bff5819c
   metroPackageLogo: 
   metroPackageVersion: 
   metroCertificatePath: 
