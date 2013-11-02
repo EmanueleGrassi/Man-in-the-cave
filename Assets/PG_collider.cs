@@ -20,8 +20,8 @@ public class PG_collider : MonoBehaviour {
         if (col.gameObject.tag == "coin")
         {
             Destroy(col.gameObject);
-            //bisogna suonare anche un qualcosa quando pg prende la moneta?! si
-            CameraScript.points++;
+            //bisogna suonare anche un qualcosa quando pg prende la moneta?!
+            CameraScript.coins++;
         }
     }
 }

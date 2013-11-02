@@ -2,14 +2,7 @@ fileFormatVersion: 2
 guid: 9cefc48940b359e40b2e7bb63c15d326
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - pause: {fileID: 2800000, guid: cb9d504e9377aaf4186eb13c4c25b8da, type: 3}
-  - quit: {instanceID: 0}
-  - player: {instanceID: 0}
-  - shout1: {instanceID: 0}
-  - shout2: {instanceID: 0}
-  - shout3: {instanceID: 0}
-  - shout4: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
