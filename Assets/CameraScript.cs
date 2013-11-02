@@ -4,7 +4,7 @@ using System;
 
 public class CameraScript : MonoBehaviour 
 {
-	
+    public GUISkin custom;
 	float nexshot;
 	public Transform playerPG;
     public AudioClip rockSound;
@@ -66,7 +66,8 @@ public class CameraScript : MonoBehaviour
 	}
 	
 	void OnGUI()
-	{		
+	{
+        GUI.skin = custom;
 		// Visualizza punti. Lo script si adatta atutte le risoluzioni
 		float height= Screen.width/20;
 		float margin= Screen.width/60;
