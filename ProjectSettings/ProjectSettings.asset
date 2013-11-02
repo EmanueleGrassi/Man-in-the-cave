@@ -149,9 +149,9 @@ PlayerSettings:
   ps3TrialMode: 0
   flashStrippingLevel: 2
   scriptingDefineSymbols: {}
-  metroPackageName: New Unity Project 1
+  metroPackageName: maninthecave
   metroPackageLogo: 
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -161,7 +161,7 @@ PlayerSettings:
   metroTileLogo: 
   metroTileWideLogo: 
   metroTileSmallLogo: 
-  metroTileShortName: 
+  metroTileShortName: man in the ca
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroTileForegroundText: 1
@@ -169,7 +169,20 @@ PlayerSettings:
   metroSplashScreenImage: 
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
-  metroCapabilities: {}
+  metroCapabilities:
+    EnterpriseAuthentication: 0
+    InternetClient: 0
+    InternetClientServer: 0
+    Location: 0
+    Microphone: 0
+    MusicLibrary: 0
+    PicturesLibrary: 0
+    PrivateNetworkClientServer: 0
+    Proximity: 0
+    RemovableStorage: 0
+    SharedUserCertificates: 0
+    VideosLibrary: 0
+    WebCam: 0
   metroCompilationOverrides: 1
   blackberryDeviceAddress: 
   blackberryDevicePassword: 
