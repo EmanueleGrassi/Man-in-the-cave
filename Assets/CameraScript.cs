@@ -13,18 +13,21 @@ public class CameraScript : MonoBehaviour
 	float smoothTime;
 	public float Volume;
 	Vector2 velocity= new Vector2();
-	public Texture coin;
-	
-	public static int coins;
+	public Texture coin, pause, quit;
+	public bool isDebuging=true;
+	public static int points;
 	public static float PlayTime;
-
+	bool visualizePause=true;
+	
     void Start()
     {
         nexshot = 0.0f;
         smoothTime = 0.3f;
         Volume = 0.2f;
-        coins = 0;
+        points = 0;
         PlayTime = 0;
+		if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WP8Player)
+			visualizePause=false;
     }
 
 	// Update is called once per frame    
@@ -64,20 +67,32 @@ public class CameraScript : MonoBehaviour
 	
 	void OnGUI()
 	{		
-		// Visualizza moneta. Lo script si adatta atutte le risoluzioni
+		// Visualizza punti. Lo script si adatta atutte le risoluzioni
 		float height= Screen.width/20;
 		float margin= Screen.width/60;
 		GUI.DrawTexture(new Rect (margin,margin,height,height), coin, ScaleMode.ScaleToFit, true);		
 		GUI.skin.label.fontSize = (int)height;
-		GUI.Label (new Rect (height+(margin*2), margin/1.5f,/*moltiplicare la metà delle cifre moneta per height*/ 600f ,300f), ""+coins);
+		GUI.Label (new Rect (height+(margin*2), margin/1.5f,/*moltiplicare la metà delle cifre moneta per height*/ 600f ,300f), ""+points);
 		
+		// se non si gioca su android o wp allora visualizza pausa
+		if (visualizePause)
+        {
+            if (GUI.Button(new Rect(Screen.width- (margin+ height), margin, height, height), pause))
+            {
+                PlayGui.pauseUnpause();
+            }
+        }        
 		//Visualizza il tempo
 		//GUI.DrawTexture(new Rect (margin,margin,height,height), clock, ScaleMode.ScaleToFit, true);	
 		var t= (TimeSpan.FromSeconds(PlayTime));
-		GUI.Label(new Rect( (float)Screen.width - (height*3f +margin), 
+		GUI.Label(new Rect( (float)Screen.width - (height*3.0f + 2f*margin), 
 							margin/1.5f,
-							height*4.5f, /*moltiplicare la metà delle cifre tempo per height*/
+							height*3.0f, /*moltiplicare la metà delle cifre tempo per height*/
 							300.0f), string.Format("{0}:{1:00}",t.Minutes, t.Seconds ));
+		
+		if(isDebuging)
+			if (GUI.Button(new Rect(Screen.width/2-height/2, 0, height, height), quit))
+               	 Application.Quit();
 	}
 }
 //
