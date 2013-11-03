@@ -10,6 +10,6 @@ MonoImporter:
   - shout2: {instanceID: 0}
   - shout3: {instanceID: 0}
   - shout4: {instanceID: 0}
-  executionOrder: 0
+  executionOrder: -100
   icon: {instanceID: 0}
   userData: 

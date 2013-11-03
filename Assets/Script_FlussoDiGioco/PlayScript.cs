@@ -27,9 +27,37 @@ public class PlayScript : MonoBehaviour
 		play,
 		pause,
 		result
-	}	
-	public static PlayState State = PlayState.menu;
+	}
+    public static PlayState State
+    {
+        get { return State; }
+        set
+        {
+            State = value;
+            if (State == PlayState.play)
+            {
+                Time.timeScale = 1;
+            }
+            else if( State == PlayState.pause)
+            {
+                Time.timeScale = 0;
+            }
+            else if (State == PlayState.menu)
+            {
+                Time.timeScale = 0;
+            }
+            else if (State == PlayState.result)
+            {
+                Time.timeScale = 0;
+            }
+        }
+    }
+
 	
+    void Start()
+    {
+        State = PlayState.menu; 
+    }
 	
 	void Update()
 	{
@@ -74,18 +102,4 @@ public class PlayScript : MonoBehaviour
  			    }
         }
 	}
-
-    public static void pauseUnpause()
-    {
-        if (State == PlayState.pause)
-        {
-            Time.timeScale = 1;
-			State= PlayState.play;
-        }
-        else
-        {
-            Time.timeScale = 0;
-			State= PlayState.pause;
-        }
-    }
 }

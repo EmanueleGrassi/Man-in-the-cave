@@ -85,7 +85,9 @@ public class CameraScript : MonoBehaviour
 			AudioSource.PlayClipAtPoint (rockSound, RockBehaviour.deathP);
 			RockBehaviour.Play = false;
 		}
-		if (!pg_Script.isDestroyed) {
+		if (PlayScript.State == PlayScript.PlayState.play) 
+        {
+            // SEGUE IL PERSONAGGIO CON LA TELECAMERA
 			float playerPGxPOW = (playerPG.position.x * playerPG.position.x);
 			/*ellisse 
 			 * semiassi:
@@ -116,8 +118,9 @@ public class CameraScript : MonoBehaviour
 		
 		// se non si gioca su android o wp allora visualizza pausa
 		if (visualizePause) {
-			if (GUI.Button (new Rect (Screen.width - (margin + height), margin, height, height), pause)) {
-				PlayScript.pauseUnpause ();
+			if (GUI.Button (new Rect (Screen.width - (margin + height), margin, height, height), pause)) 
+            {
+                PlayScript.State = PlayScript.PlayState.pause;
 			}
 		}        
 		//Visualizza il tempo

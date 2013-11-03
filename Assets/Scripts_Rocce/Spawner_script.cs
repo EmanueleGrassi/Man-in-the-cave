@@ -21,46 +21,49 @@ public class Spawner_script : MonoBehaviour {
   
 	// Update is called once per frame
 	void Update () {
-        if (gameObject.tag == "spawnersin")
+        if (PlayScript.State == PlayScript.PlayState.play)
         {
-            if (transform.position.y > 28 && transform.position.y < 35)
-                transform.position += new Vector3(0, Mathf.Abs(speed) * Time.deltaTime, 0);
-            else
-                transform.position = new Vector3(transform.position.x, 28.1f, transform.position.z);
-        }
-        transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+            if (gameObject.tag == "spawnersin")
+            {
+                if (transform.position.y > 28 && transform.position.y < 35)
+                    transform.position += new Vector3(0, Mathf.Abs(speed) * Time.deltaTime, 0);
+                else
+                    transform.position = new Vector3(transform.position.x, 28.1f, transform.position.z);
+            }
+            transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
 
-        //SPAWN DI ROCCE E COINS
-        if (Time.time > lastSpawn + nextShot)
-        {            
-            int num = Random.Range(0, 100);
-            if (num <= 15)
+            //SPAWN DI ROCCE E COINS
+            if (Time.time > lastSpawn + nextShot)
             {
-                // DA MODIFICARE CON LE VARIE POSSIBILITà DI GOLD SILVER ZAFF ECC
-                Instantiate(coin, transform.position, Quaternion.identity);
+                int num = Random.Range(0, 100);
+                if (num <= 15)
+                {
+                    // DA MODIFICARE CON LE VARIE POSSIBILITà DI GOLD SILVER ZAFF ECC
+                    Instantiate(coin, transform.position, Quaternion.identity);
+                }
+                if (num > 15 && num <= 40)
+                {
+                    Instantiate(rock1, transform.position, Quaternion.identity);
+                    rock1.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+                }
+                if (num > 40 && num <= 65)
+                {
+                    Instantiate(rock2, transform.position, Quaternion.identity);
+                    rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+                }
+                if (num > 65 && num <= 90)
+                {
+                    Instantiate(rock4, transform.position, Quaternion.Euler(90, 0, 0));
+                    rock4.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+                }
+                lastSpawn = Time.time;
+                var c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
+                if (num > 15)
+                    Instantiate(marker, new Vector3(transform.position.x, c.y, 5.3f), Quaternion.identity);
             }
-            if (num > 15 && num <= 40)
-            {
-                Instantiate(rock1, transform.position, Quaternion.identity);
-                rock1.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-            }
-            if (num > 40 && num <= 65)
-            {
-                Instantiate(rock2, transform.position, Quaternion.identity);
-                rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-            }
-            if (num> 65 && num <= 90)
-            {
-                Instantiate(rock4, transform.position, Quaternion.Euler(90,0,0));
-                rock4.rigidbody.AddForce(new Vector3(0, Random.Range(-10,0)));
-            }
-            lastSpawn = Time.time;            
-			var c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
-            if (num > 15)
-			    Instantiate(marker, new Vector3(transform.position.x, c.y, 5.3f),Quaternion.identity);
+            nextShot = 5 / (Mathf.Log(Time.time + 2) - Mathf.Log(Time.time + 2) / 2);
+            Debug.Log("" + nextShot);
         }
-        nextShot = 5 / (Mathf.Log(Time.time + 2) -  Mathf.Log(Time.time + 2)/2);
-        Debug.Log("" + nextShot);
 	} 
    
 
