@@ -29,11 +29,14 @@ public class Spawner_script : MonoBehaviour {
                 transform.position = new Vector3(transform.position.x, 28.1f, transform.position.z);
         }
         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+
+        //SPAWN DI ROCCE E COINS
         if (Time.time > lastSpawn + nextShot)
         {            
             int num = Random.Range(0, 100);
             if (num <= 15)
             {
+                // DA MODIFICARE CON LE VARIE POSSIBILITà DI GOLD SILVER ZAFF ECC
                 Instantiate(coin, transform.position, Quaternion.identity);
             }
             if (num > 15 && num <= 40)
@@ -56,6 +59,8 @@ public class Spawner_script : MonoBehaviour {
             if (num > 15)
 			    Instantiate(marker, new Vector3(transform.position.x, c.y, 5.3f),Quaternion.identity);
         }
+        nextShot = 5 / (Mathf.Log(Time.time + 2) -  Mathf.Log(Time.time + 2)/2);
+        Debug.Log("" + nextShot);
 	} 
    
 
