@@ -28,25 +28,27 @@ public class PlayScript : MonoBehaviour
 		pause,
 		result
 	}
+    private static PlayState state;
+
     public static PlayState State
     {
-        get { return State; }
+        get { return state; }
         set
         {
-            State = value;
-            if (State == PlayState.play)
+            state = value;
+            if (state == PlayState.play)
             {
                 Time.timeScale = 1;
             }
-            else if( State == PlayState.pause)
+            else if (state == PlayState.pause)
             {
                 Time.timeScale = 0;
             }
-            else if (State == PlayState.menu)
+            else if (state == PlayState.menu)
             {
                 Time.timeScale = 0;
             }
-            else if (State == PlayState.result)
+            else if (state == PlayState.result)
             {
                 Time.timeScale = 0;
             }
