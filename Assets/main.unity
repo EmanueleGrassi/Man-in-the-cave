@@ -231,6 +231,8 @@ MonoBehaviour:
   shout3: {fileID: 8300000, guid: 157cf3dbf3c7f9e44a3d1867a4686d3a, type: 3}
   shout4: {fileID: 8300000, guid: b1a423e78216a1144aa3d90cc20b1abb, type: 3}
   shout5: {fileID: 8300000, guid: c799d2ec034a3f14e9133bf7074a6086, type: 3}
+  wplight: {fileID: 595017185}
+  pglight: {fileID: 1309978350}
   morte1: {fileID: 8300000, guid: b7cc06cfda9790841a9145a551251717, type: 3}
   morte2: {fileID: 8300000, guid: ee6376f84628e6e4c898fc6eac10a67d, type: 3}
   morte3: {fileID: 8300000, guid: 7bef3e4622f6c4a468e5a75354739906, type: 3}
@@ -1076,7 +1078,7 @@ GameObject:
   - 108: {fileID: 595017187}
   m_Layer: 0
   m_Name: WPlight
-  m_TagString: lightPG
+  m_TagString: lightWP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -11,7 +11,9 @@ public class PlayScript : MonoBehaviour
 	public AudioClip shout3;
 	public AudioClip shout4;
 	public AudioClip shout5;
-	
+
+    public GameObject wplight, pglight;
+
 	public AudioClip morte1;
 	public AudioClip morte2;	
 	public AudioClip morte3;
@@ -59,6 +61,14 @@ public class PlayScript : MonoBehaviour
     void Start()
     {
         State = PlayState.play; 
+         //LUCE A SECONDA DELLA PIATTAFORMA
+        if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.Android)
+        {
+            wplight.active = true;
+        }
+        else
+            pglight.active = true;
+
     }
 	
 	void Update()
