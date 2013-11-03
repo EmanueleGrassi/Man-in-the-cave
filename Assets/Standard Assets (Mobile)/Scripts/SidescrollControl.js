@@ -26,9 +26,6 @@ private var canJump = true;
 
 
 var  footstep:AudioClip;
-var  collected1 : AudioClip;
-var  collected2 : AudioClip;
-var  collected3 : AudioClip;
 
 var random : int;
 private var nextPlayAudio:float;
@@ -130,18 +127,5 @@ function OnCollisionEnter(collision:Collision)
  	else
  		CameraScript.coins=2f;*/
  	
- 		random=Random.Range(0,3);
- 		switch(random)
- 			{
- 				case 0:
- 					AudioSource.PlayClipAtPoint(collected1,transform.position);
- 					break;
- 				case 1:
- 					AudioSource.PlayClipAtPoint(collected2,transform.position);
- 					break;
- 				case 2:
- 					AudioSource.PlayClipAtPoint(collected3,transform.position);
- 					break;
- 			}
  	}
 }

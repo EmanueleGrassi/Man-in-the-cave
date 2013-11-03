@@ -197,9 +197,6 @@ MonoBehaviour:
   jumpSpeed: 17
   inAirMultiplier: .300000012
   footstep: {fileID: 8300000, guid: 4e03dac995592cb438cc98fed56edefd, type: 3}
-  collected1: {fileID: 8300000, guid: beb809e6ac89bd34d9666d3e4e3561d4, type: 3}
-  collected2: {fileID: 8300000, guid: beb809e6ac89bd34d9666d3e4e3561d4, type: 3}
-  collected3: {fileID: 8300000, guid: 58f1898b3edce49479007fe61b4ccd63, type: 3}
   random: 0
 --- !u!143 &67719948
 CharacterController:
@@ -228,10 +225,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 67719946}
-  shout1: {fileID: 0}
-  shout2: {fileID: 0}
-  shout3: {fileID: 0}
-  shout4: {fileID: 0}
+  shout1: {fileID: 8300000, guid: 2bbb8b5b0dbd630499760da8d2528986, type: 3}
+  shout2: {fileID: 8300000, guid: 11a879260395dad4188fcee58a9fcc87, type: 3}
+  shout3: {fileID: 8300000, guid: 2cae6a04d9050344ea7dbee6d79f7ff8, type: 3}
+  shout4: {fileID: 8300000, guid: 1d15f39a4244e944c8d53cae593d34c4, type: 3}
+  shout5: {fileID: 8300000, guid: 2ed3b72fe7e5ddb44a803662970547a3, type: 3}
+  morte1: {fileID: 8300000, guid: 8fba88c68aecf514f8a484c75ca25a44, type: 3}
+  morte2: {fileID: 8300000, guid: af1dd1836e05d6d4d9f58f8d4e48030c, type: 3}
+  morte3: {fileID: 8300000, guid: d8d890edb4666cc4eab85b06832faf62, type: 3}
 --- !u!82 &67719950
 AudioSource:
   m_ObjectHideFlags: 0
@@ -867,8 +868,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   custom: {fileID: 11400000, guid: e6365d348d530f646af3dec48a0f6edc, type: 2}
   playerPG: {fileID: 67719946}
-  rockSound: {fileID: 8300000, guid: f179fbcd0c22da0448a15023efffb0ab, type: 3}
-  background: {fileID: 8300000, guid: e301f57e5ae1ff04dac119ae6fd84b0f, type: 3}
+  rockSound: {fileID: 8300000, guid: ada7fab6f70c85146b9ba7958a858687, type: 3}
+  background: {fileID: 8300000, guid: 3e210dd063ace604b9786e67cef65e43, type: 3}
   Volume: .200000003
   coin: {fileID: 2800000, guid: a1880e698b8ed4b48bca2e2d4b344eaa, type: 3}
   pause: {fileID: 2800000, guid: cb9d504e9377aaf4186eb13c4c25b8da, type: 3}
@@ -2409,6 +2410,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 67719946}
+  collected1: {fileID: 8300000, guid: beb809e6ac89bd34d9666d3e4e3561d4, type: 3}
+  collected2: {fileID: 8300000, guid: 78a299f3a205e0a4ca9e4a4da9d0947c, type: 3}
+  collected3: {fileID: 8300000, guid: 58f1898b3edce49479007fe61b4ccd63, type: 3}
 --- !u!1 &1680461525
 GameObject:
   m_ObjectHideFlags: 0

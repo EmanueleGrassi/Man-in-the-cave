@@ -49,6 +49,7 @@ public class RockBehaviour : MonoBehaviour {
 		{
 			//finisce il gioco
 			//la roccia suona l'urlo di morte del pg
+			PlayScript.playDeath=true;
 			Destroy(col.gameObject);
 		}
 		

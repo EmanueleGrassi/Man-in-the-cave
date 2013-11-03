@@ -10,7 +10,13 @@ public class PlayScript : MonoBehaviour
 	public AudioClip shout2;	
 	public AudioClip shout3;
 	public AudioClip shout4;
+	public AudioClip shout5;
+	
+	public AudioClip morte1;
+	public AudioClip morte2;	
+	public AudioClip morte3;
     public static bool playShout;
+	public static bool playDeath;
     bool locked;
 	int random;
     int finger;
@@ -27,11 +33,27 @@ public class PlayScript : MonoBehaviour
 	
 	void Update()
 	{
+		if(playDeath)
+		{
+			random=Random.Range(0,3);
+			switch(random)
+ 			    {
+ 				    case 0:
+ 					    AudioSource.PlayClipAtPoint(morte1,transform.position);
+ 					    break;
+ 				    case 1:
+ 					    AudioSource.PlayClipAtPoint(morte2,transform.position);
+ 					    break;
+ 				    case 2:
+ 					    AudioSource.PlayClipAtPoint(morte3,transform.position);
+ 					    break;
+				}
+		}
 		//suono urlo
         if(playShout) 
         {
     	    playShout=false;
-    	    random=Random.Range(0,4);
+    	    random=Random.Range(0,5);
  		    switch(random)
  			    {
  				    case 0:
@@ -45,6 +67,9 @@ public class PlayScript : MonoBehaviour
  					    break;
  				    case 3:
  					    AudioSource.PlayClipAtPoint(shout4,transform.position);
+ 					    break;
+					case 4:
+						AudioSource.PlayClipAtPoint(shout5,transform.position);
  					    break;
  			    }
         }
