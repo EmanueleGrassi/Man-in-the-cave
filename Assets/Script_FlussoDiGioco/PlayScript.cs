@@ -58,7 +58,7 @@ public class PlayScript : MonoBehaviour
 	
     void Start()
     {
-        State = PlayState.menu; 
+        State = PlayState.play; 
     }
 	
 	void Update()

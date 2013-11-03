@@ -94,8 +94,8 @@ public class CameraScript : MonoBehaviour
 			 * z=6
 			 * x=
 			 */
-			transform.position = new Vector3 (playerPG.position.x, Mathf.Sqrt ((1 - (playerPGxPOW / 4225)) * 77.44f),
-								-1f * Mathf.Sqrt ((1 - (playerPGxPOW / 4225)) * 36f));//y 21.5f			
+			transform.position = new Vector3 (playerPG.position.x, Mathf.Sqrt ((1 - (playerPGxPOW / 3000)) * 25f),
+							-1f * Mathf.Sqrt ((1 - (playerPGxPOW / 1500)) * 1f));//y 21.5f			
 			
 			//transform.rotation= Quaternion.Euler(18.5f, Mathf.Tan(-((28*playerPG.position.x)/(65*Mathf.Sqrt(4225-playerPGxPOW)))) *180/Mathf.PI, 0);
 			transform.rotation = Quaternion.Euler (2.9f, Mathf.Tan (-((28 * playerPG.position.x) / (65 * Mathf.Sqrt (4225 - playerPGxPOW)))) * 180 / Mathf.PI, 0);

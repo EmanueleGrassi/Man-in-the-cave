@@ -177,6 +177,7 @@ Transform:
   m_Children:
   - {fileID: 1603539521}
   - {fileID: 1309978352}
+  - {fileID: 595017186}
   m_Father: {fileID: 433578275}
 --- !u!114 &67719947
 MonoBehaviour:
@@ -646,7 +647,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: .99290061, b: .742647052, a: 1}
   m_Intensity: 1
   m_Range: 30
   m_SpotAngle: 30
@@ -738,8 +739,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400012, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
   m_PrefabInternal: {fileID: 848349907}
   m_GameObject: {fileID: 458439267}
-  m_LocalRotation: {x: .160742566, y: 0, z: 0, w: .986996353}
-  m_LocalPosition: {x: 0, y: 18, z: -30.7999992}
+  m_LocalRotation: {x: .0941083133, y: 0, z: 0, w: .995561957}
+  m_LocalPosition: {x: 1.75, y: 3.29999995, z: 1.84000003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 433578275}
@@ -834,7 +835,7 @@ Camera:
   m_GameObject: {fileID: 458439267}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -1064,6 +1065,68 @@ EllipsoidParticleEmitter:
   m_OneShot: 0
   m_Ellipsoid: {x: .649999976, y: .600000024, z: .649999976}
   m_MinEmitterRange: 0
+--- !u!1 &595017185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 595017186}
+  - 108: {fileID: 595017187}
+  m_Layer: 0
+  m_Name: WPlight
+  m_TagString: lightPG
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &595017186
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 595017185}
+  m_LocalRotation: {x: .10128098, y: .69981581, z: -.10128098, w: .69981581}
+  m_LocalPosition: {x: .551287591, y: .660461664, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 67719946}
+--- !u!108 &595017187
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 595017185}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: .808823526, g: .936713934, b: 1, a: 1}
+  m_Intensity: 1.39999998
+  m_Range: 10.3000002
+  m_SpotAngle: 33
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &740833447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,7 +1651,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .983367205, g: 1, b: .698529422, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1680,7 +1743,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .960784316, g: 1, b: .760784328, a: 1}
   m_Intensity: 1.00999999
   m_Range: 34.9000015
   m_SpotAngle: 30
@@ -1728,11 +1791,11 @@ GameObject:
   - 108: {fileID: 1309978351}
   m_Layer: 0
   m_Name: Spotlight
-  m_TagString: Untagged
+  m_TagString: lightPG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1309978351
 Light:
   m_ObjectHideFlags: 0
@@ -1775,7 +1838,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1309978350}
   m_LocalRotation: {x: .101281397, y: .69981575, z: -.101281397, w: .69981575}
-  m_LocalPosition: {x: .264732689, y: .820393085, z: 0}
+  m_LocalPosition: {x: .631088018, y: .712082386, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 67719946}
