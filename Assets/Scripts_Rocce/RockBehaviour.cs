@@ -32,8 +32,12 @@ public class RockBehaviour : MonoBehaviour {
         {
             Play = true;
             deathP = transform.position;
-			if(deathP.x<pg.transform.position.x+10f && deathP.x>pg.transform.position.x-10f)
+			if(deathP.x<pg.transform.position.x+7f && deathP.x>pg.transform.position.x-7f)
+			{
 				PlayScript.playShout=true;
+				try {Handheld.Vibrate();} 
+				catch {}
+			}
 			int rnd = Random.Range(0, 5);
 			if ( rnd < 3)
             	Destroy(gameObject);
@@ -47,6 +51,8 @@ public class RockBehaviour : MonoBehaviour {
         }
 		else if (col.gameObject.tag == "Player" && gameObject.tag!="backgroundRock") 
 		{
+			try {Handheld.Vibrate();} 
+				catch {}
 			//finisce il gioco
 			//la roccia suona l'urlo di morte del pg
 			PlayScript.playDeath=true;
