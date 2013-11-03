@@ -33,7 +33,7 @@ public class RockBehaviour : MonoBehaviour {
             Play = true;
             deathP = transform.position;
 			if(deathP.x<pg.transform.position.x+10f && deathP.x>pg.transform.position.x-10f)
-				PlayGui.playShout=true;
+				PlayScript.playShout=true;
 			int rnd = Random.Range(0, 5);
 			if ( rnd < 3)
             	Destroy(gameObject);

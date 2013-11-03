@@ -21,7 +21,7 @@ public class PG_collider : MonoBehaviour {
         {
             Destroy(col.gameObject);
             //bisogna suonare anche un qualcosa quando pg prende la moneta?! si
-            CameraScript.points++;
+            CameraScript.data.points++;
         }
     }
 }
