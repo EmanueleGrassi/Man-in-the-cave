@@ -32,9 +32,5 @@ TextureImporter:
   compressionQuality: 50
   alphaIsTransparency: 0
   textureType: -1
-  buildTargetSettings:
-  - buildTarget: WP8
-    maxTextureSize: 256
-    textureFormat: -1
-    compressionQuality: 50
+  buildTargetSettings: []
   userData: 

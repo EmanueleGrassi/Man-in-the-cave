@@ -331,7 +331,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 2acf9c8e812eff6459715d2b3dce2c96, type: 2}
       propertyPath: m_Range
-      value: 43
+      value: 24.3700008
       objectReference: {fileID: 0}
     - target: {fileID: 1500004, guid: 2acf9c8e812eff6459715d2b3dce2c96, type: 2}
       propertyPath: Simulate in Worldspace?
@@ -384,6 +384,10 @@ Prefab:
     - target: {fileID: 400002, guid: 2acf9c8e812eff6459715d2b3dce2c96, type: 2}
       propertyPath: m_LocalScale.z
       value: 6.66666651
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 2acf9c8e812eff6459715d2b3dce2c96, type: 2}
+      propertyPath: m_RenderMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2acf9c8e812eff6459715d2b3dce2c96, type: 2}
@@ -1198,7 +1202,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: .576064885, b: .191176474, a: 1}
   m_Intensity: 1.88999999
-  m_Range: 43
+  m_Range: 24.3700008
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1655,7 +1659,7 @@ Light:
   m_Type: 2
   m_Color: {r: .983367205, g: 1, b: .698529422, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 12
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1745,9 +1749,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: .960784316, g: 1, b: .760784328, a: 1}
-  m_Intensity: 1.00999999
-  m_Range: 34.9000015
+  m_Color: {r: .760784328, g: 1, b: .980202913, a: 1}
+  m_Intensity: 1.20000005
+  m_Range: 21.3299999
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
