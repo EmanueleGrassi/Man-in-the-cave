@@ -1,27 +1,19 @@
 fileFormatVersion: 2
-guid: a0671a40599c1934aac5a257c9a863b9
+guid: e638d16e577a34251a13aa21e44ce26e
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: -Camera
-    100002: -Scene_Light
+    100000: Cube_001
+    100002: DrawMesh
     100004: //RootNode
-    100006: Cylinder
-    100008: DrawMesh
-    100010: Render_Shadows
-    100012: Scene_Shadows
-    400000: -Camera
-    400002: -Scene_Light
+    400000: Cube_001
+    400002: DrawMesh
     400004: //RootNode
-    400006: Cylinder
-    400008: DrawMesh
-    400010: Render_Shadows
-    400012: Scene_Shadows
-    2300000: Cylinder
+    2300000: Cube_001
     2300002: DrawMesh
-    3300000: Cylinder
+    3300000: Cube_001
     3300002: DrawMesh
-    4300000: Cylinder
+    4300000: Cube_001
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -40,7 +32,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -58,7 +50,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
