@@ -2,7 +2,11 @@ fileFormatVersion: 2
 guid: 7b69fb3ada63d8a4a9430442b36afa6e
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rockSound: {instanceID: 0}
+  - morte1: {fileID: 8300000, guid: c02575d870932b841b1fc21786e499bb, type: 3}
+  - morte2: {fileID: 8300000, guid: 7c4a4300515c7e746992934b22ff1e97, type: 3}
+  - morte3: {fileID: 8300000, guid: 4992b52cd9a98bd43b29a048402ffdaa, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

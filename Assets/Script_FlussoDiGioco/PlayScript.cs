@@ -14,11 +14,7 @@ public class PlayScript : MonoBehaviour
 
     public GameObject wplight, pglight;
 
-	public AudioClip morte1;
-	public AudioClip morte2;	
-	public AudioClip morte3;
     public static bool playShout;
-	public static bool playDeath;
     bool locked;
 	int random;
     int finger;
@@ -73,22 +69,6 @@ public class PlayScript : MonoBehaviour
 	
 	void Update()
 	{
-		if(playDeath)
-		{
-			random=Random.Range(0,3);
-			switch(random)
- 			    {
- 				    case 0:
- 					    AudioSource.PlayClipAtPoint(morte1,transform.position);
- 					    break;
- 				    case 1:
- 					    AudioSource.PlayClipAtPoint(morte2,transform.position);
- 					    break;
- 				    case 2:
- 					    AudioSource.PlayClipAtPoint(morte3,transform.position);
- 					    break;
-				}
-		}
 		//suono urlo
         if(playShout) 
         {
