@@ -94,4 +94,19 @@ public class PlayScript : MonoBehaviour
  			    }
         }
 	}
+
+    void OnGUI()
+    {
+        if (State == PlayState.pause)
+        {
+            Rect w2h2centrato = new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 4, Screen.height / 4);
+            
+            GUI.backgroundColor = Color.black;
+            if (GUI.Button(w2h2centrato, "Continue"))
+                State = PlayState.play;
+            if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 4, Screen.height / 2), "Main Menu"))
+                State = PlayState.menu;
+            
+        }
+    }
 }

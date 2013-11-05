@@ -7,7 +7,7 @@ public class Spawner_script : MonoBehaviour {
     float speed;
     float nextShot;
     float lastSpawn;
-    public Transform rock1, rock2, rock4, coin, marker;
+    public Transform rock1, rock2, rock4, diamond, gold, silver, ruby, zaffiro, marker;
 	float w, h;
 	// Use this for initialization
 	void Start () {
@@ -36,35 +36,55 @@ public class Spawner_script : MonoBehaviour {
             if (Time.time > lastSpawn + nextShot)
             {
                 int num = Random.Range(0, 100);
-                if (num <= 15)
+                if (num <= 5)
                 {
                     // DA MODIFICARE CON LE VARIE POSSIBILITà DI GOLD SILVER ZAFF ECC
-                    Instantiate(coin, transform.position, Quaternion.identity);
+                    istanziaGemma();
                 }
-                if (num > 15 && num <= 40)
+                else if (num > 5 && num <= 30)
                 {
-                    Instantiate(rock1, transform.position, Quaternion.identity);
+                    Instantiate(rock1, transform.position, Quaternion.Euler(new Vector3(90, 0 ,0 )));
                     rock1.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
                 }
-                if (num > 40 && num <= 65)
+                else if (num > 30 && num <= 65)
                 {
                     Instantiate(rock2, transform.position, Quaternion.identity);
                     rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
                 }
-                if (num > 65 && num <= 90)
+                else if (num > 65 && num <= 90)
                 {
                     Instantiate(rock4, transform.position, Quaternion.Euler(90, 0, 0));
                     rock4.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
                 }
                 lastSpawn = Time.time;
-                var c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
-                if (num > 15)
+                Vector3 c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
+                if (num > 10)
                     Instantiate(marker, new Vector3(transform.position.x, c.y, 5.3f), Quaternion.identity);
             }
             nextShot = 5 / (Mathf.Log(Time.time + 2) - Mathf.Log(Time.time + 2) / 2);
             //Debug.Log("" + nextShot);
         }
-	} 
+	}
+
+    private void istanziaGemma()
+    {
+        int num = Random.Range(0, 100);
+        if (num <= 6)
+            //diamond
+            return;
+        else if (num <= 19)
+            //oro
+            Instantiate(gold, transform.position, Quaternion.identity);
+        else if (num <= 40)
+            //argento
+            Instantiate(silver, transform.position, Quaternion.identity);
+        else if (num <= 70)
+            //rubino
+            Instantiate(ruby, transform.position, Quaternion.identity);
+        else 
+            //zaff
+            Instantiate(zaffiro, transform.position, Quaternion.identity);
+    } 
    
 
     void OnCollisionEnter(Collision col)

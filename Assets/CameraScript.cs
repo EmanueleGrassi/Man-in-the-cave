@@ -85,7 +85,7 @@ public class CameraScript : MonoBehaviour
 			AudioSource.PlayClipAtPoint (rockSound, RockBehaviour.deathP);
 			RockBehaviour.Play = false;
 		}
-		if (PlayScript.State == PlayScript.PlayState.play) 
+        if (PlayScript.State == PlayScript.PlayState.play) 
         {
             // SEGUE IL PERSONAGGIO CON LA TELECAMERA
 			float playerPGxPOW = (playerPG.position.x * playerPG.position.x);
