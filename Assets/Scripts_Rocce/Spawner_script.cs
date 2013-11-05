@@ -62,7 +62,7 @@ public class Spawner_script : MonoBehaviour {
                     Instantiate(marker, new Vector3(transform.position.x, c.y, 5.3f), Quaternion.identity);
             }
             nextShot = 5 / (Mathf.Log(Time.time + 2) - Mathf.Log(Time.time + 2) / 2);
-            Debug.Log("" + nextShot);
+            //Debug.Log("" + nextShot);
         }
 	} 
    
