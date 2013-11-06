@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: e0eeb12c0798eac4e811ce7f0e8fa8cf
+guid: a044a6e2e38bd43869d79a4f38dccf22
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: Camera
-    100002: Camera_DOF
-    100004: Cube
-    100006: DrawObject
-    100008: Hemi
-    100010: //RootNode
-    400000: Camera
-    400002: Camera_DOF
-    400004: Cube
-    400006: DrawObject
-    400008: Hemi
-    400010: //RootNode
-    2300000: Cube
-    2300002: DrawObject
-    3300000: Cube
-    3300002: DrawObject
-    4300000: Cube
+    100000: //RootNode
+    100002: DrawMesh
+    100004: Icosphere
+    400000: //RootNode
+    400002: DrawMesh
+    400004: Icosphere
+    2300000: DrawMesh
+    2300002: Icosphere
+    3300000: DrawMesh
+    3300002: Icosphere
+    4300000: Icosphere
     7400000: Default Take
     9500000: //RootNode
   materials:

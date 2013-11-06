@@ -1,25 +1,13 @@
 fileFormatVersion: 2
-guid: e0eeb12c0798eac4e811ce7f0e8fa8cf
+guid: 6e3ef58eaaea84172a0d7b9f4f0f2aea
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: Camera
-    100002: Camera_DOF
-    100004: Cube
-    100006: DrawObject
-    100008: Hemi
-    100010: //RootNode
-    400000: Camera
-    400002: Camera_DOF
-    400004: Cube
-    400006: DrawObject
-    400008: Hemi
-    400010: //RootNode
-    2300000: Cube
-    2300002: DrawObject
-    3300000: Cube
-    3300002: DrawObject
-    4300000: Cube
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cylinder_001
     7400000: Default Take
     9500000: //RootNode
   materials:
