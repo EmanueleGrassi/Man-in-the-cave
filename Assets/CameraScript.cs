@@ -22,6 +22,7 @@ public class Data
 
 	public int NumberPickaxe;
 	public int NumberReborn;
+	public int numBengala=3;
 	public bool lightRed = false;
 	public bool lightBlue = false;
 	public bool lightGreen = false;
@@ -136,4 +137,3 @@ public class CameraScript : MonoBehaviour
 			Application.Quit ();
 	}
 }
-//

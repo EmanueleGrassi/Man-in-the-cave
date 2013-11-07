@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTouchPad: {fileID: 1680461527}
-  jumpTouchPad: {fileID: 1946230852}
+  jumpTouchPad: {fileID: 966331498}
   forwardSpeed: 8.5
   backwardSpeed: 10
   jumpSpeed: 17
@@ -237,6 +237,7 @@ MonoBehaviour:
   shout5: {fileID: 8300000, guid: e208eda3bd920d6459cfb72299020206, type: 3}
   wplight: {fileID: 595017185}
   pglight: {fileID: 1309978350}
+  BengalaTouchPad: {fileID: 1946230852}
 --- !u!82 &67719950
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1469,6 +1470,77 @@ Transform:
   m_LocalScale: {x: 10, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &966331496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 966331497}
+  - 131: {fileID: 966331499}
+  - 114: {fileID: 966331498}
+  m_Layer: 0
+  m_Name: RightTouchPad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966331497
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400008, guid: 8294b8504024dab4fbfd05379007b9d4, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 966331496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1468557323}
+--- !u!114 &966331498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 8294b8504024dab4fbfd05379007b9d4,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 966331496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb10c595af974ea6ba0313a749d5c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchPad: 1
+  touchZone:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  deadZone: {x: 0, y: 0}
+  normalize: 0
+  position: {x: 0, y: 0}
+  tapCount: 0
+--- !u!131 &966331499
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13100000, guid: 8294b8504024dab4fbfd05379007b9d4,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 966331496}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: 45db68716bd23e84b850bf6145ac01f1, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: .150000006}
+  m_PixelInset:
+    serializedVersion: 2
+    x: -250
+    y: 0
+    width: 200
+    height: 200
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!1 &968605291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2196,6 +2268,7 @@ Transform:
   - {fileID: 433578275}
   - {fileID: 1946230851}
   - {fileID: 1680461526}
+  - {fileID: 966331497}
   m_Father: {fileID: 0}
 --- !u!1 &1497255628
 GameObject:
@@ -2932,7 +3005,7 @@ GameObject:
   - 131: {fileID: 1946230853}
   - 114: {fileID: 1946230852}
   m_Layer: 0
-  m_Name: RightTouchPad
+  m_Name: BengalaButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2958,7 +3031,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1946230850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb10c595af974ea6ba0313a749d5c55, type: 3}
+  m_Script: {fileID: 11500000, guid: d30f88ee89661fb43b250a1b64b6570b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   touchPad: 1
@@ -2980,14 +3053,14 @@ GUITexture:
   m_PrefabInternal: {fileID: 848349907}
   m_GameObject: {fileID: 1946230850}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 45db68716bd23e84b850bf6145ac01f1, type: 3}
+  m_Texture: {fileID: 2800000, guid: a5bdc60e5011ad44b894259e90e60be4, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .150000006}
   m_PixelInset:
     serializedVersion: 2
-    x: -250
-    y: 0
-    width: 200
-    height: 200
+    x: -183
+    y: 175
+    width: 120
+    height: 120
   m_LeftBorder: 0
   m_RightBorder: 0
   m_TopBorder: 0
