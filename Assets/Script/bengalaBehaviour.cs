@@ -4,6 +4,7 @@ using System.Collections;
 public class bengalaBehaviour : MonoBehaviour {
 
     public GameObject bengalaLight;
+	float destroy;
 
 	// Use this for initialization
 	void Start () 
@@ -14,7 +15,8 @@ public class bengalaBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		if(!audio.isPlaying)
+			destroy=Time.time+4;
 	}
 	
 	void OnDestroy()
@@ -29,6 +31,8 @@ public class bengalaBehaviour : MonoBehaviour {
             //quando NEL SUONO si accende il bengala fai
 		    bengalaLight.light.enabled=true;
 		    //4 secondi dopo che il suono è finito fai Destroy
+			if(Time.time>destroy)
+				Destroy(gameObject);
         }
     }
 }
