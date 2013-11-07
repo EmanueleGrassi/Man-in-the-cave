@@ -63,6 +63,7 @@ public class CameraScript : MonoBehaviour
 		//per ora lascio le linee sotto, poi andra tolto
 		data = new Data ();
 		//fino a qui
+        data.numBengala = 2;
 		
 		nexshot = 0.0f;
 		smoothTime = 0.3f;

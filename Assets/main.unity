@@ -237,7 +237,7 @@ MonoBehaviour:
   shout5: {fileID: 8300000, guid: e208eda3bd920d6459cfb72299020206, type: 3}
   wplight: {fileID: 595017185}
   pglight: {fileID: 1309978350}
-  bengala: {fileID: 0}
+  bengala: {fileID: 400000, guid: 29db9fea2a2614d498f1a8533834d9e0, type: 2}
   BengalaTouchPad: {fileID: 1946230852}
 --- !u!82 &67719950
 AudioSource:

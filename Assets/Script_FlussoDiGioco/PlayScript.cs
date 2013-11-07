@@ -72,7 +72,7 @@ public class PlayScript : MonoBehaviour
 			CameraScript.data.numBengala--;
 			BenngalaAvailable = false;
 			//lancia		
-            Instantiate(bengala, this.transform.position, Quaternion.identity);
+            Instantiate(bengala, player.position, Quaternion.identity);
 		}
 		//suono urlo
 		if (playShout) 
