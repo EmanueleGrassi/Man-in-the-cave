@@ -58,7 +58,7 @@ public class PlayScript : MonoBehaviour
 		BengalaTouchPad.Disable ();
 	}
 
-	public static bool BenngalaAvailable = false;
+	public static bool BenngalaAvailable = true;
 
 	void Update ()
 	{
