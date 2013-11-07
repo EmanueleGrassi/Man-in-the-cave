@@ -88,7 +88,7 @@ function Update()
 			if (Time.time>nextPlayAudio && moveTouchPad.position.x != 0) 
 			{
 				audio.PlayOneShot(footstep);
-				nextPlayAudio=Time.time+0.3f;
+				nextPlayAudio=Time.time+0.35f;
 			}
 			else if(moveTouchPad.position.x == 0)
 			{
@@ -109,14 +109,18 @@ function Update()
 	movement += velocity;	
 	movement += Physics.gravity;
 	movement *= Time.deltaTime;
-	//movement.z=0;
-	// Actually move the character	
-	character.Move( movement );
-	//freeez di z
-	//transform.position.z=7.5;
-	if ( character.isGrounded )
-		// Remove any persistent velocity after landing	
-		velocity = Vector3.zero;
+	
+	// Actually move the character		
+		character.Move( movement );
+	
+	if ( character.isGrounded )		
+		velocity = Vector3.zero;// Remove any persistent velocity after landing	
+	
+	//Luca: blocca il movimento domo 40 e prima di -40
+	/*if(transform.position.x < -39.585)
+		transform.position = new Vector3( -39.58,transform.position.y, transform.position.z);
+	else if(transform.position.x > 39.64)
+		transform.position = new Vector3( 39.635,transform.position.y, transform.position.z);*/
 }
 function OnCollisionEnter(collision:Collision) 
 {
