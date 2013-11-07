@@ -11,6 +11,7 @@ public class PlayScript : MonoBehaviour
 	public AudioClip shout4;
 	public AudioClip shout5;
 	public GameObject wplight, pglight;
+    public Transform bengala;
 	public static bool playShout;
 	bool locked;
 	int random;
@@ -71,6 +72,7 @@ public class PlayScript : MonoBehaviour
 			CameraScript.data.numBengala--;
 			BenngalaAvailable = false;
 			//lancia		
+            Instantiate(bengala, this.transform.position, Quaternion.identity);
 		}
 		//suono urlo
 		if (playShout) 
