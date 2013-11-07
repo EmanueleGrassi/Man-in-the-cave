@@ -115,12 +115,6 @@ function Update()
 	
 	if ( character.isGrounded )		
 		velocity = Vector3.zero;// Remove any persistent velocity after landing	
-	
-	//Luca: blocca il movimento domo 40 e prima di -40
-	/*if(transform.position.x < -39.585)
-		transform.position = new Vector3( -39.58,transform.position.y, transform.position.z);
-	else if(transform.position.x > 39.64)
-		transform.position = new Vector3( 39.635,transform.position.y, transform.position.z);*/
 }
 function OnCollisionEnter(collision:Collision) 
 {
