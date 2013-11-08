@@ -8,7 +8,7 @@
 	
 	private var cc : CharacterController;
 	private var t : Transform;
-	
+	public var nextfoot : float;
 	public var hitLayer : LayerMask;
 	private var cTag : String;
 	private var volume:float;
@@ -19,8 +19,7 @@
 		t = transform;
 	}
 	
-	function OnFootStrike () 
-	//function Update () 
+	function Update () 
 	{
 		if(Time.time < 0.5) return;
 		
@@ -32,8 +31,11 @@
 		{
 			volume = 1;
 		}
-		
-		audio.PlayOneShot(concreteSteps[Random.Range(0, concreteSteps.length)], volume);
+		if(Time.time>nextfoot)
+		{
+			audio.PlayOneShot(concreteSteps[Random.Range(0, concreteSteps.length)], volume);
+			nextfoot=Time.time+0.3;
+		}
 	}
 	
 	function GetAudio() : AudioClip

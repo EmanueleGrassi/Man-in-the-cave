@@ -315,6 +315,7 @@ MonoBehaviour:
   concreteSteps:
   - {fileID: 8300000, guid: 5c7a9dd5c54586a4dac97fb06bfdca20, type: 3}
   - {fileID: 8300000, guid: 7b16bbb541a07e741b555b9ee945efda, type: 3}
+  nextfoot: 0
   hitLayer:
     serializedVersion: 2
     m_Bits: 16
