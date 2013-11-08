@@ -1,12 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Footsteps.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script_FlussoDiGioco\PlayScript.cs">
     <Files>
+      <File FileName="Assets\Script_FlussoDiGioco\PlayScript.cs" Line="83" Column="17" />
       <File FileName="Assets\Script\Footsteps.js" Line="37" Column="26" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Script_FlussoDiGioco" expanded="True">
+                <Node name="PlayScript.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />

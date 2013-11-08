@@ -16,6 +16,7 @@ public class PlayScript : MonoBehaviour
 	bool locked;
 	int random;
 	int finger;
+	float nextshout;
 	public JoystickC BengalaTouchPad;
 	public enum PlayState
 	{
@@ -76,9 +77,10 @@ public class PlayScript : MonoBehaviour
             Instantiate(bengala, new Vector3(pos.x, pos.y + 2, pos.z), Quaternion.identity);
 		}
 		//suono urlo
-		if (playShout) 
+		if (playShout && Time.time>nextshout) 
 		{
 			playShout = false;
+			nextshout = Time.time+4f;
 			random = Random.Range (0, 5);
 			switch (random) {
 			case 0:
