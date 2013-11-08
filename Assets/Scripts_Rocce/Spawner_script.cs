@@ -37,25 +37,10 @@ public class Spawner_script : MonoBehaviour {
             {
                 int num = Random.Range(0, 100);
                 if (num <= 5)
-                {
-                    // DA MODIFICARE CON LE VARIE POSSIBILITà DI GOLD SILVER ZAFF ECC
                     istanziaGemma();
-                }
-                else if (num > 5 && num <= 30)
-                {
-                    Instantiate(rock1, transform.position, Quaternion.Euler(new Vector3(90, 0 ,0 )));
-                    rock1.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-                }
-                else if (num > 30 && num <= 65)
-                {
-                    Instantiate(rock2, transform.position, Quaternion.identity);
-                    rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-                }
-                else if (num > 65 && num <= 90)
-                {
-                    Instantiate(rock4, transform.position, Quaternion.Euler(90, 0, 0));
-                    rock4.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-                }
+                else
+                    istanziaRoccia();
+                
                 lastSpawn = Time.time;
                 Vector3 c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
                 if (num > 10)
@@ -66,22 +51,55 @@ public class Spawner_script : MonoBehaviour {
         }
 	}
 
+    private void istanziaRoccia()
+    {
+        int rnd = Random.Range(1,7);
+
+        switch (rnd)
+        {
+            case 1:
+                Instantiate(rock1, transform.position, Quaternion.Euler(new Vector3(90, 0, 0)));
+                rock1.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+                break;
+            case 2:
+                Instantiate(rock2, transform.position, Quaternion.identity);
+                rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+                break;
+            case 3:
+                Instantiate(rock3, transform.position, Quaternion.identity);
+                rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+                break;
+            case 4:
+                Instantiate(rock4, transform.position, Quaternion.identity);
+                rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+                break;
+            case 5:
+                Instantiate(rock5, transform.position, Quaternion.identity);
+                rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+                break;
+            case 6:
+                Instantiate(rock6, transform.position, Quaternion.identity);
+                rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+                break;
+        }
+    }
+
     private void istanziaGemma()
     {
-        int num = Random.Range(0, 100);
-        if (num <= 6)
-            //diamond
-            return;
-        else if (num <= 19)
+        int num = Random.Range(0, 44);
+        if (num <= 4)
+            //diamante
+            Instantiate(diamond, transform.position, Quaternion.identity);
+        else if (num <= 14)
             //oro
             Instantiate(gold, transform.position, Quaternion.identity);
-        else if (num <= 40)
+        else if (num <= 29)
             //argento
             Instantiate(silver, transform.position, Quaternion.identity);
-        else if (num <= 70)
+        else if (num <= 35)
             //rubino
             Instantiate(ruby, transform.position, Quaternion.identity);
-        else 
+        else
             //zaff
             Instantiate(zaffiro, transform.position, Quaternion.identity);
     } 
