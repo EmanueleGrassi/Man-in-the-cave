@@ -7,7 +7,7 @@ public class Spawner_script : MonoBehaviour {
     float speed;
     float nextShot;
     float lastSpawn;
-    public Transform rock1, rock2, rock4, diamond, gold, silver, ruby, zaffiro, marker;
+    public Transform rock1,rock2, rock3, rock4, rock5, rock6, diamond, gold, silver, ruby, zaffiro, marker;
 	float w, h;
 	// Use this for initialization
 	void Start () {

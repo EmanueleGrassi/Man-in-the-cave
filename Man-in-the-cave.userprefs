@@ -1,12 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Footsteps.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts_Rocce\Spawner_script.cs">
     <Files>
       <File FileName="Assets\Script_FlussoDiGioco\PlayScript.cs" Line="1" Column="1" />
       <File FileName="Assets\CameraScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\JoystickC.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="90" Column="22" />
-      <File FileName="Assets\Script\Footsteps.js" Line="22" Column="2" />
+      <File FileName="Assets\Scripts_Rocce\RockBehaviour.cs" Line="84" Column="16" />
+      <File FileName="Assets\Scripts_Rocce\Spawner_script.cs" Line="10" Column="62" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,14 +13,13 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Script" expanded="True" />
-              <Node name="Script_FlussoDiGioco" expanded="True" />
+              <Node name="Scripts_Rocce" expanded="True">
+                <Node name="Spawner_script.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
           <Node name="Assembly-UnityScript" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Script" expanded="True">
-                <Node name="Footsteps.js" selected="True" />
-              </Node>
               <Node name="Standard Assets (Mobile)" expanded="True">
                 <Node name="Scripts" expanded="True" />
               </Node>

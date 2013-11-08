@@ -12,6 +12,8 @@ public class RockBehaviour : MonoBehaviour {
 	public AudioClip morte1;
 	public AudioClip morte2;	
 	public AudioClip morte3;
+	public Transform RockSmoke;
+	public Transform PGblood;
 	// Use this for initialization
 	void Start () {
 		pg=GameObject.FindGameObjectWithTag("Player");
@@ -29,14 +31,19 @@ public class RockBehaviour : MonoBehaviour {
             }
         }
     }
-
+	
+	void OnDestroy()
+	{
+		Instantiate(RockSmoke, gameObject.transform.position, Quaternion.identity);		
+	}
+	bool ucciso=false;
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "ground")
+        if (col.gameObject.tag == "ground" && ucciso == false)
         {
             Play = true;
             deathP = transform.position;
-			if(deathP.x<pg.transform.position.x+7f && deathP.x>pg.transform.position.x-7f)
+			if(deathP.x<pg.transform.position.x+6f && deathP.x>pg.transform.position.x-6f)
 			{
 				PlayScript.playShout=true;
 				try {Handheld.Vibrate();} 
@@ -44,7 +51,9 @@ public class RockBehaviour : MonoBehaviour {
 			}
 			int rnd = Random.Range(0, 5);
 			if ( rnd < 3)
-            	Destroy(gameObject);
+				Destroy(gameObject);
+			else
+				Instantiate(RockSmoke, gameObject.transform.position, Quaternion.identity);
         }
         else if (col.gameObject.tag == "backgroundRock")
         {
@@ -70,7 +79,9 @@ public class RockBehaviour : MonoBehaviour {
  					    AudioSource.PlayClipAtPoint(morte3,transform.position);
  					    break;
 				}
+			Instantiate(PGblood, gameObject.transform.position, Quaternion.identity);			
 			Destroy(col.gameObject);
+			ucciso=true;
 		}
 		
     }

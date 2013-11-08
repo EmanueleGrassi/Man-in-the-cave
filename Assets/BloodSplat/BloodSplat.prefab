@@ -209,10 +209,10 @@ EllipsoidParticleEmitter:
   serializedVersion: 2
   m_Enabled: 1
   m_Emit: 1
-  minSize: 1
-  maxSize: 2
-  minEnergy: 1
-  maxEnergy: 1.5
+  minSize: 2
+  maxSize: 4
+  minEnergy: 2
+  maxEnergy: 3
   minEmission: 25
   maxEmission: 35
   worldVelocity: {x: 0, y: 0, z: 0}
