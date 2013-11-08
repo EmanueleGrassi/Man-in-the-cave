@@ -7,11 +7,11 @@ public class bengalaBehaviour : MonoBehaviour {
 	float destroy;
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
     {
         Vector3 pos = this.transform.position;
-        pos.y += 0.5f;
-        pos.z += 0.5f;
+        pos.y += 2.2f;
+        pos.z += 2f;
         this.rigidbody.AddForce(new Vector3(0, 200, 500));
 	}
 	
@@ -34,8 +34,9 @@ public class bengalaBehaviour : MonoBehaviour {
             //quando NEL SUONO si accende il bengala fai
 		    bengalaLight.light.enabled=true;
 		    //4 secondi dopo che il suono è finito fai Destroy
-			if(Time.time>destroy)
-				Destroy(gameObject);
+            //STO COSO ME BUGGA IL BENGALA!
+            //////if(Time.time>destroy)
+            //////    Destroy(gameObject);
         }
     }
 }
