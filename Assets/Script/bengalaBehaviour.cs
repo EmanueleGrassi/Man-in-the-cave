@@ -5,10 +5,13 @@ public class bengalaBehaviour : MonoBehaviour {
 
     public GameObject bengalaLight;
 	float destroy;
-
+	float lightTime;
+	bool inizialize;
 	// Use this for initialization
 	void Start ()
     {
+		lightTime=Time.time+1.7f;
+		inizialize=true;
         Vector3 pos = this.transform.position;
         pos.z += 2f;
         this.rigidbody.AddForce(new Vector3(0, 200, 500));
@@ -17,10 +20,17 @@ public class bengalaBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if(!audio.isPlaying)
-			destroy=Time.time+4;
-		else
-			destroy=Time.time;
+		if(!audio.isPlaying && inizialize)
+		{
+			inizialize = false;
+			destroy=Time.time+4f;
+			bengalaLight.light.enabled=false;
+		}
+		
+		if(Time.time>lightTime)
+			bengalaLight.light.enabled=true;
+		if(Time.time>destroy && !inizialize)
+                Destroy(gameObject);
 	}
 	
 	void OnDestroy()
@@ -28,16 +38,4 @@ public class bengalaBehaviour : MonoBehaviour {
 		PlayScript.BenngalaAvailable=true;
 	}
 
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "ground")
-        {
-            //quando NEL SUONO si accende il bengala fai
-		    bengalaLight.light.enabled=true;
-		    //4 secondi dopo che il suono è finito fai Destroy
-            //STO COSO ME BUGGA IL BENGALA!
-            if(Time.time>destroy)
-                Destroy(gameObject);
-        }
-    }
 }
