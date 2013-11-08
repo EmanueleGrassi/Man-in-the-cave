@@ -36,7 +36,7 @@ public class Spawner_script : MonoBehaviour {
             if (Time.time > lastSpawn + nextShot)
             {
                 int num = Random.Range(0, 100);
-                if (num <= 5)
+                if (num <= 10)
                     istanziaGemma();
                 else
                     istanziaRoccia();

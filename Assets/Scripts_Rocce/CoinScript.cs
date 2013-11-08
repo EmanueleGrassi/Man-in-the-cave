@@ -17,7 +17,7 @@ public class CoinScript : MonoBehaviour {
     void Update()
     {
         if (grounded)
-            if (Time.time > groundedTime + 2)
+            if (Time.time > groundedTime + 2.5f)
                 Destroy(gameObject);
     }
 
