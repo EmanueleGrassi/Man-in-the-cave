@@ -10,7 +10,6 @@ public class bengalaBehaviour : MonoBehaviour {
 	void Start ()
     {
         Vector3 pos = this.transform.position;
-        pos.y += 2.2f;
         pos.z += 2f;
         this.rigidbody.AddForce(new Vector3(0, 200, 500));
 	}
