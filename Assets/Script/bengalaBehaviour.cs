@@ -20,6 +20,8 @@ public class bengalaBehaviour : MonoBehaviour {
 	{
 		if(!audio.isPlaying)
 			destroy=Time.time+4;
+		else
+			destroy=Time.time;
 	}
 	
 	void OnDestroy()
@@ -35,8 +37,8 @@ public class bengalaBehaviour : MonoBehaviour {
 		    bengalaLight.light.enabled=true;
 		    //4 secondi dopo che il suono è finito fai Destroy
             //STO COSO ME BUGGA IL BENGALA!
-            //////if(Time.time>destroy)
-            //////    Destroy(gameObject);
+            if(Time.time>destroy)
+                Destroy(gameObject);
         }
     }
 }
