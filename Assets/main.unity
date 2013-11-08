@@ -162,6 +162,7 @@ GameObject:
   - 114: {fileID: 67719947}
   - 82: {fileID: 67719950}
   - 114: {fileID: 67719949}
+  - 114: {fileID: 67719951}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -201,7 +202,6 @@ MonoBehaviour:
   backwardSpeed: 10
   jumpSpeed: 17
   inAirMultiplier: .300000012
-  footstep: {fileID: 8300000, guid: 4e03dac995592cb438cc98fed56edefd, type: 3}
   random: 0
 --- !u!143 &67719948
 CharacterController:
@@ -297,6 +297,24 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &67719951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 67719945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2571bb50e0294942ada3bd5d33aa684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footAudioSource: {fileID: 0}
+  concreteSteps:
+  - {fileID: 8300000, guid: 5c7a9dd5c54586a4dac97fb06bfdca20, type: 3}
+  - {fileID: 8300000, guid: 7b16bbb541a07e741b555b9ee945efda, type: 3}
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 16
 --- !u!1001 &74654509
 Prefab:
   m_ObjectHideFlags: 0

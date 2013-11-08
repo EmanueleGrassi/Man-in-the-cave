@@ -25,7 +25,7 @@ private var velocity : Vector3;						// Used for continuing momentum while in ai
 private var canJump = true;
 
 
-var  footstep:AudioClip;
+//var  footstep:AudioClip;
 
 var random : int;
 private var nextPlayAudio:float;
@@ -85,7 +85,7 @@ function Update()
 		}
 		else
 		{
-			if (Time.time>nextPlayAudio && moveTouchPad.position.x != 0) 
+			/*if (Time.time>nextPlayAudio && moveTouchPad.position.x != 0) 
 			{
 				audio.PlayOneShot(footstep);
 				nextPlayAudio=Time.time+0.35f;
@@ -93,7 +93,7 @@ function Update()
 			else if(moveTouchPad.position.x == 0)
 			{
 				audio.Stop();
-			}
+			}*/
 		}
 	}
 	else// se sono in volo faccio questo

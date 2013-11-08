@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CameraScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Footsteps.js">
     <Files>
-      <File FileName="Assets\Script\bengalaBehaviour.cs" Line="35" Column="25" />
       <File FileName="Assets\Script_FlussoDiGioco\PlayScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\CameraScript.cs" Line="101" Column="44" />
+      <File FileName="Assets\CameraScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\JoystickC.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="90" Column="22" />
+      <File FileName="Assets\Script\Footsteps.js" Line="22" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,7 +15,16 @@
             <Node name="Assets" expanded="True">
               <Node name="Script" expanded="True" />
               <Node name="Script_FlussoDiGioco" expanded="True" />
-              <Node name="CameraScript.cs" selected="True" />
+            </Node>
+          </Node>
+          <Node name="Assembly-UnityScript" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Script" expanded="True">
+                <Node name="Footsteps.js" selected="True" />
+              </Node>
+              <Node name="Standard Assets (Mobile)" expanded="True">
+                <Node name="Scripts" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
