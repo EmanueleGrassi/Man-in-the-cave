@@ -14,7 +14,7 @@ public class bengalaBehaviour : MonoBehaviour {
 		inizialize=true;
         Vector3 pos = this.transform.position;
         pos.z += 2f;
-        this.rigidbody.AddForce(new Vector3(0, 200, 500));
+        this.rigidbody.AddForce(new Vector3(0, 200, 350));
 	}
 	
 	// Update is called once per frame

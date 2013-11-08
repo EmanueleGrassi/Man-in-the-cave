@@ -34,7 +34,9 @@ public class RockBehaviour : MonoBehaviour {
 	
 	void OnDestroy()
 	{
-		Instantiate(RockSmoke, gameObject.transform.position, Quaternion.identity);		
+		Instantiate(RockSmoke,
+			new Vector3( gameObject.transform.position.x, -0.3f, gameObject.transform.position.z),
+			Quaternion.identity);		
 	}
 	bool ucciso=false;
     void OnCollisionEnter(Collision col)
@@ -53,7 +55,9 @@ public class RockBehaviour : MonoBehaviour {
 			if ( rnd < 3)
 				Destroy(gameObject);
 			else
-				Instantiate(RockSmoke, gameObject.transform.position, Quaternion.identity);
+				Instantiate(RockSmoke, 
+					new Vector3( gameObject.transform.position.x, -0.3f, gameObject.transform.position.z),
+					Quaternion.identity);
         }
         else if (col.gameObject.tag == "backgroundRock")
         {
@@ -79,7 +83,10 @@ public class RockBehaviour : MonoBehaviour {
  					    AudioSource.PlayClipAtPoint(morte3,transform.position);
  					    break;
 				}
-			Instantiate(PGblood, gameObject.transform.position, Quaternion.identity);			
+			Instantiate(PGblood, 
+					new Vector3( gameObject.transform.position.x, 
+								gameObject.transform.position.y-1.5f, gameObject.transform.position.z),
+				Quaternion.identity);			
 			Destroy(col.gameObject);
 			ucciso=true;
 		}
