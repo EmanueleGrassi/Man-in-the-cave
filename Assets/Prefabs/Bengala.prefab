@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400002}
+  - 82: {fileID: 8200002}
   m_Layer: 0
   m_Name: Bengala
   m_TagString: Untagged
@@ -29,7 +30,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 108: {fileID: 10800000}
-  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: bengalaLight
   m_TagString: Untagged
@@ -100,12 +100,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &8200000
+--- !u!82 &8200002
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 591008f68f439ea4f91784489de7e408, type: 3}

@@ -27,7 +27,7 @@ public class bengalaBehaviour : MonoBehaviour {
 			bengalaLight.light.enabled=false;
 		}
 		
-		if(Time.time>lightTime)
+		if(Time.time>lightTime && inizialize)
 			bengalaLight.light.enabled=true;
 		if(Time.time>destroy && !inizialize)
                 Destroy(gameObject);
