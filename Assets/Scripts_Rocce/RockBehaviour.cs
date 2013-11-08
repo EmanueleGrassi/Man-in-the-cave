@@ -48,8 +48,7 @@ public class RockBehaviour : MonoBehaviour {
 			if(deathP.x<pg.transform.position.x+6f && deathP.x>pg.transform.position.x-6f)
 			{
 				PlayScript.playShout=true;
-				try {Handheld.Vibrate();} 
-				catch {}
+				Vibrate();
 			}
 			int rnd = Random.Range(0, 5);
 			if ( rnd < 3)
@@ -68,8 +67,7 @@ public class RockBehaviour : MonoBehaviour {
         }
 		else if (col.gameObject.tag == "Player" && gameObject.tag!="backgroundRock") 
 		{
-			try {Handheld.Vibrate();} 
-				catch {}
+			Vibrate();
 			random=Random.Range(0,3);
 			switch(random)
  			    {
@@ -92,5 +90,10 @@ public class RockBehaviour : MonoBehaviour {
 		}
 		
     }
+	
+	void Vibrate()
+	{		
+		//try {Handheld.Vibrate();} catch {}
+	}
 
 }

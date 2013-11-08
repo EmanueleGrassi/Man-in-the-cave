@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BloodAndSmokeBehaviour : MonoBehaviour {
+public class BloodBehaviour : MonoBehaviour {
 	
 	float DestroyTime;
 	// Use this for initialization
