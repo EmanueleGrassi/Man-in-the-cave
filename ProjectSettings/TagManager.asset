@@ -9,16 +9,21 @@ TagManager:
   - Jump
   - Pause
   - rock
-  - coinGold
+  - gold
   - bomb
   - bound
   - backgroundRock
   - spawnersin
   - coinSilver
-  - 
+  - silver
   - coin
   - lightWP
   - lightPG
+  - ruby
+  - dirt
+  - concrete
+  - zaff
+  - diam
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

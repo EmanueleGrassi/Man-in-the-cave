@@ -16,55 +16,114 @@ public class PG_collider : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "rock")
-        {
-            Destroy(col.gameObject);
-            gameObject.SendMessage("OnEndGame");
-            PlayScript.State = PlayScript.PlayState.result;
-            Destroy(player.gameObject);
-        }
-        if (col.gameObject.tag == "coin")
-        {
-            prendiCoin(col.gameObject);
-            Destroy(col.gameObject);
-        }
-    }
-
-    private void prendiCoin(GameObject g)
-    {
-        //VALORE
-        int value = 0;
-        switch (g.tag)
+        int value;
+        switch (col.gameObject.tag)
         {
             case "gold":
-                value = 7;
+                value = 1;
+                CameraScript.data.points += value;
+                //SUONI
+                random = Random.Range(0, 3);
+                switch (random)
+                {
+                    case 0:
+                        AudioSource.PlayClipAtPoint(collected1, transform.position);
+                        break;
+                    case 1:
+                        AudioSource.PlayClipAtPoint(collected2, transform.position);
+                        break;
+                    case 2:
+                        AudioSource.PlayClipAtPoint(collected3, transform.position);
+                        break;
+                }
+                Destroy(col.gameObject);
                 break;
+
             case "silver":
-                value = 5;
+                value = 1;
+                CameraScript.data.points += value;
+                //SUONI
+                random = Random.Range(0, 3);
+                switch (random)
+                {
+                    case 0:
+                        AudioSource.PlayClipAtPoint(collected1, transform.position);
+                        break;
+                    case 1:
+                        AudioSource.PlayClipAtPoint(collected2, transform.position);
+                        break;
+                    case 2:
+                        AudioSource.PlayClipAtPoint(collected3, transform.position);
+                        break;
+                }
+                Destroy(col.gameObject);
                 break;
+
+            case "diam":
+                value = 1;
+                CameraScript.data.points += value;
+                //SUONI
+                random = Random.Range(0, 3);
+                switch (random)
+                {
+                    case 0:
+                        AudioSource.PlayClipAtPoint(collected1, transform.position);
+                        break;
+                    case 1:
+                        AudioSource.PlayClipAtPoint(collected2, transform.position);
+                        break;
+                    case 2:
+                        AudioSource.PlayClipAtPoint(collected3, transform.position);
+                        break;
+                }
+                Destroy(col.gameObject);
+                break;
+
             case "ruby":
-                value = 8;
+                value = 1;
+                CameraScript.data.points += value;
+                //SUONI
+                random = Random.Range(0, 3);
+                switch (random)
+                {
+                    case 0:
+                        AudioSource.PlayClipAtPoint(collected1, transform.position);
+                        break;
+                    case 1:
+                        AudioSource.PlayClipAtPoint(collected2, transform.position);
+                        break;
+                    case 2:
+                        AudioSource.PlayClipAtPoint(collected3, transform.position);
+                        break;
+                }
+                Destroy(col.gameObject);
                 break;
+
             case "zaff":
-                value = 8;
+                value = 1;
+                CameraScript.data.points += value;
+                //SUONI
+                random = Random.Range(0, 3);
+                switch (random)
+                {
+                    case 0:
+                        AudioSource.PlayClipAtPoint(collected1, transform.position);
+                        break;
+                    case 1:
+                        AudioSource.PlayClipAtPoint(collected2, transform.position);
+                        break;
+                    case 2:
+                        AudioSource.PlayClipAtPoint(collected3, transform.position);
+                        break;
+                }
+                Destroy(col.gameObject);
                 break;
-            case "diamond":
-                value = 10;
-                break;
-        }
-        CameraScript.data.points += value;
-        //SUONI
-        random = Random.Range(0, 3);
-        switch (random)
-        {
-            case 0:
-                AudioSource.PlayClipAtPoint(collected1, transform.position);
-                break;
-            case 1:
-                AudioSource.PlayClipAtPoint(collected2, transform.position);
-                break;
-            case 2:
-                AudioSource.PlayClipAtPoint(collected3, transform.position);
+
+            case "rock":
+                Destroy(col.gameObject);
+                gameObject.SendMessage("OnEndGame");
+                PlayScript.State = PlayScript.PlayState.result;
+                Destroy(player.gameObject);
                 break;
         }
     }
