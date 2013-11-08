@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9b861cc59eb597f43be2ddfcedf8316f
+guid: cd0eef82eed03964e8dd6a650369539d
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -21,7 +21,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 32
+  maxTextureSize: 1024
   textureSettings:
     filterMode: -1
     aniso: -1
@@ -32,5 +32,13 @@ TextureImporter:
   compressionQuality: 50
   alphaIsTransparency: 0
   textureType: -1
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 256
+    textureFormat: -1
+    compressionQuality: 50
+  - buildTarget: WP8
+    maxTextureSize: 256
+    textureFormat: -1
+    compressionQuality: 50
   userData: 

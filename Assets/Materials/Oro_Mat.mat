@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Blue Quartz
+  m_Name: Oro_Mat
   m_Shader: {fileID: 4800000, guid: 0e7ed4fbd9924480bbb918e339c570e6, type: 3}
   m_ShaderKeywords: []
   m_SavedProperties:
@@ -16,14 +16,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: d4bee9bfe46d04ec888ba01eadd66c83, type: 3}
+          m_Texture: {fileID: 2800000, guid: 68e365f7785c84f9f98d902d5923068a, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _Shininess
-        second: .617205322
+        second: .699999988
     m_Colors:
       data:
         first:
@@ -36,4 +36,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .55818975, g: .546875, b: .875, a: 1}
+        second: {r: .46436879, g: .477941155, b: .231942028, a: 1}

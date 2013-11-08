@@ -1,21 +1,16 @@
 fileFormatVersion: 2
-guid: a044a6e2e38bd43869d79a4f38dccf22
+guid: 1690b216fce504a8d91274ede4ae519b
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
     100000: //RootNode
-    100002: DrawMesh
-    100004: Icosphere
     400000: //RootNode
-    400002: DrawMesh
-    400004: Icosphere
-    2300000: DrawMesh
-    2300002: Icosphere
-    3300000: DrawMesh
-    3300002: Icosphere
-    4300000: Icosphere
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cylinder_001
     7400000: Default Take
     9500000: //RootNode
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -66,5 +61,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 2
+  animationType: 0
   userData: 
