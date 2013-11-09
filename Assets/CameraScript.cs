@@ -121,9 +121,9 @@ public class CameraScript : MonoBehaviour
 	}
 	void ManageButton(bool visibility)
 	{
-		bengalaButton.renderer.enabled=visibility;
-		movementButton.renderer.enabled=visibility;
-		jumpButton.renderer.enabled=visibility;		
+        bengalaButton.active = visibility;
+        movementButton.active = visibility;
+		jumpButton.active = visibility;		
 	}
 	void OnGUI ()
 	{

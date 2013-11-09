@@ -24,11 +24,11 @@ public class buyItems_Script : MonoBehaviour {
         GUI.Label(new Rect(margin, margin, size * 10, size * 2 + margin), "Buy Items"); // titolo
         custom.label.fontSize = (int)(size * 0.5f);
         //reborn e picconi
-        GUI.Label(new Rect(margin, margin * 11 - 3, size * 6, size), "n Pickaxe: " + CameraScript.data.NumberPickaxe);// AGGIUNGERE I PICKAXE
-        GUI.Label(new Rect(size * 5, margin * 11 - 3, size * 6, size), "n Reborn: " + CameraScript.data.NumberReborn); //AGGIUNGERE I REBORN
+        GUI.Label(new Rect(margin, margin * 11 - 3, size * 6, size), "n Bengal: " + CameraScript.data.numBengala);
+        GUI.Label(new Rect(size * 5, margin * 11 - 3, size * 6, size), "n Reborn: " + CameraScript.data.NumberReborn);
         //coins
         GUI.DrawTexture(new Rect(size * 10 , margin*2, size, size), coins);
-        GUI.Label(new Rect(size * 11+ margin, margin * 2, size*2, size), "9999");
+        GUI.Label(new Rect(size * 11+ margin, margin * 2, size*2, size), "" + CameraScript.data.points);
         //purchases
         custom.button.normal.textColor = new Color(170,92,0);
         custom.button.fontSize = (int)(size * 0.5f);
