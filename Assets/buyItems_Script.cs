@@ -11,15 +11,21 @@ public class buyItems_Script : MonoBehaviour {
     {
         size = Screen.width / 20;
         margin = Screen.width / 60;
-
     }
     Vector2 position = Vector2.zero;
-    // Update is called once per frame
+
     void OnGUI()
     {
         GUI.skin = custom;
-        GUI.DrawTexture(new Rect(margin, margin * 13, size * 9, size * 3), piccone, ScaleMode.ScaleToFit, true);
-        GUI.DrawTexture(new Rect(margin, margin * 13 + size * 3, size * 9, size * 3), reborn, ScaleMode.ScaleToFit, true);
+        custom.label.fontSize = (int)(size * 1.5);
+        GUI.Label(new Rect(margin, margin, size * 10, size * 2 + margin), "Buy Items");
+        custom.label.fontSize = (int)(size * 0.5f);
+        GUI.Label(new Rect(margin, margin * 11 - 3, size * 6, size), "n Pickaxe: ");// AGGIUNGERE I PICKAXE
+        GUI.Label(new Rect(size * 5, margin * 11 - 3, size * 6, size), "n Reborn: "); //AGGIUNGERE I REBORN
+        if (GUI.Button(new Rect(margin, margin * 13, size * 9, size * 3), piccone))
+            return;
+        if (GUI.Button(new Rect(margin, margin * 13 + size * 3, size * 9, size * 3), reborn))
+            return;
         position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, size * 10), position, new Rect(0, 0, size * 10, size * 16));
         if (GUI.Button(new Rect(0, 0, size * 9, size * 3), redLight))
             return;
