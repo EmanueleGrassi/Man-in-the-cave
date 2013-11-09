@@ -173,3 +173,4 @@ MonoBehaviour:
   pinkLight: {fileID: 2800000, guid: 27d566f709f38f242b354e9a05e881b8, type: 3}
   reborn: {fileID: 2800000, guid: 86cce878d4efc024caa7e1e7497ce048, type: 3}
   redLight: {fileID: 2800000, guid: 535f538abaef4c74aa82941f9849b84b, type: 3}
+  custom: {fileID: 11400000, guid: e6365d348d530f646af3dec48a0f6edc, type: 2}

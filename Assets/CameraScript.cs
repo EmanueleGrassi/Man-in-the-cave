@@ -140,10 +140,14 @@ public class CameraScript : MonoBehaviour
 							margin / 1.5f,
 							height * 3.0f, /*moltiplicare la metà delle cifre tempo per height*/
 							300.0f), string.Format ("{0}:{1:00}", t.Minutes, t.Seconds));
-		
-		if (isDebuging)
-		if (GUI.Button (new Rect (Screen.width / 2 - height / 2, 0, height, height), quit))
-			Application.Quit ();
+
+        if (isDebuging)
+        {
+            if (GUI.Button(new Rect(Screen.width / 2 - height / 2, 0, height, height), quit))
+                Application.Quit();
+            if (GUI.Button(new Rect(Screen.width / 2 , 0, height, height), "buy items"))
+                Application.LoadLevel(1);
+        }
 		
 		if(PlayScript.State == PlayScript.PlayState.menu)
 			drawMenu();
