@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class buyItems_Script : MonoBehaviour {
 
     public Texture arcoLight, bengal, bluLight, greenLight, piccone, pinkLight, reborn, redLight, coins;
     float size, margin;
     public GUISkin custom;
+    public static event EventHandler plus500, plus1000, plus5000;
     // Use this for initialization
     void Start()
     {
@@ -30,33 +32,76 @@ public class buyItems_Script : MonoBehaviour {
         //purchases
         custom.button.normal.textColor = new Color(170,92,0);
         custom.button.fontSize = (int)(size * 0.5f);
-        if (GUI.Button(new Rect(size * 14, margin * 2, size+margin, size), "+500"))
-            return;
+        if (GUI.Button(new Rect(size * 14, margin * 2, size + margin, size), "+500"))
+            if (plus500 != null)
+                plus500(this, new EventArgs());
         custom.button.normal.textColor = new Color(164, 164, 164);
         custom.button.fontSize = (int)(size * 0.5f)+1;
         if (GUI.Button(new Rect(size * 16-margin/2, margin *2, size+margin, size), "+1000"))
-            return;
+            if (plus1000 != null)
+                plus1000(this, new EventArgs());
         custom.button.normal.textColor = new Color(234, 202, 0);
         custom.button.fontSize = (int)(size * 0.5f) + 2;
         if (GUI.Button(new Rect(size * 18-margin, margin * 2, size + 2*margin, size), "+5000"))
-            return;
+            if (plus5000 != null)
+                plus5000(this, new EventArgs());
         //colonna di sinistra
-        if (GUI.Button(new Rect(margin, margin * 13, size * 9, size * 3), piccone))
-            return;
+        if (GUI.Button(new Rect(margin, margin * 13, size * 9, size * 3), bengal))
+            if (CameraScript.data.points >= 90)
+            {
+                CameraScript.data.points -= 90;
+                CameraScript.data.numBengala += 2;
+            }
         if (GUI.Button(new Rect(margin, margin * 12 + size * 3, size * 9, size * 3), reborn))
-            return;
+            if (CameraScript.data.points >= 300)
+            {
+                CameraScript.data.points -= 300;
+                CameraScript.data.NumberReborn++;
+            }
         //scrollview
         position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, size * 10), position, new Rect(0, 0, size * 10, size * 14));
-        if (GUI.Button(new Rect(0, 0, size * 9, size * 3), redLight))
-            return;
-        if (GUI.Button(new Rect(0, size * 2 + margin*2, size * 9, size * 3), bluLight))
-            return;
-        if (GUI.Button(new Rect(0, margin*4 + size * 4, size * 9, size * 3), greenLight))
-            return;
-        if (GUI.Button(new Rect(0, margin *6 + size * 6, size * 9, size * 3), pinkLight))
-            return;
-        if (GUI.Button(new Rect(0, margin*8 + size * 8, size * 9, size * 3), arcoLight))
-            return;
+        if (GUI.Button(new Rect(0, 0, size * 9, size * 3), redLight) && !CameraScript.data.lightRed)
+        {
+            if (CameraScript.data.points >= 500 && !CameraScript.data.lightRed)
+            {
+                CameraScript.data.points -= 500;
+                CameraScript.data.lightRed = true;
+                CameraScript.data.helmet = Helmet.red;
+                //SUONA CASSA
+            }
+        }
+        if (GUI.Button(new Rect(0, size * 2 + margin*2, size * 9, size * 3), bluLight) && !CameraScript.data.lightBlue)
+            if (CameraScript.data.points >= 550 && !CameraScript.data.lightRed)
+            {
+                CameraScript.data.points -= 550;
+                CameraScript.data.lightRed = true;
+                CameraScript.data.helmet = Helmet.red;
+                //SUONA CASSA
+            }
+        if (GUI.Button(new Rect(0, margin*4 + size * 4, size * 9, size * 3), greenLight) && !CameraScript.data.lightGreen)
+            if (CameraScript.data.points >= 750 && !CameraScript.data.lightRed)
+            {
+                CameraScript.data.points -= 750;
+                CameraScript.data.lightRed = true;
+                CameraScript.data.helmet = Helmet.red;
+                //SUONA CASSA
+            }
+        if (GUI.Button(new Rect(0, margin *6 + size * 6, size * 9, size * 3), pinkLight) && !CameraScript.data.lightPink)
+            if (CameraScript.data.points >= 800 && !CameraScript.data.lightRed)
+            {
+                CameraScript.data.points -= 800;
+                CameraScript.data.lightRed = true;
+                CameraScript.data.helmet = Helmet.red;
+                //SUONA CASSA
+            }
+        if (GUI.Button(new Rect(0, margin*8 + size * 8, size * 9, size * 3), arcoLight) && !CameraScript.data.lightRainbow)
+            if (CameraScript.data.points >= 6000 && !CameraScript.data.lightRed)
+            {
+                CameraScript.data.points -= 6000;
+                CameraScript.data.lightRed = true;
+                CameraScript.data.helmet = Helmet.red;
+                //SUONA CASSA
+            }
         GUI.EndScrollView(); 
     }
 
