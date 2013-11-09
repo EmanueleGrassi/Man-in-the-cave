@@ -56,6 +56,8 @@ public class CameraScript : MonoBehaviour
 	public static float PlayTime;
 	bool visualizePause = true;
 	
+	float height;
+	float margin;
 	void Start ()
 	{
 		//carica i salvataggi
@@ -71,6 +73,9 @@ public class CameraScript : MonoBehaviour
 		PlayTime = 0;
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WP8Player)
 			visualizePause = false;
+		
+		height = Screen.width / 20;
+		margin = Screen.width / 60;
 	}
 
 	// Update is called once per frame    
@@ -115,8 +120,7 @@ public class CameraScript : MonoBehaviour
 	{
 		GUI.skin = custom;
 		// Visualizza punti. Lo script si adatta atutte le risoluzioni
-		float height = Screen.width / 20;
-		float margin = Screen.width / 60;
+		
 		GUI.DrawTexture (new Rect (margin, margin, height, height), coin, ScaleMode.ScaleToFit, true);		
 		GUI.skin.label.fontSize = (int)height;
 		GUI.Label (new Rect (height + (margin * 2), margin / 1.5f, /*moltiplicare la metà delle cifre moneta per height*/ 600f, 300f),
@@ -140,5 +144,18 @@ public class CameraScript : MonoBehaviour
 		if (isDebuging)
 		if (GUI.Button (new Rect (Screen.width / 2 - height / 2, 0, height, height), quit))
 			Application.Quit ();
+		
+		if(PlayScript.State= PlayScript.PlayState.menu)
+			drawMenu();
 	}
+	
+	void drawMenu()
+	{
+		/*if (GUI.Button( new Rect(Screen.width - (margin + height), margin, height, height), pause)) 
+            {
+                PlayScript.State = PlayScript.PlayState.pause;
+			}*/
+		
+	}
+	
 }
