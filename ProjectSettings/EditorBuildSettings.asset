@@ -9,3 +9,7 @@ EditorBuildSettings:
     path: Assets/main.unity
   - enabled: 1
     path: Assets/BuyItems.unity
+  - enabled: 1
+    path: Assets/Items.unity
+  - enabled: 1
+    path: Assets/Scores.unity

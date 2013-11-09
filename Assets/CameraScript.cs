@@ -152,36 +152,46 @@ public class CameraScript : MonoBehaviour
 										titleHeight + playSize,
 										piccoliBottoniSize,piccoliBottoniHight), ScoreButton))
 		        {
-		        	;//vai nella pagina BuyItems
+		        	Application.LoadLevel(3);
 				}
 				if (GUI.Button( new Rect(((Screen.width-((piccoliBottoniSize*2)+margin2))/2) +(piccoliBottoniSize),
 											(margin2*3)+ titleHeight + playSize, piccoliBottoniSize ,piccoliBottoniHight), ItemsButton))
 		        {
-		        	;//vai nella pagina BuyItems
+		        	Application.LoadLevel(2);//vai nella pagina Items
 				}			
 		
 			
 			if (GUI.Button( new Rect((Screen.width/2)-((piccoliBottoniSize*2)/2), (margin2*4)+ titleHeight+ playSize+ piccoliBottoniHight,
 									piccoliBottoniSize*2,BuyHeight), BuyItemsButton))
 	        {
-	        	;//vai nella pagina BuyItems
+	        	Application.LoadLevel(1);//vai nella pagina BuyItems
 			}
         
 		if (GUI.Button(new Rect(Screen.width-SocialSize, Screen.height-SocialSize*3, SocialSize, SocialSize) ,facebook)) 
 	        {
-	        		;//vai su facebook
+	        		Application.OpenURL("https://www.facebook.com/Celialab");//vai su facebook
 			}
 		if (GUI.Button(new Rect(Screen.width-SocialSize, Screen.height-SocialSize*2, SocialSize, SocialSize) ,twitter)) 
 	        {
-	        		;//vai su twitter
+	        		Application.OpenURL("https://twitter.com/celialabGames");//vai su twitter
 			}
 		if (GUI.Button(new Rect(Screen.width-SocialSize, Screen.height-SocialSize, SocialSize, SocialSize) ,review)) 
 	        {
-	        		;//vai su review
+			if(Application.platform == RuntimePlatform.Android)
+	        		Application.OpenURL("");//vai su review
+			else if (Application.platform == RuntimePlatform.IPhonePlayer)
+				;
+			else if(Application.platform == RuntimePlatform.WP8Player)
+				;
+			else if(Application.platform == RuntimePlatform.WindowsPlayer)
+				;
 			}
 		
 		var celialabHeight=((Screen.width/5)*59)/200;
-		GUI.Button(new Rect(margin,Screen.height-(celialabHeight+margin), Screen.width/5,celialabHeight), celialab);
+		if(GUI.Button(new Rect(margin,Screen.height-(celialabHeight+margin), Screen.width/5,celialabHeight), celialab))
+		{
+			Application.OpenURL("http://celialab.com/");
+		}
 	}
 	
 	void drawPlay()
