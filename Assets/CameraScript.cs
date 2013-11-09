@@ -145,7 +145,7 @@ public class CameraScript : MonoBehaviour
 		if (GUI.Button (new Rect (Screen.width / 2 - height / 2, 0, height, height), quit))
 			Application.Quit ();
 		
-		if(PlayScript.State= PlayScript.PlayState.menu)
+		if(PlayScript.State == PlayScript.PlayState.menu)
 			drawMenu();
 	}
 	
