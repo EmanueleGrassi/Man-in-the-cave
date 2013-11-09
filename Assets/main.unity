@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   rock1: {fileID: 400000, guid: 34584948ae714254ab1a05d251379920, type: 2}
   rock2: {fileID: 400002, guid: dfef6368513e93b46b9a2b5366424cd5, type: 2}
   rock3: {fileID: 400002, guid: 8951da2cee6b0094a9874d073b0172f0, type: 2}
@@ -199,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed124f80617b40f0917847d5c87ca73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   moveTouchPad: {fileID: 1680461527}
   jumpTouchPad: {fileID: 966331498}
   forwardSpeed: 8.5
@@ -231,6 +233,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cefc48940b359e40b2e7bb63c15d326, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   player: {fileID: 67719946}
   shout1: {fileID: 8300000, guid: d60b80a32957c27418cfc229b891a716, type: 3}
@@ -310,6 +313,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2571bb50e0294942ada3bd5d33aa684, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   footAudioSource: {fileID: 0}
   concreteSteps:
@@ -898,6 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d59ad3ab9985945844cdd61e3d647e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   custom: {fileID: 11400000, guid: e6365d348d530f646af3dec48a0f6edc, type: 2}
   playerPG: {fileID: 67719946}
   rockSound: {fileID: 8300000, guid: ce4d689d38400b448a560f0d14db09bb, type: 3}
@@ -962,6 +967,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   rock1: {fileID: 400000, guid: 34584948ae714254ab1a05d251379920, type: 2}
   rock2: {fileID: 400002, guid: dfef6368513e93b46b9a2b5366424cd5, type: 2}
@@ -1535,6 +1541,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fb10c595af974ea6ba0313a749d5c55, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   touchPad: 1
   touchZone:
@@ -2469,6 +2476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   rock1: {fileID: 400000, guid: 34584948ae714254ab1a05d251379920, type: 2}
   rock2: {fileID: 400002, guid: dfef6368513e93b46b9a2b5366424cd5, type: 2}
   rock3: {fileID: 400002, guid: 8951da2cee6b0094a9874d073b0172f0, type: 2}
@@ -2589,6 +2597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948485f308dce204d8b9b3d696f5fb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   player: {fileID: 67719946}
 --- !u!1 &1680461525
 GameObject:
@@ -2630,6 +2639,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fb10c595af974ea6ba0313a749d5c55, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   touchPad: 0
   touchZone:
@@ -3059,6 +3069,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d30f88ee89661fb43b250a1b64b6570b, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   touchPad: 1
   touchZone:
