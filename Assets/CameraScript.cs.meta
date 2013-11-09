@@ -3,8 +3,13 @@ guid: 81d59ad3ab9985945844cdd61e3d647e
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
+  - custom: {fileID: 11400000, guid: e6365d348d530f646af3dec48a0f6edc, type: 2}
   - playerPG: {instanceID: 0}
-  - rockSound: {fileID: 8300000, guid: f179fbcd0c22da0448a15023efffb0ab, type: 3}
+  - rockSound: {instanceID: 0}
+  - background: {instanceID: 0}
+  - coin: {instanceID: 0}
+  - pause: {instanceID: 0}
+  - quit: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
