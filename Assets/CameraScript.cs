@@ -58,7 +58,7 @@ public class CameraScript : MonoBehaviour
 	
 	//munu
 	float height;
-	float margin;
+	float margin, margin2;
 	public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
 	public Texture facebook,twitter,review,celialab;
 	
@@ -80,6 +80,7 @@ public class CameraScript : MonoBehaviour
 		
 		height = Screen.width / 20;
 		margin = Screen.width / 60;
+		margin2 = Screen.width / 70;
 	}
 
 	// Update is called once per frame    
@@ -134,33 +135,35 @@ public class CameraScript : MonoBehaviour
 	// PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
 	void drawMenu()
 	{
-		float piccoliBottoniSize =Screen.width/4.6f - margin;
-		GUILayout.BeginArea(new Rect(0,0,Screen.width,Screen.height));
-		GUILayout.BeginVertical();
+		float piccoliBottoniSize =Screen.width/4.6f - margin2;
+		float titleSize=0;
+		float playSize=Screen.width/8;
 			/*GUI.DrawTexture (new Rect ((Screen.width/2)-Title.width/2, margin, Screen.width/1.9f, height), 
 														Title, ScaleMode.ScaleToFit, true);	*/
-			if (GUILayout.Button( PlayButton, GUILayout.Width(height))) 
+			if (GUI.Button(new Rect((Screen.width/2)-playSize/2, (margin2*2)+ titleSize, playSize, playSize) ,PlayButton)) 
 	        {
 	        	PlayScript.State = PlayScript.PlayState.play;
 			}
-			GUILayout.BeginHorizontal();
-				
-				if (GUILayout.Button( ScoreButton, GUILayout.Width(piccoliBottoniSize))) 
+		
+				float piccoliBottoniHight= (((piccoliBottoniSize)*169)/400);
+				if (GUI.Button( new Rect((Screen.width-((piccoliBottoniSize*2)+margin2))/2, (margin2*3)+ titleSize + playSize,
+										Screen.width/2.3f,piccoliBottoniHight), ScoreButton))
 		        {
-		        	;//vai nella pagina score
+		        	;//vai nella pagina BuyItems
 				}
-				if (GUILayout.Button( ItemsButton, GUILayout.Width(piccoliBottoniSize))) 
+				if (GUI.Button( new Rect(((Screen.width-((piccoliBottoniSize*2)+margin2))/2) +(piccoliBottoniSize+margin2),
+											(margin2*3)+ titleSize + playSize, Screen.width/2.3f,piccoliBottoniHight), ItemsButton))
 		        {
-		        	;//vai nella pagina Items
-				}
-			GUILayout.EndHorizontal();
-			if (GUILayout.Button( BuyItemsButton, GUILayout.Width(Screen.width/2.3f)))
+		        	;//vai nella pagina BuyItems
+				}			
+		
+			float BuyHeight= (((Screen.width/2.3f)*160)/740);
+			if (GUI.Button( new Rect((Screen.width/2)-((Screen.width/2.3f)/2), (margin2*4)+ titleSize+ playSize+ piccoliBottoniHight,
+									Screen.width/2.3f,BuyHeight), BuyItemsButton))
 	        {
 	        	;//vai nella pagina BuyItems
 			}
-        GUILayout.EndVertical();
-		GUILayout.EndArea();	
-		
+        
 		GUILayout.BeginArea(new Rect(Screen.width-(height+margin), Screen.height-(height*3+margin*3),height+margin,height*3+margin*3));
 		GUILayout.BeginVertical();
 		if (GUILayout.Button( facebook, GUILayout.Width(height)))
