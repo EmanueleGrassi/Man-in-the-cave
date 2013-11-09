@@ -61,6 +61,7 @@ public class CameraScript : MonoBehaviour
 	float margin, margin2;
 	public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
 	public Texture Title, facebook,twitter,review,celialab;
+	public Transform bengalaButton, movementButton, jumpButton;
 	
 	void Start ()
 	{
@@ -118,7 +119,12 @@ public class CameraScript : MonoBehaviour
 			nexshot = Time.time + 0.01f;           
 		}
 	}
-	
+	void ManageButton(bool visibility)
+	{
+		bengalaButton.renderer.enabled=visibility;
+		movementButton.renderer.enabled=visibility;
+		jumpButton.renderer.enabled=visibility;		
+	}
 	void OnGUI ()
 	{
 		GUI.skin = custom;
@@ -127,9 +133,25 @@ public class CameraScript : MonoBehaviour
 				Application.Quit ();
 		
 		if(PlayScript.State == PlayScript.PlayState.play)
+		{
+			ManageButton(true);
 			drawPlay();
+		}
 		else if(PlayScript.State == PlayScript.PlayState.menu)
+		{
+			ManageButton(false);
 			drawMenu();
+		}
+		else if(PlayScript.State == PlayScript.PlayState.pause)
+		{
+			ManageButton(false);
+			drawMenu();
+		}
+		else if(PlayScript.State == PlayScript.PlayState.result)
+		{
+			ManageButton(false);
+			drawMenu();
+		}
 	}
 	
 	// PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
@@ -180,11 +202,11 @@ public class CameraScript : MonoBehaviour
 			if(Application.platform == RuntimePlatform.Android)
 	        		Application.OpenURL("");//vai su review
 			else if (Application.platform == RuntimePlatform.IPhonePlayer)
-				;
-			else if(Application.platform == RuntimePlatform.WP8Player)
-				;
-			else if(Application.platform == RuntimePlatform.WindowsPlayer)
-				;
+				Application.OpenURL("");//vai su review
+			else if(Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.WindowsPlayer)
+				if(GOReviews!=null)
+					GOReviews(this, new EventArgs());
+			
 			}
 		
 		var celialabHeight=((Screen.width/5)*59)/200;
@@ -193,7 +215,7 @@ public class CameraScript : MonoBehaviour
 			Application.OpenURL("http://celialab.com/");
 		}
 	}
-	
+	public static event EventHandler GOReviews;
 	void drawPlay()
 	{
 		// Visualizza punti. Lo script si adatta atutte le risoluzioni

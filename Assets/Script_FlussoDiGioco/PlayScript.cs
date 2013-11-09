@@ -38,7 +38,8 @@ public class PlayScript : MonoBehaviour
 			else if (state == PlayState.pause) 
 			{
 				Time.timeScale = 0;
-			} else if (state == PlayState.menu) 
+			} 
+			else if (state == PlayState.menu) 
 			{
 				Time.timeScale = 0;
 			} 
@@ -48,6 +49,8 @@ public class PlayScript : MonoBehaviour
 			}
 		}
 	}
+	
+	
 	
 	void Start ()
 	{
