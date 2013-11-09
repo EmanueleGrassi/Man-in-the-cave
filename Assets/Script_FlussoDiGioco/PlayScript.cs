@@ -31,13 +31,19 @@ public class PlayScript : MonoBehaviour
 		get { return state; }
 		set {
 			state = value;
-			if (state == PlayState.play) {
+			if (state == PlayState.play) 
+			{
 				Time.timeScale = 1;
-			} else if (state == PlayState.pause) {
+			} 
+			else if (state == PlayState.pause) 
+			{
 				Time.timeScale = 0;
-			} else if (state == PlayState.menu) {
+			} else if (state == PlayState.menu) 
+			{
 				Time.timeScale = 0;
-			} else if (state == PlayState.result) {
+			} 
+			else if (state == PlayState.result) 
+			{
 				Time.timeScale = 0;
 			}
 		}
@@ -45,7 +51,7 @@ public class PlayScript : MonoBehaviour
 	
 	void Start ()
 	{
-		State = PlayState.play; 
+		State = PlayState.menu; 
 		//LUCE A SECONDA DELLA PIATTAFORMA
 		if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.Android) {
 			wplight.active = true;

@@ -56,8 +56,12 @@ public class CameraScript : MonoBehaviour
 	public static float PlayTime;
 	bool visualizePause = true;
 	
+	//munu
 	float height;
 	float margin;
+	public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
+	public Texture facebook,twitter,review,celialab;
+	
 	void Start ()
 	{
 		//carica i salvataggi
@@ -109,18 +113,77 @@ public class CameraScript : MonoBehaviour
 			
 			transform.rotation = Quaternion.Euler (2.9f, 
 				Mathf.Tan(-((2 * playerPG.position.x) / (5 * Mathf.Sqrt (2500 - playerPGxPOW)))) * 180 / Mathf.PI,
-				0);
-			
-			nexshot = Time.time + 0.01f;
-           
+				0);			
+			nexshot = Time.time + 0.01f;           
 		}
 	}
 	
 	void OnGUI ()
 	{
 		GUI.skin = custom;
-		// Visualizza punti. Lo script si adatta atutte le risoluzioni
+		if (isDebuging)
+			if (GUI.Button (new Rect (Screen.width / 2 - height / 2, 0, height, height), quit))
+				Application.Quit ();
 		
+		if(PlayScript.State == PlayScript.PlayState.play)
+			drawPlay();
+		else if(PlayScript.State == PlayScript.PlayState.menu)
+			drawMenu();
+	}
+	
+	// PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
+	void drawMenu()
+	{
+		float piccoliBottoniSize =Screen.width/4.6f - margin;
+		GUILayout.BeginArea(new Rect(0,0,Screen.width,Screen.height));
+		GUILayout.BeginVertical();
+			/*GUI.DrawTexture (new Rect ((Screen.width/2)-Title.width/2, margin, Screen.width/1.9f, height), 
+														Title, ScaleMode.ScaleToFit, true);	*/
+			if (GUILayout.Button( PlayButton, GUILayout.Width(height))) 
+	        {
+	        	PlayScript.State = PlayScript.PlayState.play;
+			}
+			GUILayout.BeginHorizontal();
+				
+				if (GUILayout.Button( ScoreButton, GUILayout.Width(piccoliBottoniSize))) 
+		        {
+		        	;//vai nella pagina score
+				}
+				if (GUILayout.Button( ItemsButton, GUILayout.Width(piccoliBottoniSize))) 
+		        {
+		        	;//vai nella pagina Items
+				}
+			GUILayout.EndHorizontal();
+			if (GUILayout.Button( BuyItemsButton, GUILayout.Width(Screen.width/2.3f)))
+	        {
+	        	;//vai nella pagina BuyItems
+			}
+        GUILayout.EndVertical();
+		GUILayout.EndArea();	
+		
+		GUILayout.BeginArea(new Rect(Screen.width-(height+margin), Screen.height-(height*3+margin*3),height+margin,height*3+margin*3));
+		GUILayout.BeginVertical();
+		if (GUILayout.Button( facebook, GUILayout.Width(height)))
+	        {
+	        	;//vai su facebook
+			}
+		if (GUILayout.Button( twitter, GUILayout.Width(height)))
+	        {
+	        	;//vai su twitter 
+			}
+		if (GUILayout.Button( review, GUILayout.Width(height)))
+	        {
+	        	;//vai su review
+			}
+		GUILayout.EndVertical();
+		GUILayout.EndArea();
+		var celialabHeight=((Screen.width/5)*59)/200;
+		GUI.Button(new Rect(margin,Screen.height-(celialabHeight+margin), Screen.width/5,celialabHeight), celialab);
+	}
+	
+	void drawPlay()
+	{
+		// Visualizza punti. Lo script si adatta atutte le risoluzioni
 		GUI.DrawTexture (new Rect (margin, margin, height, height), coin, ScaleMode.ScaleToFit, true);		
 		GUI.skin.label.fontSize = (int)height;
 		GUI.Label (new Rect (height + (margin * 2), margin / 1.5f, /*moltiplicare la metà delle cifre moneta per height*/ 600f, 300f),
@@ -139,27 +202,13 @@ public class CameraScript : MonoBehaviour
 		GUI.Label (new Rect ((float)Screen.width - (height * 3.0f + 2f * margin), 
 							margin / 1.5f,
 							height * 3.0f, /*moltiplicare la metà delle cifre tempo per height*/
+
 							300.0f), string.Format ("{0}:{1:00}", t.Minutes, t.Seconds));
 
         if (isDebuging)
         {
             if (GUI.Button(new Rect(Screen.width / 2 - height / 2, 0, height, height), quit))
-                Application.Quit();
-            if (GUI.Button(new Rect(Screen.width / 2 , 0, height, height), "buy items"))
-                Application.LoadLevel(1);
+                Application.Quit();           
         }
-		
-		if(PlayScript.State == PlayScript.PlayState.menu)
-			drawMenu();
 	}
-	
-	void drawMenu()
-	{
-		/*if (GUI.Button( new Rect(Screen.width - (margin + height), margin, height, height), pause)) 
-            {
-                PlayScript.State = PlayScript.PlayState.pause;
-			}*/
-		
-	}
-	
 }
