@@ -301,6 +301,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49adbf0a795d018469808c44fa97347a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miccia: {fileID: 8300000, guid: fde5cedaaca09c94ca51ac3accafae31, type: 3}
+  esplosione: {fileID: 8300000, guid: 4a1e2a8c56a66314397790797c79f24a, type: 3}
+  sassi_distrutti: {fileID: 8300000, guid: 4615437d7c85eba4b8a4284e5dfe5927, type: 3}
+  morte1: {fileID: 8300000, guid: c02575d870932b841b1fc21786e499bb, type: 3}
+  morte2: {fileID: 8300000, guid: 7c4a4300515c7e746992934b22ff1e97, type: 3}
+  morte3: {fileID: 8300000, guid: 4992b52cd9a98bd43b29a048402ffdaa, type: 3}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
