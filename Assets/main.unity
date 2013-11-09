@@ -911,6 +911,7 @@ MonoBehaviour:
   ScoreButton: {fileID: 2800000, guid: ee546dc630f40eb4d851a13c00ea3ea4, type: 3}
   ItemsButton: {fileID: 2800000, guid: 96d4247ae882a894aa2c9b4974a0217b, type: 3}
   BuyItemsButton: {fileID: 2800000, guid: 83651f3777234c744a6ea295e4ac7013, type: 3}
+  Title: {fileID: 2800000, guid: e1fda18fad03ae847af5fd5fff67a942, type: 3}
   facebook: {fileID: 2800000, guid: 0a8edb5d4788a1942a8c0a2d56befb7d, type: 3}
   twitter: {fileID: 2800000, guid: 47a98157863632842aa3ca922f0a582a, type: 3}
   review: {fileID: 2800000, guid: 94af68ca2c98d9047a0b41809cfd6fac, type: 3}

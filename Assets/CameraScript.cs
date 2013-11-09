@@ -60,7 +60,7 @@ public class CameraScript : MonoBehaviour
 	float height;
 	float margin, margin2;
 	public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
-	public Texture facebook,twitter,review,celialab;
+	public Texture Title, facebook,twitter,review,celialab;
 	
 	void Start ()
 	{
@@ -80,7 +80,7 @@ public class CameraScript : MonoBehaviour
 		
 		height = Screen.width / 20;
 		margin = Screen.width / 60;
-		margin2 = Screen.width / 70;
+		margin2 = 0;// Screen.width / 70;
 	}
 
 	// Update is called once per frame    
@@ -136,50 +136,50 @@ public class CameraScript : MonoBehaviour
 	void drawMenu()
 	{
 		float piccoliBottoniSize =Screen.width/4.6f - margin2;
-		float titleSize=0;
+		float titleHeight=((Screen.width/2)*305)/1094;
 		float playSize=Screen.width/8;
-			/*GUI.DrawTexture (new Rect ((Screen.width/2)-Title.width/2, margin, Screen.width/1.9f, height), 
-														Title, ScaleMode.ScaleToFit, true);	*/
-			if (GUI.Button(new Rect((Screen.width/2)-playSize/2, (margin2*2)+ titleSize, playSize, playSize) ,PlayButton)) 
+		float BuyHeight= (((piccoliBottoniSize*2)*160)/740);
+		float SocialSize=Screen.width/13;
+			GUI.DrawTexture(new Rect ((Screen.width/2)-Screen.width/4, 0, Screen.width/2, titleHeight), 
+														Title, ScaleMode.ScaleToFit, true);	
+			if (GUI.Button(new Rect((Screen.width/2)-playSize/2, titleHeight, playSize, playSize) ,PlayButton)) 
 	        {
-	        	PlayScript.State = PlayScript.PlayState.play;
+	        	PlayScript.State = PlayScript.PlayState.play; 
 			}
 		
 				float piccoliBottoniHight= (((piccoliBottoniSize)*169)/400);
-				if (GUI.Button( new Rect((Screen.width-((piccoliBottoniSize*2)+margin2))/2, (margin2*3)+ titleSize + playSize,
-										Screen.width/2.3f,piccoliBottoniHight), ScoreButton))
+				if (GUI.Button( new Rect((Screen.width-((piccoliBottoniSize*2)+margin2))/2,
+										titleHeight + playSize,
+										piccoliBottoniSize,piccoliBottoniHight), ScoreButton))
 		        {
 		        	;//vai nella pagina BuyItems
 				}
-				if (GUI.Button( new Rect(((Screen.width-((piccoliBottoniSize*2)+margin2))/2) +(piccoliBottoniSize+margin2),
-											(margin2*3)+ titleSize + playSize, Screen.width/2.3f,piccoliBottoniHight), ItemsButton))
+				if (GUI.Button( new Rect(((Screen.width-((piccoliBottoniSize*2)+margin2))/2) +(piccoliBottoniSize),
+											(margin2*3)+ titleHeight + playSize, piccoliBottoniSize ,piccoliBottoniHight), ItemsButton))
 		        {
 		        	;//vai nella pagina BuyItems
 				}			
 		
-			float BuyHeight= (((Screen.width/2.3f)*160)/740);
-			if (GUI.Button( new Rect((Screen.width/2)-((Screen.width/2.3f)/2), (margin2*4)+ titleSize+ playSize+ piccoliBottoniHight,
-									Screen.width/2.3f,BuyHeight), BuyItemsButton))
+			
+			if (GUI.Button( new Rect((Screen.width/2)-((piccoliBottoniSize*2)/2), (margin2*4)+ titleHeight+ playSize+ piccoliBottoniHight,
+									piccoliBottoniSize*2,BuyHeight), BuyItemsButton))
 	        {
 	        	;//vai nella pagina BuyItems
 			}
         
-		GUILayout.BeginArea(new Rect(Screen.width-(height+margin), Screen.height-(height*3+margin*3),height+margin,height*3+margin*3));
-		GUILayout.BeginVertical();
-		if (GUILayout.Button( facebook, GUILayout.Width(height)))
+		if (GUI.Button(new Rect(Screen.width-SocialSize, Screen.height-SocialSize*3, SocialSize, SocialSize) ,facebook)) 
 	        {
-	        	;//vai su facebook
+	        		;//vai su facebook
 			}
-		if (GUILayout.Button( twitter, GUILayout.Width(height)))
+		if (GUI.Button(new Rect(Screen.width-SocialSize, Screen.height-SocialSize*2, SocialSize, SocialSize) ,twitter)) 
 	        {
-	        	;//vai su twitter 
+	        		;//vai su twitter
 			}
-		if (GUILayout.Button( review, GUILayout.Width(height)))
+		if (GUI.Button(new Rect(Screen.width-SocialSize, Screen.height-SocialSize, SocialSize, SocialSize) ,review)) 
 	        {
-	        	;//vai su review
+	        		;//vai su review
 			}
-		GUILayout.EndVertical();
-		GUILayout.EndArea();
+		
 		var celialabHeight=((Screen.width/5)*59)/200;
 		GUI.Button(new Rect(margin,Screen.height-(celialabHeight+margin), Screen.width/5,celialabHeight), celialab);
 	}
