@@ -32,6 +32,30 @@ public class buyItems_Script : MonoBehaviour {
         if (GUI.Button(new Rect(0, margin * 2 + size * 12, size * 9, size * 3), arcoLight))
             return;
         GUI.EndScrollView(); 
-       
     }
+
+    void Update()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.touches[0];
+            bool fInsideList = IsTouchInsideList(touch.position);
+            print(fInsideList);
+
+            if (touch.phase == TouchPhase.Moved && fInsideList)
+            {
+                position.y += touch.deltaPosition.y * 5;
+            }
+        }
+    }
+
+    bool IsTouchInsideList(Vector2 touchPos)
+    {
+        Vector2 screenPos = new Vector2(touchPos.x, touchPos.y);
+        print("" + screenPos.x + " " + screenPos.y);
+        Rect rAdjustedBounds = new Rect(size * 10, margin * 7, size * 10, size * 16);
+
+        return rAdjustedBounds.Contains(screenPos);
+    }
+
 }
