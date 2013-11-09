@@ -167,10 +167,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   piccone: {fileID: 2800000, guid: 4b71bbcbe4fa1454cb765f34f9eeab23, type: 3}
   bengala: {fileID: 2800000, guid: 9edee74e96e59864cb7a6973e203f2c6, type: 3}
-  coin: {fileID: 0}
+  coin: {fileID: 2800000, guid: 652d2f922cdcda44698fd2704680dbdd, type: 3}
   blueligth: {fileID: 2800000, guid: cd42b4ea943abfd468fdc7bce1ad10af, type: 3}
   pinkligth: {fileID: 2800000, guid: 4f005083c303b2245976852844ed6bd4, type: 3}
   redligth: {fileID: 2800000, guid: 508f757a5797c0a4b99eab8320e0f957, type: 3}
   greenligth: {fileID: 2800000, guid: 6caa35297533bd944be5ff33d1e2cbab, type: 3}
   ranbowligth: {fileID: 2800000, guid: 9b0b8c9eae172874bbb3415bbf7d2294, type: 3}
   reborn: {fileID: 2800000, guid: 85f102444bc64a74f9f37947d310649a, type: 3}
+  custom: {fileID: 11400000, guid: e6365d348d530f646af3dec48a0f6edc, type: 2}
