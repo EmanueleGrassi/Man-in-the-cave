@@ -205,6 +205,7 @@ MonoBehaviour:
   ruby: {fileID: 400000, guid: 4ede0bff7edd1de44b29c28ddf7a29de, type: 2}
   zaffiro: {fileID: 400000, guid: 22fe0ab0aff5c5241b25ae0a61e40182, type: 2}
   marker: {fileID: 400000, guid: 5dc701c1cc326ad4b8861c525d4fbf79, type: 2}
+  bomb: {fileID: 400000, guid: 2861f399c26c24d2889f47c699b38de0, type: 2}
 --- !u!4 &46137676
 Transform:
   m_ObjectHideFlags: 0
@@ -1334,6 +1335,7 @@ MonoBehaviour:
   ruby: {fileID: 400000, guid: 4ede0bff7edd1de44b29c28ddf7a29de, type: 2}
   zaffiro: {fileID: 400000, guid: 22fe0ab0aff5c5241b25ae0a61e40182, type: 2}
   marker: {fileID: 400000, guid: 5dc701c1cc326ad4b8861c525d4fbf79, type: 2}
+  bomb: {fileID: 400000, guid: 2861f399c26c24d2889f47c699b38de0, type: 2}
 --- !u!4 &514176789
 Transform:
   m_ObjectHideFlags: 0
@@ -3131,6 +3133,7 @@ MonoBehaviour:
   ruby: {fileID: 400000, guid: 4ede0bff7edd1de44b29c28ddf7a29de, type: 2}
   zaffiro: {fileID: 400000, guid: 22fe0ab0aff5c5241b25ae0a61e40182, type: 2}
   marker: {fileID: 400000, guid: 5dc701c1cc326ad4b8861c525d4fbf79, type: 2}
+  bomb: {fileID: 400000, guid: 2861f399c26c24d2889f47c699b38de0, type: 2}
 --- !u!54 &1595023231
 Rigidbody:
   m_ObjectHideFlags: 0

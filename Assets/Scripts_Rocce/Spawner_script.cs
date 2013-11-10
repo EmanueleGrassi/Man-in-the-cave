@@ -7,7 +7,7 @@ public class Spawner_script : MonoBehaviour {
     float speed;
     float nextShot;
     float lastSpawn;
-    public Transform rock1,rock2, rock3, rock4, rock5, rock6, diamond, gold, silver, ruby, zaffiro, marker;
+    public Transform rock1,rock2, rock3, rock4, rock5, rock6, diamond, gold, silver, ruby, zaffiro, marker, bomb;
 	float w, h;
 	// Use this for initialization
 	void Start () {
@@ -38,12 +38,14 @@ public class Spawner_script : MonoBehaviour {
                 int num = Random.Range(0, 100);
                 if (num <= 10)
                     istanziaGemma();
+                else if (num > 10 && num < 15)
+                    Instantiate(bomb, transform.position, Quaternion.identity);
                 else
                     istanziaRoccia();
                 
                 lastSpawn = Time.time;
                 Vector3 c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
-                if (num > 10)
+                if (num > 14)
                     Instantiate(marker, new Vector3(transform.position.x, c.y, 5.3f), Quaternion.identity);
             }
             nextShot = 5 / (Mathf.Log(Time.time + 2) - Mathf.Log(Time.time + 2) / 2);

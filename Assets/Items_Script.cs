@@ -6,7 +6,7 @@ public class Items_Script : MonoBehaviour {
     Vector2 position;
 	float size, margin;
 	int numbengala,reborns;
-	public Texture piccone,bengala,coin,blueligth,pinkligth,redligth,greenligth,ranbowligth,reborn;
+	public Texture piccone,bengala,coin,blueligth,pinkligth,redligth,greenligth,ranbowligth,reborn,white;
     public GUISkin custom;
     int availableLights;
     bool draw;
@@ -47,21 +47,48 @@ public class Items_Script : MonoBehaviour {
 
     private void equippedLight()
     {
+        if (CameraScript.data.helmet == Helmet.white)
+        {
+            GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), white, ScaleMode.ScaleToFit, false);
+            return;
+        }
         if (CameraScript.data.helmet == Helmet.red)
+        {
             GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), redligth, ScaleMode.ScaleToFit, false);
+            return;
+        }
         if (CameraScript.data.helmet == Helmet.blue)
+        {
             GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), blueligth, ScaleMode.ScaleToFit, false);
+            return;
+        }
         if (CameraScript.data.helmet == Helmet.green)
+        {
             GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), greenligth, ScaleMode.ScaleToFit, false);
+            return;
+        }
         if (CameraScript.data.helmet == Helmet.pink)
+        {
             GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), pinkligth, ScaleMode.ScaleToFit, false);
+            return;
+        }
         if (CameraScript.data.helmet == Helmet.rainbow)
+        {
             GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), ranbowligth, ScaleMode.ScaleToFit, false);
+            return;
+        }
     }
 
     private void availableLight()
     {
         availableLights = 0;
+        if (CameraScript.data.helmet != Helmet.white)
+        {
+            GUI.DrawTexture(new Rect(margin + availableLights * (size * 2 + margin), size * 9, size * 2, size * 2), white, ScaleMode.ScaleToFit, false);
+            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 11 + margin, size * 2, size * 2), "Equip"))
+                CameraScript.data.helmet = Helmet.white;
+            availableLights++;
+        }
         if (CameraScript.data.lightRed)
         {
             GUI.DrawTexture(new Rect(margin + availableLights * (size * 2 + margin), size * 9, size * 2, size * 2), redligth, ScaleMode.ScaleToFit, false);

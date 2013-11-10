@@ -174,4 +174,5 @@ MonoBehaviour:
   greenligth: {fileID: 2800000, guid: 6caa35297533bd944be5ff33d1e2cbab, type: 3}
   ranbowligth: {fileID: 2800000, guid: 9b0b8c9eae172874bbb3415bbf7d2294, type: 3}
   reborn: {fileID: 2800000, guid: 85f102444bc64a74f9f37947d310649a, type: 3}
+  white: {fileID: 2800000, guid: 32870cd01c101a4418ce715e57f14f56, type: 3}
   custom: {fileID: 11400000, guid: e6365d348d530f646af3dec48a0f6edc, type: 2}
