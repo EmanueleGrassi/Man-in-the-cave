@@ -73,42 +73,42 @@ public class PlayScript : MonoBehaviour
 	void Update ()
 	{
 		
-		if (CameraScript.data.numBengala == 0) 
-		{			
-			BengalaTouchPad.Disable ();
-		}
-		if (BengalaTouchPad.IsFingerDown () && BenngalaAvailable && CameraScript.data.numBengala > 0)
-		{	
-			CameraScript.data.numBengala--;
-			BenngalaAvailable = false;
-			//lancia		
-            Vector3 pos = player.position;
-            Instantiate(bengala, new Vector3(pos.x, pos.y + 2, pos.z), Quaternion.identity);
-		}
-		//suono urlo
-		if (playShout && Time.time>nextshout) 
-		{
-			playShout = false;
-			nextshout = Time.time+4f;
-			random = Random.Range (0, 5);
-			switch (random) {
-			case 0:
-				AudioSource.PlayClipAtPoint (shout1, transform.position);
-				break;
-			case 1:
-				AudioSource.PlayClipAtPoint (shout2, transform.position);
-				break;
-			case 2:
-				AudioSource.PlayClipAtPoint (shout3, transform.position);
-				break;
-			case 3:
-				AudioSource.PlayClipAtPoint (shout4, transform.position);
-				break;
-			case 4:
-				AudioSource.PlayClipAtPoint (shout5, transform.position);
-				break;
-			}
-		}
+        //if (CameraScript.data.numBengala == 0) 
+        //{			
+        //    BengalaTouchPad.Disable ();
+        //}
+        //if (BengalaTouchPad.IsFingerDown () && BenngalaAvailable && CameraScript.data.numBengala > 0)
+        //{	
+        //    CameraScript.data.numBengala--;
+        //    BenngalaAvailable = false;
+        //    //lancia		
+        //    Vector3 pos = player.position;
+        //    Instantiate(bengala, new Vector3(pos.x, pos.y + 2, pos.z), Quaternion.identity);
+        //}
+        ////suono urlo
+        //if (playShout && Time.time>nextshout) 
+        //{
+        //    playShout = false;
+        //    nextshout = Time.time+4f;
+        //    random = Random.Range (0, 5);
+        //    switch (random) {
+        //    case 0:
+        //        AudioSource.PlayClipAtPoint (shout1, transform.position);
+        //        break;
+        //    case 1:
+        //        AudioSource.PlayClipAtPoint (shout2, transform.position);
+        //        break;
+        //    case 2:
+        //        AudioSource.PlayClipAtPoint (shout3, transform.position);
+        //        break;
+        //    case 3:
+        //        AudioSource.PlayClipAtPoint (shout4, transform.position);
+        //        break;
+        //    case 4:
+        //        AudioSource.PlayClipAtPoint (shout5, transform.position);
+        //        break;
+        //    }
+        //}
 	}
 
 	void OnGUI ()

@@ -121,34 +121,36 @@ public class CameraScript : MonoBehaviour
 	float margin, margin2;
 	public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
 	public Texture Title, facebook,twitter,review,celialab;
+    public Texture useReborn, OKbutton, CancelButton;
 	public Transform bengalaButton, movementButton, jumpButton;
 	
 	public static void SaveData()
 	{
 		JSON  js = new JSON();
-		js["salvataggio"]=(JSON) data;	
-		var jsonString= js.serialized;
+		js["salvataggio"]=(JSON) data;
+        PlayerPrefs.SetString("salvataggio", js.serialized);
+        PlayerPrefs.Save();
 		// ^ sostituire con salvataggio su unity
 	}
 	public static void LoadData()
 	{
-		//if( nei setting esiste)
-		//{
-		JSON js = new JSON();
-		//js.serialized = jsonString;//devo prendere quella dei settings 
-		data = (Data)js.ToJSON("salvataggio");
-		//}
-		//else
-		//{
-		//data = new Data();
-		//SaveData();
-		//}	
+		if(PlayerPrefs.GetString("salvataggio") != null)
+		{
+		    JSON js = new JSON();
+            js.serialized = PlayerPrefs.GetString("salvataggio"); //devo prendere quella dei settings 
+		    data = (Data)js.ToJSON("salvataggio");
+		}
+		else
+		{
+		    data = new Data();
+		    SaveData();
+		}	
 	}
 	
 	void Start ()
 	{
 		//carica i salvataggi
-		LoadData();
+        LoadData();
 		
 		nexshot = 0.0f;
 		smoothTime = 0.3f;
@@ -228,9 +230,51 @@ public class CameraScript : MonoBehaviour
 		else if(PlayScript.State == PlayScript.PlayState.result)
 		{
 			ManageButton(false);
-			drawMenu();
+            drawResult();
 		}
 	}
+
+    private void drawResult()
+    {
+        bool? vis = false;
+        if (data.NumberReborn > 0)
+            vis = null;
+        if (vis == null)
+        {
+            float altezzaReborn = (Screen.width / 2.5f) * (420 / 1024);
+            float margin3 = Screen.width / 80;
+            GUI.DrawTexture(new Rect(Screen.width / 2 - (Screen.width / 2.5f) / 2, height, Screen.width / 2.5f, altezzaReborn), useReborn, ScaleMode.ScaleToFit, true);
+            float piccoliBottoniSize = Screen.width / 8f - margin3;
+            if (GUI.Button(new Rect((Screen.width - ((piccoliBottoniSize * 2) + margin3)) / 2,
+                                    altezzaReborn + margin3,
+                                    piccoliBottoniSize, piccoliBottoniSize), OKbutton))
+            {
+                data.NumberReborn--;
+                SaveData();
+                //torna alla partita, da dove stavi
+            }
+            if (GUI.Button(new Rect(((Screen.width - ((piccoliBottoniSize * 2) + margin3)) / 2) + piccoliBottoniSize + margin3,
+                                        altezzaReborn + margin3,
+                                        piccoliBottoniSize, piccoliBottoniSize), CancelButton))
+            {
+                vis = false;
+            }
+        }
+        if (vis == false)
+        {
+            GUI.skin.label.fontSize = (int)(height * 1.5f);
+            GUI.Label(new Rect(height * 5, height * 2, height * 20, height * 2), "You've survived:");
+            GUI.Label(new Rect(height * 8+margin, height * 4.5f, height * 20, height * 2), "00:00");
+            if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3+margin), PlayButton))
+            {
+
+            }
+            if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3+margin), PlayButton))
+            {
+
+            }
+        }
+    }
 	
 	// PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
 	void drawMenu()
