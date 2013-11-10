@@ -4,12 +4,6 @@ using System.Collections;
 public class PG_collider : MonoBehaviour {
     
     public Transform player;
-	
-	
-	// Use this for initialization
-	void Start () {
-	
-	}
 
     void OnCollisionEnter(Collision col)
     {

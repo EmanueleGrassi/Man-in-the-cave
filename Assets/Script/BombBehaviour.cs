@@ -9,7 +9,8 @@ public class BombBehaviour : MonoBehaviour {
 	bool explosion;
 	GameObject pg;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		audio.loop=true;
 		grounded=false;
 		pg=GameObject.FindGameObjectWithTag("Player");

@@ -8,10 +8,7 @@ public class CoinScript : MonoBehaviour {
     public AudioClip collected1;
     public AudioClip collected2;
     public AudioClip collected3;
-	// Use this for initialization
-	void Start () {
-        
-	}
+	
 
     // Update is called once per frame
     void Update()
