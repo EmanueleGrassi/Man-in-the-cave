@@ -307,6 +307,7 @@ MonoBehaviour:
   morte1: {fileID: 8300000, guid: c02575d870932b841b1fc21786e499bb, type: 3}
   morte2: {fileID: 8300000, guid: 7c4a4300515c7e746992934b22ff1e97, type: 3}
   morte3: {fileID: 8300000, guid: 4992b52cd9a98bd43b29a048402ffdaa, type: 3}
+  detonator: {fileID: 400000, guid: d1514f9e2f80f8242b7757a991767d92, type: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
