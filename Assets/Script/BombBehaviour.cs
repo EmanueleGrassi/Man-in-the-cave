@@ -43,12 +43,14 @@ public class BombBehaviour : MonoBehaviour {
 					}
 				}
 		}
-		if(!audio.isPlaying){
+		if(explosion && !audio.isPlaying){
 			Destroy(gameObject);
 		}
 	}
 	void OnCollisionEnter(Collision collision) {
-		if(collision.gameObject.tag=="ground")
+		if(collision.gameObject.tag=="ground"){
 			explosiontime=Time.time+Random.Range(2.5f,5.0f);
+			grounded=true;
+		}
 	}
 }
