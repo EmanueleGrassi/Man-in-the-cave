@@ -6,14 +6,16 @@ public class Marker_script : MonoBehaviour {
     float creation;
     bool canPlay;
     GameObject pg;
-	public AudioClip alarm;
+	public AudioClip warning;
 	// Use this for initialization
 	void Start () {
         creation = Time.time;
         canPlay = true;
         pg = GameObject.FindGameObjectWithTag("Player");
 		if(Random.Range(0,2)==1)
-			audio.clip=alarm;
+			audio.clip=warning;
+		else
+			audio.volume=0.7;
 	}
 	
 	// Update is called once per frame
