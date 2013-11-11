@@ -27,8 +27,8 @@ public class Data
 	public int NumberPickaxe;
 	public int NumberReborn = 1;
 	public int numBengala=3;
-	public bool lightRed = false;
-	public bool lightBlue = false;
+	public bool lightRed = true;
+	public bool lightBlue = true;
 	public bool lightGreen = false;
 	public bool lightPink = false;
 	public bool lightRainbow = false;
@@ -115,11 +115,11 @@ public class CameraScript : MonoBehaviour
 	/*CLASSE SALVATAGGIO*/ public static Data data; /*CLASSE SALVATAGGIO*/
 	public static float PlayTime;
 	bool visualizePause = true;
-	
+    public static bool replay;
 	//munu
 	float height;
 	float margin, margin2;
-	public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
+	public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, homeButton, playAgainButton;
 	public Texture Title, facebook,twitter,review,celialab;
     public Texture useReborn, OKbutton, CancelButton;
 	public Transform bengalaButton, movementButton, jumpButton;
@@ -150,8 +150,15 @@ public class CameraScript : MonoBehaviour
 	void Start ()
 	{
 		//carica i salvataggi
-        LoadData();
-		nexshot = 0.0f;
+        //LoadData();
+        data = new Data();
+
+        if (PlayerPrefs.GetInt("replay") == 1)
+        {
+            PlayScript.State = PlayScript.PlayState.play;
+            PlayerPrefs.SetInt("replay", 0);
+        }
+        nexshot = 0.0f;
 		smoothTime = 0.3f;
 		Volume = 0.2f;
 		PlayTime = 0;
@@ -280,13 +287,15 @@ public class CameraScript : MonoBehaviour
             GUI.skin.label.fontSize = (int)(height * 1.5f);
             GUI.Label(new Rect(height * 5, height * 2, height * 20, height * 2), "You've survived:");
             GUI.Label(new Rect(height * 8+margin, height * 4.5f, height * 20, height * 2), "00:00");
-            if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3+margin), PlayButton))
+            if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3+margin), playAgainButton))
             {
-
+                PlayerPrefs.SetInt("replay", 1);
+                //CREDO IL SAVE
+                Application.LoadLevel(0);
             }
-            if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3+margin), PlayButton))
+            if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3+margin), homeButton))
             {
-
+                Application.LoadLevel(0);
             }
         }
     }
