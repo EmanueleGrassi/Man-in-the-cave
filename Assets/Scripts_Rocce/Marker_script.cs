@@ -15,7 +15,7 @@ public class Marker_script : MonoBehaviour {
 		if(Random.Range(0,2)==1)
 			audio.clip=warning;
 		else
-			audio.volume=0.7;
+			audio.volume=0.7f;
 	}
 	
 	// Update is called once per frame

@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64abc06e2ab44b449594af25029649a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alarm: {fileID: 8300000, guid: 8e7d91e64f0ce744eb89a55b9d8f26d5, type: 3}
+  warning: {fileID: 8300000, guid: 8e7d91e64f0ce744eb89a55b9d8f26d5, type: 3}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
