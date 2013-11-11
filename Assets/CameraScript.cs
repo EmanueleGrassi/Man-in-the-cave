@@ -27,8 +27,8 @@ public class Data
 	public int NumberPickaxe;
 	public int NumberReborn = 1;
 	public int numBengala=3;
-	public bool lightRed = true;
-	public bool lightBlue = true;
+	public bool lightRed = false;
+	public bool lightBlue = false;
 	public bool lightGreen = false;
 	public bool lightPink = false;
 	public bool lightRainbow = false;
@@ -262,22 +262,19 @@ public class CameraScript : MonoBehaviour
             vis = null;
         if (vis == null)
         {
-            float altezzaReborn = (Screen.width / 2.5f) * (420 / 1024);
-            float margin3 = Screen.width / 80;
-            GUI.DrawTexture(new Rect(Screen.width / 2 - (Screen.width / 2.5f) / 2, height, Screen.width / 2.5f, altezzaReborn),
-				useReborn, ScaleMode.ScaleToFit, true);
-            float piccoliBottoniSize = Screen.width / 8f - margin3;
-            if (GUI.Button(new Rect((Screen.width - ((piccoliBottoniSize * 2) + margin3)) / 2,
-                                    altezzaReborn + margin3,
-                                    piccoliBottoniSize, piccoliBottoniSize), OKbutton))
+            //float altezzaReborn = (Screen.width / 2.5f) * (420 / 1024);
+            //float margin3 = Screen.width / 80;
+            //GUI.DrawTexture(new Rect(Screen.width / 2 - (Screen.width / 2.5f) / 2, height, Screen.width / 2.5f, altezzaReborn),
+            //    useReborn, ScaleMode.ScaleToFit, true);
+            //float piccoliBottoniSize = Screen.width / 8f - margin3;
+            GUI.DrawTexture(new Rect(height * 2 - 6*margin, height * 2, height * 20, height * 5), useReborn, ScaleMode.ScaleToFit, true);
+            if (GUI.Button(new Rect(height*5+margin*5, height * 8, height*3, height*3), OKbutton))
             {
                 data.NumberReborn--;
                 SaveData();
                 //torna alla partita, da dove stavi
             }
-            if (GUI.Button(new Rect(((Screen.width - ((piccoliBottoniSize * 2) + margin3)) / 2) + piccoliBottoniSize + margin3,
-                                        altezzaReborn + margin3,
-                                        piccoliBottoniSize, piccoliBottoniSize), CancelButton))
+            if (GUI.Button(new Rect(height * 9 + margin*5, height * 8, height * 3, height * 3), CancelButton))
             {
                 vis = false;
             }
