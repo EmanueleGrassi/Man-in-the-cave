@@ -14,6 +14,7 @@ public class PlayScript : MonoBehaviour
     public Transform bengala;
 	public static bool playShout;
 	bool locked;
+    
 	int random;
 	int finger;
 	float nextshout;
@@ -59,7 +60,8 @@ public class PlayScript : MonoBehaviour
 		if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.Android) {
 			wplight.active = true;
 		} else
-			pglight.active = true;		
+			pglight.active = true;
+       
 	}
 
     //void OnEndGame ()
@@ -72,7 +74,7 @@ public class PlayScript : MonoBehaviour
 
 	void Update ()
 	{
-
+        
         if (CameraScript.data.numBengala == 0)
         {
             BengalaTouchPad.Disable();
@@ -111,4 +113,6 @@ public class PlayScript : MonoBehaviour
             }
         }
 	}
+
+    
 }

@@ -15,10 +15,12 @@ public class RockBehaviour : MonoBehaviour {
 	public AudioClip morte3;
 	public Transform RockSmoke;
 	public Transform PGblood;
+    bool ucciso;
 	// Use this for initialization
 	void Start () {
 		pg=GameObject.FindGameObjectWithTag("Player");
 		//Physics.IgnoreCollision(this.gameObject.collider, border.collider, true);
+        ucciso = false;
 	}
 	
 	// Update is called once per frame
@@ -40,18 +42,20 @@ public class RockBehaviour : MonoBehaviour {
 			new Vector3( gameObject.transform.position.x, -0.3f, gameObject.transform.position.z),
 			Quaternion.identity);		
 	}
-	bool ucciso=false;
+	
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "ground" && ucciso == false)
+        if (col.gameObject.tag == "ground" && !ucciso)
         {
             Play = true;
             deathP = transform.position;
-			if(deathP.x<pg.transform.position.x+6f && deathP.x>pg.transform.position.x-6f)
-			{
-				PlayScript.playShout=true;
-				Vibrate();
-			}
+            
+            if (deathP.x < pg.transform.position.x + 6f && deathP.x > pg.transform.position.x - 6f)
+            {
+                PlayScript.playShout = true;
+                Vibrate();
+            }
+            
 			int rnd = Random.Range(0, 5);
 			if ( rnd < 3)
 				Destroy(gameObject);
