@@ -13,7 +13,7 @@ public class BombBehaviour : MonoBehaviour {
     {
 		audio.loop=true;
 		grounded=false;
-		pg=GameObject.FindGameObjectWithTag("Player");
+		pg = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -28,8 +28,10 @@ public class BombBehaviour : MonoBehaviour {
 		}
 		if(explosion){
 			Instantiate(detonator,transform.position,Quaternion.identity);
-				if(pg.transform.position.x<transform.position.x+10 && pg.transform.position.x>transform.position.x-10){
-				Destroy(pg);
+				if(pg.transform.position.x<transform.position.x+10 && pg.transform.position.x>transform.position.x-10)
+			{
+				Vibrate();
+				pg.SetActive(false);
 				int random=Random.Range(0,3);
 				switch(random){
 					case 0:
@@ -48,10 +50,16 @@ public class BombBehaviour : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-	void OnCollisionEnter(Collision collision) {
+	void OnCollisionEnter(Collision collision) 
+	{
 		if(collision.gameObject.tag=="ground"){
 			explosiontime=Time.time+Random.Range(2.5f,5.0f);
 			grounded=true;
 		}
+	}
+	
+	void Vibrate()
+	{		
+		try {Handheld.Vibrate();} catch {}
 	}
 }

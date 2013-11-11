@@ -7,6 +7,7 @@ public class RockBehaviour : MonoBehaviour {
     public static bool Play = false;
     public AudioClip rockSound;
     public static Vector3 deathP;
+	//public Transform border;
 	GameObject pg;
 	int random;
 	public AudioClip morte1;
@@ -17,6 +18,7 @@ public class RockBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		pg=GameObject.FindGameObjectWithTag("Player");
+		//Physics.IgnoreCollision(this.gameObject.collider, border.collider, true);
 	}
 	
 	// Update is called once per frame
@@ -85,7 +87,7 @@ public class RockBehaviour : MonoBehaviour {
 					new Vector3( gameObject.transform.position.x, 
 								gameObject.transform.position.y-1.5f, gameObject.transform.position.z),
 				Quaternion.identity);			
-			Destroy(col.gameObject);
+			//Destroy(col.gameObject);
 			ucciso=true;
 		}
 		
@@ -93,7 +95,7 @@ public class RockBehaviour : MonoBehaviour {
 	
 	void Vibrate()
 	{		
-		//try {Handheld.Vibrate();} catch {}
+		try {Handheld.Vibrate();} catch {}
 	}
 
 }

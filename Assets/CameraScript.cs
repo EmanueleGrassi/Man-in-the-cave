@@ -257,7 +257,8 @@ public class CameraScript : MonoBehaviour
         {
             float altezzaReborn = (Screen.width / 2.5f) * (420 / 1024);
             float margin3 = Screen.width / 80;
-            GUI.DrawTexture(new Rect(Screen.width / 2 - (Screen.width / 2.5f) / 2, height, Screen.width / 2.5f, altezzaReborn), useReborn, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(new Rect(Screen.width / 2 - (Screen.width / 2.5f) / 2, height, Screen.width / 2.5f, altezzaReborn),
+				useReborn, ScaleMode.ScaleToFit, true);
             float piccoliBottoniSize = Screen.width / 8f - margin3;
             if (GUI.Button(new Rect((Screen.width - ((piccoliBottoniSize * 2) + margin3)) / 2,
                                     altezzaReborn + margin3,

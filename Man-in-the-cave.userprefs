@@ -1,25 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\BombBehaviour.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CameraScript.cs">
     <Files>
-      <File FileName="Assets\Script\BombBehaviour.cs" Line="46" Column="35" />
-      <File FileName="Assets\Items_Script.cs" Line="1" Column="1" />
-      <File FileName="Assets\buyItems_Script.cs" Line="1" Column="1" />
-      <File FileName="Assets\CameraScript.cs" Line="126" Column="31" />
+      <File FileName="Assets\Script\BombBehaviour.cs" Line="34" Column="23" />
       <File FileName="Assets\Script\Footsteps.js" Line="1" Column="1" />
       <File FileName="Assets\ConstructionSitePack\Reflector\ReflectorBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts_Rocce\RockBehaviour.cs" Line="99" Column="3" />
+      <File FileName="Assets\PG_collider.cs" Line="9" Column="6" />
+      <File FileName="Assets\CameraScript.cs" Line="261" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Script" expanded="True">
-                <Node name="BombBehaviour.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" />
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />

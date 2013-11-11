@@ -33,7 +33,7 @@ GameObject:
   - 54: {fileID: 5400000}
   m_Layer: 2
   m_Name: rock_tiny_a
-  m_TagString: concrete
+  m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
