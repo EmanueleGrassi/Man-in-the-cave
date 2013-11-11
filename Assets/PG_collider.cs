@@ -10,9 +10,10 @@ public class PG_collider : MonoBehaviour {
         if (col.gameObject.tag == "rock")
         {
             Destroy(col.gameObject);
-            gameObject.SendMessage("OnEndGame");
+            //gameObject.SendMessage("OnEndGame");
             PlayScript.State = PlayScript.PlayState.result;
-            Destroy(player.gameObject);
+            player.active = false;
+            //Destroy(player.gameObject);
         }
     }
 }

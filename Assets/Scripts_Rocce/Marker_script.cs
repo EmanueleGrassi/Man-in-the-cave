@@ -19,10 +19,11 @@ public class Marker_script : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        if (canPlay && transform.position.x<pg.transform.position.x+10f && transform.position.x>pg.transform.position.x-10f)
-        {
-            audio.Play();
-            canPlay = false;
-        }
+        if (pg != null)
+            if (canPlay && transform.position.x<pg.transform.position.x+10f && transform.position.x>pg.transform.position.x-10f)
+            {
+                audio.Play();
+                canPlay = false;
+            }
 	}
 }

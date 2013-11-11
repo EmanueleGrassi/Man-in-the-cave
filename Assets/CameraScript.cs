@@ -25,7 +25,7 @@ public class Data
 	}
 
 	public int NumberPickaxe;
-	public int NumberReborn;
+	public int NumberReborn = 1;
 	public int numBengala=3;
 	public bool lightRed = false;
 	public bool lightBlue = false;
@@ -134,7 +134,7 @@ public class CameraScript : MonoBehaviour
 	}
 	public static void LoadData()
 	{
-		if(PlayerPrefs.GetString("salvataggio") != null)
+		if(PlayerPrefs.GetString("salvataggio") != "")
 		{
 		    JSON js = new JSON();
             js.serialized = PlayerPrefs.GetString("salvataggio"); //devo prendere quella dei settings 
@@ -151,7 +151,6 @@ public class CameraScript : MonoBehaviour
 	{
 		//carica i salvataggi
         LoadData();
-		
 		nexshot = 0.0f;
 		smoothTime = 0.3f;
 		Volume = 0.2f;
@@ -181,7 +180,7 @@ public class CameraScript : MonoBehaviour
         if (PlayScript.State == PlayScript.PlayState.play) 
         {
             // SEGUE IL PERSONAGGIO CON LA TELECAMERA
-			float playerPGxPOW = (playerPG.position.x * playerPG.position.x);
+            float playerPGxPOW = (playerPG.position.x * playerPG.position.x);
 			/*ellisse 
 			 * semiassi:
 			 * z=6
@@ -225,7 +224,7 @@ public class CameraScript : MonoBehaviour
 		else if(PlayScript.State == PlayScript.PlayState.pause)
 		{
 			ManageButton(false);
-			drawMenu();
+            drawPause();
 		}
 		else if(PlayScript.State == PlayScript.PlayState.result)
 		{
@@ -233,6 +232,21 @@ public class CameraScript : MonoBehaviour
             drawResult();
 		}
 	}
+
+    private void drawPause()
+    {
+       
+        Rect w2h2centrato = new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 4, Screen.height / 4);
+
+        GUI.backgroundColor = Color.black;
+        if (GUI.Button(w2h2centrato, "Continue"))
+            PlayScript.State = PlayScript.PlayState.play;
+        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 4, Screen.height / 2), "Main Menu"))
+            //PlayScript.State = PlayScript.PlayState.menu;
+            Application.LoadLevel(0);
+
+        
+    }
 
     private void drawResult()
     {
