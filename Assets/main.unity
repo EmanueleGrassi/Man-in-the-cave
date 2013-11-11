@@ -1229,6 +1229,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 595017186}
   - 108: {fileID: 595017187}
+  - 114: {fileID: 595017188}
   m_Layer: 0
   m_Name: WPlight
   m_TagString: lightWP
@@ -1282,6 +1283,17 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &595017188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 595017185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce66053248c68b349997e18e27702341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &740833447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2189,6 +2201,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1309978352}
   - 108: {fileID: 1309978351}
+  - 114: {fileID: 1309978353}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: lightPG
@@ -2242,6 +2255,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1603539521}
+--- !u!114 &1309978353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1309978350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce66053248c68b349997e18e27702341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1315264704
 GameObject:
   m_ObjectHideFlags: 0
