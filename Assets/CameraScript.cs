@@ -364,7 +364,7 @@ public class CameraScript : MonoBehaviour
 		// Visualizza punti. Lo script si adatta atutte le risoluzioni
 		GUI.DrawTexture (new Rect (margin, margin, height, height), coin, ScaleMode.ScaleToFit, true);		
 		GUI.skin.label.fontSize = (int)height;
-		GUI.Label (new Rect (height + (margin * 2), margin / 1.5f, /*moltiplicare la metà delle cifre moneta per height*/ 600f, 300f),
+		GUI.Label (new Rect (height + (margin * 2), margin / 8f, /*moltiplicare la metà delle cifre moneta per height*/ 600f, 300f),
 			"" + data.points);
 		
 		// se non si gioca su android o wp allora visualizza pausa
@@ -378,7 +378,7 @@ public class CameraScript : MonoBehaviour
 		//GUI.DrawTexture(new Rect (margin,margin,height,height), clock, ScaleMode.ScaleToFit, true);	
 		var t = (TimeSpan.FromSeconds (PlayTime));
 		GUI.Label (new Rect ((float)Screen.width - (height * 3.0f + 2f * margin), 
-							margin / 1.5f,
+							margin / 8f,
 							height * 3.0f, /*moltiplicare la metà delle cifre tempo per height*/
 
 							300.0f), string.Format ("{0}:{1:00}", t.Minutes, t.Seconds));
