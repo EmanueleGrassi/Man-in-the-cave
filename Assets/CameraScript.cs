@@ -241,8 +241,7 @@ public class CameraScript : MonoBehaviour
 	}
 
     private void drawPause()
-    {
-       
+    {       
         Rect w2h2centrato = new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 4, Screen.height / 4);
 
         GUI.backgroundColor = Color.black;
@@ -251,22 +250,22 @@ public class CameraScript : MonoBehaviour
         if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 4, Screen.height / 2), "Main Menu"))
             //PlayScript.State = PlayScript.PlayState.menu;
             Application.LoadLevel(0);
-
+		
+		if(Input.GetKey(KeyCode.Escape))
+			PlayScript.State = PlayScript.PlayState.play;
         
     }
 
     private void drawResult()
     {
+		if(Input.GetKey(KeyCode.Escape))
+			Application.LoadLevel(0);
+		
         bool? vis = false;
         if (data.NumberReborn > 0)
             vis = null;
         if (vis == null)
-        {
-            //float altezzaReborn = (Screen.width / 2.5f) * (420 / 1024);
-            //float margin3 = Screen.width / 80;
-            //GUI.DrawTexture(new Rect(Screen.width / 2 - (Screen.width / 2.5f) / 2, height, Screen.width / 2.5f, altezzaReborn),
-            //    useReborn, ScaleMode.ScaleToFit, true);
-            //float piccoliBottoniSize = Screen.width / 8f - margin3;
+        {            
             GUI.DrawTexture(new Rect(height * 2 - 6*margin, height * 2, height * 20, height * 5), useReborn, ScaleMode.ScaleToFit, true);
             if (GUI.Button(new Rect(height*5+margin*5, height * 8, height*3, height*3), OKbutton))
             {
@@ -294,7 +293,7 @@ public class CameraScript : MonoBehaviour
             {
                 Application.LoadLevel(0);
             }
-        }
+        }		
     }
 	
 	// PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
@@ -307,26 +306,28 @@ public class CameraScript : MonoBehaviour
 		float SocialSize=Screen.width/13;
 			GUI.DrawTexture(new Rect ((Screen.width/2)-Screen.width/4, 0, Screen.width/2, titleHeight), 
 														Title, ScaleMode.ScaleToFit, true);	
-			if (GUI.Button(new Rect((Screen.width/2)-playSize/2, titleHeight, playSize, playSize) ,PlayButton)) 
+			if (GUI.Button(new Rect((Screen.width/2)-playSize/2, titleHeight+margin*2, playSize, playSize) ,PlayButton)) 
 	        {
 	        	PlayScript.State = PlayScript.PlayState.play; 
 			}
 		
 				float piccoliBottoniHight= (((piccoliBottoniSize)*169)/400);
 				if (GUI.Button( new Rect((Screen.width-((piccoliBottoniSize*2)+margin2))/2,
-										titleHeight + playSize,
+										titleHeight + playSize + margin*2,
 										piccoliBottoniSize,piccoliBottoniHight), ScoreButton))
 		        {
 		        	Application.LoadLevel(3);
 				}
 				if (GUI.Button( new Rect(((Screen.width-((piccoliBottoniSize*2)+margin2))/2) +(piccoliBottoniSize),
-											(margin2*3)+ titleHeight + playSize, piccoliBottoniSize ,piccoliBottoniHight), ItemsButton))
+											(margin2*3)+ titleHeight + playSize+ margin*2,
+											piccoliBottoniSize ,piccoliBottoniHight), ItemsButton))
 		        {
 		        	Application.LoadLevel(2);//vai nella pagina Items
 				}			
 		
 			
-			if (GUI.Button( new Rect((Screen.width/2)-((piccoliBottoniSize*2)/2), (margin2*4)+ titleHeight+ playSize+ piccoliBottoniHight,
+			if (GUI.Button( new Rect((Screen.width/2)-((piccoliBottoniSize*2)/2),
+								(margin2*4)+ titleHeight+ playSize+ piccoliBottoniHight+margin*2,
 									piccoliBottoniSize*2,BuyHeight), BuyItemsButton))
 	        {
 	        	Application.LoadLevel(1);//vai nella pagina BuyItems
@@ -357,6 +358,8 @@ public class CameraScript : MonoBehaviour
 		{
 			Application.OpenURL("http://celialab.com/");
 		}
+		if(Input.GetKey(KeyCode.Escape))
+		Application.Quit();
 	}
 	public static event EventHandler GOReviews;
 	void drawPlay()
@@ -388,6 +391,8 @@ public class CameraScript : MonoBehaviour
             if (GUI.Button(new Rect(Screen.width / 2 - height / 2, 0, height, height), quit))
                 Application.Quit();           
         }
+		if(Input.GetKey(KeyCode.Escape))
+			PlayScript.State = PlayScript.PlayState.pause;
 	}
 }
 

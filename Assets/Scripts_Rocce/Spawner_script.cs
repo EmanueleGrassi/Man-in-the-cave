@@ -9,6 +9,8 @@ public class Spawner_script : MonoBehaviour {
     float lastSpawn;
     public Transform rock1,rock2, rock3, rock4, rock5, rock6, diamond, gold, silver, ruby, zaffiro, marker, bomb;
 	float w, h;
+	Vector3 MarkerPosition;
+	bool MarkerPositionCaptured = false;
 	// Use this for initialization
 	void Start () {
         speed = 5;
@@ -44,9 +46,13 @@ public class Spawner_script : MonoBehaviour {
                     istanziaRoccia();
                 
                 lastSpawn = Time.time;
-                Vector3 c = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
+				if(MarkerPositionCaptured==false)
+				{
+					MarkerPosition = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
+					MarkerPositionCaptured= true;
+				}
                 if (num > 14)
-                    Instantiate(marker, new Vector3(transform.position.x, c.y, 5.3f), Quaternion.identity);
+                    Instantiate(marker, new Vector3(transform.position.x, MarkerPosition.y, 5.3f), Quaternion.identity);
             }
             nextShot = 5 / (Mathf.Log(CameraScript.PlayTime + 2) - Mathf.Log(CameraScript.PlayTime + 2) / 2);
             //Debug.Log("" + nextShot);

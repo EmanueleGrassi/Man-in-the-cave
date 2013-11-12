@@ -43,6 +43,8 @@ public class Items_Script : MonoBehaviour {
         //LUCI DISPONIBILI
         GUI.Label(new Rect(margin, size * 6 + 2 * margin, size * 10, size * 2 + margin), "Lights available");
         availableLight();
+		if(Input.GetKey(KeyCode.Escape))
+		 Application.LoadLevel(0);
 	}
 
     private void equippedLight()

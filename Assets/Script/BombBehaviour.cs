@@ -3,37 +3,41 @@ using System.Collections;
 
 public class BombBehaviour : MonoBehaviour {
 	public AudioClip miccia,esplosione,sassi_distrutti,morte1,morte2,morte3;
-	public Transform detonator;
+	public Transform detonatorBello, detonatorMobile;
 	float explosiontime;
 	bool grounded;
-	bool explosion;
 	GameObject pg;
 	// Use this for initialization
 	void Start ()
-    {
-		audio.loop=true;
+    {		
 		grounded=false;
 		pg = GameObject.FindGameObjectWithTag("Player");
 	}
 	
+	bool esplosioneAvvenuta=false;
 	// Update is called once per frame
-	void Update () {
-		if(!grounded)
-			explosiontime=Time.time;
-		audio.PlayOneShot(miccia);
-		if(Time.time>explosiontime){
-			audio.loop=false;
-			audio.PlayOneShot(esplosione);
-			explosion=true;
-		}
-		if(explosion){
-			Instantiate(detonator,transform.position,Quaternion.identity);
-				if(pg.transform.position.x<transform.position.x+10 && pg.transform.position.x>transform.position.x-10)
+	void Update () 
+	{	
+		if(grounded && Time.time>explosiontime)
+		{			
+			if(!esplosioneAvvenuta)
+			{
+				if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WP8Player)
+					Instantiate(detonatorMobile,transform.position,Quaternion.identity);				
+				else
+					Instantiate(detonatorBello,transform.position,Quaternion.identity);
+				audio.loop=false;
+				audio.PlayOneShot(esplosione);
+				esplosioneAvvenuta = true;
+			}
+			
+			if(pg.transform.position.x<transform.position.x+10 && pg.transform.position.x>transform.position.x-10)
 			{
 				Vibrate();
-				pg.SetActive(false);
+				
 				int random=Random.Range(0,3);
-				switch(random){
+				switch(random)
+				{
 					case 0:
 						AudioSource.PlayClipAtPoint(morte1,transform.position);
 						break;
@@ -43,17 +47,19 @@ public class BombBehaviour : MonoBehaviour {
 					case 2:
 						AudioSource.PlayClipAtPoint(morte3,transform.position);
 						break;
-					}
 				}
+				pg.SetActive(false);
+			}
 		}
-		if(explosion && !audio.isPlaying){
+		if(grounded && !audio.isPlaying){
 			Destroy(gameObject);
 		}
 	}
 	void OnCollisionEnter(Collision collision) 
 	{
-		if(collision.gameObject.tag=="ground"){
-			explosiontime=Time.time+Random.Range(2.5f,5.0f);
+		if(collision.gameObject.tag=="ground")
+		{
+			explosiontime = Time.time+Random.Range(2.5f,5.0f);
 			grounded=true;
 		}
 	}

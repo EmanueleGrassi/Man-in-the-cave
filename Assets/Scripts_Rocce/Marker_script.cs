@@ -8,7 +8,8 @@ public class Marker_script : MonoBehaviour {
     GameObject pg;
 	public AudioClip warning;
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
         creation = Time.time;
         canPlay = true;
         pg = GameObject.FindGameObjectWithTag("Player");
@@ -25,7 +26,7 @@ public class Marker_script : MonoBehaviour {
             Destroy(gameObject);
         }
         if (pg != null)
-            if (canPlay && transform.position.x<pg.transform.position.x+10f && transform.position.x>pg.transform.position.x-10f)
+            if (canPlay && transform.position.x<pg.transform.position.x+7f && transform.position.x>pg.transform.position.x-7f)
             {
                 audio.Play();
                 canPlay = false;

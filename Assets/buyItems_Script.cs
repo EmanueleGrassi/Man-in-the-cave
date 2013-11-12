@@ -18,6 +18,8 @@ public class buyItems_Script : MonoBehaviour {
 
     void OnGUI()
     {
+		if(Input.GetKey(KeyCode.Escape))
+			Application.LoadLevel(0);
         GUI.skin = custom;
         custom.label.normal.textColor = new Color(255, 255, 255);
         custom.label.fontSize = (int)(size * 1.5);
