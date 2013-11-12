@@ -1,32 +1,90 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LightBehaviour : MonoBehaviour {
+public class LightBehaviour : MonoBehaviour 
+{
 
-    int r, g, b;
-
+    bool rainbow=false;
+	float speed=180f;
+	Action colorAction = Action.saleBlue;
 	// Use this for initialization
 	void Start () 
     {
-        if (CameraScript.data.helmet == Helmet.red)
+		if (CameraScript.data.helmet == Helmet.white)
+        {
+            this.light.color = Color.white;
+        }
+        else if (CameraScript.data.helmet == Helmet.red)
         {
             this.light.color = Color.red;
         }
-        if (CameraScript.data.helmet == Helmet.blue)
+        else if (CameraScript.data.helmet == Helmet.blue)
         {
-            this.light.color = Color.blue;
+            this.light.color = Color.cyan;
         }
-        if (CameraScript.data.helmet == Helmet.pink)
+        else if (CameraScript.data.helmet == Helmet.pink)
         {
             this.light.color = Color.magenta;
         }
-        if (CameraScript.data.helmet == Helmet.green)
+        else if (CameraScript.data.helmet == Helmet.green)
         {
             this.light.color = Color.green;
         }
+		else if (CameraScript.data.helmet == Helmet.rainbow)
+        {			
+            rainbow = true;
+        }
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frame	
+	enum Action
+	{
+		saleBlue,
+		scendeRosso,
+		salegreen,
+		scendiBlue,
+		saliRosso,
+		scendiGreen
+	}
     void Update()
-    {    }
+    {    
+		//print("r: "+this.light.color.r+" g: "+this.light.color.g+" b: "+this.light.color.b);
+		if(rainbow)
+		{
+			switch (colorAction) 
+			{
+			case Action.saleBlue:
+				this.light.color = new Color(255f,0f, this.light.color.b+(speed*Time.deltaTime));
+				if(this.light.color.b>=320)
+					colorAction= Action.scendeRosso;
+				break;
+			case Action.scendeRosso:
+				this.light.color = new Color(this.light.color.r-(speed*Time.deltaTime), 0f, 255f);
+				if(this.light.color.r<=-80f)
+					colorAction= Action.salegreen;
+				break;
+			case Action.salegreen:
+				this.light.color = new Color(0f,this.light.color.g+(speed*Time.deltaTime), 255f);
+				if(this.light.color.g>=320f)
+					colorAction= Action.scendiBlue;
+				break;
+			case Action.scendiBlue: 
+				this.light.color = new Color(0f,255f, this.light.color.b-(speed*Time.deltaTime));
+				if(this.light.color.b<=-80f)
+					colorAction= Action.saliRosso;
+				break;
+			case Action.saliRosso:
+				this.light.color = new Color(this.light.color.r+(speed*Time.deltaTime),255,	0);
+				if(this.light.color.r>=320)
+					colorAction= Action.scendiGreen;
+				break;
+			case Action.scendiGreen :
+				this.light.color = new Color(255,this.light.color.g-(speed*Time.deltaTime), 0);
+				if(this.light.color.g<=-80)
+					colorAction = Action.saleBlue;	
+				break;
+				
+			}
+		}
+	}
 }

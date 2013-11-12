@@ -50,11 +50,12 @@ public class RockBehaviour : MonoBehaviour {
             Play = true;
             deathP = transform.position;
             
-            if (deathP.x < pg.transform.position.x + 6f && deathP.x > pg.transform.position.x - 6f)
-            {
-                PlayScript.playShout = true;
-                Vibrate();
-            }
+			if(pg!=null)
+	            if (deathP.x < pg.transform.position.x + 6f && deathP.x > pg.transform.position.x - 6f)
+	            {
+	                PlayScript.playShout = true;
+	                Vibrate();
+	            }
             
 			int rnd = Random.Range(0, 5);
 			if ( rnd < 3)
