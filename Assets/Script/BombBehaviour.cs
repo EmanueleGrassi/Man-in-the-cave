@@ -28,6 +28,9 @@ public class BombBehaviour : MonoBehaviour {
 					Instantiate(detonatorBello,transform.position,Quaternion.identity);
 				audio.loop=false;
 				audio.PlayOneShot(esplosione);
+                //
+                this.gameObject.renderer.active = false;
+                //
 				esplosioneAvvenuta = true;
 			}
 			
@@ -49,6 +52,9 @@ public class BombBehaviour : MonoBehaviour {
 						break;
 				}
 				pg.SetActive(false);
+                //
+                PlayScript.State = PlayScript.PlayState.result;
+                //
 			}
 		}
 		if(grounded && !audio.isPlaying){
