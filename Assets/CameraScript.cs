@@ -116,6 +116,7 @@ public class CameraScript : MonoBehaviour
 	public static float PlayTime;
 	bool visualizePause = true;
     public static bool replay;
+    bool rebornUsed;
 	//munu
 	float height;
 	float margin, margin2;
@@ -150,14 +151,15 @@ public class CameraScript : MonoBehaviour
 	void Start ()
 	{
 		//carica i salvataggi
-        //LoadData();
-        data = new Data();
+        LoadData();
+        //data = new Data();
 
         if (PlayerPrefs.GetInt("replay") == 1)
         {
             PlayScript.State = PlayScript.PlayState.play;
             PlayerPrefs.SetInt("replay", 0);
         }
+        rebornUsed = false;
         nexshot = 0.0f;
 		smoothTime = 0.3f;
 		Volume = 0.2f;
@@ -255,23 +257,30 @@ public class CameraScript : MonoBehaviour
 			PlayScript.State = PlayScript.PlayState.play;
         
     }
-
+    bool vis;
     private void drawResult()
     {
 		if(Input.GetKey(KeyCode.Escape))
 			Application.LoadLevel(0);
-		
+
         bool? vis = false;
-        if (data.NumberReborn > 0)
+        if (data.NumberReborn > 0 && !rebornUsed)
             vis = null;
+
         if (vis == null)
-        {            
+        {
+            //vis = false;
             GUI.DrawTexture(new Rect(height * 2 - 6*margin, height * 2, height * 20, height * 5), useReborn, ScaleMode.ScaleToFit, true);
             if (GUI.Button(new Rect(height*5+margin*5, height * 8, height*3, height*3), OKbutton))
             {
+                rebornUsed = true;
                 data.NumberReborn--;
-                SaveData();
+                //SaveData();
                 //torna alla partita, da dove stavi
+                Vector3 pos = playerPG.transform.position;
+                playerPG.transform.position = new Vector3(pos.x, pos.y + 10, pos.z);
+                print("sei qui");
+                PlayScript.State = PlayScript.PlayState.play;
             }
             if (GUI.Button(new Rect(height * 9 + margin*5, height * 8, height * 3, height * 3), CancelButton))
             {
@@ -287,10 +296,12 @@ public class CameraScript : MonoBehaviour
             {
                 PlayerPrefs.SetInt("replay", 1);
                 //CREDO IL SAVE
+                SaveData();
                 Application.LoadLevel(0);
             }
             if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3+margin), homeButton))
             {
+                SaveData();
                 Application.LoadLevel(0);
             }
         }		
