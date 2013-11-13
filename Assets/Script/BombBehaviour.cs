@@ -7,11 +7,13 @@ public class BombBehaviour : MonoBehaviour {
 	float explosiontime;
 	bool grounded;
 	GameObject pg;
+    bool killed;
 	// Use this for initialization
 	void Start ()
     {		
 		grounded=false;
 		pg = GameObject.FindGameObjectWithTag("Player");
+        killed = false;
 	}
 	
 	bool esplosioneAvvenuta=false;
@@ -53,12 +55,15 @@ public class BombBehaviour : MonoBehaviour {
 				}
 				pg.SetActive(false);
                 //
-                PlayScript.State = PlayScript.PlayState.result;
+                killed = true;
                 //
 			}
 		}
-		if(grounded && !audio.isPlaying){
+		if(grounded && !audio.isPlaying)
+        {
 			Destroy(gameObject);
+            if (killed)
+                PlayScript.State = PlayScript.PlayState.result;
 		}
 	}
 	void OnCollisionEnter(Collision collision) 
