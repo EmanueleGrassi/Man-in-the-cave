@@ -314,6 +314,7 @@ public class CameraScript : MonoBehaviour
             if (GUI.Button(new Rect(height * 9 + margin*5, height * 8, height * 3, height * 3), CancelButton))
             {
                 vis = false;
+				rebornUsed = true;
             }
         }
         if (vis == false)
