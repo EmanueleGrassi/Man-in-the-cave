@@ -8,7 +8,7 @@ using System.Text;
 
 public class Data
 {
-	public int points;
+	public int points = 200;
 	public Rect[] Records = new Rect[20];
 	int pickaxeState;/*50 max*/
 	public int PickaxeState {
@@ -307,6 +307,7 @@ public class CameraScript : MonoBehaviour
                 //torna alla partita, da dove stavi
                 Vector3 pos = playerPG.transform.position;
                 playerPG.transform.position = new Vector3(pos.x, pos.y + 10, pos.z);
+                playerPG.active = true;
                 print("sei qui");
                 PlayScript.State = PlayScript.PlayState.play;
             }
