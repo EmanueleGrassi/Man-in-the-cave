@@ -26,8 +26,8 @@ public class buyItems_Script : MonoBehaviour {
         GUI.Label(new Rect(margin, margin, size * 10, size * 2 + margin), "Buy Items"); // titolo
         custom.label.fontSize = (int)(size * 0.5f);
         //reborn e picconi
-        GUI.Label(new Rect(margin, margin * 11 - 3, size * 6, size), "n Bengal: " + CameraScript.data.numBengala);
-        GUI.Label(new Rect(size * 5, margin * 11 - 3, size * 6, size), "n Reborn: " + CameraScript.data.NumberReborn);
+        GUI.Label(new Rect(margin*3, margin * 11 - 3, size * 6, size), "n Bengal: " + CameraScript.data.numBengala);
+        GUI.Label(new Rect(size * 5 + margin*2, margin * 11 - 3, size * 6, size), "n Reborn: " + CameraScript.data.NumberReborn);
         //coins
         GUI.DrawTexture(new Rect(size * 10 , margin*2, size, size), coins);
         GUI.Label(new Rect(size * 11+ margin, margin * 2, size*2, size), "" + CameraScript.data.points);
@@ -39,7 +39,7 @@ public class buyItems_Script : MonoBehaviour {
                 plus500(this, new EventArgs());
         custom.button.normal.textColor = new Color(164, 164, 164);
         custom.button.fontSize = (int)(size * 0.5f)+1;
-        if (GUI.Button(new Rect(size * 16-margin/2, margin *2, size+margin, size), "+1000"))
+        if (GUI.Button(new Rect(size * 16-margin/2, margin *2, size+margin*2, size), "+1000"))
             if (plus1000 != null)
                 plus1000(this, new EventArgs());
         custom.button.normal.textColor = new Color(234, 202, 0);
@@ -53,12 +53,14 @@ public class buyItems_Script : MonoBehaviour {
             {
                 CameraScript.data.points -= 90;
                 CameraScript.data.numBengala += 2;
+                CameraScript.SaveData();
             }
         if (GUI.Button(new Rect(margin, margin * 12 + size * 3, size * 9, size * 3), reborn))
             if (CameraScript.data.points >= 300)
             {
                 CameraScript.data.points -= 300;
                 CameraScript.data.NumberReborn++;
+                CameraScript.SaveData();
             }
         //scrollview
         position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, size * 10), position, new Rect(0, 0, size * 10, size * 14));
@@ -69,6 +71,7 @@ public class buyItems_Script : MonoBehaviour {
                 CameraScript.data.points -= 500;
                 CameraScript.data.lightRed = true;
                 CameraScript.data.helmet = Helmet.red;
+                CameraScript.SaveData();
                 //SUONA CASSA
             }
         }
@@ -78,6 +81,7 @@ public class buyItems_Script : MonoBehaviour {
                 CameraScript.data.points -= 550;
                 CameraScript.data.lightRed = true;
                 CameraScript.data.helmet = Helmet.red;
+                CameraScript.SaveData();
                 //SUONA CASSA
             }
         if (GUI.Button(new Rect(0, margin*4 + size * 4, size * 9, size * 3), greenLight) && !CameraScript.data.lightGreen)
@@ -86,6 +90,7 @@ public class buyItems_Script : MonoBehaviour {
                 CameraScript.data.points -= 750;
                 CameraScript.data.lightRed = true;
                 CameraScript.data.helmet = Helmet.red;
+                CameraScript.SaveData();
                 //SUONA CASSA
             }
         if (GUI.Button(new Rect(0, margin *6 + size * 6, size * 9, size * 3), pinkLight) && !CameraScript.data.lightPink)
@@ -94,6 +99,7 @@ public class buyItems_Script : MonoBehaviour {
                 CameraScript.data.points -= 800;
                 CameraScript.data.lightRed = true;
                 CameraScript.data.helmet = Helmet.red;
+                CameraScript.SaveData();
                 //SUONA CASSA
             }
         if (GUI.Button(new Rect(0, margin*8 + size * 8, size * 9, size * 3), arcoLight) && !CameraScript.data.lightRainbow)
@@ -101,7 +107,8 @@ public class buyItems_Script : MonoBehaviour {
             {
                 CameraScript.data.points -= 6000;
                 CameraScript.data.lightRed = true;
-                CameraScript.data.helmet = Helmet.red;
+                CameraScript.data.helmet = Helmet.red; 
+                CameraScript.SaveData();
                 //SUONA CASSA
             }
         GUI.EndScrollView(); 
@@ -117,7 +124,7 @@ public class buyItems_Script : MonoBehaviour {
 
             if (touch.phase == TouchPhase.Moved && fInsideList)
             {
-                position.y += touch.deltaPosition.y * 5;
+                position.y += touch.deltaPosition.y * 2;
             }
         }
     }
