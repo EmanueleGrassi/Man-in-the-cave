@@ -64,53 +64,58 @@ public class buyItems_Script : MonoBehaviour {
             }
         //scrollview
         position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, size * 10), position, new Rect(0, 0, size * 10, size * 14));
-        if (GUI.Button(new Rect(0, 0, size * 9, size * 3), redLight) && !CameraScript.data.lightRed)
-        {
-            if (CameraScript.data.points >= 500 && !CameraScript.data.lightRed)
-            {
-                CameraScript.data.points -= 500;
-                CameraScript.data.lightRed = true;
-                CameraScript.data.helmet = Helmet.red;
-                CameraScript.SaveData();
-                //SUONA CASSA
-            }
-        }
-        if (GUI.Button(new Rect(0, size * 2 + margin*2, size * 9, size * 3), bluLight) && !CameraScript.data.lightBlue)
-            if (CameraScript.data.points >= 550 && !CameraScript.data.lightRed)
-            {
-                CameraScript.data.points -= 550;
-                CameraScript.data.lightRed = true;
-                CameraScript.data.helmet = Helmet.red;
-                CameraScript.SaveData();
-                //SUONA CASSA
-            }
-        if (GUI.Button(new Rect(0, margin*4 + size * 4, size * 9, size * 3), greenLight) && !CameraScript.data.lightGreen)
-            if (CameraScript.data.points >= 750 && !CameraScript.data.lightRed)
-            {
-                CameraScript.data.points -= 750;
-                CameraScript.data.lightRed = true;
-                CameraScript.data.helmet = Helmet.red;
-                CameraScript.SaveData();
-                //SUONA CASSA
-            }
-        if (GUI.Button(new Rect(0, margin *6 + size * 6, size * 9, size * 3), pinkLight) && !CameraScript.data.lightPink)
-            if (CameraScript.data.points >= 800 && !CameraScript.data.lightRed)
-            {
-                CameraScript.data.points -= 800;
-                CameraScript.data.lightRed = true;
-                CameraScript.data.helmet = Helmet.red;
-                CameraScript.SaveData();
-                //SUONA CASSA
-            }
-        if (GUI.Button(new Rect(0, margin*8 + size * 8, size * 9, size * 3), arcoLight) && !CameraScript.data.lightRainbow)
-            if (CameraScript.data.points >= 6000 && !CameraScript.data.lightRed)
-            {
-                CameraScript.data.points -= 6000;
-                CameraScript.data.lightRed = true;
-                CameraScript.data.helmet = Helmet.red; 
-                CameraScript.SaveData();
-                //SUONA CASSA
-            }
+		if (!CameraScript.data.lightRed)
+			if (GUI.Button(new Rect(0, 0, size * 9, size * 3), redLight))
+	        {
+	            if (CameraScript.data.points >= 500)
+	            {
+	                CameraScript.data.points -= 500;
+	                CameraScript.data.lightRed = true;
+	                CameraScript.data.helmet = Helmet.red;
+	                CameraScript.SaveData();
+	                //SUONA CASSA
+	            }
+	        }
+		if (!CameraScript.data.lightBlue)
+	        if (GUI.Button(new Rect(0, size * 2 + margin*2, size * 9, size * 3), bluLight))
+	            if (CameraScript.data.points >= 550)
+	            {
+	                CameraScript.data.points -= 550;
+	                CameraScript.data.lightBlue = true;
+	                CameraScript.data.helmet = Helmet.blue;
+	                CameraScript.SaveData();
+	                //SUONA CASSA
+	            }
+		if (!CameraScript.data.lightGreen)
+	        if (GUI.Button(new Rect(0, margin*4 + size * 4, size * 9, size * 3), greenLight))
+	            if (CameraScript.data.points >= 750)
+	            {
+	                CameraScript.data.points -= 750;
+	                CameraScript.data.lightGreen = true;
+					CameraScript.data.helmet = Helmet.green;
+	                CameraScript.SaveData();
+	                //SUONA CASSA
+	            }
+		if (!CameraScript.data.lightPink)
+        	if (GUI.Button(new Rect(0, margin *6 + size * 6, size * 9, size * 3), pinkLight))
+	            if (CameraScript.data.points >= 800)
+	            {
+	                CameraScript.data.points -= 800;
+	                CameraScript.data.lightPink = true;
+	                CameraScript.data.helmet = Helmet.pink;
+	                CameraScript.SaveData();
+	                //SUONA CASSA
+	            }
+		if (!CameraScript.data.lightRainbow)
+	        if (GUI.Button(new Rect(0, margin*8 + size * 8, size * 9, size * 3), arcoLight))
+	            if (CameraScript.data.points >= 6000)
+	            {
+	                CameraScript.data.points -= 6000;
+	                CameraScript.data.lightRainbow = true;
+	                CameraScript.data.helmet = Helmet.rainbow; 
+	                CameraScript.SaveData();
+	                //SUONA CASSA
+	            }
         GUI.EndScrollView(); 
     }
 

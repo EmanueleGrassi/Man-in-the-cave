@@ -22,8 +22,6 @@ public class GameManager_script : MonoBehaviour {
     internal static void spanForResult(bool a, float b)
     {
         PGdead = a;
-        print("" + a);
         deathTime = b;
-        print("" + b);
     }
 }

@@ -25,7 +25,7 @@ public class Data
 	}
 
 	public int NumberPickaxe;
-	public int NumberReborn = 1;
+	public int NumberReborn = 2;
 	public int numBengala=3;
 	public bool lightRed = false;
 	public bool lightBlue = false;
@@ -55,28 +55,28 @@ public class Data
 		  js["lightRainbow"] = value.lightRainbow;
 		  js["helmet"] = (int)value.helmet;
 		  Debug.Log(" len:"+value.Records.Length);
-		  js["Record"] =new JSON[] {
-			(JSON)(value.Records[0]),
-			(JSON)(value.Records[1]),
-			(JSON)(value.Records[2]),
-			(JSON)(value.Records[3]),
-			(JSON)(value.Records[4]),
-			(JSON)(value.Records[5]),
-			(JSON)(value.Records[6]),
-			(JSON)(value.Records[7]),
-			(JSON)(value.Records[8]),
-			(JSON)(value.Records[9]),
-			(JSON)(value.Records[10]),
-			(JSON)(value.Records[11]),
-			(JSON)(value.Records[12]),
-			(JSON)(value.Records[13]),
-			(JSON)(value.Records[14]),
-			(JSON)(value.Records[15]),
-			(JSON)(value.Records[16]),
-			(JSON)(value.Records[17]),
-			(JSON)(value.Records[18]),
-			(JSON)(value.Records[19]), 
-		}; 	    
+//		  js["Record"] =new JSON[] {
+//			(JSON)(value.Records[0]),
+//			(JSON)(value.Records[1]),
+//			(JSON)(value.Records[2]),
+//			(JSON)(value.Records[3]),
+//			(JSON)(value.Records[4]),
+//			(JSON)(value.Records[5]),
+//			(JSON)(value.Records[6]),
+//			(JSON)(value.Records[7]),
+//			(JSON)(value.Records[8]),
+//			(JSON)(value.Records[9]),
+//			(JSON)(value.Records[10]),
+//			(JSON)(value.Records[11]),
+//			(JSON)(value.Records[12]),
+//			(JSON)(value.Records[13]),
+//			(JSON)(value.Records[14]),
+//			(JSON)(value.Records[15]),
+//			(JSON)(value.Records[16]),
+//			(JSON)(value.Records[17]),
+//			(JSON)(value.Records[18]),
+//			(JSON)(value.Records[19]), 
+//		}; 	    
 	    return js;
 	  }
  
@@ -204,14 +204,16 @@ public class CameraScript : MonoBehaviour
 	void Clean ()
 	{
 		GameObject[] rocks = GameObject.FindGameObjectsWithTag("rock");
+		print (rocks);
 		GameObject[] marker = GameObject.FindGameObjectsWithTag("marker");
+		print(marker);
 		GameObject[] smokes = GameObject.FindGameObjectsWithTag("smoke");
-		foreach(GameObject rock in rocks)
-			Destroy(rock);
-		foreach(GameObject mark in marker)
-			Destroy(mark);
-		foreach(GameObject smoke in smokes)
-			Destroy(smoke);
+		for (int i = 0; i<rocks.Length; i++)
+			Destroy(rocks[i]);
+		for (int i = 0; i<marker.Length; i++)
+			Destroy(marker[i]);
+		for (int i = 0; i<smokes.Length; i++)
+			Destroy(smokes[i]);
 	}
 
 	// Update is called once per frame    
@@ -315,15 +317,15 @@ public class CameraScript : MonoBehaviour
             GUI.DrawTexture(new Rect(height * 2 - 6*margin, height * 2, height * 20, height * 5), useReborn, ScaleMode.ScaleToFit, true);
             if (GUI.Button(new Rect(height*5+margin*5, height * 8, height*3, height*3), OKbutton))
             {
-                rebornUsed = true;
+                
                 data.NumberReborn--;
                 //SaveData();
                 //torna alla partita, da dove stavi
                 Vector3 pos = playerPG.transform.position;
                 playerPG.transform.position = new Vector3(pos.x, pos.y + 10, pos.z);
                 playerPG.active = true;
-                print("sei qui");
-                PlayScript.State = PlayScript.PlayState.play;
+				rebornUsed = true;
+				PlayScript.State = PlayScript.PlayState.play;
             }
             if (GUI.Button(new Rect(height * 9 + margin*5, height * 8, height * 3, height * 3), CancelButton))
             {
@@ -333,6 +335,7 @@ public class CameraScript : MonoBehaviour
         }
         if (vis == false)
         {
+			Clean();
             GUI.skin.label.fontSize = (int)(height * 1.5f);
             GUI.Label(new Rect(height * 5, height * 2, height * 20, height * 2), "You've survived:");
             GUI.Label(new Rect(height * 8+margin, height * 4.5f, height * 20, height * 2), "00:00");
