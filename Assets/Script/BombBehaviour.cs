@@ -17,6 +17,7 @@ public class BombBehaviour : MonoBehaviour {
 	}
 	
 	bool esplosioneAvvenuta=false;
+	float timeAfterExplosion;
 	// Update is called once per frame
 	void Update () 
 	{	
@@ -24,14 +25,20 @@ public class BombBehaviour : MonoBehaviour {
 		{			
 			if(!esplosioneAvvenuta)
 			{
-				if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WP8Player)
+				audio.loop=false;
+				print("doverbbe apparire solo una volta");
+				audio.PlayOneShot(esplosione);
+
+				timeAfterExplosion=Time.time+4.5f;
+				if (Application.platform == RuntimePlatform.Android || 
+				    Application.platform == RuntimePlatform.WP8Player
+				    || Application.platform == RuntimePlatform.IPhonePlayer)
 					Instantiate(detonatorMobile,transform.position,Quaternion.identity);				
 				else
 					Instantiate(detonatorBello,transform.position,Quaternion.identity);
-				audio.loop=false;
-				audio.PlayOneShot(esplosione);
+
                 //
-                this.gameObject.renderer.active = false;
+                //this.gameObject.renderer.active = false;
                 //
 				esplosioneAvvenuta = true;
 			}
@@ -60,6 +67,7 @@ public class BombBehaviour : MonoBehaviour {
 			}
 		}
 		if(grounded && !audio.isPlaying)
+		//if(Time.time> Time.time+timeAfterExplosion)
         {
 			Destroy(gameObject);
             if (killed)
