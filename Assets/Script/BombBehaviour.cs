@@ -74,6 +74,8 @@ public class BombBehaviour : MonoBehaviour {
                     killTime = Time.time;
                     //
                 }
+                else
+                    Destroy(gameObject);
             }
         }
 	}

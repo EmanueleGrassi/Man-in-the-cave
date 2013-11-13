@@ -1,17 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts_Rocce\gold_script.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\BombBehaviour.cs">
     <Files>
+      <File FileName="Assets\Script\BombBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts_Rocce\gold_script.cs" Line="1" Column="1" />
-      <File FileName="Assets\CameraScript.cs" Line="176" Column="3" />
+      <File FileName="Assets\CameraScript.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts_Rocce" expanded="True">
-              <Node name="gold_script.cs" selected="True" />
+            <Node name="Script" expanded="True">
+              <Node name="BombBehaviour.cs" selected="True" />
             </Node>
+            <Node name="Scripts_Rocce" expanded="True" />
           </Node>
         </State>
       </Pad>
