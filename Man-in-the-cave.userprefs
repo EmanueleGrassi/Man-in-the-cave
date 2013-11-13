@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CameraScript.cs">
     <Files>
-      <File FileName="Assets\CameraScript.cs" Line="273" Column="18" />
       <File FileName="Assets\CameraScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\CameraScript.cs" Line="58" Column="31" />
       <File FileName="Assets\Script\BombBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts_Rocce\gold_script.cs" Line="1" Column="1" />
     </Files>

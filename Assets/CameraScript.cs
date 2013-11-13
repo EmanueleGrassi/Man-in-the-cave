@@ -184,6 +184,7 @@ public class CameraScript : MonoBehaviour
 		#endregion
         if (PlayerPrefs.GetInt("replay") == 1)
         {
+			Clean();
             PlayScript.State = PlayScript.PlayState.play;
             PlayerPrefs.SetInt("replay", 0);
         }
@@ -198,6 +199,19 @@ public class CameraScript : MonoBehaviour
 		height = Screen.width / 20;
 		margin = Screen.width / 60;
 		margin2 = 0;// Screen.width / 70;
+	}
+
+	void Clean ()
+	{
+		GameObject[] rocks = GameObject.FindGameObjectsWithTag("rock");
+		GameObject[] marker = GameObject.FindGameObjectsWithTag("marker");
+		GameObject[] smokes = GameObject.FindGameObjectsWithTag("smoke");
+		foreach(GameObject rock in rocks)
+			Destroy(rock);
+		foreach(GameObject mark in marker)
+			Destroy(mark);
+		foreach(GameObject smoke in smokes)
+			Destroy(smoke);
 	}
 
 	// Update is called once per frame    
