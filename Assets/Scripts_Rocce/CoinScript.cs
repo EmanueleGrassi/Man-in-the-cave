@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CoinScript : MonoBehaviour {
-    
+public class CoinScript : MonoBehaviour
+{
+
     float groundedTime;
     bool grounded;
     //public AudioClip collected1;
     //public AudioClip collected2;
     //public AudioClip collected3;
-	
+
 
     // Update is called once per frame
     void Update()
@@ -26,6 +27,8 @@ public class CoinScript : MonoBehaviour {
             groundedTime = Time.time;
             grounded = true;
         }
+    }
+}
         //if (col.gameObject.tag == "Player")
         //{
         //    int value, random;
@@ -131,6 +134,3 @@ public class CoinScript : MonoBehaviour {
         //            Destroy(gameObject);
         //            break;
         //    }
-
-    }
-}

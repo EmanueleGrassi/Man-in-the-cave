@@ -73,7 +73,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  iPhoneBundleIdentifier: com.Company.ProductName
+  iPhoneBundleIdentifier: com.celialab.ManInTheCave
   productGUID: 5bf2c22cf6d9c9d46b824324f41af77d
   iPhoneBundleVersion: 1.0
   AndroidBundleVersionCode: 1
@@ -114,6 +114,9 @@ PlayerSettings:
       m_Size: 128
   m_BuildTargetBatching:
   - m_BuildTarget: WP8
+    m_StaticBatching: 1
+    m_DynamicBatching: 1
+  - m_BuildTarget: Android
     m_StaticBatching: 1
     m_DynamicBatching: 1
   webPlayerTemplate: APPLICATION:Default

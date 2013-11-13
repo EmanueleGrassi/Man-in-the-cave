@@ -8,6 +8,7 @@ public class BombBehaviour : MonoBehaviour {
 	bool grounded;
 	GameObject pg;
     bool killed;
+    float killTime;
 	// Use this for initialization
 	void Start ()
     {		
@@ -20,59 +21,61 @@ public class BombBehaviour : MonoBehaviour {
 	float timeAfterExplosion;
 	// Update is called once per frame
 	void Update () 
-	{	
-		if(grounded && Time.time>explosiontime)
-		{			
-			if(!esplosioneAvvenuta)
-			{
-				audio.loop=false;
-				print("doverbbe apparire solo una volta");
-				audio.PlayOneShot(esplosione);
+	{
 
-				timeAfterExplosion=Time.time+4.5f;
-				if (Application.platform == RuntimePlatform.Android || 
-				    Application.platform == RuntimePlatform.WP8Player
-				    || Application.platform == RuntimePlatform.IPhonePlayer)
-					Instantiate(detonatorMobile,transform.position,Quaternion.identity);				
-				else
-					Instantiate(detonatorBello,transform.position,Quaternion.identity);
-
-                //
-                //this.gameObject.renderer.active = false;
-                //
-				esplosioneAvvenuta = true;
-			}
-			
-			if(pg.transform.position.x<transform.position.x+10 && pg.transform.position.x>transform.position.x-10)
-			{
-				Vibrate();
-				
-				int random=Random.Range(0,3);
-				switch(random)
-				{
-					case 0:
-						AudioSource.PlayClipAtPoint(morte1,transform.position);
-						break;
-					case 1:
-						AudioSource.PlayClipAtPoint(morte2,transform.position);
-						break;
-					case 2:
-						AudioSource.PlayClipAtPoint(morte3,transform.position);
-						break;
-				}
-				pg.SetActive(false);
-                //
-                killed = true;
-                //
-			}
-		}
-		if(grounded && !audio.isPlaying)
-		//if(Time.time> Time.time+timeAfterExplosion)
+        if (Time.time > killTime + 1.5f && killed)
         {
-			Destroy(gameObject);
-            if (killed)
-                PlayScript.State = PlayScript.PlayState.result;
-		}
+            print("sei qui");
+            PlayScript.State = PlayScript.PlayState.result;
+            Destroy(gameObject);
+        }
+
+        if (grounded && Time.time > explosiontime)
+        {
+            if (!esplosioneAvvenuta)
+            {
+                audio.loop = false;
+                print("doverbbe apparire solo una volta");
+                audio.PlayOneShot(esplosione);
+
+                timeAfterExplosion = Time.time + 4.5f;
+                if (Application.platform == RuntimePlatform.Android ||
+                    Application.platform == RuntimePlatform.WP8Player
+                    || Application.platform == RuntimePlatform.IPhonePlayer)
+                    Instantiate(detonatorMobile, transform.position, Quaternion.identity);
+                else
+                    Instantiate(detonatorBello, transform.position, Quaternion.identity);
+
+                //
+                this.gameObject.renderer.active = false;
+                //
+                esplosioneAvvenuta = true;
+
+                if (pg.transform.position.x < transform.position.x + 7 && pg.transform.position.x > transform.position.x - 7)
+                {
+                    Vibrate();
+
+                    int random = Random.Range(0, 3);
+                    switch (random)
+                    {
+                        case 0:
+                            AudioSource.PlayClipAtPoint(morte1, transform.position);
+                            break;
+                        case 1:
+                            AudioSource.PlayClipAtPoint(morte2, transform.position);
+                            break;
+                        case 2:
+                            AudioSource.PlayClipAtPoint(morte3, transform.position);
+                            break;
+                    }
+                    pg.SetActive(false);
+                    //
+                    killed = true;
+                    killTime = Time.time;
+                    //
+                }
+            }
+        }
 	}
 	void OnCollisionEnter(Collision collision) 
 	{
@@ -82,7 +85,7 @@ public class BombBehaviour : MonoBehaviour {
 			grounded=true;
 		}
 	}
-	
+
 	void Vibrate()
 	{		
 		try {Handheld.Vibrate();} catch {}
