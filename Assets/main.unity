@@ -2249,7 +2249,7 @@ Light:
   serializedVersion: 3
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .200000003
+  m_Intensity: 6.4000001
   m_Range: 12.8999996
   m_SpotAngle: 33
   m_CookieSize: 10

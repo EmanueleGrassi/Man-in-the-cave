@@ -9,7 +9,7 @@ using System.Text;
 public class Data
 {
 	public int points;
-	public List<Record> Records = new List<Record>();
+	public Rect[] Records = new Rect[20];
 	int pickaxeState;/*50 max*/
 	public int PickaxeState {
 		get{ return pickaxeState;}
@@ -51,17 +51,37 @@ public class Data
 		  js["lightRed"] = value.lightRed;
 		  js["lightBlue"] = value.lightBlue;
 		  js["lightGreen"] = value.lightGreen;
-		  js["lightPink"] = value.lightPink;
+		  js["lightPink"] = value.lightPink; 
 		  js["lightRainbow"] = value.lightRainbow;
 		  js["helmet"] = (int)value.helmet;
-	      //jsTransform["mystate"] =(JSON)value.mystate;
-	    
+		  Debug.Log(" len:"+value.Records.Length);
+		  js["Record"] =new JSON[] {
+			(JSON)(value.Records[0]),
+			(JSON)(value.Records[1]),
+			(JSON)(value.Records[2]),
+			(JSON)(value.Records[3]),
+			(JSON)(value.Records[4]),
+			(JSON)(value.Records[5]),
+			(JSON)(value.Records[6]),
+			(JSON)(value.Records[7]),
+			(JSON)(value.Records[8]),
+			(JSON)(value.Records[9]),
+			(JSON)(value.Records[10]),
+			(JSON)(value.Records[11]),
+			(JSON)(value.Records[12]),
+			(JSON)(value.Records[13]),
+			(JSON)(value.Records[14]),
+			(JSON)(value.Records[15]),
+			(JSON)(value.Records[16]),
+			(JSON)(value.Records[17]),
+			(JSON)(value.Records[18]),
+			(JSON)(value.Records[19]), 
+		}; 	    
 	    return js;
 	  }
  
 	  // JSON to class conversion
-	  public static explicit operator Data(JSON value)
-	  {
+	  public static explicit operator Data(JSON value){
 	    checked
 	    {
 	      JSON jsTransform = value.ToJSON("transform");
@@ -77,7 +97,8 @@ public class Data
 			deserislizedClass.lightPink = value.ToBoolean("lightPink");
 			deserislizedClass.lightRainbow = value.ToBoolean("lightRainbow");
 			deserislizedClass.helmet = (Helmet)value.ToInt("helmet");
-			//deserislizedClass.mystate = (state)jsTransform.ToJSON("mystate");
+			Debug.Log("ci sei quasi");
+			deserislizedClass.Records = value.ToArray<Rect>("Record");
 			return deserislizedClass;
 	    }
 	  } 
@@ -152,8 +173,15 @@ public class CameraScript : MonoBehaviour
 	{
 		//carica i salvataggi
         LoadData();
-        //data = new Data();
-
+		#region test Records
+        /*data = new Data();
+		data.Records[0] = new Rect(8,9,34,3432);
+		print("creato");
+		SaveData();
+		print("salvato");
+		LoadData();
+		print("width 0: "+data.Records[0].width );*/
+		#endregion
         if (PlayerPrefs.GetInt("replay") == 1)
         {
             PlayScript.State = PlayScript.PlayState.play;
@@ -373,6 +401,7 @@ public class CameraScript : MonoBehaviour
 		Application.Quit();
 	}
 	public static event EventHandler GOReviews;
+	bool visualizeRightCoin, startVisualizeRightCoin;
 	void drawPlay()
 	{
 		// Visualizza punti. Lo script si adatta atutte le risoluzioni
@@ -630,11 +659,11 @@ public class CameraScript : MonoBehaviour
  		public static implicit operator Rect(JSON value)
         {
            return new Rect(
-				System.Convert.ToByte(value["left"]),
-				System.Convert.ToByte(value["top"]),
-				System.Convert.ToByte(value["width"]),
-				System.Convert.ToByte(value["height"])
-				);
+				System.Convert.ToInt32(value["left"]),
+			System.Convert.ToInt32(value["top"]),
+			System.Convert.ToInt32(value["width"]),
+			System.Convert.ToInt32(value["height"])
+			);
         }				
  		public static explicit operator JSON(Rect value)
         {
