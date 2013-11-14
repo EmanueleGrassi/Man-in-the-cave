@@ -9,11 +9,13 @@ public class buyItems_Script : MonoBehaviour {
     public GUISkin custom;
 	public AudioClip cashsound;
     public static event EventHandler plus500, plus1000, plus5000;
+    float[] span;
     // Use this for initialization
     void Start()
     {
         size = Screen.width / 20;
         margin = Screen.width / 60;
+        span = new float[] { 0,0, size * 2 + margin * 2, margin * 4 + size * 4, margin * 6 + size * 6, margin * 8 + size * 8 };
     }
     Vector2 position = Vector2.zero;
 
@@ -64,64 +66,81 @@ public class buyItems_Script : MonoBehaviour {
                 CameraScript.SaveData();
             }
         //scrollview
+        int elem = 0;
         position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, size * 10), position, new Rect(0, 0, size * 10, size * 14));
-		if (!CameraScript.data.lightRed)
-			if (GUI.Button(new Rect(0, 0, size * 9, size * 3), redLight))
-	        {
-	            if (CameraScript.data.points >= 500)
-	            {
-	                CameraScript.data.points -= 500;
-	                CameraScript.data.lightRed = true;
-	                CameraScript.data.helmet = Helmet.red;
-	                CameraScript.SaveData();
-	                //SUONA CASSA
-				audio.PlayOneShot(cashsound);
-	            }
-	        }
-		if (!CameraScript.data.lightBlue)
-	        if (GUI.Button(new Rect(0, size * 2 + margin*2, size * 9, size * 3), bluLight))
-	            if (CameraScript.data.points >= 550)
-	            {
-	                CameraScript.data.points -= 550;
-	                CameraScript.data.lightBlue = true;
-	                CameraScript.data.helmet = Helmet.blue;
-	                CameraScript.SaveData();
-	                //SUONA CASSA
-				audio.PlayOneShot(cashsound);
-	            }
-		if (!CameraScript.data.lightGreen)
-	        if (GUI.Button(new Rect(0, margin*4 + size * 4, size * 9, size * 3), greenLight))
-	            if (CameraScript.data.points >= 750)
-	            {
-	                CameraScript.data.points -= 750;
-	                CameraScript.data.lightGreen = true;
-					CameraScript.data.helmet = Helmet.green;
-	                CameraScript.SaveData();
-	                //SUONA CASSA
-				audio.PlayOneShot(cashsound);
-	            }
-		if (!CameraScript.data.lightPink)
-        	if (GUI.Button(new Rect(0, margin *6 + size * 6, size * 9, size * 3), pinkLight))
-	            if (CameraScript.data.points >= 800)
-	            {
-	                CameraScript.data.points -= 800;
-	                CameraScript.data.lightPink = true;
-	                CameraScript.data.helmet = Helmet.pink;
-	                CameraScript.SaveData();
-	                //SUONA CASSA
-				audio.PlayOneShot(cashsound);
-	            }
-		if (!CameraScript.data.lightRainbow)
-	        if (GUI.Button(new Rect(0, margin*8 + size * 8, size * 9, size * 3), arcoLight))
-	            if (CameraScript.data.points >= 6000)
-	            {
-	                CameraScript.data.points -= 6000;
-	                CameraScript.data.lightRainbow = true;
-	                CameraScript.data.helmet = Helmet.rainbow; 
-	                CameraScript.SaveData();
-	                //SUONA CASSA
-				audio.PlayOneShot(cashsound);
-	            }
+        if (!CameraScript.data.lightRed)
+        {
+            elem++;
+            if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), redLight))
+            {
+                if (CameraScript.data.points >= 0)
+                {
+                    CameraScript.data.points -= 500;
+                    CameraScript.data.lightRed = true;
+                    CameraScript.data.helmet = Helmet.red;
+                    CameraScript.SaveData();
+                    elem++;
+                    //SUONA CASSA
+                    audio.PlayOneShot(cashsound);
+                }
+            }
+        }
+        if (!CameraScript.data.lightBlue)
+        {
+            elem++;
+            if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), bluLight))
+                if (CameraScript.data.points >= 550)
+                {
+                    CameraScript.data.points -= 550;
+                    CameraScript.data.lightBlue = true;
+                    CameraScript.data.helmet = Helmet.blue;
+                    CameraScript.SaveData();
+                    //SUONA CASSA
+                    audio.PlayOneShot(cashsound);
+                }
+        }
+        if (!CameraScript.data.lightGreen)
+        {
+            elem++;
+            if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), greenLight))
+                if (CameraScript.data.points >= 750)
+                {
+                    CameraScript.data.points -= 750;
+                    CameraScript.data.lightGreen = true;
+                    CameraScript.data.helmet = Helmet.green;
+                    CameraScript.SaveData();
+                    //SUONA CASSA
+                    audio.PlayOneShot(cashsound);
+                }
+        }
+        if (!CameraScript.data.lightPink)
+        {
+            elem++;
+            if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), pinkLight))
+                if (CameraScript.data.points >= 800)
+                {
+                    CameraScript.data.points -= 800;
+                    CameraScript.data.lightPink = true;
+                    CameraScript.data.helmet = Helmet.pink;
+                    CameraScript.SaveData();
+                    //SUONA CASSA
+                    audio.PlayOneShot(cashsound);
+                }
+        }
+        if (!CameraScript.data.lightRainbow)
+        {
+            elem++;
+            if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), arcoLight))
+                if (CameraScript.data.points >= 6000)
+                {
+                    CameraScript.data.points -= 6000;
+                    CameraScript.data.lightRainbow = true;
+                    CameraScript.data.helmet = Helmet.rainbow;
+                    CameraScript.SaveData();
+                    //SUONA CASSA
+                    audio.PlayOneShot(cashsound);
+                }
+        }
         GUI.EndScrollView(); 
     }
 

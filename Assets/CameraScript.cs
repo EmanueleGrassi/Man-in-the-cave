@@ -8,7 +8,7 @@ using System.Text;
 
 public class Data
 {
-	public int points = 200;
+	public int points =  10000;
 	public Rect[] Records = new Rect[20];
 	int pickaxeState;/*50 max*/
 	public int PickaxeState {
@@ -185,8 +185,8 @@ public class CameraScript : MonoBehaviour
         if (PlayerPrefs.GetInt("replay") == 1)
         {
 			Clean();
-            PlayScript.State = PlayScript.PlayState.play;
             PlayerPrefs.SetInt("replay", 0);
+            PlayScript.State = PlayScript.PlayState.play;
         }
         rebornUsed = false;
         nexshot = 0.0f;
@@ -214,6 +214,7 @@ public class CameraScript : MonoBehaviour
 			Destroy(marker[i]);
 		for (int i = 0; i<smokes.Length; i++)
 			Destroy(smokes[i]);
+        print("pulito..?");
 	}
 
 	// Update is called once per frame    

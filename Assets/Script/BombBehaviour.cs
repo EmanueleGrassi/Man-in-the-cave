@@ -22,11 +22,11 @@ public class BombBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-
         if (Time.time > killTime + 1.5f && killed)
         {
             print("sei qui");
             PlayScript.State = PlayScript.PlayState.result;
+            print("siamo in result");
             Destroy(gameObject);
         }
 
