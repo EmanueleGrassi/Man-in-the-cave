@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CameraScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\buyItems_Script.cs">
     <Files>
+      <File FileName="Assets\buyItems_Script.cs" Line="10" Column="28" />
       <File FileName="Assets\CameraScript.cs" Line="338" Column="12" />
-      <File FileName="Assets\Script_FlussoDiGioco\PlayScript.cs" Line="78" Column="1" />
+      <File FileName="Assets\Script_FlussoDiGioco\PlayScript.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,7 +13,7 @@
             <Node name="Script" expanded="True" />
             <Node name="Script_FlussoDiGioco" expanded="True" />
             <Node name="Scripts_Rocce" expanded="True" />
-            <Node name="CameraScript.cs" selected="True" />
+            <Node name="buyItems_Script.cs" selected="True" />
           </Node>
         </State>
       </Pad>

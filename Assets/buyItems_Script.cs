@@ -7,6 +7,7 @@ public class buyItems_Script : MonoBehaviour {
     public Texture arcoLight, bengal, bluLight, greenLight, piccone, pinkLight, reborn, redLight, coins;
     float size, margin;
     public GUISkin custom;
+	public AudioClip cashsound;
     public static event EventHandler plus500, plus1000, plus5000;
     // Use this for initialization
     void Start()
@@ -74,6 +75,7 @@ public class buyItems_Script : MonoBehaviour {
 	                CameraScript.data.helmet = Helmet.red;
 	                CameraScript.SaveData();
 	                //SUONA CASSA
+				audio.PlayOneShot(cashsound);
 	            }
 	        }
 		if (!CameraScript.data.lightBlue)
@@ -85,6 +87,7 @@ public class buyItems_Script : MonoBehaviour {
 	                CameraScript.data.helmet = Helmet.blue;
 	                CameraScript.SaveData();
 	                //SUONA CASSA
+				audio.PlayOneShot(cashsound);
 	            }
 		if (!CameraScript.data.lightGreen)
 	        if (GUI.Button(new Rect(0, margin*4 + size * 4, size * 9, size * 3), greenLight))
@@ -95,6 +98,7 @@ public class buyItems_Script : MonoBehaviour {
 					CameraScript.data.helmet = Helmet.green;
 	                CameraScript.SaveData();
 	                //SUONA CASSA
+				audio.PlayOneShot(cashsound);
 	            }
 		if (!CameraScript.data.lightPink)
         	if (GUI.Button(new Rect(0, margin *6 + size * 6, size * 9, size * 3), pinkLight))
@@ -105,6 +109,7 @@ public class buyItems_Script : MonoBehaviour {
 	                CameraScript.data.helmet = Helmet.pink;
 	                CameraScript.SaveData();
 	                //SUONA CASSA
+				audio.PlayOneShot(cashsound);
 	            }
 		if (!CameraScript.data.lightRainbow)
 	        if (GUI.Button(new Rect(0, margin*8 + size * 8, size * 9, size * 3), arcoLight))
@@ -115,6 +120,7 @@ public class buyItems_Script : MonoBehaviour {
 	                CameraScript.data.helmet = Helmet.rainbow; 
 	                CameraScript.SaveData();
 	                //SUONA CASSA
+				audio.PlayOneShot(cashsound);
 	            }
         GUI.EndScrollView(); 
     }
