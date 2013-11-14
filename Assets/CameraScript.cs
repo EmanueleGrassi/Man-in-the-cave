@@ -182,18 +182,20 @@ public class CameraScript : MonoBehaviour
 		LoadData();
 		print("width 0: "+data.Records[0].width );*/
 		#endregion
+        print(PlayerPrefs.GetInt("replay"));
         if (PlayerPrefs.GetInt("replay") == 1)
         {
-			Clean();
             PlayerPrefs.SetInt("replay", 0);
+            print(PlayerPrefs.GetInt("replay"));
             PlayScript.State = PlayScript.PlayState.play;
+            //Clean();
         }
         rebornUsed = false;
         nexshot = 0.0f;
 		smoothTime = 0.3f;
 		Volume = 0.2f;
 		PlayTime = 0;
-		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WP8Player)
+		if (Application.platform == RuntimePlatform.WP8Player)
 			visualizePause = false;
 		
 		height = Screen.width / 20;
@@ -201,21 +203,24 @@ public class CameraScript : MonoBehaviour
 		margin2 = 0;// Screen.width / 70;
 	}
 
-	void Clean ()
-	{
-		GameObject[] rocks = GameObject.FindGameObjectsWithTag("rock");
-		print (rocks);
-		GameObject[] marker = GameObject.FindGameObjectsWithTag("marker");
-		print(marker);
-		GameObject[] smokes = GameObject.FindGameObjectsWithTag("smoke");
-		for (int i = 0; i<rocks.Length; i++)
-			Destroy(rocks[i]);
-		for (int i = 0; i<marker.Length; i++)
-			Destroy(marker[i]);
-		for (int i = 0; i<smokes.Length; i++)
-			Destroy(smokes[i]);
-        print("pulito..?");
-	}
+    //void Clean ()
+    //{
+    //    GameObject[] rocks = GameObject.FindGameObjectsWithTag("rock");
+    //    GameObject[] marker = GameObject.FindGameObjectsWithTag("marker");
+    //    GameObject[] smokes = GameObject.FindGameObjectsWithTag("smoke");
+    //    for (int i = 0; i < rocks.Length; i++)
+    //    {
+    //        print(rocks[i]);
+    //        Destroy(rocks[i]);
+    //    }
+    //    for (int i = 0; i < marker.Length; i++)
+    //    {
+    //        print(marker[i]);
+    //        Destroy(marker[i]);
+    //    }
+    //    for (int i = 0; i<smokes.Length; i++)
+    //        Destroy(smokes[i]);
+    //}
 
 	// Update is called once per frame    
 	void Update ()
@@ -288,14 +293,16 @@ public class CameraScript : MonoBehaviour
 	}
 
     private void drawPause()
-    {       
-        Rect w2h2centrato = new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 4, Screen.height / 4);
-
-        GUI.backgroundColor = Color.black;
-        if (GUI.Button(w2h2centrato, "Continue"))
+    {
+        if (GUI.Button(new Rect(height * 5, height * 4, height*3, height*3), PlayButton))
             PlayScript.State = PlayScript.PlayState.play;
-        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 4, Screen.height / 2), "Main Menu"))
-            //PlayScript.State = PlayScript.PlayState.menu;
+        if (GUI.Button(new Rect(height * 9, height * 4, height*3, height*3), playAgainButton))
+        {
+            PlayerPrefs.SetInt("replay", 1);
+            print(PlayerPrefs.GetInt("replay"));
+            Application.LoadLevel(0);
+        }
+        if (GUI.Button(new Rect(height * 13, height * 4, height*3, height*3), homeButton))
             Application.LoadLevel(0);
 		
 		if(Input.GetKey(KeyCode.Escape))
@@ -336,13 +343,13 @@ public class CameraScript : MonoBehaviour
         }
         if (vis == false)
         {
-			Clean();
             GUI.skin.label.fontSize = (int)(height * 1.5f);
             GUI.Label(new Rect(height * 5, height * 2, height * 20, height * 2), "You've survived:");
             GUI.Label(new Rect(height * 8+margin, height * 4.5f, height * 20, height * 2), "00:00");
             if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3+margin), playAgainButton))
             {
                 PlayerPrefs.SetInt("replay", 1);
+                print(PlayerPrefs.GetInt("replay"));
                 //CREDO IL SAVE
                 SaveData();
                 Application.LoadLevel(0);
@@ -424,6 +431,8 @@ public class CameraScript : MonoBehaviour
 	bool visualizeRightCoin, startVisualizeRightCoin;
 	void drawPlay()
 	{
+        if (Input.GetKey(KeyCode.Escape))
+            PlayScript.State = PlayScript.PlayState.pause;
 		// Visualizza punti. Lo script si adatta atutte le risoluzioni
 		GUI.DrawTexture (new Rect (margin, margin, height, height), coin, ScaleMode.ScaleToFit, true);		
 		GUI.skin.label.fontSize = (int)height;
@@ -451,8 +460,6 @@ public class CameraScript : MonoBehaviour
             if (GUI.Button(new Rect(Screen.width / 2 - height / 2, 0, height, height), quit))
                 Application.Quit();           
         }
-		if(Input.GetKey(KeyCode.Escape))
-			PlayScript.State = PlayScript.PlayState.pause;
 	}
 }
 

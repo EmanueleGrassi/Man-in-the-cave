@@ -40,8 +40,8 @@ public class RockBehaviour : MonoBehaviour {
 	{
 		Instantiate(RockSmoke,
 			new Vector3( gameObject.transform.position.x, -0.3f, gameObject.transform.position.z),
-			Quaternion.identity);		
-	}
+			Quaternion.identity);
+    }
 	
     void OnCollisionEnter(Collision col)
     {
