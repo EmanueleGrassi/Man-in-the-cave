@@ -326,7 +326,7 @@ public class CameraScript : MonoBehaviour
         {
             GUI.skin.label.fontSize = (int)(height * 1.5f);
             GUI.Label(new Rect(height * 5, height * 2, height * 20, height * 2), "You've survived:");
-            GUI.Label(new Rect(height * 8+margin, height * 4.5f, height * 20, height * 2), "00:00");
+            GUI.Label(new Rect(height * 8+margin, height * 4.5f, height * 20, height * 2), "" + TimeSpan.FromSeconds(CameraScript.PlayTime));
             if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3+margin), playAgainButton))
             {
             //    PlayerPrefs.SetInt("replay", 1);
