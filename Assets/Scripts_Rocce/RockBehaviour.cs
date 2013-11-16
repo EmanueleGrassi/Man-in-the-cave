@@ -4,7 +4,7 @@ using System.Collections;
 public class RockBehaviour : MonoBehaviour {
     
     public Vector3 velocity;
-    public static bool Play = false;
+    public static bool Play;
     public AudioClip rockSound;
     public static Vector3 deathP;
 	//public Transform border;
@@ -18,6 +18,7 @@ public class RockBehaviour : MonoBehaviour {
     bool ucciso;
 	// Use this for initialization
 	void Start () {
+        Play = false;
 		pg=GameObject.FindGameObjectWithTag("Player");
 		//Physics.IgnoreCollision(this.gameObject.collider, border.collider, true);
         ucciso = false;
@@ -26,6 +27,8 @@ public class RockBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+        if (PlayScript.State == PlayScript.PlayState.result)
+            Destroy(gameObject);
         if (gameObject.tag != "ground")
         {
             velocity = gameObject.rigidbody.velocity;
@@ -35,12 +38,12 @@ public class RockBehaviour : MonoBehaviour {
             }
         }
     }
-	
-	void OnDestroy()
-	{
-		Instantiate(RockSmoke,
-			new Vector3( gameObject.transform.position.x, -0.3f, gameObject.transform.position.z),
-			Quaternion.identity);
+
+    void OnDestroy()
+    {
+        Instantiate(RockSmoke,
+            new Vector3(gameObject.transform.position.x, -0.3f, gameObject.transform.position.z),
+            Quaternion.identity);
     }
 	
     void OnCollisionEnter(Collision col)
@@ -58,12 +61,14 @@ public class RockBehaviour : MonoBehaviour {
 	            }
             
 			int rnd = Random.Range(0, 5);
-			if ( rnd < 3)
-				Destroy(gameObject);
-			else
-				Instantiate(RockSmoke, 
-					new Vector3( gameObject.transform.position.x, -0.3f, gameObject.transform.position.z),
-					Quaternion.identity);
+            if (rnd < 3)
+            {
+                Destroy(gameObject);
+            }
+            else
+                Instantiate(RockSmoke,
+                    new Vector3(gameObject.transform.position.x, -0.3f, gameObject.transform.position.z),
+                    Quaternion.identity);
         }
         else if (col.gameObject.tag == "backgroundRock")
         {

@@ -35,7 +35,7 @@ public class Spawner_script : MonoBehaviour {
             transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
 
             //SPAWN DI ROCCE E COINS
-            if (Time.time > lastSpawn + nextShot)
+            if (CameraScript.PlayTime > lastSpawn + nextShot)
             {
                 int num = Random.Range(0, 100);
                 if (num <= 10)
@@ -55,7 +55,6 @@ public class Spawner_script : MonoBehaviour {
                     Instantiate(marker, new Vector3(transform.position.x, MarkerPosition.y, 5.3f), Quaternion.identity);
             }
             nextShot = 5 / (Mathf.Log(CameraScript.PlayTime + 2) - Mathf.Log(CameraScript.PlayTime + 2) / 2);
-            //Debug.Log("" + nextShot);
         }
 	}
 

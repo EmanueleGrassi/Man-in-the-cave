@@ -5,6 +5,7 @@ public class GameManager_script : MonoBehaviour {
 
     public static bool PGdead;
     public static float deathTime;
+    public Transform[] spawners;
 
 	// Use this for initialization
 	void Start () {
@@ -13,10 +14,12 @@ public class GameManager_script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () 
-    {    
+    {
         if (PGdead)
+        {
             if (Time.time > deathTime + 2.5f)
                 PlayScript.State = PlayScript.PlayState.result;
+        }
 	}
 
     internal static void spanForResult(bool a, float b)

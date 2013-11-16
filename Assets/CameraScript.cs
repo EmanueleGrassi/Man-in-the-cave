@@ -172,7 +172,8 @@ public class CameraScript : MonoBehaviour
 	void Start ()
 	{
 		//carica i salvataggi
-        LoadData();
+        //LoadData();
+        data = new Data();
 		#region test Records
         /*data = new Data();
 		data.Records[0] = new Rect(8,9,34,3432);
@@ -182,14 +183,7 @@ public class CameraScript : MonoBehaviour
 		LoadData();
 		print("width 0: "+data.Records[0].width );*/
 		#endregion
-        print(PlayerPrefs.GetInt("replay"));
-        if (PlayerPrefs.GetInt("replay") == 1)
-        {
-            PlayerPrefs.SetInt("replay", 0);
-            print(PlayerPrefs.GetInt("replay"));
-            PlayScript.State = PlayScript.PlayState.play;
-            //Clean();
-        }
+       
         rebornUsed = false;
         nexshot = 0.0f;
 		smoothTime = 0.3f;
@@ -201,30 +195,14 @@ public class CameraScript : MonoBehaviour
 		height = Screen.width / 20;
 		margin = Screen.width / 60;
 		margin2 = 0;// Screen.width / 70;
+        PlayScript.State = PlayScript.PlayState.play;
 	}
-
-    //void Clean ()
-    //{
-    //    GameObject[] rocks = GameObject.FindGameObjectsWithTag("rock");
-    //    GameObject[] marker = GameObject.FindGameObjectsWithTag("marker");
-    //    GameObject[] smokes = GameObject.FindGameObjectsWithTag("smoke");
-    //    for (int i = 0; i < rocks.Length; i++)
-    //    {
-    //        print(rocks[i]);
-    //        Destroy(rocks[i]);
-    //    }
-    //    for (int i = 0; i < marker.Length; i++)
-    //    {
-    //        print(marker[i]);
-    //        Destroy(marker[i]);
-    //    }
-    //    for (int i = 0; i<smokes.Length; i++)
-    //        Destroy(smokes[i]);
-    //}
 
 	// Update is called once per frame    
 	void Update ()
 	{
+        if (replayGame)
+            PlayScript.State = PlayScript.PlayState.play;
 		PlayTime += Time.deltaTime;
 		if (!audio.isPlaying) {
 			audio.clip = background;		
@@ -269,27 +247,27 @@ public class CameraScript : MonoBehaviour
 		if (isDebuging)
 			if (GUI.Button (new Rect (Screen.width / 2 - height / 2, 0, height, height), quit))
 				Application.Quit ();
-		
-		if(PlayScript.State == PlayScript.PlayState.play)
-		{
-			ManageButton(true);
-			drawPlay();
-		}
-		else if(PlayScript.State == PlayScript.PlayState.menu)
-		{
-			ManageButton(false);
-			drawMenu();
-		}
-		else if(PlayScript.State == PlayScript.PlayState.pause)
-		{
-			ManageButton(false);
+
+        if (PlayScript.State == PlayScript.PlayState.play)
+        {
+            ManageButton(true);
+            drawPlay();
+        }
+        else if (PlayScript.State == PlayScript.PlayState.menu)
+        {
+            ManageButton(false);
+            drawMenu();
+        }
+        else if (PlayScript.State == PlayScript.PlayState.pause)
+        {
+            ManageButton(false);
             drawPause();
-		}
-		else if(PlayScript.State == PlayScript.PlayState.result)
-		{
-			ManageButton(false);
+        }
+        else if (PlayScript.State == PlayScript.PlayState.result)
+        {
+            ManageButton(false);
             drawResult();
-		}
+        }
 	}
 
     private void drawPause()
@@ -298,9 +276,7 @@ public class CameraScript : MonoBehaviour
             PlayScript.State = PlayScript.PlayState.play;
         if (GUI.Button(new Rect(height * 9, height * 4, height*3, height*3), playAgainButton))
         {
-            PlayerPrefs.SetInt("replay", 1);
-            print(PlayerPrefs.GetInt("replay"));
-            Application.LoadLevel(0);
+            Application.LoadLevel(1);
         }
         if (GUI.Button(new Rect(height * 13, height * 4, height*3, height*3), homeButton))
             Application.LoadLevel(0);
@@ -309,7 +285,7 @@ public class CameraScript : MonoBehaviour
 			PlayScript.State = PlayScript.PlayState.play;
         
     }
-    bool vis;
+    bool replayGame;
     private void drawResult()
     {
 		if(Input.GetKey(KeyCode.Escape))
@@ -332,8 +308,11 @@ public class CameraScript : MonoBehaviour
                 Vector3 pos = playerPG.transform.position;
                 playerPG.transform.position = new Vector3(pos.x, pos.y + 10, pos.z);
                 playerPG.active = true;
+                print("active");
 				rebornUsed = true;
 				PlayScript.State = PlayScript.PlayState.play;
+                print("state play");
+                replayGame = true;
             }
             if (GUI.Button(new Rect(height * 9 + margin*5, height * 8, height * 3, height * 3), CancelButton))
             {
@@ -341,18 +320,18 @@ public class CameraScript : MonoBehaviour
 				rebornUsed = true;
             }
         }
-        if (vis == false)
+        else if (vis == false)
         {
             GUI.skin.label.fontSize = (int)(height * 1.5f);
             GUI.Label(new Rect(height * 5, height * 2, height * 20, height * 2), "You've survived:");
             GUI.Label(new Rect(height * 8+margin, height * 4.5f, height * 20, height * 2), "00:00");
             if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3+margin), playAgainButton))
             {
-                PlayerPrefs.SetInt("replay", 1);
-                print(PlayerPrefs.GetInt("replay"));
+            //    PlayerPrefs.SetInt("replay", 1);
+            //    print(PlayerPrefs.GetInt("replay"));
                 //CREDO IL SAVE
                 SaveData();
-                Application.LoadLevel(0);
+                Application.LoadLevel(1);
             }
             if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3+margin), homeButton))
             {
@@ -382,13 +361,13 @@ public class CameraScript : MonoBehaviour
 										titleHeight + playSize + margin*2,
 										piccoliBottoniSize,piccoliBottoniHight), ScoreButton))
 		        {
-		        	Application.LoadLevel(3);
+		        	Application.LoadLevel(4);
 				}
 				if (GUI.Button( new Rect(((Screen.width-((piccoliBottoniSize*2)+margin2))/2) +(piccoliBottoniSize),
 											(margin2*3)+ titleHeight + playSize+ margin*2,
 											piccoliBottoniSize ,piccoliBottoniHight), ItemsButton))
 		        {
-		        	Application.LoadLevel(2);//vai nella pagina Items
+		        	Application.LoadLevel(3);//vai nella pagina Items
 				}			
 		
 			
@@ -396,7 +375,7 @@ public class CameraScript : MonoBehaviour
 								(margin2*4)+ titleHeight+ playSize+ piccoliBottoniHight+margin*2,
 									piccoliBottoniSize*2,BuyHeight), BuyItemsButton))
 	        {
-	        	Application.LoadLevel(1);//vai nella pagina BuyItems
+	        	Application.LoadLevel(2);//vai nella pagina BuyItems
 			}
         
 		if (GUI.Button(new Rect(Screen.width-SocialSize, Screen.height-SocialSize*3, SocialSize, SocialSize) ,facebook)) 
