@@ -12,14 +12,11 @@ public class PG_collider : MonoBehaviour
     {
         if (col.gameObject.tag == "rock")
         {
-            //Destroy(col.gameObject);
-            //gameObject.SendMessage("OnEndGame");
             a = true;
-            b = Time.time;
+            b = CameraScript.PlayTime;
             GameManager_script.spanForResult(a,b);
             //print("sei qui.......");
-            pg.active = false;			
-            //Destroy(player.gameObject);
+            pg.active = false;
         }
     }
 }

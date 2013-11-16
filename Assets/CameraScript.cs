@@ -145,6 +145,7 @@ public class CameraScript : MonoBehaviour
 	public Texture Title, facebook,twitter,review,celialab;
     public Texture useReborn, OKbutton, CancelButton;
 	public Transform bengalaButton, movementButton, jumpButton;
+    public static bool replayGame;
 	
 	public static void SaveData()
 	{
@@ -172,8 +173,8 @@ public class CameraScript : MonoBehaviour
 	void Start ()
 	{
 		//carica i salvataggi
-        //LoadData();
-        data = new Data();
+        LoadData();
+        //data = new Data();
 		#region test Records
         /*data = new Data();
 		data.Records[0] = new Rect(8,9,34,3432);
@@ -202,7 +203,10 @@ public class CameraScript : MonoBehaviour
 	void Update ()
 	{
         if (replayGame)
+        {
             PlayScript.State = PlayScript.PlayState.play;
+            //replayGame = false;
+        }
 		PlayTime += Time.deltaTime;
 		if (!audio.isPlaying) {
 			audio.clip = background;		
@@ -285,7 +289,7 @@ public class CameraScript : MonoBehaviour
 			PlayScript.State = PlayScript.PlayState.play;
         
     }
-    bool replayGame;
+    
     private void drawResult()
     {
 		if(Input.GetKey(KeyCode.Escape))
@@ -308,10 +312,8 @@ public class CameraScript : MonoBehaviour
                 Vector3 pos = playerPG.transform.position;
                 playerPG.transform.position = new Vector3(pos.x, pos.y + 10, pos.z);
                 playerPG.active = true;
-                print("active");
 				rebornUsed = true;
-				PlayScript.State = PlayScript.PlayState.play;
-                print("state play");
+                GameManager_script.PGdead = false;
                 replayGame = true;
             }
             if (GUI.Button(new Rect(height * 9 + margin*5, height * 8, height * 3, height * 3), CancelButton))

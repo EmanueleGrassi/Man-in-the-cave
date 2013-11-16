@@ -17,8 +17,12 @@ public class GameManager_script : MonoBehaviour {
     {
         if (PGdead)
         {
-            if (Time.time > deathTime + 2.5f)
+            if (CameraScript.PlayTime > deathTime + 2.5f)
+            {
+                if (CameraScript.replayGame)
+                    CameraScript.replayGame = false;
                 PlayScript.State = PlayScript.PlayState.result;
+            }
         }
 	}
 
