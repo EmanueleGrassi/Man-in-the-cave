@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MenuScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js">
     <Files>
-      <File FileName="Assets\MenuScript.cs" Line="23" Column="19" />
-      <File FileName="Assets\CameraScript.cs" Line="6" Column="19" />
+      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="60" Column="1" />
+      <File FileName="Assets\MenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\CameraScript.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,7 +13,13 @@
             <Node name="Script" expanded="True" />
             <Node name="Script_FlussoDiGioco" expanded="True" />
             <Node name="Scripts_Rocce" expanded="True" />
-            <Node name="MenuScript.cs" selected="True" />
+          </Node>
+          <Node name="Assembly-UnityScript" expanded="True">
+            <Node name="Standard Assets (Mobile)" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="SidescrollControl.js" selected="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>

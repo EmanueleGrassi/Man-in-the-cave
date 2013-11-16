@@ -475,7 +475,6 @@ GameObject:
   - 33: {fileID: 610176209}
   - 23: {fileID: 610176208}
   - 136: {fileID: 610176207}
-  - 114: {fileID: 610176206}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -496,18 +495,6 @@ Transform:
   - {fileID: 1669456384}
   - {fileID: 332222092}
   m_Father: {fileID: 1077322457}
---- !u!114 &610176206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 610176204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948485f308dce204d8b9b3d696f5fb19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pg: {fileID: 1077322457}
 --- !u!136 &610176207
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1032,10 +1019,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1077322457}
   - 143: {fileID: 1077322462}
-  - 114: {fileID: 1077322461}
   - 82: {fileID: 1077322460}
-  - 114: {fileID: 1077322459}
-  - 114: {fileID: 1077322458}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1055,46 +1039,6 @@ Transform:
   m_Children:
   - {fileID: 610176205}
   m_Father: {fileID: 0}
---- !u!114 &1077322458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1077322456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2571bb50e0294942ada3bd5d33aa684, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  footAudioSource: {fileID: 0}
-  concreteSteps:
-  - {fileID: 8300000, guid: 5c7a9dd5c54586a4dac97fb06bfdca20, type: 3}
-  - {fileID: 8300000, guid: 7b16bbb541a07e741b555b9ee945efda, type: 3}
-  nextfoot: 0
-  hitLayer:
-    serializedVersion: 2
-    m_Bits: 16
---- !u!114 &1077322459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1077322456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cefc48940b359e40b2e7bb63c15d326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1077322457}
-  shout1: {fileID: 8300000, guid: d60b80a32957c27418cfc229b891a716, type: 3}
-  shout2: {fileID: 8300000, guid: 4962877d2e826644a8bbbadeb1411d66, type: 3}
-  shout3: {fileID: 8300000, guid: 0d9d694d6ed330e41a6efd66b3e8aadd, type: 3}
-  shout4: {fileID: 8300000, guid: 0bef38beda283f14785ee128a42f0af3, type: 3}
-  shout5: {fileID: 8300000, guid: e208eda3bd920d6459cfb72299020206, type: 3}
-  wplight: {fileID: 332222089}
-  pglight: {fileID: 1669456383}
-  bengala: {fileID: 400000, guid: 29db9fea2a2614d498f1a8533834d9e0, type: 2}
-  BengalaTouchPad: {fileID: 0}
 --- !u!82 &1077322460
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1153,25 +1097,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &1077322461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: 8294b8504024dab4fbfd05379007b9d4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1077322456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed124f80617b40f0917847d5c87ca73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveTouchPad: {fileID: 0}
-  jumpTouchPad: {fileID: 0}
-  forwardSpeed: 8.5
-  backwardSpeed: 10
-  jumpSpeed: 17
-  inAirMultiplier: .300000012
-  random: 0
 --- !u!143 &1077322462
 CharacterController:
   m_ObjectHideFlags: 0
