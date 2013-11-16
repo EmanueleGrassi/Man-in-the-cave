@@ -47,7 +47,7 @@ public class buyItems_Script : MonoBehaviour {
                 plus1000(this, new EventArgs());
         custom.button.normal.textColor = new Color(234, 202, 0);
         custom.button.fontSize = (int)(size * 0.5f) + 2;
-        if (GUI.Button(new Rect(size * 18-margin, margin * 2, size + 2*margin, size), "+5000"))
+        if (GUI.Button(new Rect(size * 18-margin, margin * 2, size + 3*margin, size), "+5000"))
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
         //colonna di sinistra

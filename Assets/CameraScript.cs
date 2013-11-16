@@ -55,28 +55,28 @@ public class Data
 		  js["lightRainbow"] = value.lightRainbow;
 		  js["helmet"] = (int)value.helmet;
 		  Debug.Log(" len:"+value.Records.Length);
-//		  js["Record"] =new JSON[] {
-//			(JSON)(value.Records[0]),
-//			(JSON)(value.Records[1]),
-//			(JSON)(value.Records[2]),
-//			(JSON)(value.Records[3]),
-//			(JSON)(value.Records[4]),
-//			(JSON)(value.Records[5]),
-//			(JSON)(value.Records[6]),
-//			(JSON)(value.Records[7]),
-//			(JSON)(value.Records[8]),
-//			(JSON)(value.Records[9]),
-//			(JSON)(value.Records[10]),
-//			(JSON)(value.Records[11]),
-//			(JSON)(value.Records[12]),
-//			(JSON)(value.Records[13]),
-//			(JSON)(value.Records[14]),
-//			(JSON)(value.Records[15]),
-//			(JSON)(value.Records[16]),
-//			(JSON)(value.Records[17]),
-//			(JSON)(value.Records[18]),
-//			(JSON)(value.Records[19]), 
-//		}; 	    
+          js["Record"] = new JSON[] {
+			(JSON)(value.Records[0]),
+			(JSON)(value.Records[1]),
+			(JSON)(value.Records[2]),
+			(JSON)(value.Records[3]),
+			(JSON)(value.Records[4]),
+			(JSON)(value.Records[5]),
+			(JSON)(value.Records[6]),
+			(JSON)(value.Records[7]),
+			(JSON)(value.Records[8]),
+			(JSON)(value.Records[9]),
+			(JSON)(value.Records[10]),
+			(JSON)(value.Records[11]),
+			(JSON)(value.Records[12]),
+			(JSON)(value.Records[13]),
+			(JSON)(value.Records[14]),
+			(JSON)(value.Records[15]),
+			(JSON)(value.Records[16]),
+			(JSON)(value.Records[17]),
+			(JSON)(value.Records[18]),
+			(JSON)(value.Records[19]), 
+		}; 	    
 	    return js;
 	  }
  
@@ -97,7 +97,6 @@ public class Data
 			deserislizedClass.lightPink = value.ToBoolean("lightPink");
 			deserislizedClass.lightRainbow = value.ToBoolean("lightRainbow");
 			deserislizedClass.helmet = (Helmet)value.ToInt("helmet");
-			Debug.Log("ci sei quasi");
 			deserislizedClass.Records = value.ToArray<Rect>("Record");
 			return deserislizedClass;
 	    }
@@ -175,7 +174,7 @@ public class CameraScript : MonoBehaviour
 		//carica i salvataggi
         LoadData();
         //data = new Data();
-		#region test Records
+        #region test Records
         /*data = new Data();
 		data.Records[0] = new Rect(8,9,34,3432);
 		print("creato");
@@ -183,7 +182,7 @@ public class CameraScript : MonoBehaviour
 		print("salvato");
 		LoadData();
 		print("width 0: "+data.Records[0].width );*/
-		#endregion
+        #endregion
        
         rebornUsed = false;
         nexshot = 0.0f;

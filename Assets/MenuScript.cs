@@ -16,6 +16,7 @@ public class MenuScript : MonoBehaviour {
 		height = Screen.width / 20;
 		margin = Screen.width / 60;
 		margin2 = 0;
+        CameraScript.LoadData();
 	}
 	
 	// Update is called once per frame

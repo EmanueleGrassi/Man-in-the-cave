@@ -19,6 +19,7 @@ public class Items_Script : MonoBehaviour {
         reborns = CameraScript.data.NumberReborn;
         position = Vector2.zero;
         availableLights = 0;
+        CameraScript.LoadData();
 	}
 	
 	void OnGUI () {
@@ -89,6 +90,7 @@ public class Items_Script : MonoBehaviour {
     private void availableLight()
     {
         custom.button.fontSize = (int)(size / 2);
+        custom.button.normal.textColor = Color.white;
         availableLights = 0;
         if (CameraScript.data.helmet != Helmet.white)
         {
@@ -149,6 +151,16 @@ public class Items_Script : MonoBehaviour {
 				audio.PlayOneShot(equipSound);
 			}
             availableLights++;
+        }
+        if (availableLights == 0)
+        {
+            custom.button.fontSize = (int)(size*1.7f);
+            custom.button.normal.textColor = Color.white;
+            if(GUI.Button(new Rect(size * 3 , size * 8 , size * 14, size * 4), "Buy an helmet!"))
+            {
+                CameraScript.SaveData();
+                Application.LoadLevel(2);
+            }
         }
     }
 }

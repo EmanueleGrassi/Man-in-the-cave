@@ -3,7 +3,6 @@ using System.Collections;
 
 public class LightBehaviour : MonoBehaviour 
 {
-
     bool rainbow=false;
 	float speed=180f;
 	Action colorAction = Action.saleBlue;
@@ -48,9 +47,9 @@ public class LightBehaviour : MonoBehaviour
 	}
     void Update()
     {    
-		//print("r: "+this.light.color.r+" g: "+this.light.color.g+" b: "+this.light.color.b);
 		if(rainbow)
 		{
+            light.intensity = 0.06f;
 			switch (colorAction) 
 			{
 			case Action.saleBlue:

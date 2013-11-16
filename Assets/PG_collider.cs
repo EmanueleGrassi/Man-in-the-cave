@@ -15,7 +15,6 @@ public class PG_collider : MonoBehaviour
             a = true;
             b = CameraScript.PlayTime;
             GameManager_script.spanForResult(a,b);
-            //print("sei qui.......");
             pg.active = false;
         }
     }
