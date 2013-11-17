@@ -25,7 +25,7 @@ public class BombBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-        print("tempo di gioco " + CameraScript.PlayTime);
+
         if (CameraScript.PlayTime > killTime + 2.5f && killed)
         {
             print("sei qui");

@@ -175,13 +175,17 @@ public class CameraScript : MonoBehaviour
         LoadData();
         //data = new Data();
         #region test Records
-        /*data = new Data();
-		data.Records[0] = new Rect(8,9,34,3432);
-		print("creato");
-		SaveData();
-		print("salvato");
-		LoadData();
-		print("width 0: "+data.Records[0].width );*/
+        //data = new Data();
+        //data.Records[0] = new Rect(8,9,34,3432);
+        //print("creato");
+        //SaveData();
+        //print("salvato");
+        //LoadData();
+        //print("width 0: "+data.Records[0].width );
+        foreach (Rect r in data.Records)
+        {
+            print(r.x);
+        }
         #endregion
        
         rebornUsed = false;
@@ -323,14 +327,15 @@ public class CameraScript : MonoBehaviour
         }
         else if (vis == false)
         {
+            Rect record = new Rect(PlayTime, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
+            salvaRecord(record);
             GUI.skin.label.fontSize = (int)(height * 1.5f);
             GUI.Label(new Rect(height * 5, height * 2, height * 20, height * 2), "You've survived:");
-            GUI.Label(new Rect(height * 8+margin, height * 4.5f, height * 20, height * 2), "" + TimeSpan.FromSeconds(CameraScript.PlayTime));
+            TimeSpan t = TimeSpan.FromSeconds(CameraScript.PlayTime);
+            GUI.Label(new Rect(height * 8 + margin, height * 4.5f, height * 20, height * 2), String.Format("{0}:{1}", t.Minutes, t.Seconds));
+            //HAI GUADAGNATO TOT MONETE
             if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3+margin), playAgainButton))
             {
-            //    PlayerPrefs.SetInt("replay", 1);
-            //    print(PlayerPrefs.GetInt("replay"));
-                //CREDO IL SAVE
                 SaveData();
                 Application.LoadLevel(1);
             }
@@ -340,6 +345,31 @@ public class CameraScript : MonoBehaviour
                 Application.LoadLevel(0);
             }
         }		
+    }
+
+    private void salvaRecord(Rect rec)
+    {
+        bool fatto = false;
+        for (int i = 0; i < data.Records.Length && !fatto; i++)
+        {
+            if (rec.x >= data.Records[i].x)
+            {
+                scambiaDa(i,rec);
+                fatto = true;
+            }
+        }
+    }
+    //NON FUNZIONA, RIVEDERE
+    private void scambiaDa(int i, Rect rec)
+    {
+        if (i == 19)
+            data.Records[i] = rec;
+        else
+        {
+            Rect temp = data.Records[i];
+            data.Records[i] = rec;
+            scambiaDa(i + 1, temp);
+        }
     }
 	
 	// PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
