@@ -362,14 +362,14 @@ public class CameraScript : MonoBehaviour
     //NON FUNZIONA, RIVEDERE
     private void scambiaDa(int i, Rect rec)
     {
-        if (i == 19)
-            data.Records[i] = rec;
-        else
         {
             Rect temp = data.Records[i];
             data.Records[i] = rec;
-            data.Records[i + 1] = temp;
-            scambiaDa(i + 1, temp);
+            for (int j = i + 1; j < data.Records.Length-1;j++)
+            {
+                data.Records[j] = temp;
+                temp = data.Records[j+1];
+            }
         }
     }
 	
