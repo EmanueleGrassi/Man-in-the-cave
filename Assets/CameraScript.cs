@@ -368,6 +368,7 @@ public class CameraScript : MonoBehaviour
         {
             Rect temp = data.Records[i];
             data.Records[i] = rec;
+            data.Records[i + 1] = temp;
             scambiaDa(i + 1, temp);
         }
     }
