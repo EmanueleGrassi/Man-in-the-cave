@@ -1,6 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js">
+    <Files>
+      <File FileName="Assets\CharacterStuff\IdleRunJump.cs" Line="34" Column="38" />
+      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="160" Column="57" />
+      <File FileName="Assets\CameraScript.cs" Line="251" Column="12" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
