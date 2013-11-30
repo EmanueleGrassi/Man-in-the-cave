@@ -26,26 +26,27 @@ public class Scores_script : MonoBehaviour {
         pos = GUI.BeginScrollView(new Rect(unit * 6, unit * 4, unit * 18, unit * 12), Vector2.zero, new Rect(0, 0, unit * 18, unit * 30));
         for (i = 0; i <= 20; i++)
         {
-            switch (i)
+            if (i==0)
             {
-                case 0:
-                    GUI.skin.label.fontSize *= 2;
-                    GUI.skin.label.normal.textColor = Color.yellow;
-                    break;
-                case 1:
-                    GUI.skin.label.fontSize =(int)((float)GUI.skin.label.fontSize*1.7f);
-                    GUI.skin.label.normal.textColor = Color.gray;
-                    break;
-                case 2:
-                    GUI.skin.label.fontSize =(int)((float)GUI.skin.label.fontSize*1.3f);
-                    GUI.skin.label.normal.textColor = Color.blue;
-                    break;
-                default:
-                    GUI.skin.label.fontSize = deflab;
-                    GUI.skin.label.normal.textColor = Color.white;
-                    break;
+                GUI.skin.label.fontSize *= 4;
+                GUI.skin.label.normal.textColor = Color.yellow;
             }
-            GUI.Label(new Rect(0, (i * unit), unit * 18, unit), (i + 1) + ". 22:22   23/45/1992");
+            else if (i==1)
+            {
+                GUI.skin.label.fontSize =(int)((float)GUI.skin.label.fontSize*1.7f);
+                GUI.skin.label.normal.textColor = Color.gray;
+            }
+            else if (i==2)
+            {
+                GUI.skin.label.fontSize =(int)((float)GUI.skin.label.fontSize*1.3f);
+                GUI.skin.label.normal.textColor = Color.blue;
+            }
+            else 
+            {
+                GUI.skin.label.fontSize = deflab;
+                GUI.skin.label.normal.textColor = Color.white;     
+            }
+            GUI.Label(new Rect(unit*2-2*margin, (i * unit), unit * 18, unit), (i + 1) + ". 22:22   23/45/1992");
         }
         GUI.EndScrollView();
 	}

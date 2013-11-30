@@ -359,7 +359,7 @@ public class CameraScript : MonoBehaviour
             }
         }
     }
-    //NON FUNZIONA, RIVEDERE
+    
     private void scambiaDa(int i, Rect rec)
     {
         {
