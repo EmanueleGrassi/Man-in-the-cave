@@ -46,7 +46,8 @@ public class Scores_script : MonoBehaviour {
                 GUI.skin.label.fontSize = deflab;
                 GUI.skin.label.normal.textColor = Color.white;     
             }
-            GUI.Label(new Rect(unit*2-2*margin, (i * unit), unit * 18, unit), (i + 1) + ". 22:22   23/45/1992");
+            GUI.Label(new Rect(unit*2-2*margin, (i * unit), unit * 18, unit), (i + 1) + ". "+ CameraScript.data.Records[i].x + "     " +
+                CameraScript.data.Records[i].y + "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
         }
         GUI.EndScrollView();
 	}

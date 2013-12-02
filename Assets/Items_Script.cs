@@ -89,6 +89,10 @@ public class Items_Script : MonoBehaviour {
 
     private void availableLight()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.LoadLevel(0);
+        }
         custom.button.fontSize = (int)(size / 2);
         custom.button.normal.textColor = Color.white;
         availableLights = 0;
