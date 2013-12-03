@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class BombBehaviour : MonoBehaviour {
-	public AudioClip miccia,esplosione,sassi_distrutti,morte1,morte2,morte3;
+	public AudioClip miccia,esplosione,morte1,morte2,morte3;
 	public Transform detonatorBello, detonatorMobile;
 	float explosiontime;
 	bool grounded;
@@ -25,14 +25,16 @@ public class BombBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-
-        if (CameraScript.PlayTime > killTime + 2.5f && killed)
-        {
-            print("sei qui");
-            PlayScript.State = PlayScript.PlayState.result;
-            print("siamo in result");
-            Destroy(gameObject);
-        }
+		
+		if(esplosioneAvvenuta && !audio.isPlaying){
+	        if (killed)
+	        {
+	            print("sei qui");
+	            PlayScript.State = PlayScript.PlayState.result;
+	            print("siamo in result");
+	        }
+			Destroy(gameObject);
+		}
 
         if (grounded && CameraScript.PlayTime > explosiontime && !esplosioneAvvenuta)
         {
@@ -77,14 +79,8 @@ public class BombBehaviour : MonoBehaviour {
                 killTime = CameraScript.PlayTime;
                 //
                 print("" + killTime);
-            }
-            else
-            {
-                print("distruggo");
-                Destroy(gameObject);
-            }
-            
-        }
+			}
+         }
 	}
 	void OnCollisionEnter(Collision collision) 
 	{

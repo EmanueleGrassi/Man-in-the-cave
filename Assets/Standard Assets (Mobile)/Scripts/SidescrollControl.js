@@ -23,7 +23,7 @@ private var thisTransform : Transform;
 private var character : CharacterController;
 private var velocity : Vector3;						// Used for continuing momentum while in air
 private var canJump = true;
-
+var clips: AudioClip[];
 
 //var  footstep:AudioClip;
 
@@ -67,14 +67,14 @@ function OnEndGame()
 	this.enabled = false;
 }
 
-
+/*
 function OnGUI()
 {
-	GUI.Label (new Rect (100,100, /*moltiplicare la metà delle cifre moneta per height*/ 600f, 300f),
+	GUI.Label (new Rect (100,100, /*moltiplicare la metà delle cifre moneta per height 600f, 300f),
 			"x: "+ v.x+" | y:"+v.y+" | z: "+ v.z+" turnback2:"+turnback2+" turnback:"+turnback);
         	
 
-}
+}*/
 function Update()
 {
 	if (animator)
@@ -102,6 +102,7 @@ function Update()
 				jump = true;
 				canJump = false;
 				animator.SetBool("Jump", true);
+				PlayClip();
 		 	}	
 			
 			if ( jump )
@@ -170,3 +171,8 @@ function Update()
 var  turnback:boolean=false;
 var  turnback2:boolean=true;
 var v:Vector3;
+function PlayClip()
+    {
+        var random:int = Random.Range(0, clips.Length);
+        audio.PlayOneShot(clips[random]);
+    }

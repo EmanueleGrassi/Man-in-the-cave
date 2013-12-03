@@ -205,6 +205,14 @@ MonoBehaviour:
   backwardSpeed: 10
   jumpSpeed: 17
   inAirMultiplier: .300000012
+  clips:
+  - {fileID: 8300000, guid: 2fa4164de9d6424418f66b165e08d745, type: 3}
+  - {fileID: 8300000, guid: 72ae7965d77646a4d8b659a38e7e8184, type: 3}
+  - {fileID: 8300000, guid: e92ede997abdd7e48bc71641d5bf9d46, type: 3}
+  - {fileID: 8300000, guid: c83ca6d89c1efb0449bb15b279fbd268, type: 3}
+  - {fileID: 8300000, guid: 74dd0d304324ad64185ae459b146546d, type: 3}
+  - {fileID: 8300000, guid: 0f398e58361349e44b2ef864e34c5528, type: 3}
+  - {fileID: 8300000, guid: 073eca27813ffbf41bc19460196f9259, type: 3}
   random: 0
   pgAnimato: {fileID: 612226841}
   DirectionDampTime: .25

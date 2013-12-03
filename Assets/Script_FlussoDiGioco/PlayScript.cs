@@ -95,24 +95,24 @@ public class PlayScript : MonoBehaviour
         {
             playShout = false;
             nextshout = Time.time + 4f;
-            PlayClip(shout1, shout2, shout3, shout4, shout5);
+            PlayClip(this.audio, shout1, shout2, shout3, shout4, shout5);
         }
         //suono salto
-        if (playJump && transform.position.y>startposition+0.1)
+        if (playJump && transform.position.y>1.74)
         {
             playJump = false;
-            PlayClip(jump1, jump2, jump3, jump4, jump5, jump6, jump7);
+            PlayClip(this.audio, jump1, jump2, jump3, jump4, jump5, jump6, jump7);
             nextjump = Time.time + 2;
         }
-        if (transform.position.y <= startposition+0.1 && transform.position.y >= startposition-0.1)
+        if (transform.position.y == 1.74)
         {
             playJump = true;
         }
 	}
 
-    public void PlayClip(params AudioClip[] list)
+	public static void PlayClip(AudioSource audio2,params AudioClip[] list)
     {
         int random = Random.Range(0, list.Length);
-        audio.PlayOneShot(list[random]);
+        audio2.PlayOneShot(list[random]);
     }
 }
