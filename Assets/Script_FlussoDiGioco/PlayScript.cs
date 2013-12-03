@@ -3,21 +3,22 @@ using System.Collections;
 
 public class PlayScript : MonoBehaviour
 {
-	float width, height;
+    float width, height, nextjump;
 	public Transform player;
 	public AudioClip shout1;
 	public AudioClip shout2;
 	public AudioClip shout3;
 	public AudioClip shout4;
 	public AudioClip shout5;
+    public AudioClip jump1, jump2, jump3, jump4, jump5, jump6, jump7;
 	public GameObject wplight, pglight;
     public Transform bengala;
 	public static bool playShout;
 	bool locked;
-    
+    bool playJump;
 	int random;
 	int finger;
-	float nextshout;
+    float nextshout, startposition;
 	public JoystickC BengalaTouchPad;
 	public enum PlayState
 	{
@@ -55,6 +56,8 @@ public class PlayScript : MonoBehaviour
 	
 	void Start ()
 	{
+        startposition = transform.position.y;
+        playJump = true;
 		State = PlayState.menu; 
 		//LUCE A SECONDA DELLA PIATTAFORMA
 		if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.Android) {
@@ -92,27 +95,24 @@ public class PlayScript : MonoBehaviour
         {
             playShout = false;
             nextshout = Time.time + 4f;
-            random = Random.Range(0, 5);
-            switch (random)
-            {
-                case 0:
-                    AudioSource.PlayClipAtPoint(shout1, transform.position);
-                    break;
-                case 1:
-                    AudioSource.PlayClipAtPoint(shout2, transform.position);
-                    break;
-                case 2:
-                    AudioSource.PlayClipAtPoint(shout3, transform.position);
-                    break;
-                case 3:
-                    AudioSource.PlayClipAtPoint(shout4, transform.position);
-                    break;
-                case 4:
-                    AudioSource.PlayClipAtPoint(shout5, transform.position);
-                    break;
-            }
+            PlayClip(shout1, shout2, shout3, shout4, shout5);
+        }
+        //suono salto
+        if (playJump && transform.position.y>startposition+0.1)
+        {
+            playJump = false;
+            PlayClip(jump1, jump2, jump3, jump4, jump5, jump6, jump7);
+            nextjump = Time.time + 2;
+        }
+        if (transform.position.y <= startposition+0.1 && transform.position.y >= startposition-0.1)
+        {
+            playJump = true;
         }
 	}
 
-    
+    public void PlayClip(params AudioClip[] list)
+    {
+        int random = Random.Range(0, list.Length);
+        audio.PlayOneShot(list[random]);
+    }
 }

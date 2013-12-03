@@ -244,6 +244,13 @@ MonoBehaviour:
   shout3: {fileID: 8300000, guid: 0d9d694d6ed330e41a6efd66b3e8aadd, type: 3}
   shout4: {fileID: 8300000, guid: 0bef38beda283f14785ee128a42f0af3, type: 3}
   shout5: {fileID: 8300000, guid: e208eda3bd920d6459cfb72299020206, type: 3}
+  jump1: {fileID: 8300000, guid: 2fa4164de9d6424418f66b165e08d745, type: 3}
+  jump2: {fileID: 8300000, guid: 72ae7965d77646a4d8b659a38e7e8184, type: 3}
+  jump3: {fileID: 8300000, guid: e92ede997abdd7e48bc71641d5bf9d46, type: 3}
+  jump4: {fileID: 8300000, guid: c83ca6d89c1efb0449bb15b279fbd268, type: 3}
+  jump5: {fileID: 8300000, guid: 74dd0d304324ad64185ae459b146546d, type: 3}
+  jump6: {fileID: 8300000, guid: 0f398e58361349e44b2ef864e34c5528, type: 3}
+  jump7: {fileID: 8300000, guid: 073eca27813ffbf41bc19460196f9259, type: 3}
   wplight: {fileID: 595017185}
   pglight: {fileID: 1309978350}
   bengala: {fileID: 400000, guid: 29db9fea2a2614d498f1a8533834d9e0, type: 2}
@@ -1032,8 +1039,8 @@ AudioSource:
   m_GameObject: {fileID: 458439267}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 7b12ce3ac3b9d3243b867d9d0e28a320, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: .526000023
   m_Pitch: 1
   Loop: 0
