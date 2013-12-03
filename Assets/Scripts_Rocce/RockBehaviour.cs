@@ -10,6 +10,7 @@ public class RockBehaviour : MonoBehaviour {
 	//public Transform border;
 	GameObject pg;
 	int random;
+	float timedestroy;
 	public AudioClip morte1;
 	public AudioClip morte2;	
 	public AudioClip morte3;
@@ -36,7 +37,9 @@ public class RockBehaviour : MonoBehaviour {
             {
                 gameObject.tag = "backgroundRock";
             }
-        }
+		}
+		if(Time.time > timedestroy && gameObject.tag=="backgroundRock")
+			Destroy(gameObject);
     }
 
     void OnDestroy()
@@ -52,20 +55,13 @@ public class RockBehaviour : MonoBehaviour {
         {
             Play = true;
             deathP = transform.position;
-            
+			timedestroy = Time.time+Random.Range(4,12)/2;
 			if(pg!=null)
 	            if (deathP.x < pg.transform.position.x + 6f && deathP.x > pg.transform.position.x - 6f)
 	            {
 	                PlayScript.playShout = true;
 	                Vibrate();
 	            }
-            
-			int rnd = Random.Range(0, 5);
-            if (rnd < 3)
-            {
-                Destroy(gameObject);
-            }
-            else
                 Instantiate(RockSmoke,
                     new Vector3(gameObject.transform.position.x, -0.3f, gameObject.transform.position.z),
                     Quaternion.identity);
