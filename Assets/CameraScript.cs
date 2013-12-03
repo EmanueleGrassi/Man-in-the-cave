@@ -150,9 +150,9 @@ public class CameraScript : MonoBehaviour
 	{
 		JSON  js = new JSON();
 		js["salvataggio"]=(JSON) data;
-        PlayerPrefs.SetString("salvataggio", js.serialized);
+		PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
         PlayerPrefs.Save();
-		// ^ sostituire con salvataggio su unity
+
 	}
 	public static void LoadData()
 	{
@@ -350,29 +350,27 @@ public class CameraScript : MonoBehaviour
     }
 
     private void salvaRecord(Rect rec)
-    {
-        bool fatto = false;
-        for (int i = 0; i < data.Records.Length && !fatto; i++)
+    {        
+        for (int i = 0; i < data.Records.Length; i++)
         {
             if (rec.x >= data.Records[i].x)
             {
                 scambiaDa(i,rec);
-                fatto = true;
+				return;
             }
         }
     }
     
     private void scambiaDa(int i, Rect rec)
-    {
+    {        
+        Rect temp = data.Records[i];
+        data.Records[i] = rec;
+        for (int j = i + 1; j < data.Records.Length;j++)
         {
-            Rect temp = data.Records[i];
-            data.Records[i] = rec;
-            for (int j = i + 1; j < data.Records.Length-1;j++)
-            {
-                data.Records[j] = temp;
-                temp = data.Records[j+1];
-            }
-        }
+			Rect temp1 = data.Records[j];
+            data.Records[j] = temp;    
+			temp=temp1;
+        }        
     }
 	
 	// PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
