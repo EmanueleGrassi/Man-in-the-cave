@@ -205,6 +205,8 @@ public class CameraScript : MonoBehaviour
 	// Update is called once per frame    
 	void Update ()
 	{
+        if (Input.GetKey(KeyCode.Escape))
+            PlayScript.State = PlayScript.PlayState.pause;
         if (replayGame)
         {
             PlayScript.State = PlayScript.PlayState.play;
@@ -322,7 +324,7 @@ public class CameraScript : MonoBehaviour
             if (GUI.Button(new Rect(height * 9 + margin*5, height * 8, height * 3, height * 3), CancelButton))
             {
                 vis = false;
-                //rebornUsed = true;
+                rebornUsed = true;
             }
         }
         else if (vis == false)
@@ -442,8 +444,7 @@ public class CameraScript : MonoBehaviour
 	bool visualizeRightCoin, startVisualizeRightCoin;
 	void drawPlay()
 	{
-        if (Input.GetKey(KeyCode.Escape))
-            PlayScript.State = PlayScript.PlayState.pause;
+        
 		// Visualizza punti. Lo script si adatta atutte le risoluzioni
 		GUI.DrawTexture (new Rect (margin, margin, height, height), coin, ScaleMode.ScaleToFit, true);		
 		GUI.skin.label.fontSize = (int)height;

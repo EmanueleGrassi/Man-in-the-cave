@@ -49,7 +49,7 @@ public class LightBehaviour : MonoBehaviour
     {    
 		if(rainbow)
 		{
-            light.intensity = 0.06f;
+            light.intensity = 0.006f;
 			switch (colorAction) 
 			{
 			case Action.saleBlue:

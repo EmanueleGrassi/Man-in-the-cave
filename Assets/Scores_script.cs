@@ -16,6 +16,7 @@ public class Scores_script : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+    //E' BRUTTO, MA NON METTEDE IL DITO NELLA PIAGA PLIS, ABBIATE FEDE LE COSE STANNO PER CAMBIARE (CIT.)
 	void OnGUI () {
         deflab = GUI.skin.label.fontSize;
         GUI.skin = custom;
@@ -50,10 +51,16 @@ public class Scores_script : MonoBehaviour {
                 CameraScript.data.Records[i].y + "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
         }
         GUI.EndScrollView();
+        GUI.skin.label.normal.textColor = Color.white;
 	}
 
+
+
+    //NON FUNZIONA, CHIUNQUE LO SA FIXARE E' IL BENVENUTO
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+            Application.LoadLevel(0);
         if (Input.touchCount > 0)
         {
             Touch touch = Input.touches[0];
