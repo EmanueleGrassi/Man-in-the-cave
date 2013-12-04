@@ -31,7 +31,7 @@
 		{
 			volume = 1;
 		}
-		if(Time.time>nextfoot && transform.position.y<=0)
+		if(Time.time>nextfoot && transform.position.y<=1.74)
 		{
 			audio.PlayOneShot(concreteSteps[Random.Range(0, concreteSteps.length)], volume);
 			nextfoot=Time.time+0.3;
