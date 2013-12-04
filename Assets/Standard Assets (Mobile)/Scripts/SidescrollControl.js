@@ -110,6 +110,7 @@ function Update()
 				// Apply the current movement to launch velocity		
 				velocity = character.velocity;
 				velocity.y = jumpSpeed;	
+
 			}
 			else
 			{

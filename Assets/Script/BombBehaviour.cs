@@ -38,49 +38,8 @@ public class BombBehaviour : MonoBehaviour {
 
         if (grounded && CameraScript.PlayTime > explosiontime && !esplosioneAvvenuta)
         {
-            
-            audio.loop = false;                
-            audio.PlayOneShot(esplosione);
-
-            //timeAfterExplosion = CameraScript.PlayTime + 4.5f;
-            if (Application.platform == RuntimePlatform.Android ||
-                Application.platform == RuntimePlatform.WP8Player
-                || Application.platform == RuntimePlatform.IPhonePlayer)
-                Instantiate(detonatorMobile, transform.position, Quaternion.identity);
-            else
-                Instantiate(detonatorBello, transform.position, Quaternion.identity);
-
-            //
-            gameObject.renderer.enabled = false;
-            //
-            esplosioneAvvenuta = true;
-
-            if (pg.transform.position.x < transform.position.x + 7 && pg.transform.position.x > transform.position.x - 7)
-            {
-                Vibrate();
-
-                int random = Random.Range(0, 3);
-                switch (random)
-                {
-                    case 0:
-                        AudioSource.PlayClipAtPoint(morte1, transform.position);
-                        break;
-                    case 1:
-                        AudioSource.PlayClipAtPoint(morte2, transform.position);
-                        break;
-                    case 2:
-                        AudioSource.PlayClipAtPoint(morte3, transform.position);
-                        break;
-                }
-                pg.SetActive(false);
-                print("disattivato");
-                //
-                killed = true;
-                killTime = CameraScript.PlayTime;
-                //
-                print("" + killTime);
-			}
-         }
+            explode();
+        }
 	}
 	void OnCollisionEnter(Collision collision) 
 	{
@@ -89,7 +48,56 @@ public class BombBehaviour : MonoBehaviour {
 			explosiontime = CameraScript.PlayTime + Random.Range(2.5f,5.0f);
 			grounded=true;
 		}
+        if (collision.gameObject.tag == "rock")
+            explode();
+        if (collision.gameObject.tag == "Player" && !grounded)
+            explode();
 	}
+
+    void explode()
+    {
+        audio.loop = false;
+        audio.PlayOneShot(esplosione);
+
+        //timeAfterExplosion = CameraScript.PlayTime + 4.5f;
+        if (Application.platform == RuntimePlatform.Android ||
+            Application.platform == RuntimePlatform.WP8Player
+            || Application.platform == RuntimePlatform.IPhonePlayer)
+            Instantiate(detonatorMobile, transform.position, Quaternion.identity);
+        else
+            Instantiate(detonatorBello, transform.position, Quaternion.identity);
+
+        //
+        gameObject.renderer.enabled = false;
+        //
+        esplosioneAvvenuta = true;
+
+        if (pg.transform.position.x < transform.position.x + 7 && pg.transform.position.x > transform.position.x - 7 && transform.position.y < 5)
+        {
+            Vibrate();
+
+            int random = Random.Range(0, 3);
+            switch (random)
+            {
+                case 0:
+                    AudioSource.PlayClipAtPoint(morte1, transform.position);
+                    break;
+                case 1:
+                    AudioSource.PlayClipAtPoint(morte2, transform.position);
+                    break;
+                case 2:
+                    AudioSource.PlayClipAtPoint(morte3, transform.position);
+                    break;
+            }
+            pg.SetActive(false);
+            print("disattivato");
+            //
+            killed = true;
+            killTime = CameraScript.PlayTime;
+            //
+            print("" + killTime);
+        }
+    }
 
 	void Vibrate()
 	{		
