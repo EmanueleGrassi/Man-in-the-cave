@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayScript : MonoBehaviour
 {
-    float width, height, nextjump;
+    float width, height;
 	public Transform player;
 	public AudioClip shout1;
 	public AudioClip shout2;
@@ -18,7 +18,7 @@ public class PlayScript : MonoBehaviour
     bool playJump;
 	int random;
 	int finger;
-    float nextshout, startposition;
+    float nextshout;
 	public JoystickC BengalaTouchPad;
 	public enum PlayState
 	{
@@ -56,8 +56,6 @@ public class PlayScript : MonoBehaviour
 	
 	void Start ()
 	{
-        startposition = transform.position.y;
-        playJump = true;
 		State = PlayState.menu; 
 		//LUCE A SECONDA DELLA PIATTAFORMA
 		if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.Android) {
@@ -102,11 +100,6 @@ public class PlayScript : MonoBehaviour
         {
             playJump = false;
             PlayClip(this.audio, jump1, jump2, jump3, jump4, jump5, jump6, jump7);
-            nextjump = Time.time + 2;
-        }
-        if (transform.position.y == 1.74)
-        {
-            playJump = true;
         }
 	}
 
@@ -114,5 +107,11 @@ public class PlayScript : MonoBehaviour
     {
         int random = Random.Range(0, list.Length);
         audio2.PlayOneShot(list[random]);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "ground")
+            playJump = true;
     }
 }
