@@ -21,37 +21,39 @@ public class Scores_script : MonoBehaviour {
         deflab = GUI.skin.label.fontSize;
         GUI.skin = custom;
         GUI.skin.label.fontSize = (int)(unit * 1.8f);
-        GUI.Label(new Rect(unit*6-margin, unit, unit*9, unit*2+margin), "Highscores");
-        GUI.skin.label.fontSize = deflab;
+        GUI.Label(new Rect(unit*6-margin, unit, unit*9, unit*2+2*margin), "Highscores");
+        GUI.skin.label.fontSize = (int)(unit * 0.7f);
         int i;
         pos = GUI.BeginScrollView(new Rect(unit * 6, unit * 4, unit * 18, unit * 12), Vector2.zero, new Rect(0, 0, unit * 18, unit * 30));
-        for (i = 0; i <= 20; i++)
+        for (i = 0; i < 20; i++)
         {
+            float multmargin = 0;
             if (i==0)
             {
-                GUI.skin.label.fontSize *= 4;
                 GUI.skin.label.normal.textColor = Color.yellow;
+                multmargin = 1f;
             }
             else if (i==1)
             {
-                GUI.skin.label.fontSize =(int)((float)GUI.skin.label.fontSize*1.7f);
+                multmargin = 0.7f;
                 GUI.skin.label.normal.textColor = Color.gray;
             }
             else if (i==2)
             {
-                GUI.skin.label.fontSize =(int)((float)GUI.skin.label.fontSize*1.3f);
                 GUI.skin.label.normal.textColor = Color.blue;
+                multmargin = 0.5f;
             }
             else 
             {
                 GUI.skin.label.fontSize = deflab;
                 GUI.skin.label.normal.textColor = Color.white;     
             }
-            GUI.Label(new Rect(unit*2-2*margin, (i * unit), unit * 18, unit), (i + 1) + ". "+ CameraScript.data.Records[i].x + "     " +
-                CameraScript.data.Records[i].y + "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
+            GUI.Label(new Rect(unit*2-2*margin-multmargin*margin, (i * unit), unit * 18, unit), (i + 1) + ". "+ CameraScript.data.Records[i].left + "     " +
+                CameraScript.data.Records[i].top + "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
         }
         GUI.EndScrollView();
         GUI.skin.label.normal.textColor = Color.white;
+        GUI.skin.label.fontSize = deflab;
 	}
 
 
