@@ -50,7 +50,7 @@ function Start()
 {
 	// Cache this component at startup instead of looking up every frame	
 	gui = GetComponent( GUITexture );
-	
+	gui.pixelInset= Rect (gui.pixelInset.x*Screen.width/1280, 0, gui.pixelInset.width*Screen.width/1280, gui.pixelInset.height*Screen.width/1280);
 	// Store the default rect for the gui, so we can snap back to it
 	defaultRect = gui.pixelInset;	
     

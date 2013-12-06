@@ -35,7 +35,7 @@ public class JoystickC : MonoBehaviour
 	{
 		// Cache this component at startup instead of looking up every frame			
 		gui = gameObject.guiTexture;
-	
+        gui.pixelInset = new Rect(gui.pixelInset.x * Screen.width / 1280, gui.pixelInset.y * Screen.width / 1280, gui.pixelInset.width * Screen.width / 1280, gui.pixelInset.height * Screen.width / 1280);
 		// Store the default rect for the gui, so we can snap back to it
 		defaultRect = gui.pixelInset;	
     
