@@ -153,13 +153,13 @@ function Update()
 			{
 				turnback=true;
 				turnback2=false;
-				transform.rotation= Quaternion.Euler(new Vector3(0,-180,0));
+				transform.rotation= Quaternion.Euler(new Vector3(0,-90,0));
 			}
 			if(v.x > 0.05 && !turnback2)
 			{
 				turnback2=true;
 				turnback=false;
-				transform.rotation= Quaternion.Euler(new Vector3(0,0,0));
+				transform.rotation= Quaternion.Euler(new Vector3(0,90,0));
 			}
 			animator.SetFloat("Speed", v.x*v.x);
             animator.SetFloat("Direction", 0, DirectionDampTime, Time.deltaTime);	
