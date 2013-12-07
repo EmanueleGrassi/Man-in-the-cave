@@ -121,6 +121,14 @@ Prefab:
       propertyPath: m_CullingMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 47d0c29352cd94d3ab62999009abee41, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 47d0c29352cd94d3ab62999009abee41, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47d0c29352cd94d3ab62999009abee41, type: 3}
   m_RootGameObject: {fileID: 1150289581}
