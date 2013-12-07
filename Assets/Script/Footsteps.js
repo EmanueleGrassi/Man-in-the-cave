@@ -25,7 +25,7 @@
 		
 		if(cc != null)
 		{
-			volume = Mathf.Clamp01(0.1 + cc.velocity.magnitude * 0.3);
+			volume = Mathf.Clamp01(cc.velocity.magnitude * 0.3);
 		}
 		else
 		{
