@@ -75,7 +75,7 @@ public class Data
 			(JSON)(value.Records[16]),
 			(JSON)(value.Records[17]),
 			(JSON)(value.Records[18]),
-			(JSON)(value.Records[19]), 
+			(JSON)(value.Records[19])
 		}; 	    
 	    return js;
 	  }
@@ -145,6 +145,7 @@ public class CameraScript : MonoBehaviour
     public Texture useReborn, OKbutton, CancelButton;
 	public Transform bengalaButton, movementButton, jumpButton;
     public static bool replayGame;
+    public static bool goBack;
 	
 	public static void SaveData()
 	{
@@ -171,6 +172,7 @@ public class CameraScript : MonoBehaviour
 	
 	void Start ()
 	{
+        goBack = false;
 		//carica i salvataggi
         LoadData();
         //data = new Data();

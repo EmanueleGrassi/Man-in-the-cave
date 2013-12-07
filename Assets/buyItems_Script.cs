@@ -10,9 +10,11 @@ public class buyItems_Script : MonoBehaviour {
 	public AudioClip cashsound;
     public static event EventHandler plus500, plus1000, plus5000;
     float[] span;
+    bool goBack;
     // Use this for initialization
     void Start()
     {
+        goBack = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
         span = new float[] { 0,0, size * 2 + margin * 2, margin * 4 + size * 4, margin * 6 + size * 6, margin * 8 + size * 8 };
@@ -21,8 +23,8 @@ public class buyItems_Script : MonoBehaviour {
 
     void OnGUI()
     {
-		if(Input.GetKey(KeyCode.Escape))
-			Application.LoadLevel(0);
+        if (Input.GetKey(KeyCode.Escape))
+            goBack = true;
         GUI.skin = custom;
         custom.label.normal.textColor = new Color(255, 255, 255);
         custom.label.fontSize = (int)(size * 1.5);
@@ -157,6 +159,8 @@ public class buyItems_Script : MonoBehaviour {
                 position.y += touch.deltaPosition.y * 2;
             }
         }
+        if (goBack)
+            Application.LoadLevel(0);
     }
 
     bool IsTouchInsideList(Vector2 touchPos)

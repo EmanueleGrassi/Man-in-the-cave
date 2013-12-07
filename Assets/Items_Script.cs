@@ -11,8 +11,10 @@ public class Items_Script : MonoBehaviour {
     int availableLights;
     bool draw;
 	public AudioClip equipSound;
+    bool goBack;
 	// Use this for initialization
 	void Start () {
+        goBack = false;
 		size = Screen.width / 20;
         margin = Screen.width / 60;
         numbengala = CameraScript.data.numBengala;
@@ -21,6 +23,17 @@ public class Items_Script : MonoBehaviour {
         availableLights = 0;
         CameraScript.LoadData();
 	}
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            CameraScript.SaveData();
+            goBack = true;
+        }
+        if (goBack)
+            Application.LoadLevel(0);
+    }
 	
 	void OnGUI () {
         GUI.skin = custom;
@@ -45,11 +58,7 @@ public class Items_Script : MonoBehaviour {
         //LUCI DISPONIBILI
         GUI.Label(new Rect(margin, size * 6 +  margin, size * 10, size * 2 + margin), "Lights available");
         availableLight();
-		if(Input.GetKey(KeyCode.Escape))
-        {
-            CameraScript.SaveData();
-            Application.LoadLevel(0);
-        }
+		
 		   
 	}
 
@@ -89,10 +98,10 @@ public class Items_Script : MonoBehaviour {
 
     private void availableLight()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            Application.LoadLevel(0);
-        }
+        //if (Input.GetKey(KeyCode.Escape))
+        //{
+        //    goBack = true;
+        //}
         custom.button.fontSize = (int)(size / 2);
         custom.button.normal.textColor = Color.white;
         availableLights = 0;

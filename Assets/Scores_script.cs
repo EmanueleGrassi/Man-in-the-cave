@@ -7,12 +7,14 @@ public class Scores_script : MonoBehaviour {
     public GUISkin custom;
     int deflab;
     Vector2 pos;
+    bool goBack;
 
 	// Use this for initialization
 	void Start () {
         unit = Screen.width / 20;
         margin = Screen.width / 60;
         pos = Vector2.zero;
+        goBack = false;
 	}
 	
 	// Update is called once per frame
@@ -62,7 +64,7 @@ public class Scores_script : MonoBehaviour {
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
-            Application.LoadLevel(0);
+            goBack = true;
         if (Input.touchCount > 0)
         {
             Touch touch = Input.touches[0];
@@ -73,6 +75,9 @@ public class Scores_script : MonoBehaviour {
                 pos.y += touch.deltaPosition.y * 2;
             }
         }
+        if (goBack)
+            Application.LoadLevel(0);
+        
     }
 
     bool IsTouchInsideList(Vector2 touchPos)
