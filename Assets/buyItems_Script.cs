@@ -69,6 +69,7 @@ public class buyItems_Script : MonoBehaviour {
                 }
                 else
                     CameraScript.SaveData();
+                audio.PlayOneShot(cashsound);
             }
         if (GUI.Button(new Rect(margin, margin * 11 + size * 3, size * 9, size * 3), reborn))
             if (CameraScript.data.points >= 300)
@@ -82,6 +83,7 @@ public class buyItems_Script : MonoBehaviour {
                 }
                 else
                     CameraScript.SaveData();
+                audio.PlayOneShot(cashsound);
             }
         //scrollview
         int elem = 0;
