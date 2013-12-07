@@ -57,7 +57,7 @@ public class RockBehaviour : MonoBehaviour {
             deathP = transform.position;
 			timedestroy = Time.time+Random.Range(4,12)/2;
 			if(pg!=null)
-	            if (deathP.x < pg.transform.position.x + 6f && deathP.x > pg.transform.position.x - 6f)
+	            if (deathP.x < pg.transform.position.x + 6f && deathP.x > pg.transform.position.x - 6f && PlayScript.canPlay)
 	            {
 	                PlayScript.playShout = true;
 	                Vibrate();

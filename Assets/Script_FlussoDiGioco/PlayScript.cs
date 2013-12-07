@@ -13,7 +13,7 @@ public class PlayScript : MonoBehaviour
     public AudioClip jump1, jump2, jump3, jump4, jump5, jump6, jump7;
 	public GameObject wplight, pglight;
     public Transform bengala;
-	public static bool playShout;
+	public static bool playShout,canPlay;
 	bool locked;
     bool playJump;
 	int random;
@@ -89,7 +89,9 @@ public class PlayScript : MonoBehaviour
             Instantiate(bengala, new Vector3(pos.x, pos.y + 2, pos.z), Quaternion.identity);
         }
         //suono urlo
-        if (playShout && Time.time > nextshout)
+        if (Time.time > nextshout)
+            canPlay = true;
+        if (playShout)
         {
             playShout = false;
             nextshout = Time.time + 4f;
