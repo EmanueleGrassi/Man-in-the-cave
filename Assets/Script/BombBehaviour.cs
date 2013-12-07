@@ -69,6 +69,8 @@ public class BombBehaviour : MonoBehaviour {
 
         //
         gameObject.renderer.enabled = false;
+        gameObject.collider.enabled = false;
+        
         //
         esplosioneAvvenuta = true;
 
