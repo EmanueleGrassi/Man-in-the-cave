@@ -134,7 +134,7 @@ public class CameraScript : MonoBehaviour
 	public bool isDebuging = true;
 	/*CLASSE SALVATAGGIO*/ public static Data data; /*CLASSE SALVATAGGIO*/
 	public static float PlayTime;
-	bool visualizePause = true;
+    bool visualizePause;
     public static bool replay;
     bool rebornUsed;
 	//munu
@@ -146,6 +146,7 @@ public class CameraScript : MonoBehaviour
 	public Transform bengalaButton, movementButton, jumpButton;
     public static bool replayGame;
     public static bool goBack;
+    public static event EventHandler saveEvent, loadEvent;
 	
 	public static void SaveData()
 	{
@@ -166,15 +167,28 @@ public class CameraScript : MonoBehaviour
 		else
 		{
 		    data = new Data();
-		    SaveData();
+            if (Application.platform == RuntimePlatform.WP8Player)
+            {
+                if (saveEvent != null)
+                    saveEvent(saveEvent, new EventArgs());
+            }
+            else
+                SaveData();
 		}	
 	}
 	
 	void Start ()
 	{
+        visualizePause = true;
         goBack = false;
 		//carica i salvataggi
-        LoadData();
+        if (Application.platform == RuntimePlatform.WP8Player)
+        {
+            if (loadEvent != null)
+                loadEvent(this, new EventArgs());
+        }
+        else
+            LoadData();
         //data = new Data();
         #region test Records
         //data = new Data();
@@ -191,8 +205,8 @@ public class CameraScript : MonoBehaviour
 		smoothTime = 0.3f;
 		Volume = 0.2f;
 		PlayTime = 0;
-		if (Application.platform == RuntimePlatform.WP8Player)
-			visualizePause = false;
+        //if (Application.platform == RuntimePlatform.WP8Player)
+        //    visualizePause = false;
 		
 		height = Screen.width / 20;
 		margin = Screen.width / 60;
@@ -336,12 +350,24 @@ public class CameraScript : MonoBehaviour
             //HAI GUADAGNATO TOT MONETE
             if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3+margin), playAgainButton))
             {
-                SaveData();
+                if (Application.platform == RuntimePlatform.WP8Player)
+                {
+                    if (saveEvent != null)
+                        saveEvent(this, new EventArgs());
+                }
+                else
+                    SaveData();
                 Application.LoadLevel(1);
             }
             if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3+margin), homeButton))
             {
-                SaveData();
+                if (Application.platform == RuntimePlatform.WP8Player)
+                {
+                    if (saveEvent != null)
+                        saveEvent(this, new EventArgs());
+                }
+                else
+                    SaveData();
                 Application.LoadLevel(0);
             }
         }		
@@ -434,7 +460,7 @@ public class CameraScript : MonoBehaviour
 			Application.OpenURL("http://celialab.com/");
 		}
 		if(Input.GetKey(KeyCode.Escape))
-		Application.Quit();
+		    Application.Quit();
 	}
 	public static event EventHandler GOReviews;
 	bool visualizeRightCoin, startVisualizeRightCoin;

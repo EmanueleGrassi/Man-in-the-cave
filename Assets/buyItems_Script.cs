@@ -12,6 +12,8 @@ public class buyItems_Script : MonoBehaviour {
     float[] span;
     bool goBack;
     bool imbuying;
+    public static event EventHandler saveEvent, loadEvent;
+
     // Use this for initialization
     void Start()
     {
@@ -19,7 +21,7 @@ public class buyItems_Script : MonoBehaviour {
         goBack = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
-        span = new float[] { 0,0, size * 2 + margin * 2, margin * 4 + size * 4, margin * 6 + size * 6, margin * 8 + size * 8 };
+        span = new float[] { 0,0, size * 2 + margin , margin * 2 + size * 4, margin * 3 + size * 6, margin * 4 + size * 8 };
     }
     Vector2 position = Vector2.zero;
 
@@ -60,14 +62,26 @@ public class buyItems_Script : MonoBehaviour {
             {
                 CameraScript.data.points -= 90;
                 CameraScript.data.numBengala += 2;
-                CameraScript.SaveData();
+                if (Application.platform == RuntimePlatform.WP8Player)
+                {
+                    if (saveEvent != null)
+                        saveEvent(this, new EventArgs());
+                }
+                else
+                    CameraScript.SaveData();
             }
-        if (GUI.Button(new Rect(margin, margin * 12 + size * 3, size * 9, size * 3), reborn))
+        if (GUI.Button(new Rect(margin, margin * 11 + size * 3, size * 9, size * 3), reborn))
             if (CameraScript.data.points >= 300)
             {
                 CameraScript.data.points -= 300;
                 CameraScript.data.NumberReborn++;
-                CameraScript.SaveData();
+                if (Application.platform == RuntimePlatform.WP8Player)
+                {
+                    if (saveEvent != null)
+                        saveEvent(this, new EventArgs());
+                }
+                else
+                    CameraScript.SaveData();
             }
         //scrollview
         int elem = 0;
@@ -82,7 +96,13 @@ public class buyItems_Script : MonoBehaviour {
                     CameraScript.data.points -= 500;
                     CameraScript.data.lightRed = true;
                     CameraScript.data.helmet = Helmet.red;
-                    CameraScript.SaveData();
+                    if (Application.platform == RuntimePlatform.WP8Player)
+                    {
+                        if (saveEvent != null)
+                            saveEvent(this, new EventArgs());
+                    }
+                    else
+                        CameraScript.SaveData();
                     elem++;
                     //SUONA CASSA
                     audio.PlayOneShot(cashsound);
@@ -98,7 +118,13 @@ public class buyItems_Script : MonoBehaviour {
                     CameraScript.data.points -= 550;
                     CameraScript.data.lightBlue = true;
                     CameraScript.data.helmet = Helmet.blue;
-                    CameraScript.SaveData();
+                    if (Application.platform == RuntimePlatform.WP8Player)
+                    {
+                        if (saveEvent != null)
+                            saveEvent(this, new EventArgs());
+                    }
+                    else
+                        CameraScript.SaveData();
                     //SUONA CASSA
                     audio.PlayOneShot(cashsound);
                 }
@@ -112,7 +138,13 @@ public class buyItems_Script : MonoBehaviour {
                     CameraScript.data.points -= 750;
                     CameraScript.data.lightGreen = true;
                     CameraScript.data.helmet = Helmet.green;
-                    CameraScript.SaveData();
+                    if (Application.platform == RuntimePlatform.WP8Player)
+                    {
+                        if (saveEvent != null)
+                            saveEvent(this, new EventArgs());
+                    }
+                    else
+                        CameraScript.SaveData();
                     //SUONA CASSA
                     audio.PlayOneShot(cashsound);
                 }
@@ -126,7 +158,13 @@ public class buyItems_Script : MonoBehaviour {
                     CameraScript.data.points -= 800;
                     CameraScript.data.lightPink = true;
                     CameraScript.data.helmet = Helmet.pink;
-                    CameraScript.SaveData();
+                    if (Application.platform == RuntimePlatform.WP8Player)
+                    {
+                        if (saveEvent != null)
+                            saveEvent(this, new EventArgs());
+                    }
+                    else
+                        CameraScript.SaveData();
                     //SUONA CASSA
                     audio.PlayOneShot(cashsound);
                 }
@@ -140,7 +178,13 @@ public class buyItems_Script : MonoBehaviour {
                     CameraScript.data.points -= 6000;
                     CameraScript.data.lightRainbow = true;
                     CameraScript.data.helmet = Helmet.rainbow;
-                    CameraScript.SaveData();
+                    if (Application.platform == RuntimePlatform.WP8Player)
+                    {
+                        if (saveEvent != null)
+                            saveEvent(this, new EventArgs());
+                    }
+                    else
+                        CameraScript.SaveData();
                     //SUONA CASSA
                     audio.PlayOneShot(cashsound);
                 }

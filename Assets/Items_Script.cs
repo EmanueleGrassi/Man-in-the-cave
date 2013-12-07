@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Items_Script : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class Items_Script : MonoBehaviour {
     bool draw;
 	public AudioClip equipSound;
     bool goBack;
+    public static event EventHandler saveEvent, loadEvent;
+
 	// Use this for initialization
 	void Start () {
         goBack = false;
@@ -21,14 +24,26 @@ public class Items_Script : MonoBehaviour {
         reborns = CameraScript.data.NumberReborn;
         position = Vector2.zero;
         availableLights = 0;
-        CameraScript.LoadData();
+        if (Application.platform == RuntimePlatform.WP8Player)
+        {
+            if (loadEvent != null)
+                loadEvent(this, new EventArgs());
+        }
+        else
+            CameraScript.LoadData();
 	}
 
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            CameraScript.SaveData();
+            if (Application.platform == RuntimePlatform.WP8Player)
+            {
+                if (saveEvent != null)
+                    saveEvent(this, new EventArgs());
+            }
+            else
+                CameraScript.SaveData();
             goBack = true;
         }
         if (goBack)
@@ -56,7 +71,7 @@ public class Items_Script : MonoBehaviour {
         equippedLight();
 
         //LUCI DISPONIBILI
-        GUI.Label(new Rect(margin, size * 6 +  margin, size * 10, size * 2 + margin), "Lights available");
+        //GUI.Label(new Rect(margin, size * 6 +  margin, size * 10, size * 2 + margin), "Lights available");
         availableLight();
 		
 		   
@@ -98,10 +113,6 @@ public class Items_Script : MonoBehaviour {
 
     private void availableLight()
     {
-        //if (Input.GetKey(KeyCode.Escape))
-        //{
-        //    goBack = true;
-        //}
         custom.button.fontSize = (int)(size / 2);
         custom.button.normal.textColor = Color.white;
         availableLights = 0;
@@ -167,13 +178,21 @@ public class Items_Script : MonoBehaviour {
         }
         if (availableLights == 0)
         {
-            custom.button.fontSize = (int)(size*1.7f);
+            custom.button.fontSize = (int)(size);
             custom.button.normal.textColor = Color.white;
-            if(GUI.Button(new Rect(size * 3 , size * 8 , size * 14, size * 4), "Buy an helmet!"))
+            if(GUI.Button(new Rect(margin , size * 6 - margin , size * 11, size * 2+ margin), "Buy a new helmet's light!"))
             {
-                CameraScript.SaveData();
+                if (Application.platform == RuntimePlatform.WP8Player)
+                {
+                    if (saveEvent != null)
+                        saveEvent(this, new EventArgs());
+                }
+                else
+                    CameraScript.SaveData();
                 Application.LoadLevel(2);
             }
         }
+        else
+            GUI.Label(new Rect(margin, size * 6 + margin, size * 10, size * 2 + margin), "Lights available");
     }
 }
