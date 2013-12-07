@@ -11,9 +11,11 @@ public class buyItems_Script : MonoBehaviour {
     public static event EventHandler plus500, plus1000, plus5000;
     float[] span;
     bool goBack;
+    bool imbuying;
     // Use this for initialization
     void Start()
     {
+        imbuying = false;
         goBack = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
@@ -75,7 +77,7 @@ public class buyItems_Script : MonoBehaviour {
             elem++;
             if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), redLight))
             {
-                if (CameraScript.data.points >= 0)
+                if (CameraScript.data.points >= 500 && imbuying)
                 {
                     CameraScript.data.points -= 500;
                     CameraScript.data.lightRed = true;
@@ -91,7 +93,7 @@ public class buyItems_Script : MonoBehaviour {
         {
             elem++;
             if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), bluLight))
-                if (CameraScript.data.points >= 550)
+                if (CameraScript.data.points >= 550 && imbuying)
                 {
                     CameraScript.data.points -= 550;
                     CameraScript.data.lightBlue = true;
@@ -105,7 +107,7 @@ public class buyItems_Script : MonoBehaviour {
         {
             elem++;
             if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), greenLight))
-                if (CameraScript.data.points >= 750)
+                if (CameraScript.data.points >= 750 && imbuying)
                 {
                     CameraScript.data.points -= 750;
                     CameraScript.data.lightGreen = true;
@@ -119,7 +121,7 @@ public class buyItems_Script : MonoBehaviour {
         {
             elem++;
             if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), pinkLight))
-                if (CameraScript.data.points >= 800)
+                if (CameraScript.data.points >= 800 && imbuying)
                 {
                     CameraScript.data.points -= 800;
                     CameraScript.data.lightPink = true;
@@ -133,7 +135,7 @@ public class buyItems_Script : MonoBehaviour {
         {
             elem++;
             if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), arcoLight))
-                if (CameraScript.data.points >= 6000)
+                if (CameraScript.data.points >= 6000 && imbuying)
                 {
                     CameraScript.data.points -= 6000;
                     CameraScript.data.lightRainbow = true;
@@ -152,10 +154,12 @@ public class buyItems_Script : MonoBehaviour {
         {
             Touch touch = Input.touches[0];
             bool fInsideList = IsTouchInsideList(touch.position);
-
+            if (touch.phase == TouchPhase.Began)
+                imbuying = true;
             if (touch.phase == TouchPhase.Moved && fInsideList)
             {
                 position.y += touch.deltaPosition.y * 2;
+                imbuying = false;
             }
         }
         if (goBack)
@@ -165,7 +169,6 @@ public class buyItems_Script : MonoBehaviour {
     bool IsTouchInsideList(Vector2 touchPos)
     {
         Vector2 screenPos = new Vector2(touchPos.x, touchPos.y);
-        print("" + screenPos.x + " " + screenPos.y);
         Rect rAdjustedBounds = new Rect(size * 10, margin * 7, size * 10, size * 16);
 
         return rAdjustedBounds.Contains(screenPos);

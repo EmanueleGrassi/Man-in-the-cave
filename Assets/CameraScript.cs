@@ -184,10 +184,6 @@ public class CameraScript : MonoBehaviour
         //print("salvato");
         //LoadData();
         //print("width 0: "+data.Records[0].width );
-        foreach (Rect r in data.Records)
-        {
-            print(r.x);
-        }
         #endregion
        
         rebornUsed = false;
