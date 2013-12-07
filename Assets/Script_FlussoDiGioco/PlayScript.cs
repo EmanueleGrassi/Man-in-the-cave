@@ -94,6 +94,7 @@ public class PlayScript : MonoBehaviour
         if (playShout)
         {
             playShout = false;
+            canPlay = false;
             nextshout = Time.time + 4f;
             PlayClip(this.audio, shout1, shout2, shout3, shout4, shout5);
         }
