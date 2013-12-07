@@ -32,7 +32,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
   m_Layer: 2
-  m_Name: rock_medium_b
+  m_Name: rock5
   m_TagString: rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.5367443e-07, z: 1.13686838e-13}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00000048, y: 1.00000036, z: 1.00000024}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -61,9 +61,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: .673791289, y: -.212208897, z: -.198583513, w: -.679365396}
-  m_LocalPosition: {x: -23.8248825, y: -9.08887482, z: -38.2869492}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalRotation: {x: .203975514, y: .327848405, z: .407949358, w: .827337146}
+  m_LocalPosition: {x: 33.2428398, y: -15.6840572, z: -152.708817}
+  m_LocalScale: {x: 4.5379138, y: 4.53791189, z: 4.53791189}
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 0}
@@ -79,15 +79,15 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 1
-  m_LightmapTilingOffset: {x: .0146484002, y: .0146484002, z: .983829021, w: .859806001}
+  m_LightmapIndex: 0
+  m_LightmapTilingOffset: {x: .0722656026, y: .0722656026, z: .920664012, w: .384530991}
   m_Materials:
   - {fileID: 2100000, guid: 8b9c39a68c434b641bbc2bebcb934103, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: .376912981
+  m_ScaleInLightmap: 1
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
@@ -100,7 +100,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300078, guid: 1579701d0b86d9247a40df74cb91c707, type: 3}
+  m_Mesh: {fileID: 4300056, guid: 1579701d0b86d9247a40df74cb91c707, type: 3}
 --- !u!1002 &3300001
 EditorExtensionImpl:
   serializedVersion: 6
@@ -131,7 +131,7 @@ MeshCollider:
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 1
-  m_Mesh: {fileID: 4300078, guid: 1579701d0b86d9247a40df74cb91c707, type: 3}
+  m_Mesh: {fileID: 4300056, guid: 1579701d0b86d9247a40df74cb91c707, type: 3}
 --- !u!1002 &6400001
 EditorExtensionImpl:
   serializedVersion: 6
