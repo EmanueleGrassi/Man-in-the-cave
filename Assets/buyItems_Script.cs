@@ -152,7 +152,6 @@ public class buyItems_Script : MonoBehaviour {
         {
             Touch touch = Input.touches[0];
             bool fInsideList = IsTouchInsideList(touch.position);
-            print(fInsideList);
 
             if (touch.phase == TouchPhase.Moved && fInsideList)
             {

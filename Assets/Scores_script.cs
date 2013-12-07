@@ -20,29 +20,31 @@ public class Scores_script : MonoBehaviour {
 	// Update is called once per frame
     //E' BRUTTO, MA NON METTEDE IL DITO NELLA PIAGA PLIS, ABBIATE FEDE LE COSE STANNO PER CAMBIARE (CIT.)
 	void OnGUI () {
-        deflab = GUI.skin.label.fontSize;
         GUI.skin = custom;
-        GUI.skin.label.fontSize = (int)(unit * 1.8f);
-        GUI.Label(new Rect(unit*6-margin, unit, unit*9, unit*2+2*margin), "Highscores");
+        GUI.skin.label.fontSize = (int)(unit * 2.2f);
+        GUI.Label(new Rect(unit*6-3*margin, margin, unit*11, unit*3+margin), "Highscores");
         GUI.skin.label.fontSize = (int)(unit * 0.7f);
-        int i;
-        pos = GUI.BeginScrollView(new Rect(unit * 6, unit * 4, unit * 18, unit * 12), Vector2.zero, new Rect(0, 0, unit * 18, unit * 30));
+        int i = 0;
+        pos = GUI.BeginScrollView(new Rect(unit * 6, unit * 4, unit * 18, unit * 12), pos, new Rect(0, 0, unit * 18, unit * 30));
         for (i = 0; i < 20; i++)
         {
             float multmargin = 0;
             if (i==0)
             {
                 GUI.skin.label.normal.textColor = Color.yellow;
-                multmargin = 1f;
+                GUI.skin.label.fontSize = (int)(unit * 1f);
+                multmargin = 2.5f;
             }
             else if (i==1)
             {
                 multmargin = 0.7f;
                 GUI.skin.label.normal.textColor = Color.gray;
+                GUI.skin.label.fontSize = (int)(unit * 0.9f);
             }
             else if (i==2)
             {
                 GUI.skin.label.normal.textColor = Color.blue;
+                GUI.skin.label.fontSize = (int)(unit * 0.8f);
                 multmargin = 0.5f;
             }
             else 
@@ -50,7 +52,7 @@ public class Scores_script : MonoBehaviour {
                 GUI.skin.label.fontSize = deflab;
                 GUI.skin.label.normal.textColor = Color.white;     
             }
-            GUI.Label(new Rect(unit*2-2*margin-multmargin*margin, (i * unit), unit * 18, unit), (i + 1) + ". "+ CameraScript.data.Records[i].left + "     " +
+            GUI.Label(new Rect(unit*2-3*margin-multmargin*margin, (i * (unit*1.3f)), unit * 18, unit*1.5f), (i + 1) + ". "+ CameraScript.data.Records[i].left + "     " +
                 CameraScript.data.Records[i].top + "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
         }
         GUI.EndScrollView();
@@ -65,6 +67,7 @@ public class Scores_script : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Escape))
             goBack = true;
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.touches[0];
