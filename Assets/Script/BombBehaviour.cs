@@ -29,9 +29,7 @@ public class BombBehaviour : MonoBehaviour {
 		if(esplosioneAvvenuta && !audio.isPlaying){
 	        if (killed)
 	        {
-	            print("sei qui");
 	            PlayScript.State = PlayScript.PlayState.result;
-	            print("siamo in result");
 	        }
 			Destroy(gameObject);
 		}

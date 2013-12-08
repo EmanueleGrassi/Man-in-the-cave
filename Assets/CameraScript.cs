@@ -192,13 +192,7 @@ public class CameraScript : MonoBehaviour
         visualizePause = true;
         goBack = false;
 		//carica i salvataggi
-        if (Application.platform == RuntimePlatform.WP8Player)
-        {
-            if (loadEvent != null)
-                loadEvent(this, new EventArgs());
-        }
-        else
-            LoadData();
+        LoadData();
         //data = new Data();
         #region test Records
         //data = new Data();
@@ -360,24 +354,12 @@ public class CameraScript : MonoBehaviour
             //HAI GUADAGNATO TOT MONETE
             if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3+margin), playAgainButton))
             {
-                if (Application.platform == RuntimePlatform.WP8Player)
-                {
-                    if (saveEvent != null)
-                        saveEvent(this, new EventArgs());
-                }
-                else
-                    SaveData();
+                SaveData();
                 Application.LoadLevel(1);
             }
             if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3+margin), homeButton))
             {
-                if (Application.platform == RuntimePlatform.WP8Player)
-                {
-                    if (saveEvent != null)
-                        saveEvent(this, new EventArgs());
-                }
-                else
-                    SaveData();
+                SaveData();
                 Application.LoadLevel(0);
             }
         }		

@@ -13,7 +13,6 @@ public class Items_Script : MonoBehaviour {
     bool draw;
 	public AudioClip equipSound;
     bool goBack;
-    public static event EventHandler saveEvent, loadEvent;
 
 	// Use this for initialization
 	void Start () {
@@ -24,26 +23,14 @@ public class Items_Script : MonoBehaviour {
         reborns = CameraScript.data.NumberReborn;
         position = Vector2.zero;
         availableLights = 0;
-        if (Application.platform == RuntimePlatform.WP8Player)
-        {
-            if (loadEvent != null)
-                loadEvent(this, new EventArgs());
-        }
-        else
-            CameraScript.LoadData();
+        CameraScript.LoadData();
 	}
 
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            if (Application.platform == RuntimePlatform.WP8Player)
-            {
-                if (saveEvent != null)
-                    saveEvent(this, new EventArgs());
-            }
-            else
-                CameraScript.SaveData();
+            CameraScript.SaveData();
             goBack = true;
         }
         if (goBack)
@@ -182,13 +169,7 @@ public class Items_Script : MonoBehaviour {
             custom.button.normal.textColor = Color.white;
             if(GUI.Button(new Rect(margin , size * 6 - margin , size * 11, size * 2+ margin), "Buy a new helmet's light!"))
             {
-                if (Application.platform == RuntimePlatform.WP8Player)
-                {
-                    if (saveEvent != null)
-                        saveEvent(this, new EventArgs());
-                }
-                else
-                    CameraScript.SaveData();
+                CameraScript.SaveData();
                 Application.LoadLevel(2);
             }
         }
