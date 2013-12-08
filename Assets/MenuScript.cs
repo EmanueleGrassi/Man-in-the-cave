@@ -19,6 +19,7 @@ public class MenuScript : MonoBehaviour {
 		margin = Screen.width / 60;
 		margin2 = 0;
         CameraScript.LoadData();
+        //if(Dev)
         StartWebRequest("http://celialab.com/Promotion.txt");
 
 	}

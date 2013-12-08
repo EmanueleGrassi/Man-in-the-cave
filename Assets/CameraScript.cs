@@ -150,31 +150,41 @@ public class CameraScript : MonoBehaviour
 	
 	public static void SaveData()
 	{
-		JSON  js = new JSON();
-		js["salvataggio"]=(JSON) data;
-		PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
-        PlayerPrefs.Save();
+        if (Application.platform == RuntimePlatform.WP8Player)
+        {
+            if (saveEvent != null)
+                saveEvent(saveEvent, new EventArgs());
+        }
+        else
+        {
+            JSON js = new JSON();
+            js["salvataggio"] = (JSON)data;
+            PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
+            PlayerPrefs.Save();
+        }
 
 	}
 	public static void LoadData()
 	{
-		if(PlayerPrefs.GetString("salvataggio") != "")
-		{
-		    JSON js = new JSON();
-            js.serialized = PlayerPrefs.GetString("salvataggio"); //devo prendere quella dei settings 
-		    data = (Data)js.ToJSON("salvataggio");
-		}
-		else
-		{
-		    data = new Data();
-            if (Application.platform == RuntimePlatform.WP8Player)
+        if (Application.platform == RuntimePlatform.WP8Player)
+        {
+            if (loadEvent != null)
+                loadEvent(saveEvent, new EventArgs());
+        }
+        else
+        {
+            if (PlayerPrefs.GetString("salvataggio") != "")
             {
-                if (saveEvent != null)
-                    saveEvent(saveEvent, new EventArgs());
+                JSON js = new JSON();
+                js.serialized = PlayerPrefs.GetString("salvataggio"); //devo prendere quella dei settings 
+                data = (Data)js.ToJSON("salvataggio");
             }
             else
+            {
+                data = new Data();
                 SaveData();
-		}	
+            }
+        }
 	}
 	
 	void Start ()
