@@ -349,7 +349,7 @@ public class CameraScript : MonoBehaviour
             Rect record = new Rect(PlayTime, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
             salvaRecord(record);
             GUI.skin.label.fontSize = (int)(height * 1.5f);
-            GUI.Label(new Rect(height * 5, height * 2, height * 20, height * 2), "You survived inside the cave for:");
+            GUI.Label(new Rect(height, height * 2, height * 20, height * 2), "You survived inside the cave for:");
             TimeSpan t = TimeSpan.FromSeconds(CameraScript.PlayTime);
             GUI.Label(new Rect(height * 8 + margin, height * 4.5f, height * 20, height * 2), String.Format("{0:00}:{1:00}", t.Minutes, t.Seconds));
             //HAI GUADAGNATO TOT MONETE
@@ -361,6 +361,7 @@ public class CameraScript : MonoBehaviour
             }
             if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3+margin), homeButton))
             {
+                CameraScript.data.points += PlayScript.gamePoints;
                 SaveData();
                 Application.LoadLevel(0);
             }
