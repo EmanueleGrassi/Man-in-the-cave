@@ -139,13 +139,13 @@ public class CameraScript : MonoBehaviour
 	//munu
 	float height;
 	float margin, margin2;
-	public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, homeButton, playAgainButton;
+	public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, homeButton, playAgainButton, likebtn;
 	public Texture Title, facebook,twitter,review,celialab;
     public Texture useReborn, OKbutton, CancelButton;
 	public Transform bengalaButton, movementButton, jumpButton;
     public static bool replayGame;
     public static bool goBack;
-    public static event EventHandler saveEvent, loadEvent;
+    public static event EventHandler saveEvent, loadEvent, shareEvent;
 	
 	public static void SaveData()
 	{
@@ -168,7 +168,7 @@ public class CameraScript : MonoBehaviour
         if (Application.platform == RuntimePlatform.WP8Player)
         {
             if (loadEvent != null)
-                loadEvent(saveEvent, new EventArgs());
+                loadEvent(loadEvent, new EventArgs());
         }
         else
         {
@@ -364,6 +364,14 @@ public class CameraScript : MonoBehaviour
                 CameraScript.data.points += PlayScript.gamePoints;
                 SaveData();
                 Application.LoadLevel(0);
+            }
+            if (Application.platform == RuntimePlatform.WP8Player)
+            {
+                if (GUI.Button(new Rect(height * 8, height * 8, height * 5, height * 3 + margin), likebtn))
+                {
+                    if (shareEvent != null)
+                        shareEvent(shareEvent, new EventArgs());
+                }
             }
         }		
     }
