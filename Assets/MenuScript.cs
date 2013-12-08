@@ -17,7 +17,6 @@ public class MenuScript : MonoBehaviour
     public Texture Title, facebook, twitter, review, celialab;
     public Texture myAppFreeBanner, normalBanner;
     public static event EventHandler GOReviews;
-
     // Use this for initialization
     void Start()
     {
@@ -115,9 +114,10 @@ public class MenuScript : MonoBehaviour
             else if (Application.platform == RuntimePlatform.IPhonePlayer)
                 Application.OpenURL("");//vai su review
             else if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.WindowsPlayer)
+            {
                 if (GOReviews != null)
                     GOReviews(this, new EventArgs());
-
+            }
         }
 
         var celialabHeight = ((Screen.width / 5) * 59) / 200;

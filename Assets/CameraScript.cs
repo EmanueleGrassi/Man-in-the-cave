@@ -146,6 +146,7 @@ public class CameraScript : MonoBehaviour
     public static bool replayGame;
     public static bool goBack;
     public static event EventHandler saveEvent, loadEvent, shareEvent;
+    public static event EventHandler GOReviews;
 	
 	public static void SaveData()
 	{
@@ -466,7 +467,7 @@ public class CameraScript : MonoBehaviour
     //        Application.Quit();
     //}
 #endregion
-	public static event EventHandler GOReviews;
+	
 	bool visualizeRightCoin, startVisualizeRightCoin;
 	void drawPlay()
 	{
