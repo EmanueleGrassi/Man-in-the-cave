@@ -34,8 +34,8 @@ public class MenuScript : MonoBehaviour
 
     }
     float StartPromotionSound;
+    bool StartPromotion = false;
     float StayPromotionBannar;
-    bool PromotionSoundStarted = false;
     void Update()
     {
         if (play)
@@ -43,10 +43,11 @@ public class MenuScript : MonoBehaviour
             play = false;
             audio.Play();
         }
-        if (PromotionSoundStarted == false && Time.time >= StartPromotionSound)
+        if (StartPromotion && Time.time >= StartPromotionSound)
         {
             ;//suono promozione
             StayPromotionBannar = Time.time + 5;
+            StartPromotion = false;
         }
     }
     private void addPoints(int p)
@@ -56,6 +57,7 @@ public class MenuScript : MonoBehaviour
         PlayerPrefs.SetString("gift1", "done");//  salvataggio su unity
         PlayerPrefs.Save();
         StartPromotionSound = Time.time + 2.113f;
+        StartPromotion = true;
     }
 
     // Update is called once per frame
