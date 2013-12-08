@@ -103,7 +103,9 @@ public class PlayScript : MonoBehaviour
         if (playJump && transform.position.y>1.74)
         {
             playJump = false;
-            PlayClip(this.audio, jump1, jump2, jump3, jump4, jump5, jump6, jump7);
+            random = Random.Range(0, 3);
+            if(random==2)
+                PlayClip(this.audio, jump1, jump2, jump3, jump4, jump5, jump6, jump7);
         }
 	}
 
