@@ -6,48 +6,44 @@ AnimatorController:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: IdleRunJump
-  m_AnimatorEvents:
+  serializedVersion: 2
+  m_AnimatorParameters:
   - m_Name: Speed
     m_Type: 1
-    m_Min: -1
-    m_Max: 1
-    m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   - m_Name: Direction
     m_Type: 1
-    m_Min: -1
-    m_Max: 1
-    m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   - m_Name: Jump
     m_Type: 4
-    m_Min: -1
-    m_Max: 1
-    m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   - m_Name: Dive
     m_Type: 4
-    m_Min: -1
-    m_Max: 1
-    m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-  m_Layers:
-  - m_Name: Base Layer
-    m_Type: 0
+    m_Controller: {fileID: 9100000}
+  m_AnimatorLayers:
+  - serializedVersion: 3
+    m_Name: Base Layer
     m_StateMachine: {fileID: 110700000}
     m_Mask: {fileID: 0}
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
     m_StateMachineMotionSetIndex: 0
+    m_DefaultWeight: 0
     m_IKPass: 1
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
 --- !u!206 &20600000
 BlendTree:
   m_ObjectHideFlags: 1
@@ -57,20 +53,31 @@ BlendTree:
   m_Childs:
   - m_Motion: {fileID: 7400026, guid: b35bea543177b624b8e504a16956614d, type: 3}
     m_Threshold: -1
+    m_Position: {x: 0, y: 0}
     m_TimeScale: 1
+    m_CycleOffset: 0
     m_IsAnim: 1
+    m_Mirror: 0
   - m_Motion: {fileID: 7400024, guid: b35bea543177b624b8e504a16956614d, type: 3}
     m_Threshold: 0
+    m_Position: {x: 0, y: 0}
     m_TimeScale: 1
+    m_CycleOffset: 0
     m_IsAnim: 1
+    m_Mirror: 0
   - m_Motion: {fileID: 7400022, guid: b35bea543177b624b8e504a16956614d, type: 3}
     m_Threshold: 1
+    m_Position: {x: 0, y: 0}
     m_TimeScale: 1
+    m_CycleOffset: 0
     m_IsAnim: 1
-  m_BlendEvent: Direction
+    m_Mirror: 0
+  m_BlendParameter: Direction
+  m_BlendParameterY: Blend
   m_MinThreshold: -1
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
+  m_BlendType: 0
 --- !u!1101 &110100000
 Transition:
   m_ObjectHideFlags: 3
@@ -186,11 +193,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Idle
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400014, guid: ce448a8080b4e934b8473badd27be402, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 432, y: 216, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110209082
 State:
@@ -199,11 +208,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Dive
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400002, guid: fda10879bc947a44db95ce2174d9adb6, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 132, y: 84, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110246486
 State:
@@ -211,12 +222,14 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Jump
-  m_Speed: 1
+  m_Speed: 1.20000005
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400012, guid: cbb67ab5509bfe24dba7db2d65a9632f, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 432, y: -48, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110287193
 State:
@@ -225,14 +238,17 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Run
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 20600000}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 432, y: 84, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1107 &110700000
 StateMachine:
+  serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -245,25 +261,6 @@ StateMachine:
   - {fileID: 110209082}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
-  m_LocalTransitions:
-    data:
-      first: {fileID: 110200000}
-      second:
-      - {fileID: 110100000}
-    data:
-      first: {fileID: 110287193}
-      second:
-      - {fileID: 110192737}
-      - {fileID: 110181839}
-      - {fileID: 110120064}
-    data:
-      first: {fileID: 110246486}
-      second:
-      - {fileID: 110170435}
-    data:
-      first: {fileID: 110209082}
-      second:
-      - {fileID: 110199139}
   m_OrderedTransitions:
     data:
       first: {fileID: 110200000}

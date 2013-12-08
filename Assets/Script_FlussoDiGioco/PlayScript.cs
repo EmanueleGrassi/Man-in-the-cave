@@ -44,7 +44,7 @@ public class PlayScript : MonoBehaviour
 			} 
 			else if (state == PlayState.menu) 
 			{
-				Time.timeScale = 0;
+				Time.timeScale = 1;
 			} 
 			else if (state == PlayState.result) 
 			{

@@ -101,7 +101,11 @@ function Update()
 		 	{
 				jump = true;
 				canJump = false;
-				animator.SetBool("Jump", true);
+				var t:int =  Random.Range(0,1);
+                if(t==0)
+                    animator.SetBool("Jump", true);
+				else
+                    animator.SetBool("Drive", true);
 				PlayClip();
 		 	}	
 			
@@ -114,7 +118,8 @@ function Update()
 			}
 			else
 			{
-				animator.SetBool("Jump", false); 
+			    animator.SetBool("Jump", false); 
+			    animator.SetBool("Drive", false);
 				/*if (Time.time>nextPlayAudio && moveTouchPad.position.x != 0) 
 				{
 					audio.PlayOneShot(footstep);
@@ -146,9 +151,9 @@ function Update()
 		//animazione		
 			//float h = Input.GetAxis("Horizontal");
         	v = movement.normalized;
-        	print("x: "+ v.x);
-        	print("y: "+ movement.normalized.y);
-        	print("z: "+ movement.normalized.z);
+        	//print("x: "+ v.x);
+        	//print("y: "+ movement.normalized.y);
+        	//print("z: "+ movement.normalized.z);
 			if(v.x < -0.05 && !turnback)
 			{
 				turnback=true;
