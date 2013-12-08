@@ -12,6 +12,7 @@ public class MenuScript : MonoBehaviour
     public GUISkin custom;
     float height;
     float margin, margin2;
+    static bool play = true;
     public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
     public Texture Title, facebook, twitter, review, celialab;
     public Texture myAppFreeBanner, normalBanner;
@@ -37,6 +38,11 @@ public class MenuScript : MonoBehaviour
     bool PromotionSoundStarted = false;
     void Update()
     {
+        if (play)
+        {
+            play = false;
+            audio.Play();
+        }
         if (PromotionSoundStarted == false && Time.time >= StartPromotionSound)
         {
             ;//suono promozione
