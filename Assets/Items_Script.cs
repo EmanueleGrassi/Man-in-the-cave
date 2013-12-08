@@ -13,6 +13,7 @@ public class Items_Script : MonoBehaviour {
     bool draw;
 	public AudioClip equipSound;
     bool goBack;
+    public Texture back;
 
 	// Use this for initialization
 	void Start () {
@@ -50,7 +51,9 @@ public class Items_Script : MonoBehaviour {
 
         //Items
 		GUI.skin.label.fontSize = (int)(size * 1.5f);
-		GUI.Label(new Rect(margin, margin, size * 5, size * 2 + margin), "Items");
+        if (GUI.Button(new Rect(margin * 2, size, size * 1f, size * 1f), back))
+            Application.LoadLevel(0);
+        GUI.Label(new Rect(margin + size * 1.5f, margin, size * 5, size * 2 + margin), "Items");
 
         //LUCE EQUIPAGGIATA
 		GUI.skin.label.fontSize = (int)(size);

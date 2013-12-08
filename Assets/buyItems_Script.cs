@@ -12,6 +12,7 @@ public class buyItems_Script : MonoBehaviour {
     float[] span;
     bool goBack;
     bool imbuying;
+    public Texture back;
 
     // Use this for initialization
     void Start()
@@ -31,7 +32,9 @@ public class buyItems_Script : MonoBehaviour {
         GUI.skin = custom;
         custom.label.normal.textColor = new Color(255, 255, 255);
         custom.label.fontSize = (int)(size * 1.5);
-        GUI.Label(new Rect(margin, margin, size * 10, size * 2 + margin), "Buy Items"); // titolo
+        if (GUI.Button(new Rect(margin * 2, size, size * 1f, size * 1f), back))
+            Application.LoadLevel(0);
+        GUI.Label(new Rect(margin + size*1.5f, margin, size * 10, size * 2 + margin), "Buy Items"); // titolo
         custom.label.fontSize = (int)(size * 0.5f);
         //reborn e picconi
         GUI.Label(new Rect(margin*3, margin * 11 - 3, size * 6, size), "n Bengal: " + CameraScript.data.numBengala);

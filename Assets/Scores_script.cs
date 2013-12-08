@@ -8,6 +8,7 @@ public class Scores_script : MonoBehaviour {
     int deflab;
     Vector2 pos;
     bool goBack;
+    public Texture back;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,8 @@ public class Scores_script : MonoBehaviour {
 	void OnGUI () {
         GUI.skin = custom;
         GUI.skin.label.fontSize = (int)(unit * 2.2f);
+        if (GUI.Button(new Rect(margin * 2, unit, unit * 1.5f, unit * 1.5f), back))
+            Application.LoadLevel(0);
         GUI.Label(new Rect(unit*6-3*margin, margin, unit*11, unit*3+margin), "Highscores");
         GUI.skin.label.fontSize = (int)(unit * 0.7f);
         int i = 0;
