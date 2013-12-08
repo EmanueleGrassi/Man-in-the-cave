@@ -134,7 +134,6 @@ public class CameraScript : MonoBehaviour
 	public bool isDebuging = true;
 	/*CLASSE SALVATAGGIO*/ public static Data data; /*CLASSE SALVATAGGIO*/
 	public static float PlayTime;
-    bool visualizePause;
     public static bool replay;
     bool rebornUsed;
 	//munu
@@ -188,8 +187,7 @@ public class CameraScript : MonoBehaviour
 	}
 	
 	void Start ()
-	{
-        visualizePause = true;
+	{        
         goBack = false;
 		//carica i salvataggi
         LoadData();
@@ -330,9 +328,12 @@ public class CameraScript : MonoBehaviour
                 data.NumberReborn--;
                 //SaveData();
                 //torna alla partita, da dove stavi
+                if(playerPG!=null)
+                { 
                 Vector3 pos = playerPG.transform.position;
                 playerPG.transform.position = new Vector3(pos.x, pos.y + 10, pos.z);
-                playerPG.active = true;
+                playerPG.gameObject.SetActive(true);
+                }
 				rebornUsed = true;
                 GameManager_script.PGdead = false;
                 replayGame = true;
@@ -458,23 +459,21 @@ public class CameraScript : MonoBehaviour
 	bool visualizeRightCoin, startVisualizeRightCoin;
 	void drawPlay()
 	{
-        
 		// Visualizza punti. Lo script si adatta atutte le risoluzioni
 		GUI.DrawTexture (new Rect (margin, margin, height, height), coin, ScaleMode.ScaleToFit, true);		
 		GUI.skin.label.fontSize = (int)height;
-		GUI.Label (new Rect (height + (margin * 2), margin / 8f, /*moltiplicare la metà delle cifre moneta per height*/ 600f, 300f),
+		GUI.Label (new Rect (height + (margin * 2), margin / 8f, 600f, 300f),
 			"" + data.points);
 		
-		// se non si gioca su android o wp allora visualizza pausa
-		if (visualizePause) {
-			if (GUI.Button (new Rect (Screen.width - (margin + height), margin, height, height), pause)) 
-            {
-                PlayScript.State = PlayScript.PlayState.pause;
-			}
-		}        
+		// se non si gioca su android o wp allora visualizza pausa		
+		if (GUI.Button (new Rect (Screen.width - (margin + height), margin, height, height), pause)) 
+        {
+            PlayScript.State = PlayScript.PlayState.pause;
+		}
+		 
 		//Visualizza il tempo
 		//GUI.DrawTexture(new Rect (margin,margin,height,height), clock, ScaleMode.ScaleToFit, true);	
-		var t = (TimeSpan.FromSeconds (PlayTime));
+        TimeSpan t = (TimeSpan.FromSeconds(PlayTime));
 		GUI.Label (new Rect ((float)Screen.width - (height * 3.0f + 2f * margin), 
 							margin / 8f,
 							height * 3.0f, /*moltiplicare la metà delle cifre tempo per height*/
