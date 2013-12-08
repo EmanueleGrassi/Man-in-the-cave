@@ -5,7 +5,6 @@ public class Scores_script : MonoBehaviour {
 
     float margin, unit;
     public GUISkin custom;
-    int deflab;
     Vector2 pos;
     bool goBack;
     public Texture back;
@@ -52,7 +51,7 @@ public class Scores_script : MonoBehaviour {
             }
             else 
             {
-                GUI.skin.label.fontSize = deflab;
+                GUI.skin.label.fontSize = (int)(unit*0.6);
                 GUI.skin.label.normal.textColor = Color.white;     
             }
             GUI.Label(new Rect(unit*2-3*margin-multmargin*margin, (i * (unit*1.3f)), unit * 18, unit*1.5f), (i + 1) + ". "+ CameraScript.data.Records[i].left + "     " +
@@ -60,12 +59,10 @@ public class Scores_script : MonoBehaviour {
         }
         GUI.EndScrollView();
         GUI.skin.label.normal.textColor = Color.white;
-        GUI.skin.label.fontSize = deflab;
+        GUI.skin.label.fontSize = (int)(unit * 0.6);
 	}
 
 
-
-    //NON FUNZIONA, CHIUNQUE LO SA FIXARE E' IL BENVENUTO
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))

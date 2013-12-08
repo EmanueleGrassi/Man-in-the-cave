@@ -16,6 +16,8 @@ public class MenuScript : MonoBehaviour
     public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
     public Texture Title, facebook, twitter, review, celialab;
     public Texture myAppFreeBanner, normalBanner;
+    public static event EventHandler GOReviews;
+
     // Use this for initialization
     void Start()
     {
@@ -138,8 +140,6 @@ public class MenuScript : MonoBehaviour
         }
 
     }
-    public static event EventHandler GOReviews;
-
 
     private void StartWebRequest(string url)
     {

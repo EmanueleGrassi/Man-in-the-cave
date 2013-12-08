@@ -63,7 +63,7 @@ public class PlayScript : MonoBehaviour
 			wplight.active = true;
 		} else
 			pglight.active = true;
-       
+        gamePoints = 0;
 	}
 
     //void OnEndGame ()
