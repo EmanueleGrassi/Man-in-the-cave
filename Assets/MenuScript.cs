@@ -19,10 +19,44 @@ public class MenuScript : MonoBehaviour {
 		margin = Screen.width / 60;
 		margin2 = 0;
         CameraScript.LoadData();
-        //if(Dev)
-        StartWebRequest("http://celialab.com/Promotion.txt");
+
+        if (PlayerPrefs.GetString("gift1") == "")
+        {
+            if (Application.platform == RuntimePlatform.WP8Player)
+                StartWebRequest("http://celialab.com/Promotion.txt");
+            else
+                addPoints(1000);
+        }
 
 	}
+    float StartPromotionSound;
+    float StayPromotionBannar;
+    bool PromotionSoundStarted = false;
+    void Update()
+    {
+        if (PromotionSoundStarted == false && Time.time >= StartPromotionSound)
+        {
+            ;//suono promozione
+            StayPromotionBannar = Time.time + 5;
+        }
+        if (Time.time<=StayPromotionBannar)
+        {
+            if (Application.platform == RuntimePlatform.WP8Player)
+                ;//visualizza bottone myappfree con link al sito
+            else
+                ;//immagine banner normale
+        }
+           
+
+    }
+    private void addPoints(int p)
+    {
+        CameraScript.data.points += p;
+        CameraScript.SaveData();
+        PlayerPrefs.SetString("gift1", "done");//  salvataggio su unity
+        PlayerPrefs.Save();
+        StartPromotionSound = Time.time + 2.113f;
+    }
 	
 	// Update is called once per frame
 	void OnGUI () {
@@ -107,7 +141,7 @@ public class MenuScript : MonoBehaviour {
             if (response.StatusCode == HttpStatusCode.NotFound)
                 print("non c'è");
             else
-                print("c'è");
+                addPoints(1000);//c'è
         }
         catch (Exception e)
         {
