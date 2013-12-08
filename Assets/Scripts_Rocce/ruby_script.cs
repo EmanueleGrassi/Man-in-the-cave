@@ -18,7 +18,7 @@ public class ruby_script : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
-            CameraScript.data.points += value;
+            PlayScript.gamePoints += value;
             //SUONI
             int random = Random.Range(0, 3);
             switch (random)

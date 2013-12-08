@@ -19,6 +19,7 @@ public class PlayScript : MonoBehaviour
 	int random;
 	int finger;
     float nextshout;
+    public static int gamePoints;
 	public JoystickC BengalaTouchPad;
 	public enum PlayState
 	{

@@ -355,6 +355,7 @@ public class CameraScript : MonoBehaviour
             //HAI GUADAGNATO TOT MONETE
             if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3+margin), playAgainButton))
             {
+                CameraScript.data.points += PlayScript.gamePoints;
                 SaveData();
                 Application.LoadLevel(1);
             }
@@ -463,7 +464,7 @@ public class CameraScript : MonoBehaviour
 		GUI.DrawTexture (new Rect (margin, margin, height, height), coin, ScaleMode.ScaleToFit, true);		
 		GUI.skin.label.fontSize = (int)height;
 		GUI.Label (new Rect (height + (margin * 2), margin / 8f, 600f, 300f),
-			"" + data.points);
+			"" + PlayScript.gamePoints);
 		
 		// se non si gioca su android o wp allora visualizza pausa		
 		if (GUI.Button (new Rect (Screen.width - (margin + height), margin, height, height), pause)) 

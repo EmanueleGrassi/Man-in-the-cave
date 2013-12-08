@@ -11,14 +11,14 @@ public class gold_script : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        value = 10;
+        value = 6;
     }
 
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Player")
         {
-            CameraScript.data.points += value;
+            PlayScript.gamePoints += value;
             //SUONI
             int random = Random.Range(0, 3);
             switch (random)
