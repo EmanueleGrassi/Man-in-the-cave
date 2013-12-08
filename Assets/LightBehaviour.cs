@@ -49,7 +49,9 @@ public class LightBehaviour : MonoBehaviour
     {    
 		if(rainbow)
 		{
-            light.intensity = 0.006f;
+            light.intensity = 0.06f;
+            if (Application.platform == RuntimePlatform.WP8Player)
+                light.intensity = 0.02f;
 			switch (colorAction) 
 			{
 			case Action.saleBlue:
