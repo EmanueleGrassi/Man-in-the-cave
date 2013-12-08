@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using System.Text;
+using System.Net;
+using System.Threading;
 
 public class MenuScript : MonoBehaviour {
 	public GUISkin custom;
@@ -17,6 +19,8 @@ public class MenuScript : MonoBehaviour {
 		margin = Screen.width / 60;
 		margin2 = 0;
         CameraScript.LoadData();
+        StartWebRequest("http://celialab.com/Promotion.txt");
+
 	}
 	
 	// Update is called once per frame
@@ -85,5 +89,30 @@ public class MenuScript : MonoBehaviour {
 			Application.Quit();
 	}
 	public static event EventHandler GOReviews;
-}
 
+
+    private void StartWebRequest(string url)
+    {
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+        request.BeginGetResponse(new AsyncCallback(FinishWebRequest), request);
+    }
+   
+    private void FinishWebRequest(IAsyncResult result)
+    {
+        try
+        {
+            HttpWebResponse response = (result.AsyncState as HttpWebRequest).EndGetResponse(result) as HttpWebResponse;
+           // Debug.WriteLine(response.ContentType);
+            if (response.StatusCode == HttpStatusCode.NotFound)
+                print("non c'è");
+            else
+                print("c'è");
+        }
+        catch (Exception e)
+        {
+            print(e.Message);
+        }
+
+    }
+
+}
