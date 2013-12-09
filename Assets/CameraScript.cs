@@ -179,6 +179,7 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
+
             if (PlayerPrefs.GetString("salvataggio") != "")
             {
                 JSON js = new JSON();
@@ -188,8 +189,11 @@ public class CameraScript : MonoBehaviour
             else
             {
                 data = new Data();
+				for (int i =0; i<20; i++)
+					data.Records[i]= new Rect(0,0,0,0);
                 SaveData();
             }
+
         }
     }
 

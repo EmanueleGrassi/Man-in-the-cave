@@ -32,6 +32,7 @@ public class MenuScript : MonoBehaviour
                 StartWebRequest("http://celialab.com/Promotion.txt");
             else
                 addPoints(1000);
+
         }
 
     }
