@@ -1265,7 +1265,7 @@ MonoBehaviour:
   playerPG: {fileID: 67719946}
   _20bis: {fileID: 1752286632}
   rockSound: {fileID: 8300000, guid: ce4d689d38400b448a560f0d14db09bb, type: 3}
-  gameoverSound: {fileID: 0}
+  gameoverSound: {fileID: 8300000, guid: 753cdbc10cf2b71498775ed20c7876cf, type: 3}
   background: {fileID: 8300000, guid: 166c0e5cb160a194ba7d51a0a9b79f31, type: 3}
   Volume: .200000003
   coin: {fileID: 2800000, guid: 652d2f922cdcda44698fd2704680dbdd, type: 3}

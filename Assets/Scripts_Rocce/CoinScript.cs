@@ -36,7 +36,8 @@ public class CoinScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (grounded)
+        if (grounded && !audio.isPlaying)
+            Destroy(gameObject);
         //    if (Time.time > groundedTime + 0.2f)
         //        Destroy(gameObject);
     }
@@ -45,10 +46,10 @@ public class CoinScript : MonoBehaviour
     {
         if (col.gameObject.tag == "ground")
         {
-            //audio.Play();
-            //groundedTime = Time.time;
-            //grounded = true;
-            Destroy(gameObject);   //scommentare gli altri e commentare questo
+            audio.Play();
+            grounded = true;
+            renderer.enabled = false;
+            collider.enabled = false;
         }
         if (col.gameObject.tag == "Player")
         {
