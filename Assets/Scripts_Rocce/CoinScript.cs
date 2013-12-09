@@ -6,131 +6,68 @@ public class CoinScript : MonoBehaviour
 
     float groundedTime;
     bool grounded;
-    //public AudioClip collected1;
-    //public AudioClip collected2;
-    //public AudioClip collected3;
+    int value;
+    public AudioClip collected1;
+    public AudioClip collected2;
+    public AudioClip collected3;
 
+    void Start()
+    {
+        switch (gameObject.tag)
+        {
+            case "gold":
+                value = 5;
+                break;
+            case "silver":
+                value = 4;
+                break;
+            case "diam":
+                value = 10;
+                break;
+            case "ruby":
+                value = 8;
+                break;
+            case "zaff":
+                value = 7;
+                break;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (grounded)
-            if (Time.time > groundedTime + 2.5f)
-                Destroy(gameObject);
+        //if (grounded)
+        //    if (Time.time > groundedTime + 0.2f)
+        //        Destroy(gameObject);
     }
 
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "ground")
         {
-            audio.Play();
-            groundedTime = Time.time;
-            grounded = true;
+            //audio.Play();
+            //groundedTime = Time.time;
+            //grounded = true;
+            Destroy(gameObject);   //scommentare gli altri e commentare questo
+        }
+        if (col.gameObject.tag == "Player")
+        {
+            PlayScript.gamePoints += value;
+            //SUONI
+            int random = Random.Range(0, 3);
+            switch (random)
+            {
+                case 0:
+                    AudioSource.PlayClipAtPoint(collected1, transform.position);
+                    break;
+                case 1:
+                    AudioSource.PlayClipAtPoint(collected2, transform.position);
+                    break;
+                case 2:
+                    AudioSource.PlayClipAtPoint(collected3, transform.position);
+                    break;
+            }
+            Destroy(gameObject);
         }
     }
 }
-        //if (col.gameObject.tag == "Player")
-        //{
-        //    int value, random;
-        //    switch (gameObject.tag)
-        //    {
-        //        case "gold":
-        //            value = 5;
-        //            CameraScript.data.points += value;
-        //            //SUONI
-        //            random = Random.Range(0, 3);
-        //            switch (random)
-        //            {
-        //                case 0:
-        //                    AudioSource.PlayClipAtPoint(collected1, transform.position);
-        //                    break;
-        //                case 1:
-        //                    AudioSource.PlayClipAtPoint(collected2, transform.position);
-        //                    break;
-        //                case 2:
-        //                    AudioSource.PlayClipAtPoint(collected3, transform.position);
-        //                    break;
-        //            }
-        //            Destroy(gameObject);
-        //            break;
-
-        //        case "silver":
-        //            value = 4;
-        //            CameraScript.data.points += value;
-        //            //SUONI
-        //            random = Random.Range(0, 3);
-        //            switch (random)
-        //            {
-        //                case 0:
-        //                    AudioSource.PlayClipAtPoint(collected1, transform.position);
-        //                    break;
-        //                case 1:
-        //                    AudioSource.PlayClipAtPoint(collected2, transform.position);
-        //                    break;
-        //                case 2:
-        //                    AudioSource.PlayClipAtPoint(collected3, transform.position);
-        //                    break;
-        //            }
-        //            Destroy(gameObject);
-        //            break;
-
-        //        case "diam":
-        //            value = 10;
-        //            CameraScript.data.points += value;
-        //            //SUONI
-        //            random = Random.Range(0, 3);
-        //            switch (random)
-        //            {
-        //                case 0:
-        //                    AudioSource.PlayClipAtPoint(collected1, transform.position);
-        //                    break;
-        //                case 1:
-        //                    AudioSource.PlayClipAtPoint(collected2, transform.position);
-        //                    break;
-        //                case 2:
-        //                    AudioSource.PlayClipAtPoint(collected3, transform.position);
-        //                    break;
-        //            }
-        //            Destroy(gameObject);
-        //            break;
-
-        //        case "ruby":
-        //            value = 8;
-        //            CameraScript.data.points += value;
-        //            //SUONI
-        //            random = Random.Range(0, 3);
-        //            switch (random)
-        //            {
-        //                case 0:
-        //                    AudioSource.PlayClipAtPoint(collected1, transform.position);
-        //                    break;
-        //                case 1:
-        //                    AudioSource.PlayClipAtPoint(collected2, transform.position);
-        //                    break;
-        //                case 2:
-        //                    AudioSource.PlayClipAtPoint(collected3, transform.position);
-        //                    break;
-        //            }
-        //            Destroy(gameObject);
-        //            break;
-
-        //        case "zaff":
-        //            value = 7;
-        //            CameraScript.data.points += value;
-        //            //SUONI
-        //            random = Random.Range(0, 3);
-        //            switch (random)
-        //            {
-        //                case 0:
-        //                    AudioSource.PlayClipAtPoint(collected1, transform.position);
-        //                    break;
-        //                case 1:
-        //                    AudioSource.PlayClipAtPoint(collected2, transform.position);
-        //                    break;
-        //                case 2:
-        //                    AudioSource.PlayClipAtPoint(collected3, transform.position);
-        //                    break;
-        //            }
-        //            Destroy(gameObject);
-        //            break;
-        //    }

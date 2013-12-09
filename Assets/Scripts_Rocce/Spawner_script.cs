@@ -47,9 +47,9 @@ public class Spawner_script : MonoBehaviour {
                 //}
                 //else
                 //{
-                    if (num <= 17)
+                    if (num <= 21)
                         istanziaGemma();
-                    else if (num > 17 && num < 24)
+                    else if (num > 21 && num < 28)
                         Instantiate(bomb, transform.position, Quaternion.identity);
                     else
                         istanziaRoccia();
