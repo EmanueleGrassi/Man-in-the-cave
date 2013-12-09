@@ -148,7 +148,7 @@ public class CameraScript : MonoBehaviour
     public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, homeButton, playAgainButton, likebtn;
     public Texture Title, facebook, twitter, review, celialab;
     public Texture useReborn, OKbutton, CancelButton;
-    public static Transform bengalaButton, movementButton, jumpButton;
+    public static GameObject bengalaButton, movementButton, jumpButton;
     public static bool replayGame;
     public static bool goBack;
     public static event EventHandler saveEvent, loadEvent, shareEvent;
@@ -198,7 +198,7 @@ public class CameraScript : MonoBehaviour
         goBack = false;
         //carica i salvataggi
         LoadData();
-        data = new Data();
+        //data = new Data();
         #region test Records
         //data = new Data();
         //data.Records[0] = new Rect(8,9,34,3432);
@@ -208,6 +208,10 @@ public class CameraScript : MonoBehaviour
         //LoadData();
         //print("width 0: "+data.Records[0].width );
         #endregion
+
+        bengalaButton = GameObject.Find("BengalaButton");
+        movementButton = GameObject.Find("LeftTouchPad");
+        jumpButton = GameObject.Find("RightTouchPad");
 
         rebornUsed = false;
         nexshot = 0.0f;
@@ -255,7 +259,6 @@ public class CameraScript : MonoBehaviour
              * z=6
              * x=
              */
-
             transform.position = new Vector3(playerPG.position.x,
                             Mathf.Sqrt((1 - (playerPGxPOW / 3600)) * 25f),
                 -1 * Mathf.Sqrt((1 - (playerPGxPOW / 1550)) * 25f));
@@ -269,9 +272,9 @@ public class CameraScript : MonoBehaviour
     }
     public static void ManageButton(bool visibility)
     {
-        bengalaButton.gameObject.SetActive(visibility);
-        movementButton.gameObject.SetActive(visibility);
-        jumpButton.gameObject.SetActive(visibility);
+        bengalaButton.guiTexture.active = visibility;
+        movementButton.guiTexture.active = visibility;
+        jumpButton.guiTexture.active = visibility;
     }
     void OnGUI()
     {
@@ -284,12 +287,7 @@ public class CameraScript : MonoBehaviour
         {
             ManageButton(true);
             drawPlay();
-        }
-        //else if (PlayScript.State == PlayScript.PlayState.menu)
-        //{
-        //    ManageButton(false);
-        //    //drawMenu();
-        //}
+        }       
         else if (PlayScript.State == PlayScript.PlayState.pause)
         {
             ManageButton(false);
