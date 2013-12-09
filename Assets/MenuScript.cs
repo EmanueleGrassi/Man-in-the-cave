@@ -17,6 +17,7 @@ public class MenuScript : MonoBehaviour
     public Texture Title, facebook, twitter, review, celialab;
     public Texture myAppFreeBanner, normalBanner;
     public static event EventHandler GOReviews;
+    public AudioClip promotionSound;
     // Use this for initialization
     void Start()
     {
@@ -48,7 +49,7 @@ public class MenuScript : MonoBehaviour
         }
         if (StartPromotion && Time.time >= StartPromotionSound)
         {
-            ;//suono promozione
+            audio.PlayOneShot(promotionSound);
             StayPromotionBannar = Time.time + 5;
             StartPromotion = false;
         }

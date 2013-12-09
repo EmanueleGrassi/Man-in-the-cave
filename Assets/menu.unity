@@ -1200,7 +1200,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400042, guid: 47d0c29352cd94d3ab62999009abee41, type: 3}
   m_PrefabInternal: {fileID: 71170677}
   m_GameObject: {fileID: 574273171}
-  m_LocalRotation: {x: -.0878932029, y: .996102989, z: -.00680220453, w: .00271315011}
+  m_LocalRotation: {x: -.0878918916, y: .996103108, z: -.00680342363, w: .00270762364}
   m_LocalPosition: {x: .0547796078, y: .0950593501, z: .00763106998}
   m_LocalScale: {x: 1.00000024, y: .99999994, z: .99999994}
   m_Children:
@@ -1491,7 +1491,7 @@ Transform:
   m_GameObject: {fileID: 789951000}
   m_LocalRotation: {x: -.496198237, y: .503773093, z: .496198237, w: .503773093}
   m_LocalPosition: {x: -3.52807454e-08, y: -.0806603581, z: .0015389279}
-  m_LocalScale: {x: 1.55244219, y: 1.55244243, z: 1.55244219}
+  m_LocalScale: {x: 1.55244219, y: 1.55244231, z: 1.55244219}
   m_Children:
   - {fileID: 1933493594}
   m_Father: {fileID: 1150289582}
@@ -2248,7 +2248,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400012, guid: 47d0c29352cd94d3ab62999009abee41, type: 3}
   m_PrefabInternal: {fileID: 71170677}
   m_GameObject: {fileID: 1299684924}
-  m_LocalRotation: {x: .40585348, y: .164005503, z: .0895842388, w: .894628286}
+  m_LocalRotation: {x: .40585351, y: .164005518, z: .0895842463, w: .894628346}
   m_LocalPosition: {x: -.122403868, y: 7.31088221e-08, z: 1.11758709e-08}
   m_LocalScale: {x: .999999821, y: 1, z: 1}
   m_Children:
@@ -2464,7 +2464,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400016, guid: 47d0c29352cd94d3ab62999009abee41, type: 3}
   m_PrefabInternal: {fileID: 71170677}
   m_GameObject: {fileID: 1409262145}
-  m_LocalRotation: {x: .936440408, y: .0304383468, z: .00787529536, w: -.349414945}
+  m_LocalRotation: {x: .936440468, y: .0304383487, z: .00787529629, w: -.349414974}
   m_LocalPosition: {x: -.147347644, y: -7.4505806e-09, z: -1.49011612e-08}
   m_LocalScale: {x: 1.00000024, y: 1, z: 1}
   m_Children: []
@@ -2709,7 +2709,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 1933493594}
   m_AABB:
-    m_Center: {x: -.515269399, y: .00741183758, z: .131651238}
+    m_Center: {x: -.515269399, y: .00741195679, z: .131651238}
     m_Extent: {x: .998839736, y: .668806911, z: .506073296}
   m_DirtyAABB: 0
 --- !u!1 &1699809782
@@ -2783,6 +2783,7 @@ MonoBehaviour:
   celialab: {fileID: 2800000, guid: 41788b70ef42c7e42acc0170c438dae3, type: 3}
   myAppFreeBanner: {fileID: 2800000, guid: bc0f770d8e871ff49ac573d58d8f02b3, type: 3}
   normalBanner: {fileID: 2800000, guid: 0b812139cdfc9624d956cced404e121c, type: 3}
+  promotionSound: {fileID: 8300000, guid: d6de90b7ddcf34846840ff52aa2b81f0, type: 3}
 --- !u!82 &1748731439
 AudioSource:
   m_ObjectHideFlags: 0

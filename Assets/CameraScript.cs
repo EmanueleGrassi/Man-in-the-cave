@@ -130,7 +130,7 @@ public class CameraScript : MonoBehaviour
     float nexshot;
     public Transform playerPG;
     public Transform _20bis;
-    public AudioClip rockSound;
+    public AudioClip rockSound,gameoverSound;
     public AudioClip background;
     float smoothTime;
     public float Volume;
@@ -141,7 +141,7 @@ public class CameraScript : MonoBehaviour
     public static Data data; /*CLASSE SALVATAGGIO*/
     public static float PlayTime;
     public static bool replay;
-    bool rebornUsed;
+    bool rebornUsed, playgameover  = true;
     //munu
     float height;
     float margin, margin2;
@@ -361,6 +361,11 @@ public class CameraScript : MonoBehaviour
         }
         else if (vis == false)
         {
+            if (playgameover)
+            {
+                audio.PlayOneShot(gameoverSound);
+                playgameover = false;
+            }
             Rect record = new Rect(PlayTime, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
             salvaRecord(record);
             GUI.skin.label.fontSize = (int)(height * 1.3f);
