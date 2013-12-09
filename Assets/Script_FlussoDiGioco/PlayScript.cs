@@ -5,18 +5,11 @@ public class PlayScript : MonoBehaviour
 {
     float width, height;
 	public Transform player;
-	public AudioClip shout1;
-	public AudioClip shout2;
-	public AudioClip shout3;
-	public AudioClip shout4;
-	public AudioClip shout5;
 	public GameObject wplight, pglight;
     public Transform bengala;
-	public static bool playShout,canPlay;
 	bool locked;
     bool playJump;
 	int finger;
-    float nextshout;
     public static int gamePoints;
 	public JoystickC BengalaTouchPad;
 	public enum PlayState
@@ -87,17 +80,6 @@ public class PlayScript : MonoBehaviour
             //lancia		
             Vector3 pos = player.position;
             Instantiate(bengala, new Vector3(pos.x, pos.y + 2, pos.z), Quaternion.identity);
-        }
-        //suono urlo
-        if (Time.time > nextshout)
-            canPlay = true;
-        if (playShout)
-        {
-            playShout = false;
-            canPlay = false;
-            nextshout = Time.time + 4f;
-            audio.volume = 0.6f;
-            PlayClip(this.audio, shout1, shout2, shout3, shout4, shout5);
         }
 	}
 

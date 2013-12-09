@@ -57,9 +57,9 @@ public class RockBehaviour : MonoBehaviour {
             deathP = transform.position;
 			timedestroy = Time.time+Random.Range(4,12)/2;
 			if(pg!=null)
-	            if (deathP.x < pg.transform.position.x + 6f && deathP.x > pg.transform.position.x - 6f && PlayScript.canPlay)
+	            if (deathP.x < pg.transform.position.x + 6f && deathP.x > pg.transform.position.x - 6f && UrloScript.canPlay)
 	            {
-	                PlayScript.playShout = true;
+	                UrloScript.playShout = true;
 	                Vibrate();
 	            }
                 Instantiate(RockSmoke,
