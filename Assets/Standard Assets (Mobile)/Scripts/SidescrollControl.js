@@ -172,7 +172,7 @@ function Update()
 				turnback=false;
 				transform.rotation= Quaternion.Euler(new Vector3(0,90,0));
 			}
-			if(v.x<0.32 && v.x>-0.32)
+			if(v.x<0.32 && v.x>-0.32 && v.x!=0)
 			    animator.SetFloat("Speed", 0.1024);
         else
 			animator.SetFloat("Speed", v.x*v.x);
