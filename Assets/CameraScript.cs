@@ -383,7 +383,7 @@ public class CameraScript : MonoBehaviour
     {        
         for (int i = 0; i < data.Records.Length; i++)
         {
-            if (rec.x >= data.Records[i].x)
+            if (rec.x > data.Records[i].x)
             {
                 scambiaDa(i,rec);
 				return;

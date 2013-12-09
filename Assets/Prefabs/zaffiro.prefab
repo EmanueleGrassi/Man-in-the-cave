@@ -13,8 +13,8 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
-  - 135: {fileID: 13500000}
   - 114: {fileID: 11400002}
+  - 136: {fileID: 13600000}
   m_Layer: 0
   m_Name: zaffiro
   m_TagString: zaff
@@ -28,9 +28,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: -.707106888, y: -2.82616714e-15, z: -2.82616757e-15, w: .707106769}
-  m_LocalPosition: {x: 6.54371881, y: 10.0647926, z: 7.75}
-  m_LocalScale: {x: .300000012, y: .300000012, z: .400000006}
+  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
+  m_LocalPosition: {x: 1.26972747, y: 1.86678636, z: 7.71831036}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
@@ -159,8 +159,8 @@ MonoBehaviour:
   collected1: {fileID: 8300000, guid: beb809e6ac89bd34d9666d3e4e3561d4, type: 3}
   collected2: {fileID: 8300000, guid: 78a299f3a205e0a4ca9e4a4da9d0947c, type: 3}
   collected3: {fileID: 8300000, guid: 58f1898b3edce49479007fe61b4ccd63, type: 3}
---- !u!135 &13500000
-SphereCollider:
+--- !u!136 &13600000
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -168,9 +168,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.10000002
-  m_Center: {x: 0, y: -.0833330154, z: 0}
+  m_Radius: .319999993
+  m_Height: .860000014
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

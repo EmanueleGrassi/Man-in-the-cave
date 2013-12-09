@@ -20,6 +20,7 @@ public class MenuScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        PlayScript.State = PlayScript.PlayState.menu;
         height = Screen.width / 20;
         margin = Screen.width / 60;
         margin2 = 0;

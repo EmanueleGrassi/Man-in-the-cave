@@ -107,7 +107,6 @@ function Update()
                     animator.SetBool("Jump", true);
 				else
                     animator.SetBool("Drive", true);
-                PlayClip();
                 t = Random.Range(0, 3);
                 if(t==2)
                 {
@@ -186,8 +185,3 @@ function Update()
 var  turnback:boolean=false;
 var  turnback2:boolean=true;
 var v:Vector3;
-function PlayClip()
-    {
-        var random:int = Random.Range(0, clips.Length);
-        audio.PlayOneShot(clips[random]);
-    }
