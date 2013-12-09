@@ -17,6 +17,9 @@ public class RockBehaviour : MonoBehaviour {
 	public Transform RockSmoke;
 	public Transform PGblood;
     bool ucciso;
+    bool a = false;
+    float b;
+
 	// Use this for initialization
 	void Start () {
         Play = false;
@@ -95,10 +98,15 @@ public class RockBehaviour : MonoBehaviour {
 				Quaternion.identity);			
 			//Destroy(col.gameObject);
 			ucciso=true;
+            GameManager_script.spanForResult(true, CameraScript.PlayTime);
+            col.gameObject.SetActive(false);
+            CameraScript.ManageButton(false);
 		}
 		
     }
 	
+
+
 	void Vibrate()
 	{		
 		try {Handheld.Vibrate();} catch {}

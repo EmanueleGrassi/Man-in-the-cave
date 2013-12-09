@@ -22,48 +22,53 @@ public class Scores_script : MonoBehaviour {
     //E' BRUTTO, MA NON METTEDE IL DITO NELLA PIAGA PLIS, ABBIATE FEDE LE COSE STANNO PER CAMBIARE (CIT.)
 	void OnGUI () {
         GUI.skin = custom;
-        GUI.skin.label.fontSize = (int)(unit * 2.2f);
-        if (GUI.Button(new Rect(margin * 2, unit, unit * 1.5f, unit * 1.5f), back))
+        GUI.skin.label.fontSize = (int)(unit * 1.5f);
+        if (GUI.Button(new Rect(margin * 2, unit, unit * 1f, unit * 1f), back))
             Application.LoadLevel(0);
-        GUI.Label(new Rect(unit*6-3*margin, margin, unit*11, unit*3+margin), "Highscores");
+        GUI.Label(new Rect(margin*3 + unit, margin, unit * 11, unit * 3 + margin), "Highscores");
         GUI.skin.label.fontSize = (int)(unit * 0.7f);
         int i = 0;
-        pos = GUI.BeginScrollView(new Rect(unit * 6, unit * 4, unit * 18, unit * 12), pos, new Rect(0, 0, unit * 18, unit * 30));
+        pos = GUI.BeginScrollView(new Rect(margin*3 + unit, unit * 3, Screen.width-(margin*3 + unit), unit * 12), pos, new Rect(0, 0, Screen.width, unit * 30));
         for (i = 0; i < 20; i++)
         {
-            float multmargin = 0;
+            if (CameraScript.data.Records[i].x == 0)
+            {
+                break;
+            }
             if (i==0)
             {
-                GUI.skin.label.normal.textColor = Color.yellow;
+                GUI.skin.label.normal.textColor = new Color(246, 193, 0);
                 GUI.skin.label.fontSize = (int)(unit * 1f);
-                multmargin = 2.5f;
+               
             }
             else if (i==1)
             {
-                multmargin = 0.7f;
-                GUI.skin.label.normal.textColor = Color.gray;
-                GUI.skin.label.fontSize = (int)(unit * 0.9f);
+              
+                GUI.skin.label.normal.textColor = new Color(192, 192, 192);
+                GUI.skin.label.fontSize = (int)(unit * 1f);
             }
             else if (i==2)
             {
-                GUI.skin.label.normal.textColor = Color.blue;
-                GUI.skin.label.fontSize = (int)(unit * 0.8f);
-                multmargin = 0.5f;
+                GUI.skin.label.normal.textColor = new Color(205, 127, 50);
+                GUI.skin.label.fontSize = (int)(unit * 1f);
+                
             }
             else 
             {
                 GUI.skin.label.fontSize = (int)(unit*0.6);
                 GUI.skin.label.normal.textColor = Color.white;     
             }
-            GUI.Label(new Rect(unit*2-3*margin-multmargin*margin, (i * (unit*1.3f)), unit * 18, unit*1.5f), (i + 1) + ". "+ formatScore(CameraScript.data.Records[i].left) + "     " +
-                CameraScript.data.Records[i].top + "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
+           
+            GUI.Label(new Rect(0, (i * (unit*1.3f)), unit * 8, unit*1.5f), formatScore(CameraScript.data.Records[i].x));
+            GUI.Label(new Rect(unit * 7, (i * (unit * 1.3f)), unit * 10, unit * 1.5f), CameraScript.data.Records[i].y +
+                "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
         }
         GUI.EndScrollView();
         GUI.skin.label.normal.textColor = Color.white;
         GUI.skin.label.fontSize = (int)(unit * 0.6);
 	}
 
-
+    
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))

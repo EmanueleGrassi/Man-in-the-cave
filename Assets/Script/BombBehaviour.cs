@@ -6,16 +6,17 @@ public class BombBehaviour : MonoBehaviour {
 	public Transform detonatorBello, detonatorMobile;
 	float explosiontime;
 	bool grounded;
-    GameObject pg;
+    public GameObject pg;
     //public Transform pg;
-    bool killed;
+    public bool killed;
     float killTime;
     bool esplosioneAvvenuta;
 	// Use this for initialization
 	void Start ()
     {		
 		grounded=false;
-        pg = GameObject.FindGameObjectWithTag("Player");
+        pg = GameObject.Find("Player");
+        // pg = GameObject.FindGameObjectWithTag("Player");
         killed = false;
         esplosioneAvvenuta = false;
 	}
@@ -26,10 +27,12 @@ public class BombBehaviour : MonoBehaviour {
 	void Update () 
 	{
 		
-		if(esplosioneAvvenuta && !audio.isPlaying){
+		if(esplosioneAvvenuta && !audio.isPlaying)
+        {
 	        if (killed)
 	        {
-	            PlayScript.State = PlayScript.PlayState.result;
+                GameManager_script.spanForResult(true, CameraScript.PlayTime);
+                CameraScript.ManageButton(false);
 	        }
 			Destroy(gameObject);
 		}

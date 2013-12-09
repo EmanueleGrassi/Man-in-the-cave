@@ -11,6 +11,8 @@ public class Spawner_script : MonoBehaviour {
 	float w, h;
 	Vector3 MarkerPosition;
     bool MarkerPositionCaptured;
+    public Transform player;
+
 	// Use this for initialization
 	void Start () {
         speed = 5;
@@ -39,12 +41,19 @@ public class Spawner_script : MonoBehaviour {
             if (CameraScript.PlayTime > lastSpawn + nextShot)
             {
                 int num = Random.Range(0, 100);
-                if (num <= 17)
-                    istanziaGemma();
-                else if (num > 17 && num < 24)
-                    Instantiate(bomb, transform.position, Quaternion.identity);
-                else
-                    istanziaRoccia();
+                //if ((player.GetComponent < CharacterController>()).velocity.x == 0)
+                //{
+                //    istanziaRocciaperPos();
+                //}
+                //else
+                //{
+                    if (num <= 17)
+                        istanziaGemma();
+                    else if (num > 17 && num < 24)
+                        Instantiate(bomb, transform.position, Quaternion.identity);
+                    else
+                        istanziaRoccia();
+                //}
 
                 lastSpawn = CameraScript.PlayTime;
 				if(MarkerPositionCaptured==false)
@@ -58,6 +67,42 @@ public class Spawner_script : MonoBehaviour {
             nextShot = 5 / (Mathf.Log(CameraScript.PlayTime + 2) - Mathf.Log(CameraScript.PlayTime + 2) / 2);
         }
 	}
+
+    //private void istanziaRocciaperPos()
+    //{
+    //    int rnd = Random.Range(1, 7);
+    //    Vector3 pos = player.transform.position;
+    //    pos.y = transform.position.y;
+
+
+    //    switch (rnd)
+    //    {
+    //        case 1:
+    //            Instantiate(rock1, pos, Quaternion.Euler(new Vector3(90, 0, 0)));
+    //            rock1.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+    //            break;
+    //        case 2:
+    //            Instantiate(rock2, pos, Quaternion.identity);
+    //            rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+    //            break;
+    //        case 3:
+    //            Instantiate(rock3, pos, Quaternion.identity);
+    //            rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+    //            break;
+    //        case 4:
+    //            Instantiate(rock4, pos, Quaternion.identity);
+    //            rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+    //            break;
+    //        case 5:
+    //            Instantiate(rock5, pos, Quaternion.identity);
+    //            rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+    //            break;
+    //        case 6:
+    //            Instantiate(rock6, pos, Quaternion.identity);
+    //            rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
+    //            break;
+    //    }
+    //}
 
     private void istanziaRoccia()
     {
