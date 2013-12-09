@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Scores_script : MonoBehaviour {
 
@@ -54,7 +55,7 @@ public class Scores_script : MonoBehaviour {
                 GUI.skin.label.fontSize = (int)(unit*0.6);
                 GUI.skin.label.normal.textColor = Color.white;     
             }
-            GUI.Label(new Rect(unit*2-3*margin-multmargin*margin, (i * (unit*1.3f)), unit * 18, unit*1.5f), (i + 1) + ". "+ CameraScript.data.Records[i].left + "     " +
+            GUI.Label(new Rect(unit*2-3*margin-multmargin*margin, (i * (unit*1.3f)), unit * 18, unit*1.5f), (i + 1) + ". "+ formatScore(CameraScript.data.Records[i].left) + "     " +
                 CameraScript.data.Records[i].top + "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
         }
         GUI.EndScrollView();
@@ -81,6 +82,14 @@ public class Scores_script : MonoBehaviour {
         if (goBack)
             Application.LoadLevel(0);
         
+    }
+
+    public static string formatScore(float a)
+    {
+        int min = (int)a / 60;
+        int seconds = (int)a - min * 60;
+
+        return (String.Format("{0:00}", min) + ":" + String.Format("{0:00}", seconds) );
     }
 
     bool IsTouchInsideList(Vector2 touchPos)

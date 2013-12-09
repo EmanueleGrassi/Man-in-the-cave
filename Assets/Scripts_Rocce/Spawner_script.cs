@@ -39,9 +39,9 @@ public class Spawner_script : MonoBehaviour {
             if (CameraScript.PlayTime > lastSpawn + nextShot)
             {
                 int num = Random.Range(0, 100);
-                if (num <= 10)
+                if (num <= 17)
                     istanziaGemma();
-                else if (num > 10 && num < 15)
+                else if (num > 17 && num < 24)
                     Instantiate(bomb, transform.position, Quaternion.identity);
                 else
                     istanziaRoccia();

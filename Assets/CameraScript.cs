@@ -302,9 +302,11 @@ public class CameraScript : MonoBehaviour
         {
             Application.LoadLevel(1);
         }
-        if (GUI.Button(new Rect(height * 13, height * 4, height*3, height*3), homeButton))
+        if (GUI.Button(new Rect(height * 13, height * 4, height * 3, height * 3), homeButton))
+        {
+            PlayScript.State = PlayScript.PlayState.menu;
             Application.LoadLevel(0);
-		
+        }
 		if(Input.GetKey(KeyCode.Escape))
 			PlayScript.State = PlayScript.PlayState.play;
         

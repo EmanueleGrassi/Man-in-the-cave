@@ -10,13 +10,11 @@ public class PlayScript : MonoBehaviour
 	public AudioClip shout3;
 	public AudioClip shout4;
 	public AudioClip shout5;
-    public AudioClip jump1, jump2, jump3, jump4, jump5, jump6, jump7;
 	public GameObject wplight, pglight;
     public Transform bengala;
 	public static bool playShout,canPlay;
 	bool locked;
     bool playJump;
-	int random;
 	int finger;
     float nextshout;
     public static int gamePoints;
@@ -76,7 +74,8 @@ public class PlayScript : MonoBehaviour
 
 	void Update ()
 	{
-        
+        if (!audio.isPlaying)
+            audio.volume = 1;
         if (CameraScript.data.numBengala == 0)
         {
             BengalaTouchPad.Disable();
@@ -97,15 +96,8 @@ public class PlayScript : MonoBehaviour
             playShout = false;
             canPlay = false;
             nextshout = Time.time + 4f;
+            audio.volume = 0.6f;
             PlayClip(this.audio, shout1, shout2, shout3, shout4, shout5);
-        }
-        //suono salto
-        if (playJump && transform.position.y>1.74)
-        {
-            playJump = false;
-            random = Random.Range(0, 3);
-            if(random==2)
-                PlayClip(this.audio, jump1, jump2, jump3, jump4, jump5, jump6, jump7);
         }
 	}
 

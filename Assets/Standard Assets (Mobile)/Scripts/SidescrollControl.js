@@ -75,6 +75,7 @@ function OnGUI()
         	
 
 }*/
+
 function Update()
 {
 	if (animator)
@@ -101,16 +102,24 @@ function Update()
 		 	{
 				jump = true;
 				canJump = false;
-				var t:int =  Random.Range(0,1);
+				var t:int =  Random.Range(0,2);
                 if(t==0)
                     animator.SetBool("Jump", true);
 				else
                     animator.SetBool("Drive", true);
-				PlayClip();
+                PlayClip();
+                t = Random.Range(0, 3);
+                if(t==2)
+                {
+                    t = Random.Range(0, clips.Length);
+                    audio.PlayOneShot(clips[t]);
+                    //PlayClip(this.audio, jump1, jump2, jump3, jump4, jump5, jump6, jump7);
+                }
 		 	}	
 			
 			if ( jump )
 			{
+
 				// Apply the current movement to launch velocity		
 				velocity = character.velocity;
 				velocity.y = jumpSpeed;	
