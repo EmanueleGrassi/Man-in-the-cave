@@ -239,7 +239,7 @@ public class CameraScript : MonoBehaviour
         if (replayGame)
         {
             PlayScript.State = PlayScript.PlayState.play;
-            //replayGame = false;
+            replayGame = false;
         }
         PlayTime += Time.deltaTime;
         if (!audio.isPlaying)
