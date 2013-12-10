@@ -115,9 +115,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   rockSound: {fileID: 8300000, guid: ce4d689d38400b448a560f0d14db09bb, type: 3}
-  morte1: {fileID: 8300000, guid: c02575d870932b841b1fc21786e499bb, type: 3}
-  morte2: {fileID: 8300000, guid: 7c4a4300515c7e746992934b22ff1e97, type: 3}
-  morte3: {fileID: 8300000, guid: 4992b52cd9a98bd43b29a048402ffdaa, type: 3}
+  morte1: {fileID: 8300000, guid: 2fe0e2edaa95d4248b1b3a2b290a97dd, type: 3}
+  morte2: {fileID: 8300000, guid: baf6da9edcd9e6e488eec26ef9ca5cb9, type: 3}
+  morte3: {fileID: 8300000, guid: 56256e7e0c66f60459c989273c93f302, type: 3}
   RockSmoke: {fileID: 400000, guid: 289a36dcbb43ec640b725f4f945003d9, type: 2}
   PGblood: {fileID: 400000, guid: 80cd87e5e66b84b35b29f75198eeda8b, type: 2}
 --- !u!1001 &100100000
