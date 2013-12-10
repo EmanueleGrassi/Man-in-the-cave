@@ -390,7 +390,7 @@ public class CameraScript : MonoBehaviour
                 if (GUI.Button(new Rect(height * 8, height * 8, height * 5, height * 3 + margin), likebtn))
                 {
                     if (shareEvent != null)
-                        shareEvent(shareEvent, new EventArgs());
+                        shareEvent(t, new EventArgs());
                 }
             }
         }
@@ -398,14 +398,35 @@ public class CameraScript : MonoBehaviour
 
     private void salvaRecord(Rect rec)
     {
-        for (int i = 0; i < data.Records.Length; i++)
+        List<Rect> t = new List<Rect>();
+        foreach (var item in data.Records)
         {
-            if (rec.x > data.Records[i].x)
-            {
-                scambiaDa(i, rec);
-                return;
-            }
+            t.Add(item);
         }
+        int i = 0;
+        foreach (var item in t)
+        {
+            if (rec.x > item.x)
+            {
+                t.Insert(i, rec);
+                break;
+            }
+            i++;
+        }
+        i = 0;
+        foreach (var item in data.Records)
+        {
+            data.Records[i]= t[i];
+            i++;
+        }
+        //for (int i = 0; i < data.Records.Length; i++)
+        //{
+        //    if (rec.x > data.Records[i].x)
+        //    {
+        //        scambiaDa(i, rec);
+        //        return;
+        //    }
+        //}
     }
 
     private void scambiaDa(int i, Rect rec)
