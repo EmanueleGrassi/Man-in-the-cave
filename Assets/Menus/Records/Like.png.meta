@@ -38,7 +38,11 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 2
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: WP8
+    maxTextureSize: 256
+    textureFormat: -1
+    compressionQuality: 50
   spriteSheet:
     sprites: []
   spritePackingTag: 

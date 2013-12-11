@@ -33,7 +33,6 @@ public class MenuScript : MonoBehaviour
                 StartWebRequest("http://celialab.com/Promotion.txt");
             else
                 addPoints(1000);
-
         }
 
     }
@@ -134,12 +133,14 @@ public class MenuScript : MonoBehaviour
         if (Time.time <= StayPromotionBannar)
         {
             if (Application.platform == RuntimePlatform.WP8Player)
+            {
                 if (GUI.Button(new Rect(0, 0, Screen.width, (Screen.width * 156) / 1280), myAppFreeBanner)) //1280: 156= width :x
                 {
                     Application.OpenURL("https://www.myAppFree.com");//visualizza bottone myappfree con link al sito  
                 }
-                else
-                    GUI.DrawTexture(new Rect(0, 0, Screen.width , (Screen.width * 250) / 2048), normalBanner, ScaleMode.ScaleToFit, true);                    
+            }
+            else
+                GUI.DrawTexture(new Rect(0, 0, Screen.width, (Screen.width * 250) / 2048), normalBanner, ScaleMode.ScaleToFit, true);                    
         }
 
     }

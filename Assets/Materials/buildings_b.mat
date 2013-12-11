@@ -9,6 +9,7 @@ Material:
   m_Name: buildings_b
   m_Shader: {fileID: 13, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -44,7 +45,7 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .87120235
+        second: .131828189
       data:
         first:
           name: _EmissionLM
@@ -53,11 +54,11 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .411764681, g: .3454898, b: .202854663, a: 1}
+        second: {r: .301470578, g: .258573711, b: .166252151, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: .474372834, g: .602941155, b: .496539772, a: 1}
+        second: {r: .25, g: .233772814, b: .191176474, a: 1}
       data:
         first:
           name: _ReflectColor

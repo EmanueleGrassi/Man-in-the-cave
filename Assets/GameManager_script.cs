@@ -18,7 +18,7 @@ public class GameManager_script : MonoBehaviour {
         if (PGdead)
         {
             CameraScript.ManageButton(false);
-            if (CameraScript.PlayTime > deathTime + 2.5f)
+            if (CameraScript.PlayTime > deathTime + 1.3f)//prima 2.5
             {
                 if (CameraScript.replayGame)
                     CameraScript.replayGame = false;

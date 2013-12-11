@@ -8,7 +8,7 @@ using System.Text;
 
 public class Data
 {
-    public int points = 10000;
+    public int points = 0;
     public Rect[] Records = new Rect[20];
     int pickaxeState;/*50 max*/
     public int PickaxeState
@@ -140,6 +140,7 @@ public class CameraScript : MonoBehaviour
     /*CLASSE SALVATAGGIO*/
     public static Data data; /*CLASSE SALVATAGGIO*/
     public static float PlayTime;
+    public static float TempoRecord = 0;
     public static bool replay;
     bool rebornUsed, playgameover  = true;
     //munu
@@ -367,7 +368,7 @@ public class CameraScript : MonoBehaviour
                 playgameover = false;
             }
             Rect record = new Rect(PlayTime, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
-            salvaRecord(record);
+          
             GUI.skin.label.fontSize = (int)(height * 1.3f);
             GUI.Label(new Rect(height, height * 2, height * 20, height * 2), "You survived inside the cave for:");
             TimeSpan t = TimeSpan.FromSeconds(CameraScript.PlayTime);
@@ -376,21 +377,24 @@ public class CameraScript : MonoBehaviour
             if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3 + margin), playAgainButton))
             {
                 CameraScript.data.points += PlayScript.gamePoints;
+                salvaRecord(record);
                 SaveData();
                 Application.LoadLevel(1);
             }
             if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3 + margin), homeButton))
             {
                 CameraScript.data.points += PlayScript.gamePoints;
+                salvaRecord(record);
                 SaveData();
                 Application.LoadLevel(0);
             }
             if (Application.platform == RuntimePlatform.WP8Player)
             {
+                TempoRecord = CameraScript.PlayTime;
                 if (GUI.Button(new Rect(height * 8, height * 8, height * 5, height * 3 + margin), likebtn))
-                {
+                {                    
                     if (shareEvent != null)
-                        shareEvent(t, new EventArgs());
+                        shareEvent(this, new EventArgs());
                 }
             }
         }

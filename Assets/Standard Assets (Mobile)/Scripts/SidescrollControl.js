@@ -101,7 +101,7 @@ function Update()
 				jump = true;
 				canJump = false;
 				var t:int =  Random.Range(0,2);
-                if(t==0)
+                if(true)
                     animator.SetBool("Jump", true);
 				else
                     animator.SetBool("Drive", true);
@@ -125,7 +125,7 @@ function Update()
 			else
 			{
 			    animator.SetBool("Jump", false); 
-			    animator.SetBool("Drive", false);
+			    //animator.SetBool("Drive", false);
 				/*if (Time.time>nextPlayAudio && moveTouchPad.position.x != 0) 
 				{
 					audio.PlayOneShot(footstep);
