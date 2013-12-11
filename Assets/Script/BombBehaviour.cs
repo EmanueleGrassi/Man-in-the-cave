@@ -103,7 +103,9 @@ public class BombBehaviour : MonoBehaviour {
     }
 
 	void Vibrate()
-	{		
-		try {Handheld.Vibrate();} catch {}
+	{	
+        #if !UNITY_METRO
+		        try {Handheld.Vibrate();} catch {}
+        #endif
 	}
 }

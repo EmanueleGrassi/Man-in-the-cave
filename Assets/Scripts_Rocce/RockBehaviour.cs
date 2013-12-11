@@ -108,8 +108,10 @@ public class RockBehaviour : MonoBehaviour {
 
 
 	void Vibrate()
-	{		
-		try {Handheld.Vibrate();} catch {}
-	}
+    {
+        #if !UNITY_METRO
+		                try {Handheld.Vibrate();} catch {}
+        #endif
+    }
 
 }
