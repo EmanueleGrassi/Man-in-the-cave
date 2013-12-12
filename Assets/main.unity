@@ -2029,7 +2029,7 @@ GameObject:
   - 33: {fileID: 844777116}
   - 65: {fileID: 844777115}
   - 23: {fileID: 844777114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spawnborder5
   m_TagString: bound
   m_Icon: {fileID: 0}
@@ -3178,7 +3178,7 @@ GameObject:
   - 33: {fileID: 1360849295}
   - 65: {fileID: 1360849294}
   - 23: {fileID: 1360849293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spawnborder1
   m_TagString: bound
   m_Icon: {fileID: 0}
@@ -3537,7 +3537,7 @@ GameObject:
   - 33: {fileID: 1531388954}
   - 65: {fileID: 1531388953}
   - 23: {fileID: 1531388952}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spawnborder3
   m_TagString: bound
   m_Icon: {fileID: 0}
@@ -4334,7 +4334,7 @@ GameObject:
   - 33: {fileID: 1850733386}
   - 65: {fileID: 1850733385}
   - 23: {fileID: 1850733384}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spawnborder2
   m_TagString: bound
   m_Icon: {fileID: 0}
@@ -4403,7 +4403,7 @@ GameObject:
   - 33: {fileID: 1900898007}
   - 65: {fileID: 1900898006}
   - 23: {fileID: 1900898005}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spawnborder4
   m_TagString: bound
   m_Icon: {fileID: 0}
