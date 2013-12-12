@@ -6,8 +6,8 @@
       <File FileName="Assets/pg_Script.cs" Line="27" Column="29" />
       <File FileName="Assets/CameraScript.cs" Line="130" Column="18" />
       <File FileName="Assets/Script/BombBehaviour.cs" Line="65" Column="62" />
-      <File FileName="Assets/buyItems_Script.cs" Line="60" Column="64" />
-      <File FileName="Assets/Items_Script.cs" Line="167" Column="125" />
+      <File FileName="Assets/buyItems_Script.cs" Line="74" Column="48" />
+      <File FileName="Assets/Scores_script.cs" Line="52" Column="75" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
