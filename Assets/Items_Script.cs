@@ -108,8 +108,9 @@ public class Items_Script : MonoBehaviour {
         availableLights = 0;
         if (CameraScript.data.helmet != Helmet.white)
         {
-            GUI.DrawTexture(new Rect(margin + availableLights * (size * 2 + margin), size * 9 -2*margin, size * 2, size * 2), white, ScaleMode.ScaleToFit, false);
-            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10 , size * 2, size * 2), "Equip"))
+
+            if ((GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10 , size * 2, size * 2), "Equip"))
+			    || GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 -2*margin, size * 2, size * 2), white))
 			{
                 CameraScript.data.helmet = Helmet.white;
 				audio.PlayOneShot(equipSound);
@@ -118,8 +119,9 @@ public class Items_Script : MonoBehaviour {
         }
         if (CameraScript.data.lightRed && CameraScript.data.helmet != Helmet.red)
         {
-            GUI.DrawTexture(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2*margin, size * 2, size * 2), redligth, ScaleMode.ScaleToFit, false);
-            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10 , size * 2, size * 2), "Equip"))
+            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10 , size * 2, size * 2), "Equip")
+			    ||
+			GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2*margin, size * 2, size * 2), redligth))
 			{
                 CameraScript.data.helmet = Helmet.red;
 				audio.PlayOneShot(equipSound);
@@ -128,8 +130,9 @@ public class Items_Script : MonoBehaviour {
         }
         if (CameraScript.data.lightBlue && CameraScript.data.helmet != Helmet.blue)
         {
-            GUI.DrawTexture(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2*margin, size * 2, size * 2), blueligth, ScaleMode.ScaleToFit, false);
-            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10 , size * 2, size * 2), "Equip"))
+            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10 , size * 2, size * 2), "Equip")
+			    ||
+			GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2*margin, size * 2, size * 2), blueligth))
 			{
                 CameraScript.data.helmet = Helmet.blue;
 				audio.PlayOneShot(equipSound);
@@ -138,8 +141,9 @@ public class Items_Script : MonoBehaviour {
         }
         if (CameraScript.data.lightGreen && CameraScript.data.helmet != Helmet.green)
         {
-            GUI.DrawTexture(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2*margin, size * 2, size * 2), greenligth, ScaleMode.ScaleToFit, false);
-            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10 , size * 2, size * 2), "Equip"))
+            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10 , size * 2, size * 2), "Equip")
+			    ||
+			GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2*margin, size * 2, size * 2), greenligth))
 			{
                 CameraScript.data.helmet = Helmet.green;
 				audio.PlayOneShot(equipSound);
@@ -148,8 +152,9 @@ public class Items_Script : MonoBehaviour {
         }
         if (CameraScript.data.lightPink && CameraScript.data.helmet != Helmet.pink)
         {
-            GUI.DrawTexture(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2*margin, size * 2, size * 2), pinkligth, ScaleMode.ScaleToFit, false);
-            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10, size * 2, size * 2), "Equip"))
+            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10, size * 2, size * 2), "Equip")
+			    ||
+			GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2*margin, size * 2, size * 2), pinkligth))
 			{
                 CameraScript.data.helmet = Helmet.pink;
 				audio.PlayOneShot(equipSound);
@@ -158,8 +163,8 @@ public class Items_Script : MonoBehaviour {
         }
         if (CameraScript.data.lightRainbow && CameraScript.data.helmet != Helmet.rainbow)
         {
-            GUI.DrawTexture(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2*margin, size * 2, size * 2), ranbowligth, ScaleMode.ScaleToFit, false);
-            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10, size * 2, size * 2), "Equip"))
+            if ((GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10, size * 2, size * 2), "Equip")) ||
+			GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2*margin, size * 2, size * 2), ranbowligth) )
 			{
                 CameraScript.data.helmet = Helmet.rainbow;
 				audio.PlayOneShot(equipSound);

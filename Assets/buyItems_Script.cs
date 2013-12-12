@@ -13,6 +13,7 @@ public class buyItems_Script : MonoBehaviour {
     bool goBack;
     bool imbuying;
     public Texture back;
+	float unmarginino;
 
     // Use this for initialization
     void Start()
@@ -21,8 +22,29 @@ public class buyItems_Script : MonoBehaviour {
         goBack = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
-        span = new float[] { 0,0, size * 2 + margin , margin * 2 + size * 4, margin * 3 + size * 6, margin * 4 + size * 8 };
-    }
+		if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.WindowsPlayer) {
+						span = new float[] {
+								0,
+								0,
+								size * 2 + margin ,
+								margin * 2 + size * 4,
+								margin * 3 + size * 6,
+								margin * 4 + size * 8
+						};
+						unmarginino = margin * 11;
+				} else {
+						span = new float[] {
+								0,
+								0,
+								size * 2 + 2 * margin ,
+								margin * 4 + size * 4,
+								margin * 6 + size * 6,
+								margin * 8 + size * 8
+						};
+			unmarginino = margin * 12;
+		}
+
+	}
     Vector2 position = Vector2.zero;
 
     void OnGUI()
@@ -37,25 +59,27 @@ public class buyItems_Script : MonoBehaviour {
         GUI.Label(new Rect(margin + size*1.5f, margin, size * 10, size * 2 + margin), "Buy Items"); // titolo
         custom.label.fontSize = (int)(size * 0.5f);
         //reborn e picconi
-        GUI.Label(new Rect(margin*3, margin * 11 - 3, size * 6, size), "n Bengal: " + CameraScript.data.numBengala);
-        GUI.Label(new Rect(size * 5 + margin*2, margin * 11 - 3, size * 6, size), "n Reborn: " + CameraScript.data.NumberReborn);
+        GUI.Label(new Rect(margin*3, margin * 11, size * 6, size), "n Bengal: " + CameraScript.data.numBengala);
+        GUI.Label(new Rect(size * 5 + margin*2, margin * 11, size * 6, size), "n Reborn: " + CameraScript.data.NumberReborn);
         //coins
         GUI.DrawTexture(new Rect(size * 10 , margin*2, size, size), coins);
+		custom.label.fontSize = (int)(size*0.7);
         GUI.Label(new Rect(size * 11+ margin, margin * 2, size*2, size), "" + CameraScript.data.points);
+		custom.label.fontSize = (int)(size * 0.5f);
         //purchases
-        custom.button.normal.textColor = new Color(170,92,0);
-        custom.button.fontSize = (int)(size * 0.5f);
-        if (GUI.Button(new Rect(size * 14, margin * 2, size + margin, size), "+500"))
+		custom.button.normal.textColor = new Color(205, 127, 50);
+		custom.button.fontSize = (int)(size * 0.7f);
+        if (GUI.Button(new Rect(size * 13, margin * 2, size + 2*margin, size), "+500"))
             if (plus500 != null)
                 plus500(this, new EventArgs());
-        custom.button.normal.textColor = new Color(164, 164, 164);
-        custom.button.fontSize = (int)(size * 0.5f)+1;
-        if (GUI.Button(new Rect(size * 16-margin/2, margin *2, size+margin*2, size), "+1000"))
+		custom.button.normal.textColor = new Color(192, 192, 192);
+		custom.button.fontSize = (int)(size * 0.8f);
+        if (GUI.Button(new Rect(size * 15-margin, margin *2, size+margin*4, size), "+1000"))
             if (plus1000 != null)
                 plus1000(this, new EventArgs());
-        custom.button.normal.textColor = new Color(234, 202, 0);
-        custom.button.fontSize = (int)(size * 0.5f) + 2;
-        if (GUI.Button(new Rect(size * 18-margin, margin * 2, size + 3*margin, size), "+5000"))
+		custom.button.normal.textColor = new Color(246, 193, 0);
+		custom.button.fontSize = (int)(size * 0.9f) ;
+        if (GUI.Button(new Rect(size * 17, margin * 1.8f, size + 5*margin, size), "+5000"))
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
         //colonna di sinistra
@@ -67,7 +91,7 @@ public class buyItems_Script : MonoBehaviour {
                 CameraScript.SaveData();
                 audio.PlayOneShot(cashsound);
             }
-        if (GUI.Button(new Rect(margin, margin * 11 + size * 3, size * 9, size * 3), reborn))
+        if (GUI.Button(new Rect(margin, unmarginino + size * 3, size * 9, size * 3), reborn))
             if (CameraScript.data.points >= 300)
             {
                 CameraScript.data.points -= 300;
@@ -77,7 +101,8 @@ public class buyItems_Script : MonoBehaviour {
             }
         //scrollview
         int elem = 0;
-        position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, size * 10), position, new Rect(0, 0, size * 10, size * 14));
+		position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, Screen.height-(margin * 7)), position, 
+		                               new Rect(0, 0, size * 10, size * 14));
         if (!CameraScript.data.lightRed)
         {
             elem++;
@@ -164,7 +189,7 @@ public class buyItems_Script : MonoBehaviour {
                 imbuying = true;
             if (touch.phase == TouchPhase.Moved && fInsideList)
             {
-                position.y += touch.deltaPosition.y * 2;
+                position.y += touch.deltaPosition.y * 2; //2:480= x:Screen.height
                 imbuying = false;
             }
         }

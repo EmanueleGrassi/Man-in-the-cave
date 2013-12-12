@@ -6,7 +6,7 @@ PlayerSettings:
   serializedVersion: 2
   AndroidProfiler: 0
   defaultScreenOrientation: 4
-  targetDevice: 2
+  targetDevice: 1
   targetGlesGraphics: 1
   targetResolution: 0
   accelerometerFrequency: 60
@@ -89,7 +89,7 @@ PlayerSettings:
   APKExpansionFiles: 0
   StripUnusedMeshComponents: 0
   iPhoneSdkVersion: 988
-  iPhoneTargetOSVersion: 18
+  iPhoneTargetOSVersion: 22
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIStatusBarHidden: 1
@@ -110,7 +110,7 @@ PlayerSettings:
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
-    - m_Icon: {fileID: 2800000, guid: 3c99a77c9d486264992cf39e85857a7a, type: 3}
+    - m_Icon: {fileID: 2800000, guid: 2b54fe57a390c4fe69984220f9abf68b, type: 3}
       m_Size: 128
   m_BuildTargetBatching:
   - m_BuildTarget: WP8

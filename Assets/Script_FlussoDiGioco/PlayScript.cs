@@ -59,7 +59,8 @@ public class PlayScript : MonoBehaviour
         }
         else
         {
-            wplight.SetActive(false);
+            wplight.SetActive(true);
+			wplight.light.range=6f;
             pglight.SetActive(true);
         }
 
@@ -96,11 +97,5 @@ public class PlayScript : MonoBehaviour
     {
         int random = Random.Range(0, list.Length);
         audio2.PlayOneShot(list[random]);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "ground")
-            playJump = true;
-    }
+    }    
 }

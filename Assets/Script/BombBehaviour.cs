@@ -6,7 +6,7 @@ public class BombBehaviour : MonoBehaviour {
 	public Transform detonatorBello, detonatorMobile;
 	float explosiontime;
 	bool grounded;
-    public GameObject pg;
+    private GameObject pg;
     //public Transform pg;
     public bool killed;
     float killTime;
@@ -62,8 +62,7 @@ public class BombBehaviour : MonoBehaviour {
 
         //timeAfterExplosion = CameraScript.PlayTime + 4.5f;
         if (Application.platform == RuntimePlatform.Android ||
-            Application.platform == RuntimePlatform.WP8Player
-            || Application.platform == RuntimePlatform.IPhonePlayer)
+            Application.platform == RuntimePlatform.WP8Player)
             Instantiate(detonatorMobile, transform.position, Quaternion.identity);
         else
             Instantiate(detonatorBello, transform.position, Quaternion.identity);

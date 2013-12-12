@@ -180,7 +180,6 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-
             if (PlayerPrefs.GetString("salvataggio") != "")
             {
                 JSON js = new JSON();
@@ -364,6 +363,8 @@ public class CameraScript : MonoBehaviour
         {
             if (playgameover)
             {
+
+				audio.volume = 0.75f;
                 audio.PlayOneShot(gameoverSound);
                 playgameover = false;
             }
