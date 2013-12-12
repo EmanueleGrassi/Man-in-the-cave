@@ -257,7 +257,7 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: fde5cedaaca09c94ca51ac3accafae31, type: 3}
+  m_audioClip: {fileID: 8300000, guid: de192b97c2b41d4419f4b79ba911dcdb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -353,14 +353,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49adbf0a795d018469808c44fa97347a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miccia: {fileID: 8300000, guid: fde5cedaaca09c94ca51ac3accafae31, type: 3}
+  miccia: {fileID: 8300000, guid: de192b97c2b41d4419f4b79ba911dcdb, type: 3}
   esplosione: {fileID: 8300000, guid: 11b497e096102364393ed32973add45a, type: 3}
   morte1: {fileID: 8300000, guid: 2fe0e2edaa95d4248b1b3a2b290a97dd, type: 3}
   morte2: {fileID: 8300000, guid: baf6da9edcd9e6e488eec26ef9ca5cb9, type: 3}
   morte3: {fileID: 8300000, guid: 56256e7e0c66f60459c989273c93f302, type: 3}
   detonatorBello: {fileID: 400000, guid: d1514f9e2f80f8242b7757a991767d92, type: 2}
   detonatorMobile: {fileID: 400000, guid: 397c655172837f34489f865548775d43, type: 2}
-  pg: {fileID: 0}
   killed: 0
 --- !u!135 &13500000
 SphereCollider:
