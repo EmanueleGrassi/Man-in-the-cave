@@ -86,7 +86,12 @@ function Update()
 			movement = Vector3.right * forwardSpeed * moveTouchPad.position.x;
 		else
 			movement = Vector3.right * backwardSpeed * moveTouchPad.position.x;
-		
+    #if UNITY_METRO
+		    if( Input.GetAxis("Horizontal")> 0)
+		        movement = Vector3.right * forwardSpeed * Input.GetAxis("Horizontal");
+		    else
+		        movement = Vector3.right * backwardSpeed * Input.GetAxis("Horizontal");
+    #endif
 		// Check for jump
 		if ( character.isGrounded )//se sto a terra faccio questo
 		{		
@@ -110,10 +115,26 @@ function Update()
                 {
                     t = Random.Range(0, clips.Length);
                     audio.PlayOneShot(clips[t]);
-                    //PlayClip(this.audio, jump1, jump2, jump3, jump4, jump5, jump6, jump7);
                 }
 		 	}	
-			
+	#if UNITY_METRO
+	    if(canJump && Input.GetAxis("Jump")> 0)//qui salto con tastiera
+	    {
+	        jump = true;
+	        canJump = false;
+	        t =  Random.Range(0,2);
+	        if(true)
+	            animator.SetBool("Jump", true);
+	        else
+	            animator.SetBool("Drive", true);
+	        t = Random.Range(0, 3);
+	        if(t==2)
+	        {
+	            t = Random.Range(0, clips.Length);
+	            audio.PlayOneShot(clips[t]);
+	        }
+	    }
+    #endif
 			if ( jump )
 			{
 

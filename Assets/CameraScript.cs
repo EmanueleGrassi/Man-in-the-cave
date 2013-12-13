@@ -233,6 +233,13 @@ public class CameraScript : MonoBehaviour
         height = Screen.width / 20;
         margin = Screen.width / 60;
         margin2 = 0;// Screen.width / 70;
+        #if UNITY_METRO
+            if(Input.touchCount == 0)
+            {
+                ManageButton(false);
+                //visualizza immmagine istruzioni
+            }
+        #endif
         PlayScript.State = PlayScript.PlayState.play;
     }
 

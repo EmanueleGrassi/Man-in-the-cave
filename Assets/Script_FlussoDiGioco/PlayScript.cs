@@ -83,16 +83,24 @@ public class PlayScript : MonoBehaviour
         {
             BengalaTouchPad.Disable();
         }
-        if (BengalaTouchPad.IsFingerDown() && BenngalaAvailable && CameraScript.data.numBengala > 0)
+        else if (BengalaTouchPad.IsFingerDown() && BenngalaAvailable && CameraScript.data.numBengala > 0)
         {
-            CameraScript.data.numBengala--;
-            BenngalaAvailable = false;
-            //lancia		
-            Vector3 pos = player.position;
-            Instantiate(bengala, new Vector3(pos.x, pos.y + 2, pos.z), Quaternion.identity);
+            LanciaBengala();
         }
+        #if UNITY_METRO
+        if( Input.GetAxis("BengalaFire")>0 && BenngalaAvailable && CameraScript.data.numBengala > 0)
+            LanciaBengala();
+        #endif
     }
 
+    private void LanciaBengala()
+    {
+        CameraScript.data.numBengala--;
+        BenngalaAvailable = false;
+        //lancia		
+        Vector3 pos = player.position;
+        Instantiate(bengala, new Vector3(pos.x, pos.y + 2, pos.z), Quaternion.identity);
+    }
     public static void PlayClip(AudioSource audio2, params AudioClip[] list)
     {
         int random = Random.Range(0, list.Length);

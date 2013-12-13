@@ -68,7 +68,7 @@ public class JoystickC : MonoBehaviour
 	
 	public void Disable ()
 	{
-		gameObject.active = false;
+		gameObject.SetActive(false);
 		enumeratedJoysticks = false;
 	}
 
