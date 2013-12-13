@@ -155,6 +155,10 @@ public class CameraScript : MonoBehaviour
     public static event EventHandler saveEvent, loadEvent, shareEvent;
     public static event EventHandler GOReviews;
 
+    #if UNITY_METRO
+        private Boolean VisualizeButtonsOnW8=false;
+    #endif
+
     public static void SaveData()
     {
         if (Application.platform == RuntimePlatform.WP8Player)
@@ -198,7 +202,6 @@ public class CameraScript : MonoBehaviour
 					data.Records[i]= new Rect(0,0,0,0);
                 SaveData();
             }
-
         }
     }
 
@@ -233,10 +236,11 @@ public class CameraScript : MonoBehaviour
         height = Screen.width / 20;
         margin = Screen.width / 60;
         margin2 = 0;// Screen.width / 70;
+        print("touch: " + Input.touchCount);
         #if UNITY_METRO
-            if(Input.touchCount == 0)
+            if(Input.touchCount> 0)
             {
-                ManageButton(false);
+                VisualizeButtonsOnW8 = true;
                 //visualizza immmagine istruzioni
             }
         #endif
@@ -301,7 +305,13 @@ public class CameraScript : MonoBehaviour
 
         if (PlayScript.State == PlayScript.PlayState.play)
         {
+#if UNITY_METRO
+            ManageButton(VisualizeButtonsOnW8);
+#endif
+#if !UNITY_METRO
             ManageButton(true);
+#endif
+
             drawPlay();
         }       
         else if (PlayScript.State == PlayScript.PlayState.pause)
