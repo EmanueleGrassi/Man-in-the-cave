@@ -13,6 +13,7 @@ public class MenuScript : MonoBehaviour
     float height;
     float margin, margin2;
     static bool play = true;
+    public Transform PG;
     public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
     public Texture Title, facebook, twitter, review, celialab;
     public Texture myAppFreeBanner, normalBanner;
@@ -34,7 +35,8 @@ public class MenuScript : MonoBehaviour
             else
                 addPoints(1000);
         }
-
+        print("screen: " + Screen.width);
+        PG.position = new Vector3(Screen.width*(-3.3f)/800f, -0.009f, 8f);
     }
     float StartPromotionSound;
     bool StartPromotion = false;
@@ -130,7 +132,7 @@ public class MenuScript : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
             Application.Quit();
 
-        if (Time.time <= StayPromotionBannar)
+        if (Time.time < StayPromotionBannar)
         {
             if (Application.platform == RuntimePlatform.WP8Player)
             {

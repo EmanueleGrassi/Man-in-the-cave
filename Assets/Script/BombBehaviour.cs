@@ -61,7 +61,7 @@ public class BombBehaviour : MonoBehaviour {
         audio.PlayOneShot(esplosione);
 
         //timeAfterExplosion = CameraScript.PlayTime + 4.5f;
-        if (Application.platform == RuntimePlatform.Android ||
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WindowsPlayer ||
 		    Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.IPhonePlayer)
             Instantiate(detonatorMobile, transform.position, Quaternion.identity);
         else
