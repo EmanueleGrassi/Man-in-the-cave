@@ -9,6 +9,7 @@ public class Scores_script : MonoBehaviour {
     Vector2 pos;
     bool goBack;
     public Texture back;
+    float scrollparam;
 
 	// Use this for initialization
 	void Start () {
@@ -16,10 +17,10 @@ public class Scores_script : MonoBehaviour {
         margin = Screen.width / 60;
         pos = Vector2.zero;
         goBack = false;
+        scrollparam = (Screen.height * 2) / 768;
 	}
 	
 	// Update is called once per frame
-    //E' BRUTTO, MA NON METTEDE IL DITO NELLA PIAGA PLIS, ABBIATE FEDE LE COSE STANNO PER CAMBIARE (CIT.)
 	void OnGUI () {
         GUI.skin = custom;
         GUI.skin.label.fontSize = (int)(unit * 1.5f);
@@ -81,7 +82,7 @@ public class Scores_script : MonoBehaviour {
 
             if (touch.phase == TouchPhase.Moved && fInsideList)
             {
-                pos.y += touch.deltaPosition.y * 2;
+                pos.y += touch.deltaPosition.y * scrollparam;
             }
         }
         if (goBack)

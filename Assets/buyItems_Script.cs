@@ -13,7 +13,7 @@ public class buyItems_Script : MonoBehaviour {
     bool goBack;
     bool imbuying;
     public Texture back;
-	float unmarginino;
+	float unmarginino, scrollparam;
 
     // Use this for initialization
     void Start()
@@ -43,6 +43,7 @@ public class buyItems_Script : MonoBehaviour {
 						};
 			unmarginino = margin * 12;
 		}
+        scrollparam = (Screen.height * 2) / 768;
 
 	}
     Vector2 position = Vector2.zero;
@@ -189,7 +190,7 @@ public class buyItems_Script : MonoBehaviour {
                 imbuying = true;
             if (touch.phase == TouchPhase.Moved && fInsideList)
             {
-                position.y += touch.deltaPosition.y * 2; //2:480= x:Screen.height
+                position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
                 imbuying = false;
             }
         }
