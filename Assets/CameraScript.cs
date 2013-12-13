@@ -164,8 +164,13 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
+			foreach(var item in data.Records)
+			{
+				print("day rec: "+item.y);
+			}
             JSON js = new JSON();
-            js["salvataggio"] = (JSON)data;
+			print (((JSON)data).serialized);
+			js["salvataggio"] = ((JSON)data);
             PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
             PlayerPrefs.Save();
         }
@@ -368,8 +373,6 @@ public class CameraScript : MonoBehaviour
                 audio.PlayOneShot(gameoverSound);
                 playgameover = false;
             }
-            Rect record = new Rect(PlayTime, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
-          
             GUI.skin.label.fontSize = (int)(height * 1.3f);
             GUI.Label(new Rect(height, height * 2, height * 20, height * 2), "You survived inside the cave for:");
             TimeSpan t = TimeSpan.FromSeconds(CameraScript.PlayTime);
@@ -378,6 +381,7 @@ public class CameraScript : MonoBehaviour
             if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3 + margin), playAgainButton))
             {
                 CameraScript.data.points += PlayScript.gamePoints;
+				Rect record = new Rect(PlayTime, (float)DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
                 salvaRecord(record);
                 SaveData();
                 Application.LoadLevel(1);
@@ -385,6 +389,8 @@ public class CameraScript : MonoBehaviour
             if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3 + margin), homeButton))
             {
                 CameraScript.data.points += PlayScript.gamePoints;
+				Rect record = new Rect(PlayTime, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
+				print("day: "+DateTime.Now.Day+ " || rec: "+record.y);
                 salvaRecord(record);
                 SaveData();
                 Application.LoadLevel(0);
@@ -780,8 +786,8 @@ public class JSON
         checked
         {
             JSON o = new JSON();
-            o["left"] = value.xMin;
-            o["top"] = value.yMax;
+            o["left"] = value.x;
+            o["top"] = value.y;
             o["width"] = value.width;
             o["height"] = value.height;
             return o;
