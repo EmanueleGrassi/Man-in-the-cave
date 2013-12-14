@@ -72,6 +72,9 @@ public class Scores_script : MonoBehaviour {
     
     void Update()
     {
+        if (Input.touchCount == 0)
+            return;
+
         if (Input.GetKey(KeyCode.Escape))
             goBack = true;
 

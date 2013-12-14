@@ -44,6 +44,11 @@ public class buyItems_Script : MonoBehaviour {
 			unmarginino = margin * 12;
 		}
         scrollparam = (Screen.height * 2) / 768;
+        
+        #if UNITY_METRO
+        if (Input.touchCount == 0)
+            imbuying = true;
+        #endif
 
 	}
     Vector2 position = Vector2.zero;
@@ -182,6 +187,8 @@ public class buyItems_Script : MonoBehaviour {
 
     void Update()
     {
+        if (Input.touchCount == 0)
+            return;
         if (Input.touchCount > 0)
         {
             Touch touch = Input.touches[0];
