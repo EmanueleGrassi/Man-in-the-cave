@@ -155,9 +155,13 @@ public class CameraScript : MonoBehaviour
     public static event EventHandler saveEvent, loadEvent, shareEvent;
     public static event EventHandler GOReviews;
 
+    
+
     #if UNITY_METRO
         private Boolean VisualizeButtonsOnW8=false;
 		public Texture Istruction;
+        float instrTime;
+        bool showInstru;
     #endif
 
     public static void SaveData()
@@ -244,6 +248,12 @@ public class CameraScript : MonoBehaviour
                 VisualizeButtonsOnW8 = true;
                 //visualizza immmagine istruzioni
             }
+            instrTime = CameraScript.PlayTime + 6;
+            showInstru = true;
+            if (PlayerPrefs.GetInt("instru") == 10)
+            {
+                showInstru = false;
+            }
         #endif
         PlayScript.State = PlayScript.PlayState.play;
     }
@@ -251,6 +261,15 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame    
     void Update()
     {
+        #if UNITY_METRO
+        if (PlayTime > instrTime)
+        {
+            showInstru = false;
+            PlayerPrefs.SetInt("instru", 10);
+            PlayerPrefs.Save();
+        }
+        #endif
+        if (PlayTime > instrTime)
         if (Input.GetKey(KeyCode.Escape))
             PlayScript.State = PlayScript.PlayState.pause;
         if (replayGame)
@@ -306,12 +325,14 @@ public class CameraScript : MonoBehaviour
 
         if (PlayScript.State == PlayScript.PlayState.play)
         {
-#if UNITY_METRO
+        #if UNITY_METRO
             ManageButton(VisualizeButtonsOnW8);
-#endif
-#if !UNITY_METRO
+            if (showInstru)
+                GUI.Label(new Rect(height * 3, 0, height * 16, height * 4), Istruction);
+        #endif
+        #if !UNITY_METRO
             ManageButton(true);
-#endif
+        #endif
 
             drawPlay();
         }       
