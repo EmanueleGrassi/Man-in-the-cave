@@ -157,6 +157,7 @@ public class CameraScript : MonoBehaviour
 
     #if UNITY_METRO
         private Boolean VisualizeButtonsOnW8=false;
+		public Texture Istruction;
     #endif
 
     public static void SaveData()

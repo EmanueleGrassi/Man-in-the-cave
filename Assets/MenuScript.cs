@@ -75,7 +75,7 @@ public class MenuScript : MonoBehaviour
         float BuyHeight = (((piccoliBottoniSize * 2) * 160) / 740);
         float SocialSize = Screen.width / 13;
         GUI.DrawTexture(new Rect((Screen.width / 2) - Screen.width / 4, 0, Screen.width / 2, titleHeight),
-                        Title, ScaleMode.ScaleToFit, true);
+                        Title, ScaleMode.StretchToFill, true);
         if (GUI.Button(new Rect((Screen.width / 2) - playSize / 2, titleHeight + margin * 2, playSize, playSize), PlayButton))
         {
             Application.LoadLevel("main");

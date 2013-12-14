@@ -21,7 +21,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -3
-  maxTextureSize: 1024
+  maxTextureSize: 256
   textureSettings:
     filterMode: 1
     aniso: 1
@@ -48,6 +48,10 @@ TextureImporter:
     textureFormat: -3
     compressionQuality: 50
   - buildTarget: Android
+    maxTextureSize: 256
+    textureFormat: -3
+    compressionQuality: 50
+  - buildTarget: Windows Store Apps
     maxTextureSize: 256
     textureFormat: -3
     compressionQuality: 50
