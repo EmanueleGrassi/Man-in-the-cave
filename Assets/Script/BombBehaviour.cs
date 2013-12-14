@@ -61,12 +61,11 @@ public class BombBehaviour : MonoBehaviour {
         audio.PlayOneShot(esplosione);
 
         //timeAfterExplosion = CameraScript.PlayTime + 4.5f;
-        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WindowsPlayer ||
-		    Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.IPhonePlayer)
-            Instantiate(detonatorMobile, transform.position, Quaternion.identity);
-        else
-            Instantiate(detonatorBello, transform.position, Quaternion.identity);
-
+#if (UNITY_METRO || UNITY_WP8 || UNITY_ANDROID ||UNITY_IPHONE)
+           Instantiate(detonatorMobile, transform.position, Quaternion.identity);
+#else
+        Instantiate(detonatorBello, transform.position, Quaternion.identity);
+#endif  
         //
         gameObject.renderer.enabled = false;
         gameObject.collider.enabled = false;
