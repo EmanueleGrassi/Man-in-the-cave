@@ -36,7 +36,7 @@ public class MenuScript : MonoBehaviour
                 addPoints(1000);
         }
         print("screen: " + Screen.width);
-        PG.position = new Vector3(Screen.width*(-3.3f)/800f, -0.009f, 8f);
+        PG.position = new Vector3(((Screen.width / Screen.height) * (-3.3f)) / (800f / 480f), -0.009f, 8f);
     }
     float StartPromotionSound;
     bool StartPromotion = false;
@@ -68,6 +68,8 @@ public class MenuScript : MonoBehaviour
     // Update is called once per frame
     void OnGUI()
     {
+        //GUI.Label(new Rect(0, 0, 2000, 300), "screen: " + Screen.width+ " || prop: " + ((Screen.width/Screen.height) * (-3.3f)) / (800f/480f));
+
         GUI.skin = custom;
         float piccoliBottoniSize = Screen.width / 4.6f - margin2;
         float titleHeight = ((Screen.width / 2) * 305) / 1094;
