@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using OnePF;
+using System.Collections.Generic;
 
 public class buyItems_Script : MonoBehaviour {
 
@@ -15,9 +17,91 @@ public class buyItems_Script : MonoBehaviour {
     public Texture back;
 	float unmarginino, scrollparam;
 
+    #region Android e iOS inizializzazione
+#if (UNITY_ANDROID || UNITY_IPHONE)
+    private void OnEnable()
+    {
+        OpenIABEventManager.billingSupportedEvent += billingSupportedEvent;
+        OpenIABEventManager.billingNotSupportedEvent += billingNotSupportedEvent;
+        OpenIABEventManager.queryInventorySucceededEvent += queryInventorySucceededEvent;
+        OpenIABEventManager.queryInventoryFailedEvent += queryInventoryFailedEvent;
+        OpenIABEventManager.purchaseSucceededEvent += purchaseSucceededEvent;
+        OpenIABEventManager.purchaseFailedEvent += purchaseFailedEvent;
+        OpenIABEventManager.consumePurchaseSucceededEvent += consumePurchaseSucceededEvent;
+        OpenIABEventManager.consumePurchaseFailedEvent += consumePurchaseFailedEvent;
+    }
+
+    #region failed (errors)
+    private void consumePurchaseFailedEvent(string obj)
+    {
+        //sticazzi, muori utente
+    }
+
+    private void purchaseFailedEvent(string obj)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void queryInventoryFailedEvent(string obj)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void billingNotSupportedEvent(string obj)
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
+
+    private void consumePurchaseSucceededEvent(Purchase obj)
+    {
+        //IMPLEMENTARE
+    }
+
+    private void purchaseSucceededEvent(Purchase obj)
+    {
+        //IMPLEMENTARE
+    }
+
+    private void queryInventorySucceededEvent(Inventory obj)
+    {
+        //IMPLEMENTARE
+    }
+
+    private void billingSupportedEvent()
+    {
+        //IMPLEMENTARE
+    }
+#endif
+    #endregion
+
     // Use this for initialization
     void Start()
     {
+        #region Android inapp
+        #if UNITY_ANDROID
+            OpenIAB.init(new Dictionary<string, string> {
+                {OpenIAB_Android.STORE_GOOGLE, "pt500"},
+                {OpenIAB_Android.STORE_GOOGLE, "p1000"},
+                {OpenIAB_Android.STORE_GOOGLE, "p5000"}
+                });
+        #endif
+        #endregion
+
+        #region iOS inapp
+        #if UNITY_IPHONE
+            OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");   //scoprire cosa sono "some.ios.sku" forse mentre pubblichiamo lo scopriamo
+            OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
+            OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
+
+            OpenIAB.init(new Dictionary<string, string> {
+            {OpenIAB_iOS.STORE, "pt500"},
+            {OpenIAB_iOS.STORE, "p1000"},
+            {OpenIAB_iOS.STORE, "p5000"}
+            });
+        #endif
+        #endregion
         imbuying = false;
         goBack = false;
         size = Screen.width / 20;
