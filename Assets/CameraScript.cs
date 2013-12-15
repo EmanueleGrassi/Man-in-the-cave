@@ -126,36 +126,41 @@ public class Record
 
 public class CameraScript : MonoBehaviour
 {
-    public GUISkin custom;
+#region veriabili
+    #region private
     float nexshot;
-    public Transform playerPG;
-    public Transform _20bis;
-    public AudioClip rockSound,gameoverSound;
-    public AudioClip background;
-    float smoothTime;
-    public float Volume;
-    Vector2 velocity = new Vector2();
-    public Texture coin, pause, quit;
-    public bool isDebuging = true;
-    /*CLASSE SALVATAGGIO*/
-    public static Data data; /*CLASSE SALVATAGGIO*/
-    public static float PlayTime;
-    public static float TempoRecord = 0;
-    public static bool replay;
-    bool rebornUsed, playgameover  = true;
-    //munu
+    float smoothTime;    
+    Vector2 velocity = new Vector2(); 
+    //menu
     float height;
     float margin, margin2;
-    public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, homeButton, playAgainButton, likebtn;
-    public Texture Title, facebook, twitter, review, celialab;
-    public Texture useReborn, OKbutton, CancelButton;
-    public static GameObject bengalaButton, movementButton, jumpButton;
-    public static bool replayGame;
-    public static bool goBack;
-    public static event EventHandler saveEvent, loadEvent, shareEvent;
-    public static event EventHandler GOReviews;
+    bool rebornUsed, playgameover = true;
+    #endregion
+    #region pubbliche
+    public GUISkin custom;
+        public Transform playerPG;
+        public Transform _20bis;
+        public AudioClip rockSound, gameoverSound;
+        public AudioClip background;
+        public float Volume;
+        public Texture coin, pause, quit;
+        public bool isDebuging = true;
+        /*CLASSE SALVATAGGIO*/
+        public static Data data; /*CLASSE SALVATAGGIO*/
+        public static float PlayTime;
+        public static float TempoRecord = 0;
+        public static bool replay;
+        public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, homeButton, playAgainButton, likebtn;
+        public Texture Title, facebook, twitter, review, celialab;
+        public Texture useReborn, OKbutton, CancelButton;
+        public static GameObject bengalaButton, movementButton, jumpButton;
+        public static bool replayGame;
+        public static bool goBack;
+        public static event EventHandler saveEvent, loadEvent, shareEvent;
+        public static event EventHandler GOReviews;
+    #endregion
+#endregion
 
-    
 
     #if UNITY_METRO
         private Boolean VisualizeButtonsOnW8=false;
@@ -164,27 +169,27 @@ public class CameraScript : MonoBehaviour
         bool showInstru;
     #endif
 
-    public static void SaveData()
-    {
-        if (Application.platform == RuntimePlatform.WP8Player)
+#region Save and Load
+        public static void SaveData()
         {
-            if (saveEvent != null)
-                saveEvent(saveEvent, new EventArgs());
+            if (Application.platform == RuntimePlatform.WP8Player)
+            {
+                if (saveEvent != null)
+                    saveEvent(saveEvent, new EventArgs());
+            }
+            else
+            {
+			    foreach(var item in data.Records)
+			    {
+				    print("day rec: "+item.y);
+			    }
+                JSON js = new JSON();
+			    print (((JSON)data).serialized);
+			    js["salvataggio"] = ((JSON)data);
+                PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
+                PlayerPrefs.Save();
+            }
         }
-        else
-        {
-			foreach(var item in data.Records)
-			{
-				print("day rec: "+item.y);
-			}
-            JSON js = new JSON();
-			print (((JSON)data).serialized);
-			js["salvataggio"] = ((JSON)data);
-            PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
-            PlayerPrefs.Save();
-        }
-
-    }
     public static void LoadData()
     {
         if (Application.platform == RuntimePlatform.WP8Player)
@@ -209,6 +214,7 @@ public class CameraScript : MonoBehaviour
             }
         }
     }
+#endregion
 
     void Start()
     {
@@ -269,7 +275,6 @@ public class CameraScript : MonoBehaviour
             PlayerPrefs.Save();
         }
         #endif
-        if (PlayTime > instrTime)
         if (Input.GetKey(KeyCode.Escape))
             PlayScript.State = PlayScript.PlayState.pause;
         if (replayGame)
@@ -316,6 +321,8 @@ public class CameraScript : MonoBehaviour
         movementButton.guiTexture.active = visibility;
         jumpButton.guiTexture.active = visibility;
     }
+
+#region OnGUI
     void OnGUI()
     {
         GUI.skin = custom;
@@ -434,15 +441,14 @@ public class CameraScript : MonoBehaviour
                 SaveData();
                 Application.LoadLevel(0);
             }
-            if (Application.platform == RuntimePlatform.WP8Player)
-            {
+            #if (UNITY_WP8 || UNITY_METRO)           
                 TempoRecord = CameraScript.PlayTime;
                 if (GUI.Button(new Rect(height * 8, height * 8, height * 5, height * 3 + margin), likebtn))
                 {                    
                     if (shareEvent != null)
                         shareEvent(this, new EventArgs());
-                }
-            }
+                }           
+            #endif
         }
     }
 
@@ -588,6 +594,8 @@ public class CameraScript : MonoBehaviour
                 Application.Quit();
         }
     }
+#endregion
+
 }
 
 
