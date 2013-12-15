@@ -88,7 +88,7 @@ public class PlayScript : MonoBehaviour
             LanciaBengala();
         }
         #if UNITY_METRO
-        if( Input.GetAxis("BengalaFire")>0 && BenngalaAvailable && CameraScript.data.numBengala > 0)
+        if( (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift)) && BenngalaAvailable && CameraScript.data.numBengala > 0)
             LanciaBengala();
         #endif
     }

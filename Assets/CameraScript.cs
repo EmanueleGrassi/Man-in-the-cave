@@ -328,7 +328,7 @@ public class CameraScript : MonoBehaviour
         #if UNITY_METRO
             ManageButton(VisualizeButtonsOnW8);
             if (showInstru)
-                GUI.Label(new Rect(height * 3, 0, height * 16, height * 4), Istruction);
+                GUI.DrawTexture(new Rect((Screen.width / 2) - Screen.width / 4, 0, Screen.width / 2, (Screen.width / 2) * 115 / 488), Istruction);
         #endif
         #if !UNITY_METRO
             ManageButton(true);
