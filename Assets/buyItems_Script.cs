@@ -106,7 +106,9 @@ public class buyItems_Script : MonoBehaviour {
         goBack = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
-		if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.WindowsPlayer) {
+		if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.MetroPlayerARM ||
+            Application.platform == RuntimePlatform.MetroPlayerX64 || Application.platform == RuntimePlatform.MetroPlayerX86)
+        {
 						span = new float[] {
 								0,
 								0,

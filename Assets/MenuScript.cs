@@ -116,10 +116,11 @@ public class MenuScript : MonoBehaviour
         if (GUI.Button(new Rect(Screen.width - SocialSize, Screen.height - SocialSize, SocialSize, SocialSize), review))
         {
             if (Application.platform == RuntimePlatform.Android)
-                Application.OpenURL("");//vai su review
+                Application.OpenURL("market://details?id=com.celialab.ManInTheCave");
             else if (Application.platform == RuntimePlatform.IPhonePlayer)
-                Application.OpenURL("");//vai su review
-            else if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.WindowsPlayer)
+                Application.OpenURL("");//vai su review  mistery
+            else if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.MetroPlayerARM ||
+            Application.platform == RuntimePlatform.MetroPlayerX64 || Application.platform == RuntimePlatform.MetroPlayerX86)
             {
                 if (GOReviews != null)
                     GOReviews(this, new EventArgs());
