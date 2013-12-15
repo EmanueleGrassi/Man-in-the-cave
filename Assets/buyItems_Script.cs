@@ -18,7 +18,7 @@ public class buyItems_Script : MonoBehaviour {
 	float unmarginino, scrollparam;
 
     #region Android e iOS inizializzazione
-#if (UNITY_ANDROID || UNITY_IPHONE)
+#if (UNITY_ANDROID || UNITY_IPHONE) 
     private void OnEnable()
     {
         OpenIABEventManager.billingSupportedEvent += billingSupportedEvent;
@@ -31,48 +31,73 @@ public class buyItems_Script : MonoBehaviour {
         OpenIABEventManager.consumePurchaseFailedEvent += consumePurchaseFailedEvent;
     }
 
-    #region failed (errors)
-    private void consumePurchaseFailedEvent(string obj)
+    private void billingSupportedEvent()
     {
-        //sticazzi, muori utente
-    }
-
-    private void purchaseFailedEvent(string obj)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void queryInventoryFailedEvent(string obj)
-    {
-        throw new NotImplementedException();
+        
     }
 
     private void billingNotSupportedEvent(string obj)
     {
-        throw new NotImplementedException();
+        
     }
+
+    private void queryInventorySucceededEvent(Inventory obj)
+    {
+        
+    }
+
+    #region failed (errors)
+    private void consumePurchaseFailedEvent(string obj)  //serve
+    {
+        //GUI.Box(new Rect(0, 0, Screen.width / 2, Screen.height / 2), "Something went wrong We're sorry, try again :)");
+    }
+
+    private void purchaseFailedEvent(string obj) //serve
+    {
+        
+    }
+
+    private void queryInventoryFailedEvent(string obj)  //vabbè serve..se non trova i prodotti credo
+    {
+        
+    }
+
+    //private void billingNotSupportedEvent(string obj) //boh...forse io li toglierei xD
+    //{
+        
+    //}
 
     #endregion
 
     private void consumePurchaseSucceededEvent(Purchase obj)
     {
         //IMPLEMENTARE
+        //suono cassa!
     }
 
-    private void purchaseSucceededEvent(Purchase obj)
+    private void purchaseSucceededEvent(Purchase purchase)
     {
-        //IMPLEMENTARE
+        OpenIAB.consumeProduct(purchase);
+        switch (purchase.Sku)
+        {
+            case "pt500":
+                CameraScript.data.points += 500;
+                CameraScript.SaveData();
+                break;
+            case "p1000":
+                CameraScript.data.points += 1000;
+                CameraScript.SaveData();
+                break;
+            case "p5000":
+                CameraScript.data.points += 5000;
+                CameraScript.SaveData();
+                break;            
+            default:
+                //Debug.LogWarning("Unknown SKU: " + purchase.Sku);
+                break;
+        }
     }
 
-    private void queryInventorySucceededEvent(Inventory obj)
-    {
-        //IMPLEMENTARE
-    }
-
-    private void billingSupportedEvent()
-    {
-        //IMPLEMENTARE
-    }
 #endif
     #endregion
 
@@ -82,15 +107,19 @@ public class buyItems_Script : MonoBehaviour {
         #region Android inapp
         #if UNITY_ANDROID
             OpenIAB.init(new Dictionary<string, string> {
-                {OpenIAB_Android.STORE_GOOGLE, "pt500"},
-                {OpenIAB_Android.STORE_GOOGLE, "p1000"},
+                {OpenIAB_Android.STORE_GOOGLE, "pt500"}
+                });
+            OpenIAB.init(new Dictionary<string, string> {
+                {OpenIAB_Android.STORE_GOOGLE, "p1000"}
+                });
+            OpenIAB.init(new Dictionary<string, string> {
                 {OpenIAB_Android.STORE_GOOGLE, "p5000"}
                 });
         #endif
         #endregion
 
-        #region iOS inapp
-        #if UNITY_IPHONE
+                #region iOS inapp
+#if UNITY_IPHONE
             OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");   //scoprire cosa sono "some.ios.sku" forse mentre pubblichiamo lo scopriamo
             OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
             OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
@@ -100,9 +129,10 @@ public class buyItems_Script : MonoBehaviour {
             {OpenIAB_iOS.STORE, "p1000"},
             {OpenIAB_iOS.STORE, "p5000"}
             });
-        #endif
-        #endregion
-        imbuying = false;
+#endif
+                #endregion
+
+                imbuying = false;
         goBack = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
@@ -161,19 +191,40 @@ public class buyItems_Script : MonoBehaviour {
         //purchases
 		custom.button.normal.textColor = new Color(205, 127, 50);
 		custom.button.fontSize = (int)(size * 0.7f);
-        if (GUI.Button(new Rect(size * 13, margin * 2, size + 2*margin, size), "+500"))
+        if (GUI.Button(new Rect(size * 13, margin * 2, size + 2 * margin, size), "+500"))
+        {
             if (plus500 != null)
                 plus500(this, new EventArgs());
+            #if UNITY_ANDROID
+                OpenIAB.queryInventory();
+                OpenIAB.purchaseProduct("pt500");
+            #endif
+        }
+            
 		custom.button.normal.textColor = new Color(192, 192, 192);
 		custom.button.fontSize = (int)(size * 0.8f);
-        if (GUI.Button(new Rect(size * 15-margin, margin *2, size+margin*4, size), "+1000"))
+        if (GUI.Button(new Rect(size * 15 - margin, margin * 2, size + margin * 4, size), "+1000"))
+        {
             if (plus1000 != null)
-                plus1000(this, new EventArgs());
+                            plus1000(this, new EventArgs());
+            #if UNITY_ANDROID
+                OpenIAB.queryInventory();
+                OpenIAB.purchaseProduct("p1000");
+            #endif
+        }
+            
 		custom.button.normal.textColor = new Color(246, 193, 0);
 		custom.button.fontSize = (int)(size * 0.9f) ;
-        if (GUI.Button(new Rect(size * 17, margin * 1.8f, size + 5*margin, size), "+5000"))
+        if (GUI.Button(new Rect(size * 17, margin * 1.8f, size + 5 * margin, size), "+5000"))
+        {
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
+            #if UNITY_ANDROID
+                OpenIAB.queryInventory();
+                OpenIAB.purchaseProduct("p1000");
+            #endif
+        }
+            
         //colonna di sinistra
         if (GUI.Button(new Rect(margin, margin * 13, size * 9, size * 3), bengal))
             if (CameraScript.data.points >= 90)

@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Desktop\FocusAndroid\Assets\InfoScript.cs">
     <Files>
-      <File FileName="..\..\..\Desktop\FocusAndroid\Assets\InfoScript.cs" Line="43" Column="13" />
+      <File FileName="Assets\buyItems_Script.cs" Line="1" Column="1" />
+      <File FileName="Assets\buyItems_Script.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\Desktop\FocusAndroid\Assets\InfoScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
