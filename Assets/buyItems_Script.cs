@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using OnePF;
 using System.Collections.Generic;
+using OpenIabPlugin;
 
 public class buyItems_Script : MonoBehaviour {
 
@@ -56,10 +56,11 @@ public class buyItems_Script : MonoBehaviour {
 
     private void purchaseSucceededEvent(Purchase purchase)
     {
+
         OpenIAB.consumeProduct(purchase);
         switch (purchase.Sku)
         {
-            case "pt500":
+            case "android.test.purchased":
                 CameraScript.data.points += 500;
                 CameraScript.SaveData();
                 break;
@@ -73,7 +74,7 @@ public class buyItems_Script : MonoBehaviour {
                 break;            
             default:
                 //Debug.LogWarning("Unknown SKU: " + purchase.Sku);
-                break;
+                break;  
         }
     }
 
@@ -88,14 +89,14 @@ public class buyItems_Script : MonoBehaviour {
         try
         {
             OpenIAB.init(new Dictionary<string, string> {
-                {OpenIAB_Android.STORE_GOOGLE, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqSgMRCA4Pin0Ymbrzv9jve0chLwn7LB9f4LYg23O85sBPAu2ev/iDsChoi7EQAa63pVTHzdsHHMtq5AH1vWoYc7TAZxoh5COuEk+GVNm77r2l3+ewnWvcpZ4+JR7Dk/A55J11iHydJfFRAsKrmGat5mJ15wEJfzTKpLvCapIBj/WicIQddUvoRg0D78wr9vsRF3iLxjiFms+cek5ZhWOrjpWeQ9eiw+OQt+0N2h776x0REVVS4x0Y+diYR+Fbxgap4XW84RDGsY2neYE/MEcuT3a4CayKvmT2gKqWLKAx0rwNMDehLzbk69X8MlmYg0agFYTgJbGmgSed4vb733V0QIDAQAB"}
+                {OpenIAB.STORE_GOOGLE, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqSgMRCA4Pin0Ymbrzv9jve0chLwn7LB9f4LYg23O85sBPAu2ev/iDsChoi7EQAa63pVTHzdsHHMtq5AH1vWoYc7TAZxoh5COuEk+GVNm77r2l3+ewnWvcpZ4+JR7Dk/A55J11iHydJfFRAsKrmGat5mJ15wEJfzTKpLvCapIBj/WicIQddUvoRg0D78wr9vsRF3iLxjiFms+cek5ZhWOrjpWeQ9eiw+OQt+0N2h776x0REVVS4x0Y+diYR+Fbxgap4XW84RDGsY2neYE/MEcuT3a4CayKvmT2gKqWLKAx0rwNMDehLzbk69X8MlmYg0agFYTgJbGmgSed4vb733V0QIDAQAB"}
                 });
         }
         catch { }
 
-        OpenIAB.mapSku("pt500", OpenIAB_Android.STORE_GOOGLE, "android.test.purchases");
-        OpenIAB.mapSku("p1000", OpenIAB_Android.STORE_GOOGLE, "android.test.purchases");
-        OpenIAB.mapSku("p5000", OpenIAB_Android.STORE_GOOGLE, "com.celialab.ManInTheCave");
+        //OpenIAB.mapSku("android.test.purchase", OpenIAB.STORE_GOOGLE, "google-store.android.test.purchase");
+        //OpenIAB.mapSku("p1000", OpenIAB.STORE_GOOGLE, "google-store.p1000");
+        //OpenIAB.mapSku("p5000", OpenIAB.STORE_GOOGLE, "google-store.p5000");
 
         OpenIABEventManager.billingSupportedEvent += billingSupportedEvent;
         OpenIABEventManager.billingNotSupportedEvent += billingNotSupportedEvent;
@@ -184,7 +185,7 @@ public class buyItems_Script : MonoBehaviour {
             if (plus500 != null)
                 plus500(this, new EventArgs());
             #if UNITY_ANDROID
-                OpenIAB.purchaseProduct("pt500");
+            OpenIAB.purchaseProduct("android.test.purchased");
             #endif
         }
             

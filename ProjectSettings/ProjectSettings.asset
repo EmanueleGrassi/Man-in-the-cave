@@ -105,7 +105,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   AndroidKeystoreName: C:/Users/Emanuele/Desktop/ManInTheCaveKey
-  AndroidKeyaliasName: 
+  AndroidKeyaliasName: man in the cave
   resolutionDialogBanner: {fileID: 0}
   m_BuildTargetIcons:
   - m_BuildTarget: 
