@@ -16,6 +16,7 @@ public class buyItems_Script : MonoBehaviour {
     bool imbuying;
     public Texture back;
 	float unmarginino, scrollparam;
+    public Texture2D thumb;
 
     #region Android inizializzazione
 #if UNITY_ANDROID 
@@ -125,8 +126,8 @@ public class buyItems_Script : MonoBehaviour {
         goBack = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
-		if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.MetroPlayerARM ||
-            Application.platform == RuntimePlatform.MetroPlayerX64 || Application.platform == RuntimePlatform.MetroPlayerX86)
+		if (Application.platform == RuntimePlatform.WP8Player)// || Application.platform == RuntimePlatform.MetroPlayerARM ||
+            //Application.platform == RuntimePlatform.MetroPlayerX64 || Application.platform == RuntimePlatform.MetroPlayerX86)
         {
 						span = new float[] {
 								0,
@@ -152,7 +153,10 @@ public class buyItems_Script : MonoBehaviour {
         
         #if UNITY_METRO
         if (Input.touchCount == 0)
+        {
+            bool bar = true;
             imbuying = true;
+        }
         #endif
 	}
 
@@ -163,6 +167,9 @@ public class buyItems_Script : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape))
             goBack = true;
         GUI.skin = custom;
+        #if UNITY_METRO
+        custom.verticalScrollbarThumb.normal.background = thumb;
+        #endif
         custom.label.normal.textColor = new Color(255, 255, 255);
         custom.label.fontSize = (int)(size * 1.5);
         if (GUI.Button(new Rect(margin * 2, size, size * 1f, size * 1f), back))

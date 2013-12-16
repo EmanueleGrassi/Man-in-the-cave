@@ -10,6 +10,7 @@ public class Scores_script : MonoBehaviour {
     bool goBack;
     public Texture back;
     float scrollparam;
+    public Texture2D thumb;
 
 	// Use this for initialization
 	void Start () {
@@ -18,11 +19,20 @@ public class Scores_script : MonoBehaviour {
         pos = Vector2.zero;
         goBack = false;
         scrollparam = (Screen.height * 2) / 768;
+#if UNITY_METRO
+        if (Input.touchCount == 0)
+        {
+            bool bar = true;
+        }
+#endif
 	}
 	
 	// Update is called once per frame
 	void OnGUI () {
         GUI.skin = custom;
+        #if UNITY_METRO
+            custom.verticalScrollbarThumb.normal.background = thumb;
+        #endif
         GUI.skin.label.fontSize = (int)(unit * 1.5f);
         if (GUI.Button(new Rect(margin * 2, unit, unit * 1f, unit * 1f), back))
             Application.LoadLevel(0);
