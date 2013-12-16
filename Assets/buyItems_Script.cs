@@ -17,20 +17,8 @@ public class buyItems_Script : MonoBehaviour {
     public Texture back;
 	float unmarginino, scrollparam;
 
-    #region Android e iOS inizializzazione
-#if (UNITY_ANDROID || UNITY_IPHONE) 
-    private void OnEnable()
-    {
-        OpenIABEventManager.billingSupportedEvent += billingSupportedEvent;
-        OpenIABEventManager.billingNotSupportedEvent += billingNotSupportedEvent;
-        OpenIABEventManager.queryInventorySucceededEvent += queryInventorySucceededEvent;
-        OpenIABEventManager.queryInventoryFailedEvent += queryInventoryFailedEvent;
-        OpenIABEventManager.purchaseSucceededEvent += purchaseSucceededEvent;
-        OpenIABEventManager.purchaseFailedEvent += purchaseFailedEvent;
-        OpenIABEventManager.consumePurchaseSucceededEvent += consumePurchaseSucceededEvent;
-        OpenIABEventManager.consumePurchaseFailedEvent += consumePurchaseFailedEvent;
-    }
-
+    #region Android inizializzazione
+#if UNITY_ANDROID 
     private void billingSupportedEvent()
     {
         
@@ -41,10 +29,6 @@ public class buyItems_Script : MonoBehaviour {
         
     }
 
-    private void queryInventorySucceededEvent(Inventory obj)
-    {
-        
-    }
 
     #region failed (errors)
     private void consumePurchaseFailedEvent(string obj)  //serve
@@ -57,12 +41,7 @@ public class buyItems_Script : MonoBehaviour {
         
     }
 
-    private void queryInventoryFailedEvent(string obj)  //vabbè serve..se non trova i prodotti credo
-    {
-        
-    }
-
-    //private void billingNotSupportedEvent(string obj) //boh...forse io li toglierei xD
+    //private void queryInventoryFailedEvent(string obj)  //vabbè serve..se non trova i prodotti credo
     //{
         
     //}
@@ -106,15 +85,24 @@ public class buyItems_Script : MonoBehaviour {
     {
         #region Android inapp
         #if UNITY_ANDROID
+        try
+        {
             OpenIAB.init(new Dictionary<string, string> {
-                {OpenIAB_Android.STORE_GOOGLE, "pt500"}
+                {OpenIAB_Android.STORE_GOOGLE, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqSgMRCA4Pin0Ymbrzv9jve0chLwn7LB9f4LYg23O85sBPAu2ev/iDsChoi7EQAa63pVTHzdsHHMtq5AH1vWoYc7TAZxoh5COuEk+GVNm77r2l3+ewnWvcpZ4+JR7Dk/A55J11iHydJfFRAsKrmGat5mJ15wEJfzTKpLvCapIBj/WicIQddUvoRg0D78wr9vsRF3iLxjiFms+cek5ZhWOrjpWeQ9eiw+OQt+0N2h776x0REVVS4x0Y+diYR+Fbxgap4XW84RDGsY2neYE/MEcuT3a4CayKvmT2gKqWLKAx0rwNMDehLzbk69X8MlmYg0agFYTgJbGmgSed4vb733V0QIDAQAB"}
                 });
-            OpenIAB.init(new Dictionary<string, string> {
-                {OpenIAB_Android.STORE_GOOGLE, "p1000"}
-                });
-            OpenIAB.init(new Dictionary<string, string> {
-                {OpenIAB_Android.STORE_GOOGLE, "p5000"}
-                });
+        }
+        catch { }
+
+        OpenIAB.mapSku("pt500", OpenIAB_Android.STORE_GOOGLE, "android.test.purchases");
+        OpenIAB.mapSku("p1000", OpenIAB_Android.STORE_GOOGLE, "android.test.purchases");
+        OpenIAB.mapSku("p5000", OpenIAB_Android.STORE_GOOGLE, "com.celialab.ManInTheCave");
+
+        OpenIABEventManager.billingSupportedEvent += billingSupportedEvent;
+        OpenIABEventManager.billingNotSupportedEvent += billingNotSupportedEvent;
+        OpenIABEventManager.purchaseSucceededEvent += purchaseSucceededEvent;
+        OpenIABEventManager.purchaseFailedEvent += purchaseFailedEvent;
+        OpenIABEventManager.consumePurchaseSucceededEvent += consumePurchaseSucceededEvent; 
+        OpenIABEventManager.consumePurchaseFailedEvent += consumePurchaseFailedEvent;
         #endif
         #endregion
 
@@ -165,8 +153,8 @@ public class buyItems_Script : MonoBehaviour {
         if (Input.touchCount == 0)
             imbuying = true;
         #endif
-
 	}
+
     Vector2 position = Vector2.zero;
 
     void OnGUI()
@@ -196,7 +184,6 @@ public class buyItems_Script : MonoBehaviour {
             if (plus500 != null)
                 plus500(this, new EventArgs());
             #if UNITY_ANDROID
-                OpenIAB.queryInventory();
                 OpenIAB.purchaseProduct("pt500");
             #endif
         }
@@ -208,7 +195,6 @@ public class buyItems_Script : MonoBehaviour {
             if (plus1000 != null)
                             plus1000(this, new EventArgs());
             #if UNITY_ANDROID
-                OpenIAB.queryInventory();
                 OpenIAB.purchaseProduct("p1000");
             #endif
         }
@@ -220,8 +206,7 @@ public class buyItems_Script : MonoBehaviour {
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
             #if UNITY_ANDROID
-                OpenIAB.queryInventory();
-                OpenIAB.purchaseProduct("p1000");
+                OpenIAB.purchaseProduct("p5000");
             #endif
         }
             
