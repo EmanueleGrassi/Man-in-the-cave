@@ -7,7 +7,6 @@ public class Scores_script : MonoBehaviour {
     float margin, unit;
     public GUISkin custom;
     Vector2 pos;
-    bool goBack;
     public Texture back;
     float scrollparam;
     public Texture2D thumb;
@@ -17,7 +16,6 @@ public class Scores_script : MonoBehaviour {
         unit = Screen.width / 20;
         margin = Screen.width / 60;
         pos = Vector2.zero;
-        goBack = false;
         scrollparam = (Screen.height * 2) / 768;
 #if UNITY_METRO
         if (Input.touchCount == 0)
@@ -82,11 +80,9 @@ public class Scores_script : MonoBehaviour {
     
     void Update()
     {
-        if (Input.touchCount == 0)
-            return;
-
+       
         if (Input.GetKey(KeyCode.Escape))
-            goBack = true;
+            Application.LoadLevel(0);
 
         if (Input.touchCount > 0)
         {
@@ -97,10 +93,7 @@ public class Scores_script : MonoBehaviour {
             {
                 pos.y += touch.deltaPosition.y * scrollparam;
             }
-        }
-        if (goBack)
-            Application.LoadLevel(0);
-        
+        }        
     }
 
     public static string formatScore(float a)

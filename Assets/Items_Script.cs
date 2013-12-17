@@ -12,12 +12,11 @@ public class Items_Script : MonoBehaviour {
     int availableLights;
     bool draw;
 	public AudioClip equipSound;
-    bool goBack;
     public Texture back;
 
 	// Use this for initialization
-	void Start () {
-        goBack = false;
+	void Start () 
+    {
 		size = Screen.width / 20;
         margin = Screen.width / 60;
         numbengala = CameraScript.data.numBengala;
@@ -32,10 +31,8 @@ public class Items_Script : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape))
         {
             CameraScript.SaveData();
-            goBack = true;
-        }
-        if (goBack)
             Application.LoadLevel(0);
+        }
     }
 	
 	void OnGUI () {

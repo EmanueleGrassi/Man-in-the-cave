@@ -155,7 +155,6 @@ public class CameraScript : MonoBehaviour
         public Texture useReborn, OKbutton, CancelButton;
         public static GameObject bengalaButton, movementButton, jumpButton;
         public static bool replayGame;
-        public static bool goBack;
         public static event EventHandler saveEvent, loadEvent, shareEvent;
         public static event EventHandler GOReviews;
     #endregion
@@ -218,7 +217,6 @@ public class CameraScript : MonoBehaviour
 
     void Start()
     {
-        goBack = false;
         //carica i salvataggi
         LoadData();
         //data = new Data();
@@ -276,7 +274,12 @@ public class CameraScript : MonoBehaviour
         }
         #endif
         if (Input.GetKey(KeyCode.Escape))
-            PlayScript.State = PlayScript.PlayState.pause;
+        {
+            if (PlayScript.State == PlayScript.PlayState.play)
+                PlayScript.State = PlayScript.PlayState.pause;
+            else if (PlayScript.State == PlayScript.PlayState.pause)
+                PlayScript.State = PlayScript.PlayState.play;
+        }
         if (replayGame)
         {
             PlayScript.State = PlayScript.PlayState.play;
@@ -368,9 +371,6 @@ public class CameraScript : MonoBehaviour
             PlayScript.State = PlayScript.PlayState.menu;
             Application.LoadLevel(0);
         }
-        if (Input.GetKey(KeyCode.Escape))
-            PlayScript.State = PlayScript.PlayState.play;
-
     }
 
     private void drawResult()
@@ -564,7 +564,6 @@ public class CameraScript : MonoBehaviour
     //}
     #endregion
 
-    bool visualizeRightCoin, startVisualizeRightCoin;
     void drawPlay()
     {
         // Visualizza punti. Lo script si adatta atutte le risoluzioni

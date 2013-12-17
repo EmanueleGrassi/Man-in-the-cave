@@ -12,7 +12,6 @@ public class buyItems_Script : MonoBehaviour {
 	public AudioClip cashsound;
     public static event EventHandler plus500, plus1000, plus5000;
     float[] span;
-    bool goBack;
     bool imbuying;
     public Texture back;
 	float unmarginino, scrollparam;
@@ -122,8 +121,7 @@ public class buyItems_Script : MonoBehaviour {
 #endif
                 #endregion
 
-                imbuying = false;
-        goBack = false;
+        imbuying = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
 		if (Application.platform == RuntimePlatform.WP8Player)// || Application.platform == RuntimePlatform.MetroPlayerARM ||
@@ -165,7 +163,7 @@ public class buyItems_Script : MonoBehaviour {
     void OnGUI()
     {
         if (Input.GetKey(KeyCode.Escape))
-            goBack = true;
+            Application.LoadLevel(0);
         GUI.skin = custom;
         #if UNITY_METRO
         custom.verticalScrollbarThumb.normal.background = thumb;
@@ -330,9 +328,7 @@ public class buyItems_Script : MonoBehaviour {
                 position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
                 imbuying = false;
             }
-        }
-        if (goBack)
-            Application.LoadLevel(0);
+        }           
     }
 
     bool IsTouchInsideList(Vector2 touchPos)
