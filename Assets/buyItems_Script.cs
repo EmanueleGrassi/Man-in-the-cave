@@ -314,9 +314,7 @@ public class buyItems_Script : MonoBehaviour {
     }
 
     void Update()
-    {
-        if (Input.touchCount == 0)
-            return;
+    {        
         if (Input.touchCount > 0)
         {
             Touch touch = Input.touches[0];
