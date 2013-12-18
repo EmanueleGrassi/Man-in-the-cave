@@ -56,25 +56,24 @@ public class buyItems_Script : MonoBehaviour {
 
     private void purchaseSucceededEvent(Purchase purchase)
     {
-
-        OpenIAB.consumeProduct(purchase);
         switch (purchase.Sku)
         {
-            case "android.test.purchased":
+            case "plus500":
                 CameraScript.data.points += 500;
                 CameraScript.SaveData();
                 break;
-            case "p1000":
+            case "plus1000":
                 CameraScript.data.points += 1000;
                 CameraScript.SaveData();
                 break;
-            case "p5000":
+            case "plus5k":
                 CameraScript.data.points += 5000;
                 CameraScript.SaveData();
                 break;            
             default:
                 //Debug.LogWarning("Unknown SKU: " + purchase.Sku);
                 break;  
+        OpenIAB.consumeProduct(purchase);
         }
     }
 
@@ -190,7 +189,7 @@ public class buyItems_Script : MonoBehaviour {
             if (plus500 != null)
                 plus500(this, new EventArgs());
             #if UNITY_ANDROID
-            OpenIAB.purchaseProduct("android.test.purchased");
+                OpenIAB.purchaseProduct("plus500");
             #endif
         }
             
@@ -201,7 +200,7 @@ public class buyItems_Script : MonoBehaviour {
             if (plus1000 != null)
                             plus1000(this, new EventArgs());
             #if UNITY_ANDROID
-                OpenIAB.purchaseProduct("p1000");
+                OpenIAB.purchaseProduct("plus1000");
             #endif
         }
             
@@ -212,7 +211,7 @@ public class buyItems_Script : MonoBehaviour {
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
             #if UNITY_ANDROID
-                OpenIAB.purchaseProduct("p5000");
+                OpenIAB.purchaseProduct("plus5k");
             #endif
         }
             
