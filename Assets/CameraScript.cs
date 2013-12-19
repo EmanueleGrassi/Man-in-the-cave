@@ -247,7 +247,7 @@ public class CameraScript : MonoBehaviour
         margin2 = 0;// Screen.width / 70;
         print("touch: " + Input.touchCount);
         #if UNITY_METRO
-            if(Input.touchCount> 0)
+            if(Input.multiTouchEnabled)
             {
                 VisualizeButtonsOnW8 = true;
                 //visualizza immmagine istruzioni
@@ -258,7 +258,7 @@ public class CameraScript : MonoBehaviour
             {
                 showInstru = false;
             }
-        #endif
+#endif
         PlayScript.State = PlayScript.PlayState.play;
     }
 

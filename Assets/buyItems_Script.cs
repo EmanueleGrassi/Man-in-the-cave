@@ -19,90 +19,94 @@ public class buyItems_Script : MonoBehaviour {
 
     #region Android inizializzazione
 #if UNITY_ANDROID 
-    private void billingSupportedEvent()
-    {
+    ////////private void billingSupportedEvent()
+    ////////{
         
-    }
+    ////////}
 
-    private void billingNotSupportedEvent(string obj)
-    {
+    ////////private void billingNotSupportedEvent(string obj)
+    ////////{
         
-    }
+    ////////}
 
 
-    #region failed (errors)
-    private void consumePurchaseFailedEvent(string obj)  //serve
-    {
-        //GUI.Box(new Rect(0, 0, Screen.width / 2, Screen.height / 2), "Something went wrong We're sorry, try again :)");
-    }
+    ////////#region failed (errors)
+    ////////private void consumePurchaseFailedEvent(string obj)  //serve
+    ////////{
+    ////////    //GUI.Box(new Rect(0, 0, Screen.width / 2, Screen.height / 2), "Something went wrong We're sorry, try again :)");
+    ////////}
 
-    private void purchaseFailedEvent(string obj) //serve
-    {
+    ////////private void purchaseFailedEvent(string obj) //serve
+    ////////{
         
-    }
+    ////////}
 
-    //private void queryInventoryFailedEvent(string obj)  //vabbè serve..se non trova i prodotti credo
-    //{
+    //////////private void queryInventoryFailedEvent(string obj)  //vabbè serve..se non trova i prodotti credo
+    //////////{
         
-    //}
+    //////////}
 
-    #endregion
+    ////////#endregion
 
-    private void consumePurchaseSucceededEvent(Purchase obj)
-    {
-        //IMPLEMENTARE
-        //suono cassa!
-    }
+    ////////private void consumePurchaseSucceededEvent(Purchase obj)
+    ////////{
+    ////////    //IMPLEMENTARE
+    ////////    //suono cassa!
+    ////////}
 
-    private void purchaseSucceededEvent(Purchase purchase)
-    {
-        switch (purchase.Sku)
-        {
-            case "plus500":
-                CameraScript.data.points += 500;
-                CameraScript.SaveData();
-                break;
-            case "plus1000":
-                CameraScript.data.points += 1000;
-                CameraScript.SaveData();
-                break;
-            case "plus5k":
-                CameraScript.data.points += 5000;
-                CameraScript.SaveData();
-                break;            
-            default:
-                //Debug.LogWarning("Unknown SKU: " + purchase.Sku);
-                break;  
-        OpenIAB.consumeProduct(purchase);
-        }
-    }
+    ////////private void purchaseSucceededEvent(Purchase purchase)
+    ////////{
+    ////////    switch (purchase.Sku)
+    ////////    {
+    ////////        case "plus500":
+    ////////            CameraScript.data.points += 500;
+    ////////            CameraScript.SaveData();
+    ////////            break;
+    ////////        case "plus1000":
+    ////////            CameraScript.data.points += 1000;
+    ////////            CameraScript.SaveData();
+    ////////            break;
+    ////////        case "plus5k":
+    ////////            CameraScript.data.points += 5000;
+    ////////            CameraScript.SaveData();
+    ////////            break;            
+    ////////        default:
+    ////////            //Debug.LogWarning("Unknown SKU: " + purchase.Sku);
+    ////////            break;  
+    ////////    OpenIAB.consumeProduct(purchase);
+    ////////    }
+    ////////}
 
 #endif
     #endregion
+
+    static AndroidJavaObject plug;
 
     // Use this for initialization
     void Start()
     {
         #region Android inapp
         #if UNITY_ANDROID
-        try
-        {
-            OpenIAB.init(new Dictionary<string, string> {
-                {OpenIAB.STORE_GOOGLE, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqSgMRCA4Pin0Ymbrzv9jve0chLwn7LB9f4LYg23O85sBPAu2ev/iDsChoi7EQAa63pVTHzdsHHMtq5AH1vWoYc7TAZxoh5COuEk+GVNm77r2l3+ewnWvcpZ4+JR7Dk/A55J11iHydJfFRAsKrmGat5mJ15wEJfzTKpLvCapIBj/WicIQddUvoRg0D78wr9vsRF3iLxjiFms+cek5ZhWOrjpWeQ9eiw+OQt+0N2h776x0REVVS4x0Y+diYR+Fbxgap4XW84RDGsY2neYE/MEcuT3a4CayKvmT2gKqWLKAx0rwNMDehLzbk69X8MlmYg0agFYTgJbGmgSed4vb733V0QIDAQAB"}
-                });
-        }
-        catch { }
+        using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
+            pluginClass.Call("init", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqSgMRCA4Pin0Ymbrzv9jve0chLwn7LB9f4LYg23O85sBPAu2ev/iDsChoi7EQAa63pVTHzdsHHMtq5AH1vWoYc7TAZxoh5COuEk+GVNm77r2l3+ewnWvcpZ4+JR7Dk/A55J11iHydJfFRAsKrmGat5mJ15wEJfzTKpLvCapIBj/WicIQddUvoRg0D78wr9vsRF3iLxjiFms+cek5ZhWOrjpWeQ9eiw+OQt+0N2h776x0REVVS4x0Y+diYR+Fbxgap4XW84RDGsY2neYE/MEcuT3a4CayKvmT2gKqWLKAx0rwNMDehLzbk69X8MlmYg0agFYTgJbGmgSed4vb733V0QIDAQAB");
+        ////////try
+        ////////{
+        ////////    OpenIAB.init(new Dictionary<string, string> {
+        ////////        {OpenIAB.STORE_GOOGLE, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqSgMRCA4Pin0Ymbrzv9jve0chLwn7LB9f4LYg23O85sBPAu2ev/iDsChoi7EQAa63pVTHzdsHHMtq5AH1vWoYc7TAZxoh5COuEk+GVNm77r2l3+ewnWvcpZ4+JR7Dk/A55J11iHydJfFRAsKrmGat5mJ15wEJfzTKpLvCapIBj/WicIQddUvoRg0D78wr9vsRF3iLxjiFms+cek5ZhWOrjpWeQ9eiw+OQt+0N2h776x0REVVS4x0Y+diYR+Fbxgap4XW84RDGsY2neYE/MEcuT3a4CayKvmT2gKqWLKAx0rwNMDehLzbk69X8MlmYg0agFYTgJbGmgSed4vb733V0QIDAQAB"}
+        ////////        });
+        ////////}
+        ////////catch { }
 
-        //OpenIAB.mapSku("android.test.purchase", OpenIAB.STORE_GOOGLE, "google-store.android.test.purchase");
-        //OpenIAB.mapSku("p1000", OpenIAB.STORE_GOOGLE, "google-store.p1000");
-        //OpenIAB.mapSku("p5000", OpenIAB.STORE_GOOGLE, "google-store.p5000");
+        //////////OpenIAB.mapSku("android.test.purchase", OpenIAB.STORE_GOOGLE, "google-store.android.test.purchase");
+        //////////OpenIAB.mapSku("p1000", OpenIAB.STORE_GOOGLE, "google-store.p1000");
+        //////////OpenIAB.mapSku("p5000", OpenIAB.STORE_GOOGLE, "google-store.p5000");
 
-        OpenIABEventManager.billingSupportedEvent += billingSupportedEvent;
-        OpenIABEventManager.billingNotSupportedEvent += billingNotSupportedEvent;
-        OpenIABEventManager.purchaseSucceededEvent += purchaseSucceededEvent;
-        OpenIABEventManager.purchaseFailedEvent += purchaseFailedEvent;
-        OpenIABEventManager.consumePurchaseSucceededEvent += consumePurchaseSucceededEvent; 
-        OpenIABEventManager.consumePurchaseFailedEvent += consumePurchaseFailedEvent;
+        ////////OpenIABEventManager.billingSupportedEvent += billingSupportedEvent;
+        ////////OpenIABEventManager.billingNotSupportedEvent += billingNotSupportedEvent;
+        ////////OpenIABEventManager.purchaseSucceededEvent += purchaseSucceededEvent;
+        ////////OpenIABEventManager.purchaseFailedEvent += purchaseFailedEvent;
+        ////////OpenIABEventManager.consumePurchaseSucceededEvent += consumePurchaseSucceededEvent; 
+        ////////OpenIABEventManager.consumePurchaseFailedEvent += consumePurchaseFailedEvent;
         #endif
         #endregion
 
@@ -189,7 +193,8 @@ public class buyItems_Script : MonoBehaviour {
             if (plus500 != null)
                 plus500(this, new EventArgs());
             #if UNITY_ANDROID
-                OpenIAB.purchaseProduct("plus500");
+            using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
+                pluginClass.Call("buy", "plus500");
             #endif
         }
             
@@ -200,7 +205,9 @@ public class buyItems_Script : MonoBehaviour {
             if (plus1000 != null)
                             plus1000(this, new EventArgs());
             #if UNITY_ANDROID
-                OpenIAB.purchaseProduct("plus1000");
+                //OpenIAB.purchaseProduct("plus1000");
+            using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
+                pluginClass.Call("buy", "plus1000");
             #endif
         }
             
@@ -211,7 +218,8 @@ public class buyItems_Script : MonoBehaviour {
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
             #if UNITY_ANDROID
-                OpenIAB.purchaseProduct("plus5k");
+            using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
+                pluginClass.Call("buy", "plus5k");
             #endif
         }
             
