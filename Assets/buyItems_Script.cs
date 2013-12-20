@@ -4,21 +4,23 @@ using System;
 using System.Collections.Generic;
 using OpenIabPlugin;
 
-public class buyItems_Script : MonoBehaviour {
+public class buyItems_Script : MonoBehaviour
+{
 
     public Texture arcoLight, bengal, bluLight, greenLight, piccone, pinkLight, reborn, redLight, coins;
     float size, margin;
     public GUISkin custom;
-	public AudioClip cashsound;
+    public AudioClip cashsound;
     public static event EventHandler plus500, plus1000, plus5000;
     float[] span;
     bool imbuying;
     public Texture back;
-	float unmarginino, scrollparam;
+    float unmarginino, scrollparam;
     public Texture2D thumb;
 
     #region Android inizializzazione
 #if UNITY_ANDROID 
+     static AndroidJavaObject plug;
     ////////private void billingSupportedEvent()
     ////////{
         
@@ -80,13 +82,13 @@ public class buyItems_Script : MonoBehaviour {
 #endif
     #endregion
 
-    static AndroidJavaObject plug;
+
 
     // Use this for initialization
     void Start()
     {
         #region Android inapp
-        #if UNITY_ANDROID
+#if UNITY_ANDROID
         using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
             pluginClass.Call("init", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqSgMRCA4Pin0Ymbrzv9jve0chLwn7LB9f4LYg23O85sBPAu2ev/iDsChoi7EQAa63pVTHzdsHHMtq5AH1vWoYc7TAZxoh5COuEk+GVNm77r2l3+ewnWvcpZ4+JR7Dk/A55J11iHydJfFRAsKrmGat5mJ15wEJfzTKpLvCapIBj/WicIQddUvoRg0D78wr9vsRF3iLxjiFms+cek5ZhWOrjpWeQ9eiw+OQt+0N2h776x0REVVS4x0Y+diYR+Fbxgap4XW84RDGsY2neYE/MEcuT3a4CayKvmT2gKqWLKAx0rwNMDehLzbk69X8MlmYg0agFYTgJbGmgSed4vb733V0QIDAQAB");
         ////////try
@@ -107,10 +109,10 @@ public class buyItems_Script : MonoBehaviour {
         ////////OpenIABEventManager.purchaseFailedEvent += purchaseFailedEvent;
         ////////OpenIABEventManager.consumePurchaseSucceededEvent += consumePurchaseSucceededEvent; 
         ////////OpenIABEventManager.consumePurchaseFailedEvent += consumePurchaseFailedEvent;
-        #endif
+#endif
         #endregion
 
-                #region iOS inapp
+        #region iOS inapp
 #if UNITY_IPHONE
             OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");   //scoprire cosa sono "some.ios.sku" forse mentre pubblichiamo lo scopriamo
             OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
@@ -122,15 +124,14 @@ public class buyItems_Script : MonoBehaviour {
             {OpenIAB_iOS.STORE, "p5000"}
             });
 #endif
-                #endregion
+        #endregion
 
         imbuying = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
-		if (Application.platform == RuntimePlatform.WP8Player)// || Application.platform == RuntimePlatform.MetroPlayerARM ||
-            //Application.platform == RuntimePlatform.MetroPlayerX64 || Application.platform == RuntimePlatform.MetroPlayerX86)
+        if (Application.platform == RuntimePlatform.WP8Player)
         {
-						span = new float[] {
+            span = new float[] {
 								0,
 								0,
 								size * 2 + margin ,
@@ -138,9 +139,11 @@ public class buyItems_Script : MonoBehaviour {
 								margin * 3 + size * 6,
 								margin * 4 + size * 8
 						};
-						unmarginino = margin * 11;
-				} else {
-						span = new float[] {
+            unmarginino = margin * 11;
+        }
+        else
+        {
+            span = new float[] {
 								0,
 								0,
 								size * 2 + 2 * margin ,
@@ -148,18 +151,17 @@ public class buyItems_Script : MonoBehaviour {
 								margin * 6 + size * 6,
 								margin * 8 + size * 8
 						};
-			unmarginino = margin * 12;
-		}
+            unmarginino = margin * 12;
+        }
         scrollparam = (Screen.height * 2) / 768;
-        
-        #if UNITY_METRO
-        if (Input.touchCount == 0)
+
+#if UNITY_METRO
+        if (CameraScript.IsTouch)
         {
-            bool bar = true;
             imbuying = true;
         }
-        #endif
-	}
+#endif
+    }
 
     Vector2 position = Vector2.zero;
 
@@ -168,61 +170,61 @@ public class buyItems_Script : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape))
             Application.LoadLevel(0);
         GUI.skin = custom;
-        #if UNITY_METRO
+#if UNITY_METRO
         custom.verticalScrollbarThumb.normal.background = thumb;
-        #endif
+#endif
         custom.label.normal.textColor = new Color(255, 255, 255);
         custom.label.fontSize = (int)(size * 1.5);
         if (GUI.Button(new Rect(margin * 2, size, size * 1f, size * 1f), back))
             Application.LoadLevel(0);
-        GUI.Label(new Rect(margin + size*1.5f, margin, size * 10, size * 2 + margin), "Buy Items"); // titolo
+        GUI.Label(new Rect(margin + size * 1.5f, margin, size * 10, size * 2 + margin), "Buy Items"); // titolo
         custom.label.fontSize = (int)(size * 0.5f);
         //reborn e picconi
-        GUI.Label(new Rect(margin*3, margin * 11, size * 6, size), "n Bengal: " + CameraScript.data.numBengala);
-        GUI.Label(new Rect(size * 5 + margin*2, margin * 11, size * 6, size), "n Reborn: " + CameraScript.data.NumberReborn);
+        GUI.Label(new Rect(margin * 3, margin * 11, size * 6, size), "n Bengal: " + CameraScript.data.numBengala);
+        GUI.Label(new Rect(size * 5 + margin * 2, margin * 11, size * 6, size), "n Reborn: " + CameraScript.data.NumberReborn);
         //coins
-        GUI.DrawTexture(new Rect(size * 10 , margin*2, size, size), coins);
-		custom.label.fontSize = (int)(size*0.7);
-        GUI.Label(new Rect(size * 11+ margin, margin * 2, size*2, size), "" + CameraScript.data.points);
-		custom.label.fontSize = (int)(size * 0.5f);
+        GUI.DrawTexture(new Rect(size * 10, margin * 2, size, size), coins);
+        custom.label.fontSize = (int)(size * 0.7);
+        GUI.Label(new Rect(size * 11 + margin, margin * 2, size * 2, size), "" + CameraScript.data.points);
+        custom.label.fontSize = (int)(size * 0.5f);
         //purchases
-		custom.button.normal.textColor = new Color(205, 127, 50);
-		custom.button.fontSize = (int)(size * 0.7f);
+        custom.button.normal.textColor = new Color(205, 127, 50);
+        custom.button.fontSize = (int)(size * 0.7f);
         if (GUI.Button(new Rect(size * 13, margin * 2, size + 2 * margin, size), "+500"))
         {
             if (plus500 != null)
                 plus500(this, new EventArgs());
-            #if UNITY_ANDROID
+#if UNITY_ANDROID
             using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
                 pluginClass.Call("buy", "plus500");
-            #endif
+#endif
         }
-            
-		custom.button.normal.textColor = new Color(192, 192, 192);
-		custom.button.fontSize = (int)(size * 0.8f);
+
+        custom.button.normal.textColor = new Color(192, 192, 192);
+        custom.button.fontSize = (int)(size * 0.8f);
         if (GUI.Button(new Rect(size * 15 - margin, margin * 2, size + margin * 4, size), "+1000"))
         {
             if (plus1000 != null)
-                            plus1000(this, new EventArgs());
-            #if UNITY_ANDROID
+                plus1000(this, new EventArgs());
+#if UNITY_ANDROID
                 //OpenIAB.purchaseProduct("plus1000");
             using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
                 pluginClass.Call("buy", "plus1000");
-            #endif
+#endif
         }
-            
-		custom.button.normal.textColor = new Color(246, 193, 0);
-		custom.button.fontSize = (int)(size * 0.9f) ;
+
+        custom.button.normal.textColor = new Color(246, 193, 0);
+        custom.button.fontSize = (int)(size * 0.9f);
         if (GUI.Button(new Rect(size * 17, margin * 1.8f, size + 5 * margin, size), "+5000"))
         {
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
-            #if UNITY_ANDROID
+#if UNITY_ANDROID
             using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
                 pluginClass.Call("buy", "plus5k");
-            #endif
+#endif
         }
-            
+
         //colonna di sinistra
         if (GUI.Button(new Rect(margin, margin * 13, size * 9, size * 3), bengal))
             if (CameraScript.data.points >= 90)
@@ -242,8 +244,8 @@ public class buyItems_Script : MonoBehaviour {
             }
         //scrollview
         int elem = 0;
-		position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, Screen.height-(margin * 7)), position, 
-		                               new Rect(0, 0, size * 10, size * 14));
+        position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, Screen.height - (margin * 7)), position,
+                                       new Rect(0, 0, size * 10, size * 14));
         if (!CameraScript.data.lightRed)
         {
             elem++;
@@ -317,11 +319,11 @@ public class buyItems_Script : MonoBehaviour {
                     audio.PlayOneShot(cashsound);
                 }
         }
-        GUI.EndScrollView(); 
+        GUI.EndScrollView();
     }
 
     void Update()
-    {        
+    {
         if (Input.touchCount > 0)
         {
             Touch touch = Input.touches[0];
@@ -333,7 +335,7 @@ public class buyItems_Script : MonoBehaviour {
                 position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
                 imbuying = false;
             }
-        }           
+        }
     }
 
     bool IsTouchInsideList(Vector2 touchPos)
@@ -343,5 +345,4 @@ public class buyItems_Script : MonoBehaviour {
 
         return rAdjustedBounds.Contains(screenPos);
     }
-
 }

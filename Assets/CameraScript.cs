@@ -166,6 +166,7 @@ public class CameraScript : MonoBehaviour
 		public Texture Istruction;
         float instrTime;
         bool showInstru;
+        public static bool IsTouch = false;
     #endif
 
 #region Save and Load
@@ -247,7 +248,7 @@ public class CameraScript : MonoBehaviour
         margin2 = 0;// Screen.width / 70;
         print("touch: " + Input.touchCount);
         #if UNITY_METRO
-            if(Input.multiTouchEnabled)
+        if (IsTouch)
             {
                 VisualizeButtonsOnW8 = true;
                 //visualizza immmagine istruzioni
