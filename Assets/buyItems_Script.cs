@@ -2,7 +2,6 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
-using OpenIabPlugin;
 
 public class buyItems_Script : MonoBehaviour
 {
@@ -82,6 +81,9 @@ public class buyItems_Script : MonoBehaviour
 #endif
     #endregion
 
+    string androidkey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqSgMRCA4Pin0Ymbrzv9jve0chLwn7LB9f4LYg23O85sBPAu2ev/iDsChoi7EQAa63pVTHzdsHHMtq5AH1vWoYc7TAZxoh5COuEk+GVNm77r2l3+ewnWvcpZ4+JR7Dk/A55J11iHydJfFRAsKrmGat5mJ15wEJfzTKpLvCapIBj/WicIQddUvoRg0D78wr9vsRF3iLxjiFms+cek5ZhWOrjpWeQ9eiw+OQt+0N2h776x0REVVS4x0Y+diYR+Fbxgap4XW84RDGsY2neYE/MEcuT3a4CayKvmT2gKqWLKAx0rwNMDehLzbk69X8MlmYg0agFYTgJbGmgSed4vb733V0QIDAQAB";
+    AndroidJavaClass unityPlayer;
+    AndroidJavaObject activity;
 
 
     // Use this for initialization
@@ -89,8 +91,12 @@ public class buyItems_Script : MonoBehaviour
     {
         #region Android inapp
 #if UNITY_ANDROID
-        using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
-            pluginClass.Call("init", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqSgMRCA4Pin0Ymbrzv9jve0chLwn7LB9f4LYg23O85sBPAu2ev/iDsChoi7EQAa63pVTHzdsHHMtq5AH1vWoYc7TAZxoh5COuEk+GVNm77r2l3+ewnWvcpZ4+JR7Dk/A55J11iHydJfFRAsKrmGat5mJ15wEJfzTKpLvCapIBj/WicIQddUvoRg0D78wr9vsRF3iLxjiFms+cek5ZhWOrjpWeQ9eiw+OQt+0N2h776x0REVVS4x0Y+diYR+Fbxgap4XW84RDGsY2neYE/MEcuT3a4CayKvmT2gKqWLKAx0rwNMDehLzbk69X8MlmYg0agFYTgJbGmgSed4vb733V0QIDAQAB");
+        //com.celialab.ManInTheCave.UnityPlayerNativeActivity
+        //jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
+        unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        activity.Call("init");
+        //jc.Call("init");
         ////////try
         ////////{
         ////////    OpenIAB.init(new Dictionary<string, string> {
@@ -195,8 +201,9 @@ public class buyItems_Script : MonoBehaviour
             if (plus500 != null)
                 plus500(this, new EventArgs());
 #if UNITY_ANDROID
-            using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
-                pluginClass.Call("buy", "plus500");
+            //using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
+            //    pluginClass.Call("buy", "plus500");
+            activity.Call("buy500");
 #endif
         }
 
@@ -208,8 +215,9 @@ public class buyItems_Script : MonoBehaviour
                 plus1000(this, new EventArgs());
 #if UNITY_ANDROID
                 //OpenIAB.purchaseProduct("plus1000");
-            using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
-                pluginClass.Call("buy", "plus1000");
+            //using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
+            //    pluginClass.Call("buy", "plus1000");
+            activity.Call("buy", "plus1000");
 #endif
         }
 
@@ -220,8 +228,8 @@ public class buyItems_Script : MonoBehaviour
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
 #if UNITY_ANDROID
-            using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
-                pluginClass.Call("buy", "plus5k");
+            //using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
+            //    pluginClass.Call("buy", "plus5k");
 #endif
         }
 
