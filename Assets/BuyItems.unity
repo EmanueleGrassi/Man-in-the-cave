@@ -89,7 +89,7 @@ GameObject:
   - 114: {fileID: 1103718256}
   - 82: {fileID: 1103718257}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Buy Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

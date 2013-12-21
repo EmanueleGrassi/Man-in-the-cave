@@ -203,7 +203,7 @@ public class buyItems_Script : MonoBehaviour
 #if UNITY_ANDROID
             //using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
             //    pluginClass.Call("buy", "plus500");
-            activity.Call("buy500");
+            activity.Call("buy","android.test.refunded");
 #endif
         }
 
@@ -230,6 +230,7 @@ public class buyItems_Script : MonoBehaviour
 #if UNITY_ANDROID
             //using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
             //    pluginClass.Call("buy", "plus5k");
+            activity.Call("buy", "plus5k");
 #endif
         }
 
@@ -352,5 +353,23 @@ public class buyItems_Script : MonoBehaviour
         Rect rAdjustedBounds = new Rect(size * 10, margin * 7, size * 10, size * 16);
 
         return rAdjustedBounds.Contains(screenPos);
+    }
+
+    void add500(String ciao)
+    {
+        CameraScript.data.points += 500;
+        CameraScript.SaveData();
+    }
+
+    void add1000(String ciao)
+    {
+        CameraScript.data.points += 1000;
+        CameraScript.SaveData();
+    }
+
+    void add5k(String ciao)
+    {
+        CameraScript.data.points += 500;
+        CameraScript.SaveData();
     }
 }
