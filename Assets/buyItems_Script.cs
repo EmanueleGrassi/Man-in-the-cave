@@ -203,7 +203,7 @@ public class buyItems_Script : MonoBehaviour
 #if UNITY_ANDROID
             //using (var pluginClass = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity"))
             //    pluginClass.Call("buy", "plus500");
-            activity.Call("buy","android.test.refunded");
+            activity.Call("buy","plus500");
 #endif
         }
 
@@ -369,7 +369,7 @@ public class buyItems_Script : MonoBehaviour
 
     void add5k(String ciao)
     {
-        CameraScript.data.points += 500;
+        CameraScript.data.points += 5000;
         CameraScript.SaveData();
     }
 }
