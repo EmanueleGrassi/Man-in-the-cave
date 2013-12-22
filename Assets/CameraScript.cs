@@ -126,7 +126,7 @@ public class Record
 
 public class CameraScript : MonoBehaviour
 {
-#region veriabili
+#region variabili
     #region private
     float nexshot;
     float smoothTime;    
@@ -157,6 +157,7 @@ public class CameraScript : MonoBehaviour
         public static bool replayGame;
         public static event EventHandler saveEvent, loadEvent, shareEvent;
         public static event EventHandler GOReviews;
+        public Texture Vignette;
     #endregion
 #endregion
 
@@ -329,6 +330,7 @@ public class CameraScript : MonoBehaviour
 #region OnGUI
     void OnGUI()
     {
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Vignette);
         GUI.skin = custom;
         if (isDebuging)
             if (GUI.Button(new Rect(Screen.width / 2 - height / 2, 0, height, height), quit))
