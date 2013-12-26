@@ -65,7 +65,17 @@ public class MenuScript : MonoBehaviour
         {            
             // filter the jerky acceleration in the variable accel:
             accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
-            transform.rotation = Quaternion.Euler((-90 * accel.y) / -1, (-90 * accel.x) / -1, 0);
+            float x=(-90 * accel.y);
+            if(x<-55)
+                x=-55;
+            else if(x>+55)
+                x=55;
+            float y =((-90 * accel.x) / -1)-90;
+            if (y < -5)
+                y = -5;
+            else if (x > +33)
+                y = 33;
+            transform.rotation = Quaternion.Euler(x, y, 0);
         }
     }
     private void addPoints(int p)

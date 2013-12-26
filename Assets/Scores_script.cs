@@ -84,16 +84,18 @@ public class Scores_script : MonoBehaviour
 
     void Update()
     {
-        if (CameraScript.IsTouch)
-        {
-            Touch touch = Input.touches[0];
-            bool fInsideList = IsTouchInsideList(touch.position);
-
-            if (touch.phase == TouchPhase.Moved && fInsideList)
+       #if UNITY_METRO
+            if (CameraScript.IsTouch)
             {
-                pos.y += touch.deltaPosition.y * scrollparam;
+                Touch touch = Input.touches[0];
+                bool fInsideList = IsTouchInsideList(touch.position);
+
+                if (touch.phase == TouchPhase.Moved && fInsideList)
+                {
+                    pos.y += touch.deltaPosition.y * scrollparam;
+                }
             }
-        }
+        #endif
     }
 
     public static string formatScore(float a)

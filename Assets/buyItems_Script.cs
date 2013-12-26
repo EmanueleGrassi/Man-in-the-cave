@@ -309,6 +309,7 @@ public class buyItems_Script : MonoBehaviour
 
     void Update()
     {
+        #if UNITY_METRO
         if (CameraScript.IsTouch)
         {
             Touch touch = Input.touches[0];
@@ -321,6 +322,7 @@ public class buyItems_Script : MonoBehaviour
                 imbuying = false;
             }
         }
+        #endif
     }
 
     bool IsTouchInsideList(Vector2 touchPos)
