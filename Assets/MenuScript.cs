@@ -19,7 +19,10 @@ public class MenuScript : MonoBehaviour
     public Texture myAppFreeBanner, normalBanner;
     public static event EventHandler GOReviews;
     public AudioClip promotionSound;
-    // Use this for initialization
+
+
+    Vector3 accel;
+    float filter = 5.0f;
     void Start()
     {
         PlayScript.State = PlayScript.PlayState.menu;
@@ -35,6 +38,7 @@ public class MenuScript : MonoBehaviour
                 addPoints(1000);
         }
         PG.position = new Vector3(((Screen.width / Screen.height) * (-3.3f)) / (800f / 480f), -0.009f, 8f);
+        accel = Input.acceleration;
     }
     float StartPromotionSound;
     bool StartPromotion = false;
@@ -52,13 +56,16 @@ public class MenuScript : MonoBehaviour
             StayPromotionBannar = Time.time + 5;
             StartPromotion = false;
         }
+
         if(false/*Input.isGyroAvailable*/)
         {
 
         }
         else
-        {
-            print(Input.acceleration.x);
+        {            
+            // filter the jerky acceleration in the variable accel:
+            accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
+            transform.rotation = Quaternion.Euler((-90 * accel.y) / -1, (-90 * accel.x) / -1, 0);
         }
     }
     private void addPoints(int p)
