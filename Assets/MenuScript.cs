@@ -52,6 +52,14 @@ public class MenuScript : MonoBehaviour
             StayPromotionBannar = Time.time + 5;
             StartPromotion = false;
         }
+        if(false/*Input.isGyroAvailable*/)
+        {
+
+        }
+        else
+        {
+            print(Input.acceleration.x);
+        }
     }
     private void addPoints(int p)
     {
@@ -153,11 +161,15 @@ public class MenuScript : MonoBehaviour
         }
 
     }
-
+    
     private void StartWebRequest(string url)
     {
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-        request.BeginGetResponse(new AsyncCallback(FinishWebRequest), request);
+        try
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.BeginGetResponse(new AsyncCallback(FinishWebRequest), request);
+        }
+        catch{}
     }
 
     private void FinishWebRequest(IAsyncResult result)
@@ -177,5 +189,4 @@ public class MenuScript : MonoBehaviour
         }
 
     }
-
 }
