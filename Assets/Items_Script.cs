@@ -13,6 +13,7 @@ public class Items_Script : MonoBehaviour
     public Texture back;
     float elementSize, positionYButtons;
     float UnTerzo;
+    Vector2 position = Vector2.zero;
     // Use this for initialization
     void Start()
     {
@@ -55,7 +56,8 @@ public class Items_Script : MonoBehaviour
         //equippedLight();
 
         //LUCI DISPONIBILI
-        availableLight();
+       // availableLight();
+        drawElements();
     }
 
     private void equippedLight()
@@ -92,6 +94,62 @@ public class Items_Script : MonoBehaviour
         }
     }
 
+
+    void drawElements()
+{
+    float selected = elementSize * 1.5f;
+    GUILayout.BeginHorizontal("box");       
+     GUILayout.Button("I'm the first button", GUILayout.Width(100),GUILayout.Height(100));
+     if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + availableLights * (elementSize + margin), positionYButtons,
+         CameraScript.data.helmet == Helmet.white ? selected : elementSize, CameraScript.data.helmet == Helmet.white ? selected : elementSize), white))
+     {
+         CameraScript.data.helmet = Helmet.white;
+         audio.PlayOneShot(equipSound);
+     }
+    GUILayout.EndHorizontal();
+    //scrollview
+    int elem = 0;
+    position = GUI.BeginScrollView(new Rect(0, UnTerzo / 3, Screen.width, Screen.height - (UnTerzo / 3)), position,
+                                   new Rect(0, 0, (6 * elementSize) +(margin*5) +(Screen.width/2-elementSize/2)*2, Screen.height - (UnTerzo / 3)), true, false);
+    availableLights = 0;
+    if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), white))
+    {
+        CameraScript.data.helmet = Helmet.white;
+        audio.PlayOneShot(equipSound);
+    }
+    availableLights++;
+    if (GUI.Button(new Rect((Screen.width/2-elementSize/2) + margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), redligth))
+    {
+        CameraScript.data.helmet = Helmet.red;
+        audio.PlayOneShot(equipSound);
+    }    
+    availableLights++;
+    if (GUI.Button(new Rect((Screen.width/2-elementSize/2) +margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), blueligth))
+    {
+        CameraScript.data.helmet = Helmet.blue;
+        audio.PlayOneShot(equipSound);
+    }
+    availableLights++;
+    if (GUI.Button(new Rect((Screen.width/2-elementSize/2)+ margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), greenligth))
+    {
+        CameraScript.data.helmet = Helmet.green;
+        audio.PlayOneShot(equipSound);
+    }
+    availableLights++;
+    if (GUI.Button(new Rect((Screen.width/2-elementSize/2) + margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), pinkligth))
+    {
+        CameraScript.data.helmet = Helmet.pink;
+        audio.PlayOneShot(equipSound);
+    }
+    availableLights++;
+    if (GUI.Button(new Rect((Screen.width/2-elementSize/2) + margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), ranbowligth))
+    {
+        CameraScript.data.helmet = Helmet.rainbow;
+        audio.PlayOneShot(equipSound);
+    }
+    availableLights++;
+    GUI.EndScrollView();
+    }
     
     private void availableLight()
     {
@@ -99,57 +157,27 @@ public class Items_Script : MonoBehaviour
         if (CameraScript.data.helmet != Helmet.white)
         {
 
-            if (GUI.Button(new Rect(margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), white))
-            {
-                CameraScript.data.helmet = Helmet.white;
-                audio.PlayOneShot(equipSound);
-            }
-            availableLights++;
+           
         }
         if (CameraScript.data.lightRed && CameraScript.data.helmet != Helmet.red)
         {
-            if (GUI.Button(new Rect(margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), redligth))
-            {
-                CameraScript.data.helmet = Helmet.red;
-                audio.PlayOneShot(equipSound);
-            }
-            availableLights++;
+           
         }
         if (CameraScript.data.lightBlue && CameraScript.data.helmet != Helmet.blue)
         {
-            if (GUI.Button(new Rect(margin + availableLights * (elementSize+ margin), positionYButtons, elementSize, elementSize), blueligth))
-            {
-                CameraScript.data.helmet = Helmet.blue;
-                audio.PlayOneShot(equipSound);
-            }
-            availableLights++;
+           
         }
         if (CameraScript.data.lightGreen && CameraScript.data.helmet != Helmet.green)
         {
-            if (GUI.Button(new Rect(margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), greenligth))
-            {
-                CameraScript.data.helmet = Helmet.green;
-                audio.PlayOneShot(equipSound);
-            }
-            availableLights++;
+           
         }
         if (CameraScript.data.lightPink && CameraScript.data.helmet != Helmet.pink)
         {
-            if (GUI.Button(new Rect(margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), pinkligth))
-            {
-                CameraScript.data.helmet = Helmet.pink;
-                audio.PlayOneShot(equipSound);
-            }
-            availableLights++;
+            
         }
         if (CameraScript.data.lightRainbow && CameraScript.data.helmet != Helmet.rainbow)
         {
-            if (GUI.Button(new Rect(margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), ranbowligth))
-            {
-                CameraScript.data.helmet = Helmet.rainbow;
-                audio.PlayOneShot(equipSound);
-            }
-            availableLights++;
+           
         }
         if (availableLights == 0)
         {          

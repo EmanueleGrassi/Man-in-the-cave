@@ -57,26 +57,51 @@ public class MenuScript : MonoBehaviour
             StartPromotion = false;
         }
 
-        if(false/*Input.isGyroAvailable*/)
+        if (Input.isGyroAvailable)
         {
-
+            transform.rotation = Quaternion.Slerp(transform.rotation, 
+(ConvertRotation(Input.gyro.attitude) * GetRotFix()), 5);
         }
-        else
-        {            
+        else if (Input.acceleration!=Vector3.zero)
+        {
             // filter the jerky acceleration in the variable accel:
             accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
-            float x=(-90 * accel.y);
-            if(x<-55)
-                x=-55;
-            else if(x>+55)
-                x=55;
-            float y =((-90 * accel.x) / -1)-90;
-            if (y < -5)
-                y = -5;
-            else if (x > +33)
-                y = 33;
-            transform.rotation = Quaternion.Euler(x, y, 0);
+            float x = -((accel.y * 100)); //si muove in alto e basso
+            //if(x<-5)
+            //    x=-5;
+            //else if(x>+33)
+            //    x=33;
+
+            float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra
+            //if (y < -55)
+            //    y = -55;
+            //else if (x > +55)
+            //    y = 55;
+
+            float Altobasso = (accel.y * 90) + 90;
+            if (accel.z >= 0)
+                Altobasso *= -1;
+            print(Altobasso);
+            transform.rotation = Quaternion.Euler(Altobasso, DestraSinistra, 0f);
         }
+    }
+    
+    private static Quaternion ConvertRotation(Quaternion q)
+    {
+        return new Quaternion(q.x, q.y, -q.z, -q.w);
+    }
+    private Quaternion GetRotFix()
+    {
+        if (Screen.orientation == ScreenOrientation.Portrait)
+            return Quaternion.identity;
+        if (Screen.orientation == ScreenOrientation.LandscapeLeft
+        || Screen.orientation == ScreenOrientation.Landscape)
+            return Quaternion.Euler(0, 0, -90);
+        if (Screen.orientation == ScreenOrientation.LandscapeRight)
+            return Quaternion.Euler(0, 0, 90);
+        if (Screen.orientation == ScreenOrientation.PortraitUpsideDown)
+            return Quaternion.Euler(0, 0, 180);
+        return Quaternion.identity;
     }
     private void addPoints(int p)
     {
@@ -98,42 +123,49 @@ public class MenuScript : MonoBehaviour
         float playSize = UnTerzo - margin;
         float BottoniHeight = UnTerzo * 0.7f - margin;
         float SocialSize = UnTerzo * 0.5f - margin;
-        GUI.DrawTexture(new Rect((Screen.width / 2) - ((1024 * UnTerzo / 285) / 2), 0, 1024 * UnTerzo / 285, UnTerzo),
-                        Title, ScaleMode.StretchToFill, true);
+        GUI.DrawTexture(new Rect((Screen.width / 2) - (((BottoniHeight * 4 + margin * 3)) / 2), 0, ((BottoniHeight * 4 + margin * 3)),
+                                            ((BottoniHeight * 4 + margin * 3)) * 285 / 1024), Title, ScaleMode.ScaleToFit, true);
         if (GUI.Button(new Rect((Screen.width / 2) - playSize / 2, UnTerzo + ((UnTerzo / 2) - playSize / 2), playSize, playSize), PlayButton))
         {
             Application.LoadLevel("main");
         }
 
-        float posizioneButton = Screen.width / 2 - ((BottoniHeight * 4 + margin * 3)) / 2;
+        float posizioneButton;
+        int numBottone = 0;
         if (CameraScript.data.Records[0].x != 0)
         {
+            posizioneButton = Screen.width / 2 - ((BottoniHeight * 4 + margin * 3)) / 2;
             if (GUI.Button(new Rect(posizioneButton,
                                      UnTerzo * 2 + ((UnTerzo / 2) - BottoniHeight / 2),
                                      BottoniHeight, BottoniHeight), ScoreButton))
             {
                 Application.LoadLevel("Scores");
             }
+            numBottone++;
         }
-        if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight),
+        else
+            posizioneButton = Screen.width / 2 - ((BottoniHeight * 3 + margin * 3)) / 2;
+
+        if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight) * numBottone,
                                UnTerzo * 2 + ((UnTerzo / 2) - BottoniHeight / 2),
                                  BottoniHeight, BottoniHeight), BuyItemsButton))
         {
             Application.LoadLevel("BuyItems");
         }
-        if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight) * 2,
+        numBottone++;
+        if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight) * numBottone,
                                 UnTerzo * 2 + ((UnTerzo / 2) - BottoniHeight / 2),
                                 BottoniHeight, BottoniHeight), ItemsButton))
         {
             Application.LoadLevel("Items");
         }
-        if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight) * 3,
+        numBottone++;
+        if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight) * numBottone,
                                UnTerzo * 2 + ((UnTerzo / 2) - BottoniHeight / 2),
                                  BottoniHeight, BottoniHeight), SettingsButton))
         {
             Application.LoadLevel("Settings");
         }
-
         if (GUI.Button(new Rect(Screen.width - (SocialSize + margin), Screen.height - (SocialSize * 3 + margin), SocialSize, SocialSize), facebook))
         {
             Application.OpenURL("https://www.facebook.com/Celialab");//vai su facebook
@@ -178,7 +210,7 @@ public class MenuScript : MonoBehaviour
         }
 
     }
-    
+
     private void StartWebRequest(string url)
     {
         try
@@ -186,7 +218,7 @@ public class MenuScript : MonoBehaviour
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.BeginGetResponse(new AsyncCallback(FinishWebRequest), request);
         }
-        catch{}
+        catch { }
     }
 
     private void FinishWebRequest(IAsyncResult result)
