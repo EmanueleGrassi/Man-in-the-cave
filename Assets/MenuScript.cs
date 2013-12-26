@@ -11,10 +11,10 @@ public class MenuScript : MonoBehaviour
 {
     public GUISkin custom;
     float height;
-    float margin, margin2;
+    float margin;
     static bool play = true;
     public Transform PG;
-    public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
+    public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, SettingsButton;
     public Texture Title, facebook, twitter, review, celialab;
     public Texture myAppFreeBanner, normalBanner;
     public static event EventHandler GOReviews;
@@ -25,7 +25,6 @@ public class MenuScript : MonoBehaviour
         PlayScript.State = PlayScript.PlayState.menu;
         height = Screen.width / 20;
         margin = Screen.width / 60;
-        margin2 = 0;
         CameraScript.LoadData();
 
         if (PlayerPrefs.GetString("gift1") == "")
@@ -35,7 +34,6 @@ public class MenuScript : MonoBehaviour
             else
                 addPoints(1000);
         }
-        print("screen: " + Screen.width);
         PG.position = new Vector3(((Screen.width / Screen.height) * (-3.3f)) / (800f / 480f), -0.009f, 8f);
     }
     float StartPromotionSound;
@@ -68,52 +66,58 @@ public class MenuScript : MonoBehaviour
     // Update is called once per frame
     void OnGUI()
     {
-        //GUI.Label(new Rect(0, 0, 2000, 300), "screen: " + Screen.width+ " || prop: " + ((Screen.width/Screen.height) * (-3.3f)) / (800f/480f));
-
-        GUI.skin = custom;
-        float piccoliBottoniSize = Screen.width / 4.6f - margin2;
-        float titleHeight = ((Screen.width / 2) * 305) / 1094;
-        float playSize = Screen.width / 8;
-        float BuyHeight = (((piccoliBottoniSize * 2) * 160) / 740);
-        float SocialSize = Screen.width / 13;
-        GUI.DrawTexture(new Rect((Screen.width / 2) - Screen.width / 4, 0, Screen.width / 2, titleHeight),
+        if (GUI.skin != custom)
+            GUI.skin = custom;
+        float piccoliBottoniSize = Screen.width / 4.6f;
+        float UnTerzo = Screen.height / 3;
+        float playSize = UnTerzo - margin;
+        float BottoniHeight = UnTerzo * 0.7f - margin;
+        float SocialSize = UnTerzo * 0.5f - margin;
+        GUI.DrawTexture(new Rect((Screen.width / 2) - ((1024 * UnTerzo / 285) / 2), 0, 1024 * UnTerzo / 285, UnTerzo),
                         Title, ScaleMode.StretchToFill, true);
-        if (GUI.Button(new Rect((Screen.width / 2) - playSize / 2, titleHeight + margin * 2, playSize, playSize), PlayButton))
+        if (GUI.Button(new Rect((Screen.width / 2) - playSize / 2, UnTerzo + ((UnTerzo / 2) - playSize / 2), playSize, playSize), PlayButton))
         {
             Application.LoadLevel("main");
         }
 
-        float piccoliBottoniHight = (((piccoliBottoniSize) * 169) / 400);
-        if (GUI.Button(new Rect((Screen.width - ((piccoliBottoniSize * 2) + margin2)) / 2,
-                                 titleHeight + playSize + margin * 2,
-                                 piccoliBottoniSize, piccoliBottoniHight), ScoreButton))
+        float posizioneButton = Screen.width / 2 - ((BottoniHeight * 4 + margin * 3)) / 2;
+        if (CameraScript.data.Records[0].x != 0)
         {
-            Application.LoadLevel("Scores");
+            if (GUI.Button(new Rect(posizioneButton,
+                                     UnTerzo * 2 + ((UnTerzo / 2) - BottoniHeight / 2),
+                                     BottoniHeight, BottoniHeight), ScoreButton))
+            {
+                Application.LoadLevel("Scores");
+            }
         }
-        if (GUI.Button(new Rect(((Screen.width - ((piccoliBottoniSize * 2) + margin2)) / 2) + (piccoliBottoniSize),
-                                 (margin2 * 3) + titleHeight + playSize + margin * 2,
-                                 piccoliBottoniSize, piccoliBottoniHight), ItemsButton))
+        if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight),
+                               UnTerzo * 2 + ((UnTerzo / 2) - BottoniHeight / 2),
+                                 BottoniHeight, BottoniHeight), BuyItemsButton))
         {
-            Application.LoadLevel("Items");//vai nella pagina Items
+            Application.LoadLevel("BuyItems");
+        }
+        if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight) * 2,
+                                UnTerzo * 2 + ((UnTerzo / 2) - BottoniHeight / 2),
+                                BottoniHeight, BottoniHeight), ItemsButton))
+        {
+            Application.LoadLevel("Items");
+        }
+        if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight) * 3,
+                               UnTerzo * 2 + ((UnTerzo / 2) - BottoniHeight / 2),
+                                 BottoniHeight, BottoniHeight), SettingsButton))
+        {
+            Application.LoadLevel("Settings");
         }
 
-
-        if (GUI.Button(new Rect((Screen.width / 2) - ((piccoliBottoniSize * 2) / 2),
-                                 (margin2 * 4) + titleHeight + playSize + piccoliBottoniHight + margin * 2,
-                                 piccoliBottoniSize * 2, BuyHeight), BuyItemsButton))
-        {
-            Application.LoadLevel("BuyItems");//vai nella pagina BuyItems
-        }
-
-        if (GUI.Button(new Rect(Screen.width - SocialSize, Screen.height - SocialSize * 3, SocialSize, SocialSize), facebook))
+        if (GUI.Button(new Rect(Screen.width - (SocialSize + margin), Screen.height - (SocialSize * 3 + margin), SocialSize, SocialSize), facebook))
         {
             Application.OpenURL("https://www.facebook.com/Celialab");//vai su facebook
         }
-        if (GUI.Button(new Rect(Screen.width - SocialSize, Screen.height - SocialSize * 2, SocialSize, SocialSize), twitter))
+        if (GUI.Button(new Rect(Screen.width - (SocialSize + margin), Screen.height - (SocialSize * 2 + margin), SocialSize, SocialSize), twitter))
         {
             Application.OpenURL("https://twitter.com/celialabGames");//vai su twitter
         }
-        if (GUI.Button(new Rect(Screen.width - SocialSize, Screen.height - SocialSize, SocialSize, SocialSize), review))
+        if (GUI.Button(new Rect(Screen.width - (SocialSize + margin), Screen.height - (SocialSize + margin), SocialSize, SocialSize), review))
         {
             if (Application.platform == RuntimePlatform.Android)
                 Application.OpenURL("market://details?id=com.celialab.ManInTheCave");
@@ -128,7 +132,7 @@ public class MenuScript : MonoBehaviour
         }
 
         var celialabHeight = ((Screen.width / 5) * 59) / 200;
-        if (GUI.Button(new Rect(margin, Screen.height - (celialabHeight + margin), Screen.width / 5, celialabHeight), celialab))
+        if (GUI.Button(new Rect(margin / 2.3f, Screen.height - (celialabHeight + margin / 2.3f), Screen.width / 5, celialabHeight), celialab))
         {
             Application.OpenURL("http://celialab.com/");
         }
@@ -145,7 +149,7 @@ public class MenuScript : MonoBehaviour
                 }
             }
             else
-                GUI.DrawTexture(new Rect(0, 0, Screen.width, (Screen.width * 250) / 2048), normalBanner, ScaleMode.ScaleToFit, true);                    
+                GUI.DrawTexture(new Rect(0, 0, Screen.width, (Screen.width * 250) / 2048), normalBanner, ScaleMode.ScaleToFit, true);
         }
 
     }

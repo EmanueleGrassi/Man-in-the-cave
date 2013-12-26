@@ -1268,10 +1268,6 @@ MonoBehaviour:
   gameoverSound: {fileID: 8300000, guid: 753cdbc10cf2b71498775ed20c7876cf, type: 3}
   background: {fileID: 8300000, guid: 166c0e5cb160a194ba7d51a0a9b79f31, type: 3}
   Volume: .200000003
-  coin: {fileID: 2800000, guid: 652d2f922cdcda44698fd2704680dbdd, type: 3}
-  pause: {fileID: 2800000, guid: dfb1eb3a6e260f44790928e53bb76caf, type: 3}
-  quit: {fileID: 2800000, guid: 01b058e761e649048b6b840587186576, type: 3}
-  isDebuging: 0
   PlayButton: {fileID: 2800000, guid: 1d285a50c257ac2448cc413c4a6dc3e7, type: 3}
   ScoreButton: {fileID: 2800000, guid: ee546dc630f40eb4d851a13c00ea3ea4, type: 3}
   ItemsButton: {fileID: 2800000, guid: 96d4247ae882a894aa2c9b4974a0217b, type: 3}
@@ -1279,15 +1275,16 @@ MonoBehaviour:
   homeButton: {fileID: 2800000, guid: 9210b3e3712cbdc42ae94ad870829e58, type: 3}
   playAgainButton: {fileID: 2800000, guid: 279b733a2bf122a49a371015974eb9d2, type: 3}
   likebtn: {fileID: 2800000, guid: a8c5422a982a09f41ab8fc038ec8115a, type: 3}
-  Title: {fileID: 2800000, guid: e1fda18fad03ae847af5fd5fff67a942, type: 3}
-  facebook: {fileID: 2800000, guid: 0a8edb5d4788a1942a8c0a2d56befb7d, type: 3}
-  twitter: {fileID: 2800000, guid: 47a98157863632842aa3ca922f0a582a, type: 3}
-  review: {fileID: 2800000, guid: 94af68ca2c98d9047a0b41809cfd6fac, type: 3}
-  celialab: {fileID: 2800000, guid: 41788b70ef42c7e42acc0170c438dae3, type: 3}
-  useReborn: {fileID: 2800000, guid: 517fef3242e83ed4bbec580fb8b9fc29, type: 3}
-  OKbutton: {fileID: 2800000, guid: 236526e4778528b4c8da1871c9502d5a, type: 3}
-  CancelButton: {fileID: 2800000, guid: 36002339e780c5241a4ac0de7c2ca74c, type: 3}
-  Vignette: {fileID: 2800000, guid: a3cce153200572e408efef0006bf5423, type: 3}
+  coin: {fileID: 2800000, guid: 652d2f922cdcda44698fd2704680dbdd, type: 3}
+  pause: {fileID: 2800000, guid: dfb1eb3a6e260f44790928e53bb76caf, type: 3}
+  Tondo_Texture: {fileID: 2800000, guid: a49832d29e3f6c747ab3eb0049a38532, type: 3}
+  quad_Texture: {fileID: 2800000, guid: 3f5e1d653555c3e4f95820bf95efba10, type: 3}
+  TondoMaterial: {fileID: 2100000, guid: 8b73aee765ea5924cab8716fe0fbe4c8, type: 2}
+  useReborn_Texture: {fileID: 2800000, guid: 517fef3242e83ed4bbec580fb8b9fc29, type: 3}
+  OKbutton_Texture: {fileID: 2800000, guid: 236526e4778528b4c8da1871c9502d5a, type: 3}
+  CancelButton_Texture: {fileID: 2800000, guid: 36002339e780c5241a4ac0de7c2ca74c,
+    type: 3}
+  Vignette_Texture: {fileID: 2800000, guid: a3cce153200572e408efef0006bf5423, type: 3}
   Istruction: {fileID: 2800000, guid: 5556f7944b8c7fb4ebf6c13d89c3b133, type: 3}
 --- !u!1 &495093210
 GameObject:
@@ -1624,7 +1621,7 @@ Light:
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1645,6 +1642,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce66053248c68b349997e18e27702341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &629997148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 629997149}
+  - 114: {fileID: 629997150}
+  m_Layer: 0
+  m_Name: CoinText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &629997149
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 629997148}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1468557323}
+--- !u!114 &629997150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 629997148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1902ec0bf3ef3240b38ff15044f4b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customSkin: {fileID: 11400000, guid: 5a061d2ab1594a743816bc6b552c707b, type: 2}
 --- !u!1 &635841988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,7 +2911,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 6.4000001
   m_Range: 12.8999996
-  m_SpotAngle: 33
+  m_SpotAngle: 80
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -3455,6 +3491,7 @@ Transform:
   m_Children:
   - {fileID: 433578275}
   - {fileID: 1946230851}
+  - {fileID: 629997149}
   - {fileID: 1680461526}
   - {fileID: 966331497}
   m_Father: {fileID: 0}
@@ -3750,6 +3787,135 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 5.96046448e-08, y: 0, z: -8.94069672e-08}
+--- !u!1 &1638546648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1638546653}
+  - 15: {fileID: 1638546652}
+  - 12: {fileID: 1638546651}
+  - 26: {fileID: 1638546650}
+  - 114: {fileID: 1638546649}
+  m_Layer: 0
+  m_Name: 
+  m_TagString: smoke
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1638546649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1638546648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ee1fb362618ec4d909a4b3bb93a0ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!26 &1638546650
+ParticleRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1638546648}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 96558d9af5ccba84da0a06dc9afa072d, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  serializedVersion: 2
+  m_CameraVelocityScale: 0
+  m_StretchParticles: 0
+  m_LengthScale: 2
+  m_VelocityScale: 0
+  m_MaxParticleSize: .25
+  UV Animation:
+    x Tile: 1
+    y Tile: 1
+    cycles: 1
+--- !u!12 &1638546651
+ParticleAnimator:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1638546648}
+  Does Animate Color?: 1
+  colorAnimation[0]:
+    serializedVersion: 2
+    rgba: 796469
+  colorAnimation[1]:
+    serializedVersion: 2
+    rgba: 1730558789
+  colorAnimation[2]:
+    serializedVersion: 2
+    rgba: 2387891284
+  colorAnimation[3]:
+    serializedVersion: 2
+    rgba: 1281976681
+  colorAnimation[4]:
+    serializedVersion: 2
+    rgba: 1907997
+  worldRotationAxis: {x: 0, y: 0, z: 0}
+  localRotationAxis: {x: 0, y: 0, z: 0}
+  sizeGrow: .100000001
+  rndForce: {x: .100000001, y: .100000001, z: .100000001}
+  force: {x: 0, y: 0, z: 0}
+  damping: 1
+  stopSimulation: 0
+  autodestruct: 1
+--- !u!15 &1638546652
+EllipsoidParticleEmitter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1638546648}
+  serializedVersion: 2
+  m_Enabled: 1
+  m_Emit: 1
+  minSize: 2
+  maxSize: 4
+  minEnergy: 13
+  maxEnergy: 18
+  minEmission: 35
+  maxEmission: 40
+  worldVelocity: {x: 0, y: 0, z: 0}
+  localVelocity: {x: 0, y: 1.20000005, z: 0}
+  rndVelocity: {x: .100000001, y: .5, z: .100000001}
+  emitterVelocityScale: .00999999978
+  tangentVelocity: {x: .100000001, y: 0, z: .100000001}
+  angularVelocity: 20
+  rndAngularVelocity: -10
+  rndRotation: 1
+  Simulate in Worldspace?: 1
+  m_OneShot: 1
+  m_Ellipsoid: {x: 1, y: 0, z: 1}
+  m_MinEmitterRange: 0
+--- !u!4 &1638546653
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1638546648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.239003867, y: -.300000012, z: 7.11425161}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1001 &1655352803
 Prefab:
   m_ObjectHideFlags: 0

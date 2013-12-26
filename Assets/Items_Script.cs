@@ -4,69 +4,58 @@ using System;
 
 public class Items_Script : MonoBehaviour
 {
-
-    Vector2 position;
     float size, margin;
-    int numbengala, reborns;
-    public Texture piccone, bengala, coin, blueligth, pinkligth, redligth, greenligth, ranbowligth, reborn, white;
+    public Texture blueligth, pinkligth, redligth, greenligth, ranbowligth, white;
     public GUISkin custom;
     int availableLights;
     bool draw;
     public AudioClip equipSound;
     public Texture back;
-
+    float elementSize, positionYButtons;
+    float UnTerzo;
     // Use this for initialization
     void Start()
     {
+        CameraScript.LoadData();
         size = Screen.width / 20;
         margin = Screen.width / 60;
-        numbengala = CameraScript.data.numBengala;
-        reborns = CameraScript.data.NumberReborn;
-        position = Vector2.zero;
+        UnTerzo = Screen.height / 3;
+        elementSize = UnTerzo;
+        positionYButtons = UnTerzo;
         availableLights = 0;
-        CameraScript.LoadData();
+        custom.label.fontSize = (int)(size);
+        custom.button.fontSize = (int)(size / 2);
+        custom.button.normal.textColor = Color.white;
+
+        //test
+        CameraScript.data.lightRed = CameraScript.data.lightBlue = CameraScript.data.lightGreen = CameraScript.data.lightPink = CameraScript.data.lightRainbow = true;
     }
 
-    void Update()
+    void OnGUI()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
             CameraScript.SaveData();
             Application.LoadLevel(0);
         }
-    }
-
-    void OnGUI()
-    {
-        GUI.skin = custom;
-        //Bengala e reborns
-        GUI.skin.label.fontSize = (int)(size * 0.8f);
-
-        GUI.DrawTexture(new Rect(size * 10, margin * 3, size * 1.5f, size * 1.5f), bengala, ScaleMode.ScaleToFit, false);
-        GUI.Label(new Rect(size * 11.5f + margin, margin * 3, size * 3, size * 1.5f), "x" + numbengala);
-
-        GUI.DrawTexture(new Rect(size * 14.5f, margin * 3, size * 1.5f, size * 1.5f), reborn, ScaleMode.ScaleToFit, false);
-        GUI.Label(new Rect(size * 16 + margin, margin * 3, size * 3, size * 1.5f), "x" + reborns);
-
-        //Items
-        GUI.skin.label.fontSize = (int)(size * 1.5f);
-        if (GUI.Button(new Rect(margin * 2, size, size * 1f, size * 1f), back))
+        
+        if (GUI.skin != custom)
+            GUI.skin = custom;
+        
+        if (GUI.Button(new Rect(margin, UnTerzo / 6 - size / 2, size, size), back))
         {
             CameraScript.SaveData();
             Application.LoadLevel(0);
         }
-        GUI.Label(new Rect(margin + size * 1.5f, margin, size * 5, size * 2 + margin), "Items");
-
+        Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent("Items"), custom.label);
+        GUI.Label(new Rect(margin + size * 1.5f, UnTerzo / 6 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Items");
         //LUCE EQUIPAGGIATA
-        GUI.skin.label.fontSize = (int)(size);
-        GUI.Label(new Rect(margin, size * 4, size * 10, size * 2 + margin), "Light equipped");
-        equippedLight();
+        //GUI.skin.label.fontSize = (int)(size);
+        //GUI.Label(new Rect(margin, size * 4, size * 10, size * 2 + margin), "Light equipped");
+        //equippedLight();
 
         //LUCI DISPONIBILI
-        //GUI.Label(new Rect(margin, size * 6 +  margin, size * 10, size * 2 + margin), "Lights available");
         availableLight();
-
-
     }
 
     private void equippedLight()
@@ -103,16 +92,14 @@ public class Items_Script : MonoBehaviour
         }
     }
 
+    
     private void availableLight()
     {
-        custom.button.fontSize = (int)(size / 2);
-        custom.button.normal.textColor = Color.white;
         availableLights = 0;
         if (CameraScript.data.helmet != Helmet.white)
         {
 
-            if ((GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10, size * 2, size * 2), "Equip"))
-                || GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2 * margin, size * 2, size * 2), white))
+            if (GUI.Button(new Rect(margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), white))
             {
                 CameraScript.data.helmet = Helmet.white;
                 audio.PlayOneShot(equipSound);
@@ -121,9 +108,7 @@ public class Items_Script : MonoBehaviour
         }
         if (CameraScript.data.lightRed && CameraScript.data.helmet != Helmet.red)
         {
-            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10, size * 2, size * 2), "Equip")
-                ||
-            GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2 * margin, size * 2, size * 2), redligth))
+            if (GUI.Button(new Rect(margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), redligth))
             {
                 CameraScript.data.helmet = Helmet.red;
                 audio.PlayOneShot(equipSound);
@@ -132,9 +117,7 @@ public class Items_Script : MonoBehaviour
         }
         if (CameraScript.data.lightBlue && CameraScript.data.helmet != Helmet.blue)
         {
-            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10, size * 2, size * 2), "Equip")
-                ||
-            GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2 * margin, size * 2, size * 2), blueligth))
+            if (GUI.Button(new Rect(margin + availableLights * (elementSize+ margin), positionYButtons, elementSize, elementSize), blueligth))
             {
                 CameraScript.data.helmet = Helmet.blue;
                 audio.PlayOneShot(equipSound);
@@ -143,9 +126,7 @@ public class Items_Script : MonoBehaviour
         }
         if (CameraScript.data.lightGreen && CameraScript.data.helmet != Helmet.green)
         {
-            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10, size * 2, size * 2), "Equip")
-                ||
-            GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2 * margin, size * 2, size * 2), greenligth))
+            if (GUI.Button(new Rect(margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), greenligth))
             {
                 CameraScript.data.helmet = Helmet.green;
                 audio.PlayOneShot(equipSound);
@@ -154,9 +135,7 @@ public class Items_Script : MonoBehaviour
         }
         if (CameraScript.data.lightPink && CameraScript.data.helmet != Helmet.pink)
         {
-            if (GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10, size * 2, size * 2), "Equip")
-                ||
-            GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2 * margin, size * 2, size * 2), pinkligth))
+            if (GUI.Button(new Rect(margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), pinkligth))
             {
                 CameraScript.data.helmet = Helmet.pink;
                 audio.PlayOneShot(equipSound);
@@ -165,8 +144,7 @@ public class Items_Script : MonoBehaviour
         }
         if (CameraScript.data.lightRainbow && CameraScript.data.helmet != Helmet.rainbow)
         {
-            if ((GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 10, size * 2, size * 2), "Equip")) ||
-            GUI.Button(new Rect(margin + availableLights * (size * 2 + margin), size * 9 - 2 * margin, size * 2, size * 2), ranbowligth))
+            if (GUI.Button(new Rect(margin + availableLights * (elementSize + margin), positionYButtons, elementSize, elementSize), ranbowligth))
             {
                 CameraScript.data.helmet = Helmet.rainbow;
                 audio.PlayOneShot(equipSound);
@@ -174,16 +152,12 @@ public class Items_Script : MonoBehaviour
             availableLights++;
         }
         if (availableLights == 0)
-        {
-            custom.button.fontSize = (int)(size);
-            custom.button.normal.textColor = Color.white;
+        {          
             if (GUI.Button(new Rect(margin, size * 6 - margin, size * 11, size * 2 + margin), "Buy a new helmet's light!"))
             {
                 CameraScript.SaveData();
                 Application.LoadLevel(2);
             }
         }
-        else
-            GUI.Label(new Rect(margin, size * 6 + margin, size * 10, size * 2 + margin), "Lights available");
     }
 }

@@ -16,11 +16,12 @@ public class buyItems_Script : MonoBehaviour
     public Texture back;
     float unmarginino, scrollparam;
     public Texture2D thumb;
-
+#if UNITY_ANDROID
     AndroidJavaClass unityPlayer;
     AndroidJavaObject activity;
+#endif
 
-    #if UNITY_IPHONE
+#if UNITY_IPHONE
     private void OnEnable()
     {
         OpenIABEventManager.billingSupportedEvent += billingSupportedEvent;
@@ -89,62 +90,53 @@ public class buyItems_Script : MonoBehaviour
     void Start()
     {
         #region Android inapp
-#if UNITY_ANDROID
-        //com.celialab.ManInTheCave.UnityPlayerNativeActivity
-        //jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
-        unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-        activity.Call("init");
-#endif
+        #if UNITY_ANDROID
+            //com.celialab.ManInTheCave.UnityPlayerNativeActivity
+            //jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
+            unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            activity.Call("init");
+        #endif
         #endregion
 
         #region iOS inapp
-#if UNITY_IPHONE
-            OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");   //scoprire cosa sono "some.ios.sku" forse mentre pubblichiamo lo scopriamo
+        #if UNITY_IPHONE
+            /*  OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");   //scoprire cosa sono "some.ios.sku" forse mentre pubblichiamo lo scopriamo
             OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
             OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
 
             OpenIAB.init(new Dictionary<string, string> {
             {OpenIAB_iOS.STORE, "public key"}
-            });
-#endif
+            });*/
+        #endif
         #endregion
 
         imbuying = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
-        if (Application.platform == RuntimePlatform.WP8Player)
-        {
-            span = new float[] {
-								0,
-								0,
-								size * 2 + margin ,
-								margin * 2 + size * 4,
-								margin * 3 + size * 6,
-								margin * 4 + size * 8
-						};
+        #if UNITY_WP8                
+            span = new float[] {0, 0, size * 2 + margin ,
+						              margin * 2 + size * 4,
+						              margin * 3 + size * 6,
+						              margin * 4 + size * 8};
             unmarginino = margin * 11;
-        }
-        else
-        {
-            span = new float[] {
-								0,
-								0,
-								size * 2 + 2 * margin ,
-								margin * 4 + size * 4,
-								margin * 6 + size * 6,
-								margin * 8 + size * 8
-						};
+        #else
+            span = new float[] {0, 0, size * 2 + 2 * margin ,
+								      margin * 4 + size * 4,
+								      margin * 6 + size * 6,
+								      margin * 8 + size * 8};
             unmarginino = margin * 12;
-        }
+        #endif
         scrollparam = (Screen.height * 2) / 768;
 
-#if UNITY_METRO
-        if (CameraScript.IsTouch)
-        {
-            imbuying = true;
-        }
-#endif
+        #if UNITY_METRO
+            if (CameraScript.IsTouch)
+            {
+                imbuying = true;
+            }
+        #endif
+
+            CameraScript.LoadData();
     }
 
     Vector2 position = Vector2.zero;
@@ -153,28 +145,34 @@ public class buyItems_Script : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
             Application.LoadLevel(0);
-        GUI.skin = custom;
+        if (GUI.skin != custom)
+            GUI.skin = custom;
+        float UnTerzo = Screen.height / 3;        
+        if (GUI.Button(new Rect(margin, UnTerzo / 6 - size / 2, size, size), back))
+            Application.LoadLevel(0);
+        custom.label.fontSize = (int)(size);
+        Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent("Powers"), custom.label);
+        GUI.Label(new Rect(margin + size * 1.5f, UnTerzo / 6 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Powers"); 
+        Rect label2Position = GUILayoutUtility.GetRect(new GUIContent("Powers"), custom.label);
+        GUI.Label(new Rect(margin *3 + size * 1.5f + labelPosition.width, UnTerzo / 6 - label2Position.height / 2, label2Position.width, label2Position.height), "Lights");
+
 #if UNITY_METRO
         custom.verticalScrollbarThumb.normal.background = thumb;
 #endif
         custom.label.normal.textColor = new Color(255, 255, 255);
         custom.label.fontSize = (int)(size * 1.5);
-        if (GUI.Button(new Rect(margin * 2, size, size * 1f, size * 1f), back))
-            Application.LoadLevel(0);
-        GUI.Label(new Rect(margin + size * 1.5f, margin, size * 10, size * 2 + margin), "Buy Items"); // titolo
+        
+        
         custom.label.fontSize = (int)(size * 0.5f);
-        //reborn e picconi
-        GUI.Label(new Rect(margin * 3, margin * 11, size * 6, size), "n Bengal: " + CameraScript.data.numBengala);
-        GUI.Label(new Rect(size * 5 + margin * 2, margin * 11, size * 6, size), "n Reborn: " + CameraScript.data.NumberReborn);
-        //coins
-        GUI.DrawTexture(new Rect(size * 10, margin * 2, size, size), coins);
+       
+        GUI.DrawTexture(new Rect(size * 10, margin , size, size), coins);
         custom.label.fontSize = (int)(size * 0.7);
-        GUI.Label(new Rect(size * 11 + margin, margin * 2, size * 2, size), "" + CameraScript.data.points);
+        GUI.Label(new Rect(size * 11 + margin, margin , size * 2, size), "" + CameraScript.data.points);
         custom.label.fontSize = (int)(size * 0.5f);
         //purchases
         custom.button.normal.textColor = new Color(205, 127, 50);
         custom.button.fontSize = (int)(size * 0.7f);
-        if (GUI.Button(new Rect(size * 13, margin * 2, size + 2 * margin, size), "+500"))
+        if (GUI.Button(new Rect(size * 13, margin , size + 2 * margin, size), "+500"))
         {
             if (plus500 != null)
                 plus500(this, new EventArgs());
@@ -188,7 +186,7 @@ public class buyItems_Script : MonoBehaviour
 
         custom.button.normal.textColor = new Color(192, 192, 192);
         custom.button.fontSize = (int)(size * 0.8f);
-        if (GUI.Button(new Rect(size * 15 - margin, margin * 2, size + margin * 4, size), "+1000"))
+        if (GUI.Button(new Rect(size * 15 - margin, margin, size + margin * 4, size), "+1000"))
         {
             if (plus1000 != null)
                 plus1000(this, new EventArgs());
@@ -201,7 +199,7 @@ public class buyItems_Script : MonoBehaviour
 
         custom.button.normal.textColor = new Color(246, 193, 0);
         custom.button.fontSize = (int)(size * 0.9f);
-        if (GUI.Button(new Rect(size * 17, margin * 1.8f, size + 5 * margin, size), "+5000"))
+        if (GUI.Button(new Rect(size * 17, margin , size + 5 * margin, size), "+5000"))
         {
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
@@ -311,7 +309,7 @@ public class buyItems_Script : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (CameraScript.IsTouch)
         {
             Touch touch = Input.touches[0];
             bool fInsideList = IsTouchInsideList(touch.position);

@@ -127,49 +127,53 @@ public class Record
 public class CameraScript : MonoBehaviour
 {
 #region variabili
-    #region private
-    float nexshot;
-    float smoothTime;    
-    Vector2 velocity = new Vector2(); 
+    #region private  
     //menu
     float height;
     float margin, margin2;
     bool rebornUsed, playgameover = true;
     #endregion
     #region pubbliche
-    public GUISkin custom;
+    /*CLASSE SALVATAGGIO*/
+        public static Data data;
+    /*CLASSE SALVATAGGIO*/
+        public GUISkin custom;
         public Transform playerPG;
         public Transform _20bis;
         public AudioClip rockSound, gameoverSound;
         public AudioClip background;
         public float Volume;
-        public Texture coin, pause, quit;
-        public bool isDebuging = true;
-        /*CLASSE SALVATAGGIO*/
-        public static Data data; /*CLASSE SALVATAGGIO*/
+        
         public static float PlayTime;
         public static float TempoRecord = 0;
         public static bool replay;
+        //Gui Pause e result
         public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, homeButton, playAgainButton, likebtn;
-        public Texture Title, facebook, twitter, review, celialab;
-        public Texture useReborn, OKbutton, CancelButton;
+        //Gui Play
+        public Texture coin, pause;
+        public Texture Tondo_Texture, quad_Texture; 
+        public Material TondoMaterial;
+        public Texture useReborn_Texture, OKbutton_Texture, CancelButton_Texture;
+        public Texture Vignette_Texture;
+
         public static GameObject bengalaButton, movementButton, jumpButton;
         public static bool replayGame;
-        public static event EventHandler saveEvent, loadEvent, shareEvent;
-        public static event EventHandler GOReviews;
-        public Texture Vignette;
+       
     #endregion
 #endregion
 
 
-    #if UNITY_METRO
+#if UNITY_METRO 
         private Boolean VisualizeButtonsOnW8=false;
 		public Texture Istruction;
         float instrTime;
         bool showInstru;
         public static bool IsTouch = false;
-    #endif
-
+#endif
+#if UNITY_METRO || UNITY_WP8
+        public static event EventHandler saveEvent, loadEvent, shareEvent;
+        public static event EventHandler GOReviews;
+#endif
 #region Save and Load
         public static void SaveData()
         {
@@ -220,8 +224,7 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         //carica i salvataggi
-        LoadData();
-        //data = new Data();
+        LoadData();        
         #region test Records
         //data = new Data();
         //data.Records[0] = new Rect(8,9,34,3432);
@@ -237,44 +240,38 @@ public class CameraScript : MonoBehaviour
         jumpButton = GameObject.Find("RightTouchPad");
 
         rebornUsed = false;
-        nexshot = 0.0f;
-        smoothTime = 0.3f;
         Volume = 0.2f;
         PlayTime = 0;
-        //if (Application.platform == RuntimePlatform.WP8Player)
-        //    visualizePause = false;
-
         height = Screen.width / 20;
         margin = Screen.width / 60;
         margin2 = 0;// Screen.width / 70;
-        print("touch: " + Input.touchCount);
-        #if UNITY_METRO
+    #if UNITY_METRO
         if (IsTouch)
-            {
-                VisualizeButtonsOnW8 = true;
-                //visualizza immmagine istruzioni
-            }
-            instrTime = CameraScript.PlayTime + 6;
-            showInstru = true;
-            if (PlayerPrefs.GetInt("instru") == 10)
-            {
-                showInstru = false;
-            }
-#endif
+        {
+            VisualizeButtonsOnW8 = true;
+            //visualizza immmagine istruzioni
+        }
+        instrTime = CameraScript.PlayTime + 6;
+        showInstru = true;
+        if (PlayerPrefs.GetInt("instru") == 10)
+        {
+            showInstru = false;
+        }
+    #endif
         PlayScript.State = PlayScript.PlayState.play;
     }
 
-    // Update is called once per frame    
+   
     void Update()
     {
-        #if UNITY_METRO
+    #if UNITY_METRO
         if (PlayTime > instrTime)
         {
             showInstru = false;
             PlayerPrefs.SetInt("instru", 10);
             PlayerPrefs.Save();
         }
-        #endif
+    #endif
         if (Input.GetKey(KeyCode.Escape))
         {
             if (PlayScript.State == PlayScript.PlayState.play)
@@ -287,7 +284,7 @@ public class CameraScript : MonoBehaviour
             PlayScript.State = PlayScript.PlayState.play;
             replayGame = false;
         }
-        PlayTime += Time.deltaTime;
+        
         if (!audio.isPlaying)
         {
             audio.clip = background;
@@ -317,25 +314,22 @@ public class CameraScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(2.9f,
                 Mathf.Tan(-((2 * playerPG.position.x) / (5 * Mathf.Sqrt(2500 - playerPGxPOW)))) * 180 / Mathf.PI,
                 0);
-            nexshot = Time.time + 0.01f;
         }
+        PlayTime += Time.deltaTime;
     }
     public static void ManageButton(bool visibility)
     {
-        bengalaButton.guiTexture.active = visibility;
-        movementButton.guiTexture.active = visibility;
-        jumpButton.guiTexture.active = visibility;
+        bengalaButton.SetActive(visibility);
+        movementButton.SetActive(visibility);
+        jumpButton.SetActive(visibility);
     }
 
 #region OnGUI
     void OnGUI()
     {
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Vignette);
-        GUI.skin = custom;
-        if (isDebuging)
-            if (GUI.Button(new Rect(Screen.width / 2 - height / 2, 0, height, height), quit))
-                Application.Quit();
-
+        if(GUI.skin!=custom)
+            GUI.skin = custom;
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Vignette_Texture);
         if (PlayScript.State == PlayScript.PlayState.play)
         {
         #if UNITY_METRO
@@ -388,8 +382,8 @@ public class CameraScript : MonoBehaviour
         if (vis == null)
         {
             //vis = false;
-            GUI.DrawTexture(new Rect(height * 2 - 6 * margin, height * 2, height * 20, height * 5), useReborn, ScaleMode.ScaleToFit, true);
-            if (GUI.Button(new Rect(height * 5 + margin * 5, height * 8, height * 3, height * 3), OKbutton))
+            GUI.DrawTexture(new Rect(height * 2 - 6 * margin, height * 2, height * 20, height * 5), useReborn_Texture, ScaleMode.ScaleToFit, true);
+            if (GUI.Button(new Rect(height * 5 + margin * 5, height * 8, height * 3, height * 3), OKbutton_Texture))
             {
 
                 data.NumberReborn--;
@@ -407,7 +401,7 @@ public class CameraScript : MonoBehaviour
                 GameManager_script.PGdead = false;
                 replayGame = true;
             }
-            if (GUI.Button(new Rect(height * 9 + margin * 5, height * 8, height * 3, height * 3), CancelButton))
+            if (GUI.Button(new Rect(height * 9 + margin * 5, height * 8, height * 3, height * 3), CancelButton_Texture))
             {
                 vis = false;
                 rebornUsed = true;
@@ -477,123 +471,27 @@ public class CameraScript : MonoBehaviour
         {
             data.Records[i]= t[i];
             i++;
-        }
-        //for (int i = 0; i < data.Records.Length; i++)
-        //{
-        //    if (rec.x > data.Records[i].x)
-        //    {
-        //        scambiaDa(i, rec);
-        //        return;
-        //    }
-        //}
+        }        
     }
-
-    private void scambiaDa(int i, Rect rec)
-    {
-        Rect temp = data.Records[i];
-        data.Records[i] = rec;
-        for (int j = i + 1; j < data.Records.Length; j++)
-        {
-            Rect temp1 = data.Records[j];
-            data.Records[j] = temp;
-            temp = temp1;
-        }
-    }
-    #region EX MENU
-    // PlayButton, ScoreButton, ItemsButton, BuyItemsButton;
-    //void drawMenu()
-    //{
-    //    float piccoliBottoniSize =Screen.width/4.6f - margin2;
-    //    float titleHeight=((Screen.width/2)*305)/1094;
-    //    float playSize=Screen.width/8;
-    //    float BuyHeight= (((piccoliBottoniSize*2)*160)/740);
-    //    float SocialSize=Screen.width/13;
-    //        GUI.DrawTexture(new Rect ((Screen.width/2)-Screen.width/4, 0, Screen.width/2, titleHeight), 
-    //                                                    Title, ScaleMode.ScaleToFit, true);	
-    //        if (GUI.Button(new Rect((Screen.width/2)-playSize/2, titleHeight+margin*2, playSize, playSize) ,PlayButton)) 
-    //        {
-    //            PlayScript.State = PlayScript.PlayState.play; 
-    //        }
-
-    //            float piccoliBottoniHight= (((piccoliBottoniSize)*169)/400);
-    //            if (GUI.Button( new Rect((Screen.width-((piccoliBottoniSize*2)+margin2))/2,
-    //                                    titleHeight + playSize + margin*2,
-    //                                    piccoliBottoniSize,piccoliBottoniHight), ScoreButton))
-    //            {
-    //                Application.LoadLevel(4);
-    //            }
-    //            if (GUI.Button( new Rect(((Screen.width-((piccoliBottoniSize*2)+margin2))/2) +(piccoliBottoniSize),
-    //                                        (margin2*3)+ titleHeight + playSize+ margin*2,
-    //                                        piccoliBottoniSize ,piccoliBottoniHight), ItemsButton))
-    //            {
-    //                Application.LoadLevel(3);//vai nella pagina Items
-    //            }			
-
-
-    //        if (GUI.Button( new Rect((Screen.width/2)-((piccoliBottoniSize*2)/2),
-    //                            (margin2*4)+ titleHeight+ playSize+ piccoliBottoniHight+margin*2,
-    //                                piccoliBottoniSize*2,BuyHeight), BuyItemsButton))
-    //        {
-    //            Application.LoadLevel(2);//vai nella pagina BuyItems
-    //        }
-
-    //    if (GUI.Button(new Rect(Screen.width-SocialSize, Screen.height-SocialSize*3, SocialSize, SocialSize) ,facebook)) 
-    //        {
-    //                Application.OpenURL("https://www.facebook.com/Celialab");//vai su facebook
-    //        }
-    //    if (GUI.Button(new Rect(Screen.width-SocialSize, Screen.height-SocialSize*2, SocialSize, SocialSize) ,twitter)) 
-    //        {
-    //                Application.OpenURL("https://twitter.com/celialabGames");//vai su twitter
-    //        }
-    //    if (GUI.Button(new Rect(Screen.width-SocialSize, Screen.height-SocialSize, SocialSize, SocialSize) ,review)) 
-    //        {
-    //        if(Application.platform == RuntimePlatform.Android)
-    //                Application.OpenURL("");//vai su review
-    //        else if (Application.platform == RuntimePlatform.IPhonePlayer)
-    //            Application.OpenURL("");//vai su review
-    //        else if(Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.WindowsPlayer)
-    //            if(GOReviews!=null)
-    //                GOReviews(this, new EventArgs());
-
-    //        }
-
-    //    var celialabHeight=((Screen.width/5)*59)/200;
-    //    if(GUI.Button(new Rect(margin,Screen.height-(celialabHeight+margin), Screen.width/5,celialabHeight), celialab))
-    //    {
-    //        Application.OpenURL("http://celialab.com/");
-    //    }
-    //    if(Input.GetKey(KeyCode.Escape))
-    //        Application.Quit();
-    //}
-    #endregion
 
     void drawPlay()
     {
-        // Visualizza punti. Lo script si adatta atutte le risoluzioni
-        GUI.DrawTexture(new Rect(margin, margin, height, height), coin, ScaleMode.ScaleToFit, true);
-        GUI.skin.label.fontSize = (int)height;
-        GUI.Label(new Rect(height + (margin * 2), margin / 8f, 600f, 300f),
-            "" + PlayScript.gamePoints);
-
-        // se non si gioca su android o wp allora visualizza pausa		
-        if (GUI.Button(new Rect(Screen.width - (margin + height), margin, height, height), pause))
+        var height2 = Screen.width / 10;
+       // GUI.DrawTexture(new Rect(margin, margin, height2, height2), Tondo, ScaleMode.ScaleToFit, true);
+        GUI.DrawTexture(new Rect(margin + height2 / 2, margin + height2 / 2, height2, height2 / 4), quad_Texture, ScaleMode.StretchToFill, false);
+        GUI.DrawTexture(new Rect(margin + height2 / 2, margin + height2 / 2 + height2 / 4, height2 * 1.5f, height2 / 4), quad_Texture, ScaleMode.StretchToFill, false);
+        Graphics.DrawTexture(new Rect(margin, margin, height2, height2), Tondo_Texture, TondoMaterial);
+        TimeSpan t = (TimeSpan.FromSeconds(PlayTime));
+        string TimeText=string.Format("{0}:{1:00}", t.Minutes, t.Seconds);
+        Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent(TimeText), custom.label);
+        GUI.Label(new Rect(margin + ((height2 - labelPosition.width) / 2), margin + ((height2 - labelPosition.height) / 2),
+            labelPosition.width, labelPosition.height), TimeText);       
+        GUI.DrawTexture(new Rect(margin + height2 / 2 + (height2 - (height2 / 4)), margin + height2 / 2, height2 / 4, height2 / 4), coin, ScaleMode.ScaleToFit, true);  
+        GUI.skin.label.fontSize = (int)(height*0.9);  
+        	
+        if (GUI.Button(new Rect(Screen.width - (margin + height2), margin, height2, height2), pause))
         {
             PlayScript.State = PlayScript.PlayState.pause;
-        }
-
-        //Visualizza il tempo
-        //GUI.DrawTexture(new Rect (margin,margin,height,height), clock, ScaleMode.ScaleToFit, true);	
-        TimeSpan t = (TimeSpan.FromSeconds(PlayTime));
-        GUI.Label(new Rect((float)Screen.width - (height * 3.0f + 2f * margin),
-                            margin / 8f,
-                            height * 3.0f, /*moltiplicare la metà delle cifre tempo per height*/
-
-                            300.0f), string.Format("{0}:{1:00}", t.Minutes, t.Seconds));
-
-        if (isDebuging)
-        {
-            if (GUI.Button(new Rect(Screen.width / 2 - height / 2, 0, height, height), quit))
-                Application.Quit();
         }
     }
 #endregion
@@ -631,9 +529,6 @@ public class CameraScript : MonoBehaviour
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
-
-
 public class JSON
 {
 
