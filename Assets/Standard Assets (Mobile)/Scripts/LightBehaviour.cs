@@ -50,41 +50,41 @@ public class LightBehaviour : MonoBehaviour
     void Update()
     {    
 		if(rainbow)
-		{            
-			switch (colorAction) 
-			{
-			case Action.saleBlue:
-				this.light.color = new Color(255f,0f, this.light.color.b+(speed*Time.deltaTime));
-				if(this.light.color.b>=320)
-					colorAction= Action.scendeRosso;
-				break;
-			case Action.scendeRosso:
-				this.light.color = new Color(this.light.color.r-(speed*Time.deltaTime), 0f, 255f);
-				if(this.light.color.r<=-80f)
-					colorAction= Action.salegreen;
-				break;
-			case Action.salegreen:
-				this.light.color = new Color(0f,this.light.color.g+(speed*Time.deltaTime), 255f);
-				if(this.light.color.g>=320f)
-					colorAction= Action.scendiBlue;
-				break;
-			case Action.scendiBlue: 
-				this.light.color = new Color(0f,255f, this.light.color.b-(speed*Time.deltaTime));
-				if(this.light.color.b<=-80f)
-					colorAction= Action.saliRosso;
-				break;
-			case Action.saliRosso:
-				this.light.color = new Color(this.light.color.r+(speed*Time.deltaTime),255,	0);
-				if(this.light.color.r>=320)
-					colorAction= Action.scendiGreen;
-				break;
-			case Action.scendiGreen :
-				this.light.color = new Color(255,this.light.color.g-(speed*Time.deltaTime), 0);
-				if(this.light.color.g<=-80)
-					colorAction = Action.saleBlue;	
-				break;
-				
-			}
+		{
+            switch (colorAction)
+            {
+                case Action.saleBlue:
+                    this.light.color = new Color(255f, 0f, this.light.color.b + (speed * Time.deltaTime));
+                    if (this.light.color.b >= 320)
+                        colorAction = Action.scendeRosso;
+                    break;
+                case Action.scendeRosso:
+                    this.light.color = new Color(this.light.color.r - (speed * Time.deltaTime), 0f, 255f);
+                    if (this.light.color.r <= -80f)
+                        colorAction = Action.salegreen;
+                    break;
+                case Action.salegreen:
+                    this.light.color = new Color(0f, this.light.color.g + (speed * Time.deltaTime), 255f);
+                    if (this.light.color.g >= 320f)
+                        colorAction = Action.scendiBlue;
+                    break;
+                case Action.scendiBlue:
+                    this.light.color = new Color(0f, 255f, this.light.color.b - (speed * Time.deltaTime));
+                    if (this.light.color.b <= -80f)
+                        colorAction = Action.saliRosso;
+                    break;
+                case Action.saliRosso:
+                    this.light.color = new Color(this.light.color.r + (speed * Time.deltaTime), 255, 0);
+                    if (this.light.color.r >= 320)
+                        colorAction = Action.scendiGreen;
+                    break;
+                case Action.scendiGreen:
+                    this.light.color = new Color(255, this.light.color.g - (speed * Time.deltaTime), 0);
+                    if (this.light.color.g <= -80)
+                        colorAction = Action.saleBlue;
+                    break;
+
+            }
 		}
 	}
 }

@@ -177,47 +177,43 @@ public class CameraScript : MonoBehaviour
 #region Save and Load
         public static void SaveData()
         {
-            if (Application.platform == RuntimePlatform.WP8Player)
-            {
-                if (saveEvent != null)
-                    saveEvent(saveEvent, new EventArgs());
-            }
-            else
-            {
-			    foreach(var item in data.Records)
-			    {
-				    print("day rec: "+item.y);
-			    }
-                JSON js = new JSON();
-			    print (((JSON)data).serialized);
-			    js["salvataggio"] = ((JSON)data);
-                PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
-                PlayerPrefs.Save();
-            }
+#if UNITY_WP8
+            if (saveEvent != null)
+                saveEvent(saveEvent, new EventArgs());
+            
+#else
+            
+			foreach(var item in data.Records)
+			{
+				print("day rec: "+item.y);
+			}
+            JSON js = new JSON();
+			print (((JSON)data).serialized);
+			js["salvataggio"] = ((JSON)data);
+            PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
+            PlayerPrefs.Save();
+#endif
         }
     public static void LoadData()
     {
-        if (Application.platform == RuntimePlatform.WP8Player)
-        {
+        #if UNITY_WP8
             if (loadEvent != null)
                 loadEvent(loadEvent, new EventArgs());
+#else
+        if (PlayerPrefs.GetString("salvataggio") != "")
+        {
+            JSON js = new JSON();
+            js.serialized = PlayerPrefs.GetString("salvataggio"); //devo prendere quella dei settings 
+            data = (Data)js.ToJSON("salvataggio");
         }
         else
         {
-            if (PlayerPrefs.GetString("salvataggio") != "")
-            {
-                JSON js = new JSON();
-                js.serialized = PlayerPrefs.GetString("salvataggio"); //devo prendere quella dei settings 
-                data = (Data)js.ToJSON("salvataggio");
-            }
-            else
-            {
-                data = new Data();
-				for (int i =0; i<20; i++)
-					data.Records[i]= new Rect(0,0,0,0);
-                SaveData();
-            }
+            data = new Data();
+			for (int i =0; i<20; i++)
+				data.Records[i]= new Rect(0,0,0,0);
+            SaveData();
         }
+#endif
     }
 #endregion
 
