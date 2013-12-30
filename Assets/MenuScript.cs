@@ -28,7 +28,10 @@ public class MenuScript : MonoBehaviour
         PlayScript.State = PlayScript.PlayState.menu;
         height = Screen.width / 20;
         margin = Screen.width / 60;
-        CameraScript.LoadData();
+        Data.LoadFromText();
+
+        Debug.Log(PlayerPrefs.GetString("data"));
+        //CameraScript.LoadData();
 
         if (PlayerPrefs.GetString("gift1") == "")
         {

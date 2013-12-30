@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using System.Text;
+using System.Xml.Serialization;
+using System.Xml;
 
 
 public class Data
@@ -107,6 +109,47 @@ public class Data
     }
     #endregion
 
+    public static void Save()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "data.xml");
+        var serializer = new XmlSerializer(typeof(Data));
+        using (var stream = new FileStream(path, FileMode.Create))
+        {
+            serializer.Serialize(stream, CameraScript.data);
+        }
+        PlayerPrefs.SetString("data", serializer.ToString());
+    }
+
+    public static void Load()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "data.xml");
+        var serializer = new XmlSerializer(typeof(Data));
+        using (var stream = new FileStream(path, FileMode.Open))
+        {
+            if (CameraScript.data != null)
+                CameraScript.data = serializer.Deserialize(stream) as Data;
+            else
+            {
+                CameraScript.data = new Data();
+                Data.Save();
+            }
+        }
+    }
+
+    public static void LoadFromText()
+    {
+        if (CameraScript.data != null)
+        {
+            string text = PlayerPrefs.GetString("data");
+            var serializer = new XmlSerializer(typeof(Data));
+            CameraScript.data = serializer.Deserialize(new StringReader(text)) as Data;
+        }
+        else 
+            {
+                CameraScript.data = new Data();
+                Data.Save();
+            }
+    }
 
 }
 public enum Helmet
@@ -219,8 +262,9 @@ public class CameraScript : MonoBehaviour
 
     void Start()
     {
-        //carica i salvataggi
-        LoadData();        
+        ////carica i salvataggi
+        //LoadData();
+        Data.Load();
         #region test Records
         //data = new Data();
         //data.Records[0] = new Rect(8,9,34,3432);
@@ -422,7 +466,8 @@ public class CameraScript : MonoBehaviour
                 CameraScript.data.points += PlayScript.gamePoints;
 				Rect record = new Rect(PlayTime, (float)DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
                 salvaRecord(record);
-                SaveData();
+                Data.Save();
+                //SaveData();
                 Application.LoadLevel(1);
             }
             if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3 + margin), homeButton))
@@ -431,7 +476,8 @@ public class CameraScript : MonoBehaviour
 				Rect record = new Rect(PlayTime, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
 				print("day: "+DateTime.Now.Day+ " || rec: "+record.y);
                 salvaRecord(record);
-                SaveData();
+                Data.Save();
+                //SaveData();
                 Application.LoadLevel(0);
             }
             #if (UNITY_WP8 || UNITY_METRO)           

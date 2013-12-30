@@ -83,7 +83,6 @@ public class LightBehaviour : MonoBehaviour
                     if (this.light.color.g <= -80)
                         colorAction = Action.saleBlue;
                     break;
-
             }
 		}
 	}
