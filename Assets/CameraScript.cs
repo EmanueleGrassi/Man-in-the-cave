@@ -263,8 +263,8 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         ////carica i salvataggi
-        //LoadData();
-        Data.Load();
+        LoadData();
+        //Data.Load();
         #region test Records
         //data = new Data();
         //data.Records[0] = new Rect(8,9,34,3432);
@@ -466,8 +466,8 @@ public class CameraScript : MonoBehaviour
                 CameraScript.data.points += PlayScript.gamePoints;
 				Rect record = new Rect(PlayTime, (float)DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
                 salvaRecord(record);
-                Data.Save();
-                //SaveData();
+                //Data.Save();
+                SaveData();
                 Application.LoadLevel(1);
             }
             if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3 + margin), homeButton))
@@ -476,8 +476,8 @@ public class CameraScript : MonoBehaviour
 				Rect record = new Rect(PlayTime, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
 				print("day: "+DateTime.Now.Day+ " || rec: "+record.y);
                 salvaRecord(record);
-                Data.Save();
-                //SaveData();
+                //Data.Save();
+                SaveData();
                 Application.LoadLevel(0);
             }
             #if (UNITY_WP8 || UNITY_METRO)           
