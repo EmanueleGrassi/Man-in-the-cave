@@ -13,7 +13,6 @@ public class MenuScript : MonoBehaviour
     float height;
     float margin;
     static bool play = true;
-    public Transform PG;
     public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, SettingsButton;
     public Texture Title, facebook, twitter, review, celialab;
     public Texture myAppFreeBanner, normalBanner;
@@ -21,6 +20,15 @@ public class MenuScript : MonoBehaviour
     public AudioClip promotionSound;
 
 
+    private Quaternion cameraBase = Quaternion.identity;
+    private Quaternion calibration = Quaternion.identity;
+    private Quaternion baseOrientation = Quaternion.Euler(90, 0, 0);
+    private Quaternion baseOrientationRotationFix = Quaternion.identity;
+    private Quaternion referanceRotation = Quaternion.identity;
+    private readonly Quaternion baseIdentity = Quaternion.Euler(90, 0, 0);
+    private readonly Quaternion landscapeRight = Quaternion.Euler(0, 0, 90);
+    private readonly Quaternion landscapeLeft = Quaternion.Euler(0, 0, -90);
+    private readonly Quaternion upsideDown = Quaternion.Euler(0, 0, 180);
     Vector3 accel;
     float filter = 5.0f;
     void Start()
@@ -36,11 +44,10 @@ public class MenuScript : MonoBehaviour
         if (PlayerPrefs.GetString("gift1") == "")
         {
             if (Application.platform == RuntimePlatform.WP8Player)
-                StartWebRequest("http://celialab.com/Promotion.txt");
+              ;//  StartWebRequest("http://celialab.com/Promotion.txt");
             else
                 addPoints(1000);
         }
-        PG.position = new Vector3(((Screen.width / Screen.height) * (-3.3f)) / (800f / 480f), -0.009f, 8f);
         accel = Input.acceleration;
     }
     float StartPromotionSound;
@@ -60,12 +67,19 @@ public class MenuScript : MonoBehaviour
             StartPromotion = false;
         }
 
-        if (Input.isGyroAvailable)
+        if (SystemInfo.supportsGyroscope)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, 
-(ConvertRotation(Input.gyro.attitude) * GetRotFix()), 5);
+            if (start)
+            {
+                Input.gyro.enabled = true;
+                AttachGyro();
+                start = false;
+            }
+
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+            cameraBase * (ConvertRotation(referanceRotation * Input.gyro.attitude) * GetRotFix()), 0.2f);
         }
-        else if (Input.acceleration!=Vector3.zero)
+        else if (SystemInfo.supportsAccelerometer)
         {
             // filter the jerky acceleration in the variable accel:
             accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
@@ -88,23 +102,89 @@ public class MenuScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(Altobasso, DestraSinistra, 0f);
         }
     }
-    
+    bool start = true;
+    private void AttachGyro()
+    {
+        ResetBaseOrientation();
+        UpdateCalibration(true);
+        UpdateCameraBaseRotation(true);
+        RecalculateReferenceRotation();
+    }
+    private void UpdateCameraBaseRotation(bool onlyHorizontal)
+    {
+        if (onlyHorizontal)
+        {
+            var fw = transform.forward;
+            fw.y = 0;
+            if (fw == Vector3.zero)
+            {
+                cameraBase = Quaternion.identity;
+            }
+            else
+            {
+                cameraBase = Quaternion.FromToRotation(Vector3.forward, fw);
+            }
+        }
+        else
+        {
+            cameraBase = transform.rotation;
+        }
+    }
+    private void UpdateCalibration(bool onlyHorizontal)
+    {
+        if (onlyHorizontal)
+        {
+            var fw = (Input.gyro.attitude) * (-Vector3.forward);
+            fw.z = 0;
+            if (fw == Vector3.zero)
+            {
+                calibration = Quaternion.identity;
+            }
+            else
+            {
+                calibration = (Quaternion.FromToRotation(baseOrientationRotationFix * Vector3.up, fw));
+            }
+        }
+        else
+        {
+            calibration = Input.gyro.attitude;
+        }
+    }
     private static Quaternion ConvertRotation(Quaternion q)
     {
         return new Quaternion(q.x, q.y, -q.z, -q.w);
     }
     private Quaternion GetRotFix()
     {
-        if (Screen.orientation == ScreenOrientation.Portrait)
-            return Quaternion.identity;
-        if (Screen.orientation == ScreenOrientation.LandscapeLeft
-        || Screen.orientation == ScreenOrientation.Landscape)
-            return Quaternion.Euler(0, 0, -90);
-        if (Screen.orientation == ScreenOrientation.LandscapeRight)
-            return Quaternion.Euler(0, 0, 90);
-        if (Screen.orientation == ScreenOrientation.PortraitUpsideDown)
-            return Quaternion.Euler(0, 0, 180);
+#if UNITY_3_5
+		if (Screen.orientation == ScreenOrientation.Portrait)
+			return Quaternion.identity;
+		
+		if (Screen.orientation == ScreenOrientation.LandscapeLeft || Screen.orientation == ScreenOrientation.Landscape)
+			return landscapeLeft;
+				
+		if (Screen.orientation == ScreenOrientation.LandscapeRight)
+			return landscapeRight;
+				
+		if (Screen.orientation == ScreenOrientation.PortraitUpsideDown)
+			return upsideDown;
+		return Quaternion.identity;
+#else
         return Quaternion.identity;
+#endif
+    }
+    private void ResetBaseOrientation()
+    {
+        baseOrientationRotationFix = GetRotFix();
+        baseOrientation = baseOrientationRotationFix * baseIdentity;
+    }
+
+    /// <summary>
+    /// Recalculates reference rotation.
+    /// </summary>
+    private void RecalculateReferenceRotation()
+    {
+        referanceRotation = Quaternion.Inverse(baseOrientation) * Quaternion.Inverse(calibration);
     }
     private void addPoints(int p)
     {
@@ -126,8 +206,13 @@ public class MenuScript : MonoBehaviour
         float playSize = UnTerzo - margin;
         float BottoniHeight = UnTerzo * 0.7f - margin;
         float SocialSize = UnTerzo * 0.5f - margin;
-        GUI.DrawTexture(new Rect((Screen.width / 2) - (((BottoniHeight * 4 + margin * 3)) / 2), 0, ((BottoniHeight * 4 + margin * 3)),
-                                            ((BottoniHeight * 4 + margin * 3)) * 285 / 1024), Title, ScaleMode.ScaleToFit, true);
+        print("width: "+((BottoniHeight * 4 + margin * 3)));
+        print("h : " + BottoniHeight);
+        GUI.DrawTexture(new Rect((Screen.width / 2) - (((BottoniHeight * 4 + margin * 3)) / 2),
+                                UnTerzo / 2 - (BottoniHeight/2), 
+                                ((BottoniHeight * 4 + margin * 3)),
+                                BottoniHeight),
+                                Title, ScaleMode.ScaleToFit, true);
         if (GUI.Button(new Rect((Screen.width / 2) - playSize / 2, UnTerzo + ((UnTerzo / 2) - playSize / 2), playSize, playSize), PlayButton))
         {
             Application.LoadLevel("main");
@@ -135,7 +220,7 @@ public class MenuScript : MonoBehaviour
 
         float posizioneButton;
         int numBottone = 0;
-        if (CameraScript.data.Records[0].x != 0)
+        if (true/*CameraScript.data.Records[0].x != 0*/)
         {
             posizioneButton = Screen.width / 2 - ((BottoniHeight * 4 + margin * 3)) / 2;
             if (GUI.Button(new Rect(posizioneButton,
