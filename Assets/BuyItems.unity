@@ -167,10 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87cadd71b4527a84f9424fb4760ce54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powers: {fileID: 0}
-  powersP: {fileID: 0}
-  lights: {fileID: 0}
-  lightsP: {fileID: 0}
+  powers: {fileID: 2800000, guid: 5293eaa6477654f4e9a1a654ca3a2c6b, type: 3}
+  powersP: {fileID: 2800000, guid: e40983b1e89469e47aeacf2ef8cb281a, type: 3}
+  lights: {fileID: 2800000, guid: 3c3ea018b120aff4b9ea7945b1e86deb, type: 3}
+  lightsP: {fileID: 2800000, guid: c9daae112605f6948bd70268f94bee89, type: 3}
   money: {fileID: 0}
   moneyP: {fileID: 0}
   arcoLight: {fileID: 2800000, guid: 687002cf2febd504d866a801d4960c29, type: 3}

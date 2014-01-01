@@ -232,6 +232,10 @@ MonoBehaviour:
   scoresPressed: {fileID: 2800000, guid: d006c56cfaf4a1f49b820d8cb126f44b, type: 3}
   achivements: {fileID: 2800000, guid: 2494dc843f04d6c47afb90156df4a560, type: 3}
   achivementsPressed: {fileID: 2800000, guid: 364ce34d4cd378547bbae8d9936d8173, type: 3}
+  jumpAchiv: {fileID: 2800000, guid: 4f418b0f0396f6c4ab449f639956c0e0, type: 3}
+  bengalAchiv: {fileID: 2800000, guid: 90a4b880cd3a46745975f0ddfb8d4ee4, type: 3}
+  moneyAchiv: {fileID: 2800000, guid: cbdcfc3e1603b814bb7233dde4a25c66, type: 3}
+  timeAchiv: {fileID: 2800000, guid: ce94cbc74032b5c47b42be94244cc7e6, type: 3}
   thumb: {fileID: 2800000, guid: e0b02e18ed674574b8d03f8d7f8bfecb, type: 3}
 --- !u!1001 &1884110292
 Prefab:
