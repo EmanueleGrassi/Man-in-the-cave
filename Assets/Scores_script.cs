@@ -8,11 +8,11 @@ public class Scores_script : MonoBehaviour
     float margin, size;
     public GUISkin custom;
     Vector2 pos;
-    public Texture back;
+    public Texture back, scores, scoresPressed, achivements, achivementsPressed;
     float scrollparam;
     public Texture2D thumb;
     float UnTerzo;
-
+    bool IsScore = true; //fae false visualizza achivements
     // Use this for initialization
     void Start()
     {
@@ -31,55 +31,69 @@ public class Scores_script : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
             Application.LoadLevel(0);
-        GUI.skin = custom;             
-        if (GUI.Button(new Rect(margin, UnTerzo / 6 - size / 2, size, size), back))
+        GUI.skin = custom;
+        if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
         {
             CameraScript.SaveData();
             Application.LoadLevel(0);
         }
-        GUI.skin.label.fontSize = (int)(size);
-        Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent("Highscores"), custom.label);
-        GUI.Label(new Rect(margin + size * 1.5f, UnTerzo / 6 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Highscores");
-        
-        GUI.skin.label.fontSize = (int)(size * 0.7f);
-        if (CameraScript.data.Records[0].x != 0)
+        if (GUI.Button(new Rect(margin * 2 + ((UnTerzo / 3) * 168) / 141, margin / 3, ((UnTerzo / 3) * 500) / 141, UnTerzo / 3), IsScore?scoresPressed:scores))
         {
-            int i = 0;
-            pos = GUI.BeginScrollView(new Rect(margin * 3 + size, size * 3, Screen.width - (margin * 3 + size), size * 12), pos, new Rect(0, 0, Screen.width, size * 30));
-            for (i = 0; i < 20; i++)
-            {
-                if (CameraScript.data.Records[i].x == 0)
-                {
-                    break;
-                }
-                if (i == 0)
-                {
-                    GUI.skin.label.normal.textColor = new Color(246, 193, 0);
-                    GUI.skin.label.fontSize = (int)(size * 1f);
-                }
-                else if (i == 1)
-                {
-                    GUI.skin.label.normal.textColor = new Color(192, 192, 192);
-                    GUI.skin.label.fontSize = (int)(size * 1f);
-                }
-                else if (i == 2)
-                {
-                    GUI.skin.label.normal.textColor = new Color(205, 127, 50);
-                    GUI.skin.label.fontSize = (int)(size * 1f);
-                }
-                else
-                {
-                    GUI.skin.label.fontSize = (int)(size * 0.6);
-                    GUI.skin.label.normal.textColor = Color.white;
-                }
-                GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), formatScore(CameraScript.data.Records[i].x));
-                GUI.Label(new Rect(size * 7, (i * (size * 1.3f)), size * 10, size * 1.5f), CameraScript.data.Records[i].y +
-                    "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
-            }
-            GUI.EndScrollView();
+            IsScore = true;
+        }
+        if (GUI.Button(new Rect(margin * 3 + ((UnTerzo / 3) * 168) / 141 + ((UnTerzo / 3) * 500) / 141,
+            margin / 3, ((UnTerzo / 3) * 550) / 141, UnTerzo / 3), IsScore ? achivements : achivementsPressed))
+        {
+            IsScore = false;
+        }
+        //GUI.skin.label.fontSize = (int)(size);
+        //Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent("Highscores"), custom.label);
+        //GUI.Label(new Rect(margin + size * 1.5f, UnTerzo / 6 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Highscores");
+        if (IsScore)
+        {
+            GUI.skin.label.fontSize = (int)(size * 0.7f);
+            //if (CameraScript.data.Records[0].x != 0)
+            //{
+            //    int i = 0;
+            //    pos = GUI.BeginScrollView(new Rect(margin * 3 + size, size * 3, Screen.width - (margin * 3 + size), size * 12), pos, new Rect(0, 0, Screen.width, size * 30));
+            //    for (i = 0; i < 20; i++)
+            //    {
+            //        if (CameraScript.data.Records[i].x == 0)
+            //        {
+            //            break;
+            //        }
+            //        if (i == 0)
+            //        {
+            //            GUI.skin.label.normal.textColor = new Color(246, 193, 0);
+            //            GUI.skin.label.fontSize = (int)(size * 1f);
+            //        }
+            //        else if (i == 1)
+            //        {
+            //            GUI.skin.label.normal.textColor = new Color(192, 192, 192);
+            //            GUI.skin.label.fontSize = (int)(size * 1f);
+            //        }
+            //        else if (i == 2)
+            //        {
+            //            GUI.skin.label.normal.textColor = new Color(205, 127, 50);
+            //            GUI.skin.label.fontSize = (int)(size * 1f);
+            //        }
+            //        else
+            //        {
+            //            GUI.skin.label.fontSize = (int)(size * 0.6);
+            //            GUI.skin.label.normal.textColor = Color.white;
+            //        }
+            //        GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), formatScore(CameraScript.data.Records[i].x));
+            //        GUI.Label(new Rect(size * 7, (i * (size * 1.3f)), size * 10, size * 1.5f), CameraScript.data.Records[i].y +
+            //            "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
+            //    }
+            //    GUI.EndScrollView();
+            //}
+        }
+        else
+        {
+            //visualizza gli score
         }
         GUI.skin.label.normal.textColor = Color.white;
-        GUI.skin.label.fontSize = (int)(size * 0.6);
     }
 
     void Update()

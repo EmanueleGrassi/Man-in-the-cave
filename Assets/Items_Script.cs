@@ -29,7 +29,8 @@ public class Items_Script : MonoBehaviour
         custom.button.normal.textColor = Color.white;
 
         //test
-        CameraScript.data.lightRed = CameraScript.data.lightBlue = CameraScript.data.lightGreen = CameraScript.data.lightPink = CameraScript.data.lightRainbow = true;
+        //CameraScript.LoadData();
+        //CameraScript.data.lightRed = CameraScript.data.lightBlue = CameraScript.data.lightGreen = CameraScript.data.lightPink = CameraScript.data.lightRainbow = true;
     }
 
     void OnGUI()
@@ -42,14 +43,14 @@ public class Items_Script : MonoBehaviour
         
         if (GUI.skin != custom)
             GUI.skin = custom;
-        
-        if (GUI.Button(new Rect(margin, UnTerzo / 6 - size / 2, size, size), back))
+
+        if (GUI.Button(new Rect(margin, margin/3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
         {
             CameraScript.SaveData();
             Application.LoadLevel(0);
         }
         Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent("Items"), custom.label);
-        GUI.Label(new Rect(margin + size * 1.5f, UnTerzo / 6 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Items");
+        GUI.Label(new Rect(margin*2 + ((UnTerzo / 3) * 168) / 141, UnTerzo / 6 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Items");
         //LUCE EQUIPAGGIATA
         //GUI.skin.label.fontSize = (int)(size);
         //GUI.Label(new Rect(margin, size * 4, size * 10, size * 2 + margin), "Light equipped");
@@ -57,7 +58,7 @@ public class Items_Script : MonoBehaviour
 
         //LUCI DISPONIBILI
        // availableLight();
-        drawElements();
+       // drawElements();
     }
 
     private void equippedLight()
@@ -99,7 +100,7 @@ public class Items_Script : MonoBehaviour
 {
     float selected = elementSize * 1.5f;
     GUILayout.BeginHorizontal("box");       
-     GUILayout.Button("I'm the first button", GUILayout.Width(100),GUILayout.Height(100));
+     //GUILayout.Button("I'm the first button", GUILayout.Width(100),GUILayout.Height(100));
      if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + availableLights * (elementSize + margin), positionYButtons,
          CameraScript.data.helmet == Helmet.white ? selected : elementSize, CameraScript.data.helmet == Helmet.white ? selected : elementSize), white))
      {

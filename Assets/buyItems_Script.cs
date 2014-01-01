@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class buyItems_Script : MonoBehaviour
 {
-
+    public Texture powers, powersP, lights, lightsP, money, moneyP;
     public Texture arcoLight, bengal, bluLight, greenLight, piccone, pinkLight, reborn, redLight, coins;
     float size, margin;
     public GUISkin custom;
@@ -16,6 +16,13 @@ public class buyItems_Script : MonoBehaviour
     public Texture back;
     float unmarginino, scrollparam;
     public Texture2D thumb;
+    buyState CurrentState = buyState.Powers;
+    enum buyState
+    {
+        Powers,
+        lights,
+        money
+    }
 #if UNITY_ANDROID
     AndroidJavaClass unityPlayer;
     AndroidJavaObject activity;
@@ -140,17 +147,54 @@ public class buyItems_Script : MonoBehaviour
     }
 
     Vector2 position = Vector2.zero;
-
+    Texture getStateTextures(int ButtonNumb)
+    {
+        if (ButtonNumb == 0)
+        {
+            if (CurrentState == buyState.Powers)
+                return powersP;
+            else
+                return powers;
+        } 
+        else if (ButtonNumb == 1)
+        {
+            if (CurrentState == buyState.lights)
+                return lightsP;
+            else
+                return lights;
+        }
+        else
+        {
+            if (CurrentState == buyState.money)
+                return moneyP;
+            else
+                return money;
+        }
+    }
     void OnGUI()
     {
         if (Input.GetKey(KeyCode.Escape))
             Application.LoadLevel(0);
         if (GUI.skin != custom)
             GUI.skin = custom;
-        float UnTerzo = Screen.height / 3;        
-        if (GUI.Button(new Rect(margin, UnTerzo / 6 - size / 2, size, size), back))
+        float UnTerzo = Screen.height / 3;
+        if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
             Application.LoadLevel(0);
         custom.label.fontSize = (int)(size);
+        if (GUI.Button(new Rect(margin * 2 + ((UnTerzo / 3) * 168) / 141, margin / 3, ((UnTerzo / 3) * 500) / 141, UnTerzo / 3), getStateTextures(0)))
+        {
+            CurrentState = buyState.Powers;
+        }
+        if (GUI.Button(new Rect(margin * 3 + ((UnTerzo / 3) * 168) / 141 + ((UnTerzo / 3) * 500) / 141,
+            margin / 3, ((UnTerzo / 3) * 550) / 141, UnTerzo / 3), getStateTextures(1)))
+        {
+            CurrentState = buyState.lights;
+        }
+        if (GUI.Button(new Rect(margin * 3 + ((UnTerzo / 3) * 168) / 141 + ((UnTerzo / 3) * 500) / 141,
+            margin / 3, ((UnTerzo / 3) * 550) / 141, UnTerzo / 3), getStateTextures(2)))
+        {
+            CurrentState = buyState.money;
+        }
         Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent("Powers"), custom.label);
         GUI.Label(new Rect(margin + size * 1.5f, UnTerzo / 6 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Powers"); 
         Rect label2Position = GUILayoutUtility.GetRect(new GUIContent("Powers"), custom.label);

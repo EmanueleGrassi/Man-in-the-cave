@@ -15,7 +15,7 @@ public class Items_numBeng_Script : MonoBehaviour
         custom.label.fontSize = (int)(size * 0.8f);
     }
 
-    // Update is called once per frame
+    
     void OnGUI()
     {
         if (GUI.skin != custom)
