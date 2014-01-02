@@ -117,22 +117,24 @@ public class Data
         {
             serializer.Serialize(stream, CameraScript.data);
         }
-        PlayerPrefs.SetString("data", serializer.ToString());
     }
 
     public static void Load()
     {
         string path = Path.Combine(Application.persistentDataPath, "data.xml");
         var serializer = new XmlSerializer(typeof(Data));
-        using (var stream = new FileStream(path, FileMode.Open))
+        try
         {
-            if (CameraScript.data != null)
-                CameraScript.data = serializer.Deserialize(stream) as Data;
-            else
+            using (var stream = new FileStream(path, FileMode.Open))
             {
-                CameraScript.data = new Data();
-                Data.Save();
+                if (CameraScript.data != null)
+                    CameraScript.data = serializer.Deserialize(stream) as Data;
             }
+        }
+        catch
+        {
+            CameraScript.data = new Data();
+            Data.Save();
         }
     }
 
