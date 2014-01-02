@@ -6,10 +6,10 @@ public class SettingCamera : MonoBehaviour {
     float margin, titleWidth, titleHeight, barSize;
     public GUISkin custom;
     public Texture back, title;
+    Rect labelPosition;
     #if UNITY_METRO
         float istructionWidth,istructionHeight;
         public Texture  istruction;
-        Rect labelPosition;
     #endif
     float UnTerzo;
     void Start()

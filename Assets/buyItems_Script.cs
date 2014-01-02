@@ -9,7 +9,7 @@ public class buyItems_Script : MonoBehaviour
     public Texture arcoLight, bengal, bluLight, greenLight, piccone, pinkLight, reborn, redLight, coins;
     float size, margin;
     public GUISkin custom;
-    public AudioClip cashsound;
+    public AudioClip cashsound,noMoney;
     public static event EventHandler plus500, plus1000, plus5000;
     float[] span;
     bool imbuying;
@@ -256,6 +256,7 @@ public class buyItems_Script : MonoBehaviour
 
         //colonna di sinistra
         if (GUI.Button(new Rect(margin, margin * 13, size * 9, size * 3), bengal))
+        {
             if (CameraScript.data.points >= 90)
             {
                 CameraScript.data.points -= 90;
@@ -263,7 +264,11 @@ public class buyItems_Script : MonoBehaviour
                 CameraScript.SaveData();
                 audio.PlayOneShot(cashsound);
             }
+            else
+                audio.PlayOneShot(noMoney);
+        }
         if (GUI.Button(new Rect(margin, unmarginino + size * 3, size * 9, size * 3), reborn))
+        {
             if (CameraScript.data.points >= 300)
             {
                 CameraScript.data.points -= 300;
@@ -271,6 +276,9 @@ public class buyItems_Script : MonoBehaviour
                 CameraScript.SaveData();
                 audio.PlayOneShot(cashsound);
             }
+            else
+                audio.PlayOneShot(noMoney);
+        }
         //scrollview
         int elem = 0;
         position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, Screen.height - (margin * 7)), position,
@@ -290,12 +298,15 @@ public class buyItems_Script : MonoBehaviour
                     //SUONA CASSA
                     audio.PlayOneShot(cashsound);
                 }
+                else
+                    audio.PlayOneShot(noMoney);
             }
         }
         if (!CameraScript.data.lightBlue)
         {
             elem++;
             if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), bluLight))
+            {
                 if (CameraScript.data.points >= 550 && imbuying)
                 {
                     CameraScript.data.points -= 550;
@@ -305,11 +316,15 @@ public class buyItems_Script : MonoBehaviour
                     //SUONA CASSA
                     audio.PlayOneShot(cashsound);
                 }
+                else
+                    audio.PlayOneShot(noMoney);
+            }
         }
         if (!CameraScript.data.lightGreen)
         {
             elem++;
             if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), greenLight))
+            {
                 if (CameraScript.data.points >= 750 && imbuying)
                 {
                     CameraScript.data.points -= 750;
@@ -319,11 +334,15 @@ public class buyItems_Script : MonoBehaviour
                     //SUONA CASSA
                     audio.PlayOneShot(cashsound);
                 }
+                else
+                    audio.PlayOneShot(noMoney);
+            }
         }
         if (!CameraScript.data.lightPink)
         {
             elem++;
             if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), pinkLight))
+            {
                 if (CameraScript.data.points >= 800 && imbuying)
                 {
                     CameraScript.data.points -= 800;
@@ -333,11 +352,15 @@ public class buyItems_Script : MonoBehaviour
                     //SUONA CASSA
                     audio.PlayOneShot(cashsound);
                 }
+                else
+                    audio.PlayOneShot(noMoney);
+            }
         }
         if (!CameraScript.data.lightRainbow)
         {
             elem++;
             if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), arcoLight))
+            {
                 if (CameraScript.data.points >= 6000 && imbuying)
                 {
                     CameraScript.data.points -= 6000;
@@ -347,6 +370,9 @@ public class buyItems_Script : MonoBehaviour
                     //SUONA CASSA
                     audio.PlayOneShot(cashsound);
                 }
+                else
+                    audio.PlayOneShot(noMoney);
+            }
         }
         GUI.EndScrollView();
     }
