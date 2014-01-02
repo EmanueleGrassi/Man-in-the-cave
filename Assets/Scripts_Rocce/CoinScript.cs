@@ -38,8 +38,8 @@ public class CoinScript : MonoBehaviour
     {
         if (grounded && !audio.isPlaying)
             Destroy(gameObject);
-        //    if (Time.time > groundedTime + 0.2f)
-        //        Destroy(gameObject);
+        if (Time.time > groundedTime + 0.2f)
+            Destroy(gameObject);
     }
 
     void OnCollisionEnter(Collision col)
