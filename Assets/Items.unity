@@ -167,12 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a865476405e60148a2556565e9001df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueligth: {fileID: 2800000, guid: cd42b4ea943abfd468fdc7bce1ad10af, type: 3}
-  pinkligth: {fileID: 2800000, guid: 4f005083c303b2245976852844ed6bd4, type: 3}
-  redligth: {fileID: 2800000, guid: 508f757a5797c0a4b99eab8320e0f957, type: 3}
-  greenligth: {fileID: 2800000, guid: 6caa35297533bd944be5ff33d1e2cbab, type: 3}
-  ranbowligth: {fileID: 2800000, guid: 9b0b8c9eae172874bbb3415bbf7d2294, type: 3}
-  white: {fileID: 2800000, guid: 32870cd01c101a4418ce715e57f14f56, type: 3}
+  blueligth: {fileID: 2800000, guid: 644bf5ac4641d4a409a173031a686a86, type: 3}
+  pinkligth: {fileID: 2800000, guid: 06a307be25530044fbc976745cdd2991, type: 3}
+  redligth: {fileID: 2800000, guid: 30172b5de86a9cb41ab316c6f4a4c904, type: 3}
+  greenligth: {fileID: 2800000, guid: ba14fdc3d3863764da7426b989fcca24, type: 3}
+  ranbowligth: {fileID: 2800000, guid: db89ab81bf2d286448ee033ad30877c8, type: 3}
+  white: {fileID: 2800000, guid: f22067c2ba5749444b7bedfe0b4bc95f, type: 3}
   custom: {fileID: 11400000, guid: e6365d348d530f646af3dec48a0f6edc, type: 2}
   equipSound: {fileID: 8300000, guid: e289947876bd5164da02f27d8d72ca5c, type: 3}
   back: {fileID: 2800000, guid: 6be4bb3a7e77b40408f3a12ad4b70281, type: 3}

@@ -13,7 +13,7 @@ public class Scores_script : MonoBehaviour
     float scrollparam;
     public Texture2D thumb;
     float UnTerzo;
-    bool IsScore = false; //fae false visualizza achivements
+    bool IsScore = true; //fae false visualizza achivements
     // Use this for initialization
     void Start()
     {
@@ -27,6 +27,7 @@ public class Scores_script : MonoBehaviour
         #if UNITY_METRO
                 custom.verticalScrollbarThumb.normal.background = thumb;
         #endif   
+                CameraScript.LoadData();
     }
 
     // Update is called once per frame
@@ -66,7 +67,7 @@ public class Scores_script : MonoBehaviour
         if (CameraScript.data.Records[0].x != 0)
         {
             int i = 0;
-            pos = GUI.BeginScrollView(new Rect(margin * 3 + size, size * 3, Screen.width - (margin * 3 + size), size * 12),
+            pos = GUI.BeginScrollView(new Rect(margin * 3 + size, barSize, Screen.width - (margin * 3 + size), Screen.height - barSize),
                 pos, new Rect(0, 0, Screen.width, size * 30));
             for (i = 0; i < 20; i++)
             {

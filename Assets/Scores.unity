@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95944a55f29b7f54a9441316f4a18d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  custom: {fileID: 11400000, guid: e6365d348d530f646af3dec48a0f6edc, type: 2}
+  custom: {fileID: 11400000, guid: c155d610e860c0a4f86f52f352d87b40, type: 2}
   back: {fileID: 2800000, guid: 6be4bb3a7e77b40408f3a12ad4b70281, type: 3}
   scores: {fileID: 2800000, guid: f840a8d800a8efb4ca966c6551ab131e, type: 3}
   scoresPressed: {fileID: 2800000, guid: d006c56cfaf4a1f49b820d8cb126f44b, type: 3}
