@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Items.unity
   - enabled: 1
     path: Assets/Scores.unity
+  - enabled: 1
+    path: Assets/Settings.unity

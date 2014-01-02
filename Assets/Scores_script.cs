@@ -38,7 +38,6 @@ public class Scores_script : MonoBehaviour
         GUI.skin = custom;
         if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
         {
-            CameraScript.SaveData();
             Application.LoadLevel(0);
         }
         if (GUI.Button(new Rect(margin * 2 + ((UnTerzo / 3) * 168) / 141, margin / 3, ((UnTerzo / 3) * 500) / 141, UnTerzo / 3), IsScore?scoresPressed:scores))
