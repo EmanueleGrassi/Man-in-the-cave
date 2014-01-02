@@ -1284,7 +1284,7 @@ MonoBehaviour:
   CancelButton_Texture: {fileID: 2800000, guid: 36002339e780c5241a4ac0de7c2ca74c,
     type: 3}
   Vignette_Texture: {fileID: 2800000, guid: a3cce153200572e408efef0006bf5423, type: 3}
-  Istruction: {fileID: 0}
+  Istruction: {fileID: 2800000, guid: 5556f7944b8c7fb4ebf6c13d89c3b133, type: 3}
 --- !u!114 &458439275
 MonoBehaviour:
   m_ObjectHideFlags: 0

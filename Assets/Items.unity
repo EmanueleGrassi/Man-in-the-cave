@@ -344,12 +344,12 @@ GameObject:
   - 4: {fileID: 1075331039}
   - 114: {fileID: 1075331040}
   m_Layer: 0
-  m_Name: New Text
+  m_Name: indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1075331039
 Transform:
   m_ObjectHideFlags: 0

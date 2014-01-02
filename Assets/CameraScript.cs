@@ -541,7 +541,7 @@ public class CameraScript : MonoBehaviour
             labelPosition.width, labelPosition.height), TimeText);
         GUI.skin.label.fontSize = (int)(height*0.9);  
         	
-        if (GUI.Button(new Rect(Screen.width - (margin + height2), margin, height2, height2), pause))
+        if (GUI.Button(new Rect(Screen.width - (margin + height2/2), margin, height2/2, height2/2), pause))
         {
             PlayScript.State = PlayScript.PlayState.pause;
         }
