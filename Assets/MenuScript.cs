@@ -98,7 +98,7 @@ public class MenuScript : MonoBehaviour
             float Altobasso = (accel.y * 90) + 90;
             if (accel.z >= 0)
                 Altobasso *= -1;
-            print(Altobasso);
+            //print(Altobasso);
             transform.rotation = Quaternion.Euler(Altobasso, DestraSinistra, 0f);
         }
     }
@@ -206,8 +206,8 @@ public class MenuScript : MonoBehaviour
         float playSize = UnTerzo - margin;
         float BottoniHeight = UnTerzo * 0.7f - margin;
         float SocialSize = UnTerzo * 0.5f - margin;
-        print("width: "+((BottoniHeight * 4 + margin * 3)));
-        print("h : " + BottoniHeight);
+        //print("width: "+((BottoniHeight * 4 + margin * 3)));
+        //print("h : " + BottoniHeight);
         GUI.DrawTexture(new Rect((Screen.width / 2) - (((BottoniHeight * 4 + margin * 3)) / 2),
                                 UnTerzo / 2 - (BottoniHeight/2), 
                                 ((BottoniHeight * 4 + margin * 3)),
