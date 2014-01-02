@@ -1347,9 +1347,7 @@ MonoBehaviour:
   likebtn: {fileID: 2800000, guid: a8c5422a982a09f41ab8fc038ec8115a, type: 3}
   coin: {fileID: 2800000, guid: 652d2f922cdcda44698fd2704680dbdd, type: 3}
   pause: {fileID: 2800000, guid: dfb1eb3a6e260f44790928e53bb76caf, type: 3}
-  Tondo_Texture: {fileID: 2800000, guid: a49832d29e3f6c747ab3eb0049a38532, type: 3}
-  quad_Texture: {fileID: 2800000, guid: 3f5e1d653555c3e4f95820bf95efba10, type: 3}
-  TondoMaterial: {fileID: 2100000, guid: 8b73aee765ea5924cab8716fe0fbe4c8, type: 2}
+  Infobox_Texture: {fileID: 2800000, guid: d753e5c521e41d44eb2944f9df9e6af9, type: 3}
   useReborn_Texture: {fileID: 2800000, guid: 517fef3242e83ed4bbec580fb8b9fc29, type: 3}
   OKbutton_Texture: {fileID: 2800000, guid: 236526e4778528b4c8da1871c9502d5a, type: 3}
   CancelButton_Texture: {fileID: 2800000, guid: 36002339e780c5241a4ac0de7c2ca74c,

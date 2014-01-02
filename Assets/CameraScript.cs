@@ -194,8 +194,7 @@ public class CameraScript : MonoBehaviour
         public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, homeButton, playAgainButton, likebtn;
         //Gui Play
         public Texture coin, pause;
-        public Texture Tondo_Texture, quad_Texture; 
-        public Material TondoMaterial;
+        public Texture Infobox_Texture; 
         public Texture useReborn_Texture, OKbutton_Texture, CancelButton_Texture;
         public Texture Vignette_Texture;
 
@@ -222,8 +221,7 @@ public class CameraScript : MonoBehaviour
         {
 #if UNITY_WP8
             if (saveEvent != null)
-                saveEvent(saveEvent, new EventArgs());
-            
+                saveEvent(saveEvent, new EventArgs());            
 #else
             
 			foreach(var item in data.Records)
@@ -518,17 +516,27 @@ public class CameraScript : MonoBehaviour
 
     void drawPlay()
     {
-        var height2 = Screen.width / 10;
-       // GUI.DrawTexture(new Rect(margin, margin, height2, height2), Tondo, ScaleMode.ScaleToFit, true);
-        GUI.DrawTexture(new Rect(margin + height2 / 2, margin + height2 / 2, height2, height2 / 4), quad_Texture, ScaleMode.StretchToFill, false);
-        GUI.DrawTexture(new Rect(margin + height2 / 2, margin + height2 / 2 + height2 / 4, height2 * 1.5f, height2 / 4), quad_Texture, ScaleMode.StretchToFill, false);
-        Graphics.DrawTexture(new Rect(margin, margin, height2, height2), Tondo_Texture, TondoMaterial);
+        var height2 = Screen.width / 6;
+        //inizio orologio
+
+
+        //fine orologio
+        GUI.DrawTexture(new Rect(margin, margin, height2, height2*700/600), Infobox_Texture, ScaleMode.ScaleToFit, true);
         TimeSpan t = (TimeSpan.FromSeconds(PlayTime));
-        string TimeText=string.Format("{0}:{1:00}", t.Minutes, t.Seconds);
+        string TimeText;
+        string minSec = "min";
+        if (t.Minutes >= 1)
+        {
+            TimeText = string.Format("{0}:{1:00}", t.Minutes, t.Seconds);
+        }
+        else
+        {
+            minSec = "sec";
+            TimeText = string.Format("{0:#0}", t.Seconds);
+        }
         Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent(TimeText), custom.label);
-        GUI.Label(new Rect(margin + ((height2 - labelPosition.width) / 2), margin + ((height2 - labelPosition.height) / 2),
-            labelPosition.width, labelPosition.height), TimeText);       
-        GUI.DrawTexture(new Rect(margin + height2 / 2 + (height2 - (height2 / 4)), margin + height2 / 2, height2 / 4, height2 / 4), coin, ScaleMode.ScaleToFit, true);  
+        GUI.Label(new Rect(margin + ((height2 - labelPosition.width) / 2), ((height2 - labelPosition.height) / 2),
+            labelPosition.width, labelPosition.height), TimeText);
         GUI.skin.label.fontSize = (int)(height*0.9);  
         	
         if (GUI.Button(new Rect(Screen.width - (margin + height2), margin, height2, height2), pause))

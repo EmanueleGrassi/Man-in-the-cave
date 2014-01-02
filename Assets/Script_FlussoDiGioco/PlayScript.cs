@@ -3,13 +3,9 @@ using System.Collections;
 
 public class PlayScript : MonoBehaviour
 {
-    float width, height;
     public Transform player;
     public GameObject wplight, pglight;
     public Transform bengala;
-    bool locked;
-    bool playJump;
-    int finger;
     public static int gamePoints;
     public JoystickC BengalaTouchPad;
     public enum PlayState
@@ -45,9 +41,6 @@ public class PlayScript : MonoBehaviour
             }
         }
     }
-
-
-
     void Start()
     {
         State = PlayState.menu;
@@ -63,15 +56,8 @@ public class PlayScript : MonoBehaviour
 			wplight.light.range=6f;
             pglight.SetActive(true);
         }
-
         gamePoints = 0;
     }
-
-    //void OnEndGame ()
-    //{
-    //    // Disable joystick when the game ends	
-    //    BengalaTouchPad.Disable ();
-    //}
 
     public static bool BenngalaAvailable = true;
 
