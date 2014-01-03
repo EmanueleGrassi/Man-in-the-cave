@@ -5,7 +5,7 @@ using System;
 public class Items_Script : MonoBehaviour
 {
     float size, margin;
-    public Texture blueligth, pinkligth, redligth, greenligth, ranbowligth, white;
+    public Texture blueligth, pinkligth, redligth, greenligth, ranbowligth, white, buyButton;
     public GUISkin custom;
     int availableLights;
     bool draw;
@@ -74,8 +74,6 @@ public class Items_Script : MonoBehaviour
         drawElements();
     }
 
-
-
     //float getSize(Helmet e)
     //{
     //    if(e==CameraScript.data.helmet)
@@ -114,112 +112,134 @@ public class Items_Script : MonoBehaviour
         }
         availableLights++;
 
-        if (CameraScript.data.helmet == Helmet.red)
+        if (CameraScript.data.lightRed)
         {
-            if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
-                positionYButtons - selected / 4, selected, selected), redligth))
+            if (CameraScript.data.helmet == Helmet.red)
             {
-                CameraScript.data.helmet = Helmet.red;
-                audio.PlayOneShot(equipSound);
+                if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
+                    positionYButtons - selected / 4, selected, selected), redligth))
+                {
+                    CameraScript.data.helmet = Helmet.red;
+                    audio.PlayOneShot(equipSound);
+                }
+                trovatoSetected = true;
             }
-            trovatoSetected = true;
+            else
+            {
+                if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
+                    positionYButtons, elementSize, elementSize), redligth))
+                {
+                    CameraScript.data.helmet = Helmet.red;
+                    audio.PlayOneShot(equipSound);
+                }
+            }
+            availableLights++;
         }
-        else
+
+        if (CameraScript.data.lightBlue)
+        {
+            if (CameraScript.data.helmet == Helmet.blue)
+            {
+                if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
+                    positionYButtons - selected / 4, selected, selected), blueligth))
+                {
+                    CameraScript.data.helmet = Helmet.blue;
+                    audio.PlayOneShot(equipSound);
+                }
+                trovatoSetected = true;
+            }
+            else
+            {
+                print("blue: " + trovatoSetected + "   " + difference);
+                if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
+                    positionYButtons, elementSize, elementSize), blueligth))
+                {
+                    CameraScript.data.helmet = Helmet.blue;
+                    audio.PlayOneShot(equipSound);
+                }
+            }
+            availableLights++;
+        }
+
+        if (CameraScript.data.lightGreen)
+        {
+            if (CameraScript.data.helmet == Helmet.green)
+            {
+                if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
+                    positionYButtons - selected / 4, selected, selected), greenligth))
+                {
+                    CameraScript.data.helmet = Helmet.green;
+                    audio.PlayOneShot(equipSound);
+                }
+                trovatoSetected = true;
+            }
+            else
+            {
+                if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
+                    positionYButtons, elementSize, elementSize), greenligth))
+                {
+                    CameraScript.data.helmet = Helmet.green;
+                    audio.PlayOneShot(equipSound);
+                }
+            }
+            availableLights++;
+        }
+
+        if (CameraScript.data.lightPink)
+        {
+            if (CameraScript.data.helmet == Helmet.pink)
+            {
+                if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
+                    positionYButtons - selected / 4, selected, selected), pinkligth))
+                {
+                    CameraScript.data.helmet = Helmet.pink;
+                    audio.PlayOneShot(equipSound);
+                }
+                trovatoSetected = true;
+            }
+            else
+            {
+                if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
+                    positionYButtons, elementSize, elementSize), pinkligth))
+                {
+                    CameraScript.data.helmet = Helmet.pink;
+                    audio.PlayOneShot(equipSound);
+                }
+            }
+            availableLights++;
+        }
+
+        if (CameraScript.data.lightRainbow)
+        {
+            if (CameraScript.data.helmet == Helmet.rainbow)
+            {
+                if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
+                    positionYButtons - selected / 4, selected, selected), ranbowligth))
+                {
+                    CameraScript.data.helmet = Helmet.rainbow;
+                    audio.PlayOneShot(equipSound);
+                }
+                trovatoSetected = true;
+            }
+            else
+            {
+                if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
+                    positionYButtons, elementSize, elementSize), ranbowligth))
+                {
+                    CameraScript.data.helmet = Helmet.rainbow;
+                    audio.PlayOneShot(equipSound);
+                }
+            }
+            availableLights++;
+        }
+        if (availableLights != 5)
         {
             if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
-                positionYButtons, elementSize, elementSize), redligth))
+                    positionYButtons, elementSize, elementSize), buyButton))
             {
-                CameraScript.data.helmet = Helmet.red;
-                audio.PlayOneShot(equipSound);
+                Application.LoadLevel("BuyItems");
             }
         }
-        availableLights++;
-
-        if (CameraScript.data.helmet == Helmet.blue)
-        {
-            if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
-                positionYButtons - selected / 4, selected, selected), blueligth))
-            {
-                CameraScript.data.helmet = Helmet.blue;
-                audio.PlayOneShot(equipSound);
-            }
-            trovatoSetected = true;
-        }
-        else
-        {
-            print("blue: " + trovatoSetected + "   " + difference);
-            if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
-                positionYButtons, elementSize, elementSize), blueligth))
-            {
-                CameraScript.data.helmet = Helmet.blue;
-                audio.PlayOneShot(equipSound);
-            }
-        }
-        availableLights++;
-
-        if (CameraScript.data.helmet == Helmet.green)
-        {
-            if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
-                positionYButtons - selected / 4, selected, selected), greenligth))
-            {
-                CameraScript.data.helmet = Helmet.green;
-                audio.PlayOneShot(equipSound);
-            }
-            trovatoSetected = true;
-        }
-        else
-        {
-            if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
-                positionYButtons, elementSize, elementSize), greenligth))
-            {
-                CameraScript.data.helmet = Helmet.green;
-                audio.PlayOneShot(equipSound);
-            }
-        }
-        availableLights++;
-
-        if (CameraScript.data.helmet == Helmet.pink)
-        {
-            if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
-                positionYButtons - selected / 4, selected, selected), pinkligth))
-            {
-                CameraScript.data.helmet = Helmet.pink;
-                audio.PlayOneShot(equipSound);
-            }
-            trovatoSetected = true;
-        }
-        else
-        {
-            if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
-                positionYButtons, elementSize, elementSize), pinkligth))
-            {
-                CameraScript.data.helmet = Helmet.pink;
-                audio.PlayOneShot(equipSound);
-            }
-        }
-        availableLights++;
-
-        if (CameraScript.data.helmet == Helmet.rainbow)
-        {
-            if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
-                positionYButtons - selected / 4, selected, selected), ranbowligth))
-            {
-                CameraScript.data.helmet = Helmet.rainbow;
-                audio.PlayOneShot(equipSound);
-            }
-            trovatoSetected = true;
-        }
-        else
-        {
-            if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
-                positionYButtons, elementSize, elementSize), ranbowligth))
-            {
-                CameraScript.data.helmet = Helmet.rainbow;
-                audio.PlayOneShot(equipSound);
-            }
-        }
-        availableLights++;
-
         GUI.EndScrollView();
     }
 
@@ -237,18 +257,18 @@ public class Items_Script : MonoBehaviour
             //imbuying = false;
         }
 #else
-            if (CameraScript.IsTouch)
-            {
-                Touch touch = Input.touches[0];
-                bool fInsideList = IsTouchInsideList(touch.position);
-                if (touch.phase == TouchPhase.Began)
-                    imbuying = true;
-                if (touch.phase == TouchPhase.Moved && fInsideList)
-                {
-                    position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
-                    imbuying = false;
-                }
-            }
+            //if (CameraScript.IsTouch)
+            //{
+            //    Touch touch = Input.touches[0];
+            //    bool fInsideList = IsTouchInsideList(touch.position);
+            //    if (touch.phase == TouchPhase.Began)
+            //        imbuying = true;
+            //    if (touch.phase == TouchPhase.Moved && fInsideList)
+            //    {
+            //        position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
+            //        imbuying = false;
+            //    }
+            //}
 #endif
     }
 

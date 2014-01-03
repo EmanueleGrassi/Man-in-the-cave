@@ -221,7 +221,7 @@ public class MenuScript : MonoBehaviour
 
         float posizioneButton;
         int numBottone = 0;
-        if (true/*CameraScript.data.Records[0].x != 0*/)
+        if (CameraScript.data.Records[0].x != 0)
         {
             posizioneButton = Screen.width / 2 - ((BottoniHeight * 4 + margin * 3)) / 2;
             if (GUI.Button(new Rect(posizioneButton,
