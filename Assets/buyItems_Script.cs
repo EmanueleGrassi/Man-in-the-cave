@@ -121,19 +121,19 @@ public class buyItems_Script : MonoBehaviour
         imbuying = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
-        #if UNITY_WP8                
-            span = new float[] {0, 0, size * 2 + margin ,
-						              margin * 2 + size * 4,
-						              margin * 3 + size * 6,
-						              margin * 4 + size * 8};
-            unmarginino = margin * 11;
-        #else
+        //#if UNITY_WP8                
+        //    span = new float[] {0, 0, size * 2 + margin ,
+        //                              margin * 2 + size * 4,
+        //                              margin * 3 + size * 6,
+        //                              margin * 4 + size * 8};
+        //    unmarginino = margin * 11;
+        //#else
             span = new float[] {0, 0, size * 2 + 2 * margin ,
 								      margin * 4 + size * 4,
 								      margin * 6 + size * 6,
 								      margin * 8 + size * 8};
             unmarginino = margin * 12;
-        #endif
+        //#endif
         scrollparam = (Screen.height * 2) / 768;
 
         #if UNITY_METRO
@@ -379,9 +379,8 @@ public class buyItems_Script : MonoBehaviour
 
     void Update()
     {
-        #if UNITY_METRO
-        if (CameraScript.IsTouch)
-        {
+        #if !UNITY_METRO
+        
             Touch touch = Input.touches[0];
             bool fInsideList = IsTouchInsideList(touch.position);
             if (touch.phase == TouchPhase.Began)
@@ -391,8 +390,20 @@ public class buyItems_Script : MonoBehaviour
                 position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
                 imbuying = false;
             }
-        }
-        #endif
+        #else
+            if (CameraScript.IsTouch)
+            {
+                Touch touch = Input.touches[0];
+                bool fInsideList = IsTouchInsideList(touch.position);
+                if (touch.phase == TouchPhase.Began)
+                    imbuying = true;
+                if (touch.phase == TouchPhase.Moved && fInsideList)
+                {
+                    position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
+                    imbuying = false;
+                }
+            }
+#endif
     }
 
     bool IsTouchInsideList(Vector2 touchPos)

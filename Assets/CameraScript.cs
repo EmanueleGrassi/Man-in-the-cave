@@ -408,6 +408,8 @@ public class CameraScript : MonoBehaviour
             PlayScript.State = PlayScript.PlayState.menu;
             Application.LoadLevel(0);
         }
+        if (Input.GetKey(KeyCode.Escape))
+            Application.Quit();
     }
 
     private void drawResult()

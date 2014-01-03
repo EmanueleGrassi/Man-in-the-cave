@@ -43,6 +43,7 @@ public class PlayScript : MonoBehaviour
     }
     void Start()
     {
+        CameraScript.LoadData();
         State = PlayState.menu;
         //LUCE A SECONDA DELLA PIATTAFORMA
         if (Application.platform == RuntimePlatform.WP8Player)

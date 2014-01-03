@@ -14,6 +14,7 @@ public class Items_Script : MonoBehaviour
     float elementSize, positionYButtons;
     float UnTerzo;
     Vector2 position = Vector2.zero;
+    float scrollparam;
     // Use this for initialization
     void Start()
     {
@@ -23,6 +24,9 @@ public class Items_Script : MonoBehaviour
         UnTerzo = Screen.height / 3;
         elementSize = UnTerzo;
         positionYButtons = UnTerzo;
+
+        scrollparam = (Screen.width * 2) / 768;
+
         availableLights = 0;
         custom.label.fontSize = (int)(size);
         custom.button.fontSize = (int)(size / 2);
@@ -287,5 +291,42 @@ public class Items_Script : MonoBehaviour
                 Application.LoadLevel(2);
             }
         }
+    }
+
+    void Update()
+    {
+#if !UNITY_METRO
+
+        Touch touch = Input.touches[0];
+        bool fInsideList = IsTouchInsideList(touch.position);
+        //if (touch.phase == TouchPhase.Began)
+        //    imbuying = true;
+        if (touch.phase == TouchPhase.Moved && fInsideList)
+        {
+            position.x -= touch.deltaPosition.x * scrollparam; //2:768= x:Screen.height
+            //imbuying = false;
+        }
+#else
+            if (CameraScript.IsTouch)
+            {
+                Touch touch = Input.touches[0];
+                bool fInsideList = IsTouchInsideList(touch.position);
+                if (touch.phase == TouchPhase.Began)
+                    imbuying = true;
+                if (touch.phase == TouchPhase.Moved && fInsideList)
+                {
+                    position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
+                    imbuying = false;
+                }
+            }
+#endif
+    }
+
+    bool IsTouchInsideList(Vector2 touchPos)
+    {
+        Vector2 screenPos = new Vector2(touchPos.x, touchPos.y);
+        Rect rAdjustedBounds = new Rect(0, UnTerzo / 3, Screen.width, Screen.height - (UnTerzo / 3));
+
+        return rAdjustedBounds.Contains(screenPos);
     }
 }
