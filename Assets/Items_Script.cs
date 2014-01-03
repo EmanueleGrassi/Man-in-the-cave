@@ -8,7 +8,7 @@ public class Items_Script : MonoBehaviour
     public Texture blueligth, pinkligth, redligth, greenligth, ranbowligth, white, buyButton;
     public GUISkin custom;
     int availableLights;
-    bool draw;
+    bool draw, impressing;
     public AudioClip equipSound;
     public Texture back;
     float elementSize, positionYButtons;
@@ -26,6 +26,7 @@ public class Items_Script : MonoBehaviour
         positionYButtons = UnTerzo;
 
         scrollparam = (Screen.width * 2) / 768;
+        impressing = false;
 
         availableLights = 0;
         custom.label.fontSize = (int)(size);
@@ -80,6 +81,7 @@ public class Items_Script : MonoBehaviour
     //        sele
     //}
     bool trovatoSetected = false;
+
     void drawElements()
     {
         float selected = elementSize * 1.5f;
@@ -96,8 +98,8 @@ public class Items_Script : MonoBehaviour
             if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                 positionYButtons - selected / 4, selected, selected), white))
             {
-                CameraScript.data.helmet = Helmet.white;
-                audio.PlayOneShot(equipSound);
+                //CameraScript.data.helmet = Helmet.white;
+                //audio.PlayOneShot(equipSound);
             }
             trovatoSetected = true;
         }
@@ -106,8 +108,7 @@ public class Items_Script : MonoBehaviour
             if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
                 positionYButtons, elementSize, elementSize), white))
             {
-                CameraScript.data.helmet = Helmet.white;
-                audio.PlayOneShot(equipSound);
+                selectElement(Helmet.white);
             }
         }
         availableLights++;
@@ -119,8 +120,8 @@ public class Items_Script : MonoBehaviour
                 if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                     positionYButtons - selected / 4, selected, selected), redligth))
                 {
-                    CameraScript.data.helmet = Helmet.red;
-                    audio.PlayOneShot(equipSound);
+                    //CameraScript.data.helmet = Helmet.red;
+                    //audio.PlayOneShot(equipSound);
                 }
                 trovatoSetected = true;
             }
@@ -129,8 +130,7 @@ public class Items_Script : MonoBehaviour
                 if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
                     positionYButtons, elementSize, elementSize), redligth))
                 {
-                    CameraScript.data.helmet = Helmet.red;
-                    audio.PlayOneShot(equipSound);
+                    selectElement(Helmet.red);
                 }
             }
             availableLights++;
@@ -143,19 +143,18 @@ public class Items_Script : MonoBehaviour
                 if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                     positionYButtons - selected / 4, selected, selected), blueligth))
                 {
-                    CameraScript.data.helmet = Helmet.blue;
-                    audio.PlayOneShot(equipSound);
+                    //CameraScript.data.helmet = Helmet.blue;
+                    //audio.PlayOneShot(equipSound);
                 }
                 trovatoSetected = true;
             }
             else
             {
-                print("blue: " + trovatoSetected + "   " + difference);
+                //print("blue: " + trovatoSetected + "   " + difference);
                 if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
                     positionYButtons, elementSize, elementSize), blueligth))
                 {
-                    CameraScript.data.helmet = Helmet.blue;
-                    audio.PlayOneShot(equipSound);
+                    selectElement(Helmet.blue);
                 }
             }
             availableLights++;
@@ -168,8 +167,8 @@ public class Items_Script : MonoBehaviour
                 if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                     positionYButtons - selected / 4, selected, selected), greenligth))
                 {
-                    CameraScript.data.helmet = Helmet.green;
-                    audio.PlayOneShot(equipSound);
+                    //CameraScript.data.helmet = Helmet.green;
+                    //audio.PlayOneShot(equipSound);
                 }
                 trovatoSetected = true;
             }
@@ -178,8 +177,7 @@ public class Items_Script : MonoBehaviour
                 if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
                     positionYButtons, elementSize, elementSize), greenligth))
                 {
-                    CameraScript.data.helmet = Helmet.green;
-                    audio.PlayOneShot(equipSound);
+                    selectElement(Helmet.green);
                 }
             }
             availableLights++;
@@ -192,8 +190,8 @@ public class Items_Script : MonoBehaviour
                 if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                     positionYButtons - selected / 4, selected, selected), pinkligth))
                 {
-                    CameraScript.data.helmet = Helmet.pink;
-                    audio.PlayOneShot(equipSound);
+                    //CameraScript.data.helmet = Helmet.pink;
+                    //audio.PlayOneShot(equipSound);
                 }
                 trovatoSetected = true;
             }
@@ -202,8 +200,7 @@ public class Items_Script : MonoBehaviour
                 if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
                     positionYButtons, elementSize, elementSize), pinkligth))
                 {
-                    CameraScript.data.helmet = Helmet.pink;
-                    audio.PlayOneShot(equipSound);
+                    selectElement(Helmet.pink);
                 }
             }
             availableLights++;
@@ -216,8 +213,8 @@ public class Items_Script : MonoBehaviour
                 if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                     positionYButtons - selected / 4, selected, selected), ranbowligth))
                 {
-                    CameraScript.data.helmet = Helmet.rainbow;
-                    audio.PlayOneShot(equipSound);
+                    //CameraScript.data.helmet = Helmet.rainbow;
+                    //audio.PlayOneShot(equipSound);
                 }
                 trovatoSetected = true;
             }
@@ -226,13 +223,13 @@ public class Items_Script : MonoBehaviour
                 if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
                     positionYButtons, elementSize, elementSize), ranbowligth))
                 {
-                    CameraScript.data.helmet = Helmet.rainbow;
-                    audio.PlayOneShot(equipSound);
+                    selectElement(Helmet.rainbow);
                 }
             }
             availableLights++;
         }
-        if (availableLights != 5)
+
+        if (availableLights < 6)
         {
             if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
                     positionYButtons, elementSize, elementSize), buyButton))
@@ -243,32 +240,41 @@ public class Items_Script : MonoBehaviour
         GUI.EndScrollView();
     }
 
+    void selectElement(Helmet e)
+    {
+        if (impressing)
+        {
+            CameraScript.data.helmet = e;
+            audio.PlayOneShot(equipSound);
+        }
+    }
+
     void Update()
     {
 #if !UNITY_METRO
 
         Touch touch = Input.touches[0];
         bool fInsideList = IsTouchInsideList(touch.position);
-        //if (touch.phase == TouchPhase.Began)
-        //    imbuying = true;
+        if (touch.phase == TouchPhase.Began)
+            impressing = true;
         if (touch.phase == TouchPhase.Moved && fInsideList)
         {
             position.x -= touch.deltaPosition.x * scrollparam; //2:768= x:Screen.height
-            //imbuying = false;
+            impressing = false;
         }
 #else
-            //if (CameraScript.IsTouch)
-            //{
-            //    Touch touch = Input.touches[0];
-            //    bool fInsideList = IsTouchInsideList(touch.position);
-            //    if (touch.phase == TouchPhase.Began)
-            //        imbuying = true;
-            //    if (touch.phase == TouchPhase.Moved && fInsideList)
-            //    {
-            //        position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
-            //        imbuying = false;
-            //    }
-            //}
+        if (CameraScript.IsTouch)
+        {
+            Touch touch = Input.touches[0];
+            bool fInsideList = IsTouchInsideList(touch.position);
+            if (touch.phase == TouchPhase.Began)
+                impressing = true;
+            if (touch.phase == TouchPhase.Moved && fInsideList)
+            {
+                position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
+                impressing = false;
+            }
+        }
 #endif
     }
 

@@ -38,7 +38,6 @@ public class MenuScript : MonoBehaviour
         margin = Screen.width / 60;
         ////Data.LoadFromText();
 
-        Debug.Log(PlayerPrefs.GetString("data"));
         CameraScript.LoadData();
 
         if (PlayerPrefs.GetString("gift1") == "")

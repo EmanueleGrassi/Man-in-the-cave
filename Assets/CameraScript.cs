@@ -131,27 +131,27 @@ public class Data
                     CameraScript.data = serializer.Deserialize(stream) as Data;
             }
         }
-        catch
+        catch (System.IO.FileNotFoundException e)
         {
             CameraScript.data = new Data();
             Data.Save();
         }
     }
 
-    public static void LoadFromText()
-    {
-        if (CameraScript.data != null)
-        {
-            string text = PlayerPrefs.GetString("data");
-            var serializer = new XmlSerializer(typeof(Data));
-            CameraScript.data = serializer.Deserialize(new StringReader(text)) as Data;
-        }
-        else 
-            {
-                CameraScript.data = new Data();
-                Data.Save();
-            }
-    }
+    //public static void LoadFromText()
+    //{
+    //    if (CameraScript.data != null)
+    //    {
+    //        string text = PlayerPrefs.GetString("data");
+    //        var serializer = new XmlSerializer(typeof(Data));
+    //        CameraScript.data = serializer.Deserialize(new StringReader(text)) as Data;
+    //    }
+    //    else 
+    //        {
+    //            CameraScript.data = new Data();
+    //            Data.Save();
+    //        }
+    //}
 
 }
 public enum Helmet
@@ -263,8 +263,8 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         ////carica i salvataggi
-        LoadData();
-        //Data.Load();
+        //LoadData();
+        Data.Load();
         #region test Records
         //data = new Data();
         //data.Records[0] = new Rect(8,9,34,3432);
@@ -408,8 +408,6 @@ public class CameraScript : MonoBehaviour
             PlayScript.State = PlayScript.PlayState.menu;
             Application.LoadLevel(0);
         }
-        if (Input.GetKey(KeyCode.Escape))
-            Application.LoadLevel(0);
     }
 
     private void drawResult()

@@ -1324,6 +1324,7 @@ MonoBehaviour:
   myAppFreeBanner: {fileID: 2800000, guid: bc0f770d8e871ff49ac573d58d8f02b3, type: 3}
   normalBanner: {fileID: 2800000, guid: 2e357e578a5994048b6889829b952cae, type: 3}
   promotionSound: {fileID: 8300000, guid: d6de90b7ddcf34846840ff52aa2b81f0, type: 3}
+  buttonSound: {fileID: 0}
 --- !u!82 &1748731439
 AudioSource:
   m_ObjectHideFlags: 0
