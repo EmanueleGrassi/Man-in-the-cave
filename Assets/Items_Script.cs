@@ -74,39 +74,7 @@ public class Items_Script : MonoBehaviour
         drawElements();
     }
 
-    private void equippedLight()
-    {
-        if (CameraScript.data.helmet == Helmet.white)
-        {
-            GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), white, ScaleMode.ScaleToFit, false);
-            return;
-        }
-        if (CameraScript.data.helmet == Helmet.red)
-        {
-            GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), redligth, ScaleMode.ScaleToFit, false);
-            return;
-        }
-        if (CameraScript.data.helmet == Helmet.blue)
-        {
-            GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), blueligth, ScaleMode.ScaleToFit, false);
-            return;
-        }
-        if (CameraScript.data.helmet == Helmet.green)
-        {
-            GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), greenligth, ScaleMode.ScaleToFit, false);
-            return;
-        }
-        if (CameraScript.data.helmet == Helmet.pink)
-        {
-            GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), pinkligth, ScaleMode.ScaleToFit, false);
-            return;
-        }
-        if (CameraScript.data.helmet == Helmet.rainbow)
-        {
-            GUI.DrawTexture(new Rect(size * 8, size * 4, size * 2, size * 2), ranbowligth, ScaleMode.ScaleToFit, false);
-            return;
-        }
-    }
+
 
     //float getSize(Helmet e)
     //{
@@ -253,44 +221,6 @@ public class Items_Script : MonoBehaviour
         availableLights++;
 
         GUI.EndScrollView();
-    }
-
-    private void availableLight()
-    {
-        availableLights = 0;
-        if (CameraScript.data.helmet != Helmet.white)
-        {
-
-
-        }
-        if (CameraScript.data.lightRed && CameraScript.data.helmet != Helmet.red)
-        {
-
-        }
-        if (CameraScript.data.lightBlue && CameraScript.data.helmet != Helmet.blue)
-        {
-
-        }
-        if (CameraScript.data.lightGreen && CameraScript.data.helmet != Helmet.green)
-        {
-
-        }
-        if (CameraScript.data.lightPink && CameraScript.data.helmet != Helmet.pink)
-        {
-
-        }
-        if (CameraScript.data.lightRainbow && CameraScript.data.helmet != Helmet.rainbow)
-        {
-
-        }
-        if (availableLights == 0)
-        {
-            if (GUI.Button(new Rect(margin, size * 6 - margin, size * 11, size * 2 + margin), "Buy a new helmet's light!"))
-            {
-                CameraScript.SaveData();
-                Application.LoadLevel(2);
-            }
-        }
     }
 
     void Update()
