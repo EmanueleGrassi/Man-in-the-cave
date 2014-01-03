@@ -109,13 +109,13 @@ public class Data
     }
     #endregion
 
-    public static void Save()
+    public void Save()
     {
         string path = Path.Combine(Application.persistentDataPath, "data.xml");
         var serializer = new XmlSerializer(typeof(Data));
         using (var stream = new FileStream(path, FileMode.Create))
         {
-            serializer.Serialize(stream, CameraScript.data);
+            serializer.Serialize(stream, this);
         }
     }
 
@@ -127,32 +127,15 @@ public class Data
         {
             using (var stream = new FileStream(path, FileMode.Open))
             {
-                if (CameraScript.data != null)
-                    CameraScript.data = serializer.Deserialize(stream) as Data;
+                CameraScript.data = serializer.Deserialize(stream) as Data;
             }
         }
         catch (System.IO.FileNotFoundException e)
         {
             CameraScript.data = new Data();
-            Data.Save();
+            CameraScript.data.Save();
         }
     }
-
-    //public static void LoadFromText()
-    //{
-    //    if (CameraScript.data != null)
-    //    {
-    //        string text = PlayerPrefs.GetString("data");
-    //        var serializer = new XmlSerializer(typeof(Data));
-    //        CameraScript.data = serializer.Deserialize(new StringReader(text)) as Data;
-    //    }
-    //    else 
-    //        {
-    //            CameraScript.data = new Data();
-    //            Data.Save();
-    //        }
-    //}
-
 }
 public enum Helmet
 {
@@ -172,7 +155,8 @@ public class Record
 public class CameraScript : MonoBehaviour
 {
 #region variabili
-    #region private  
+    #region private 
+    
     //menu
     float height;
     float margin, margin2;
@@ -180,7 +164,7 @@ public class CameraScript : MonoBehaviour
     #endregion
     #region pubbliche
     /*CLASSE SALVATAGGIO*/
-        public static Data data;
+    public static Data data;
     /*CLASSE SALVATAGGIO*/
         public GUISkin custom;
         public Transform playerPG;
@@ -215,65 +199,53 @@ public class CameraScript : MonoBehaviour
         public static bool IsTouch = false;
 #endif
 #if UNITY_METRO || UNITY_WP8
-        public static event EventHandler saveEvent, loadEvent, shareEvent;
+        public static event EventHandler shareEvent;
         public static event EventHandler GOReviews;
 #endif
 #region Save and Load
         public static void SaveData()
         {
-#if UNITY_WP8
-            if (saveEvent != null)
-                saveEvent(saveEvent, new EventArgs());            
-#else
+            data.Save();
+          
+//#else
             
-			foreach(var item in data.Records)
-			{
-				print("day rec: "+item.y);
-			}
-            JSON js = new JSON();
-			print (((JSON)data).serialized);
-			js["salvataggio"] = ((JSON)data);
-            PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
-            PlayerPrefs.Save();
-#endif
+//            foreach(var item in data.Records)
+//            {
+//                print("day rec: "+item.y);
+//            }
+//            JSON js = new JSON();
+//            print (((JSON)data).serialized);
+//            js["salvataggio"] = ((JSON)data);
+//            PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
+//            PlayerPrefs.Save();
+//#endif
         }
     public static void LoadData()
     {
-        #if UNITY_WP8
-            if (loadEvent != null)
-                loadEvent(loadEvent, new EventArgs());
-#else
-        if (PlayerPrefs.GetString("salvataggio") != "")
-        {
-            JSON js = new JSON();
-            js.serialized = PlayerPrefs.GetString("salvataggio"); //devo prendere quella dei settings 
-            data = (Data)js.ToJSON("salvataggio");
-        }
-        else
-        {
-            data = new Data();
-			for (int i =0; i<20; i++)
-				data.Records[i]= new Rect(0,0,0,0);
-            SaveData();
-        }
-#endif
+         Data.Load();
+//#else
+//        if (PlayerPrefs.GetString("salvataggio") != "")
+//        {
+//            JSON js = new JSON();
+//            js.serialized = PlayerPrefs.GetString("salvataggio"); //devo prendere quella dei settings 
+//            data = (Data)js.ToJSON("salvataggio");
+//        }
+//        else
+//        {
+//            data = new Data();
+//            for (int i =0; i<20; i++)
+//                data.Records[i]= new Rect(0,0,0,0);
+//            SaveData();
+//        }
+//#endif
     }
 #endregion
 
     void Start()
     {
         ////carica i salvataggi
-        //LoadData();
-        Data.Load();
-        #region test Records
-        //data = new Data();
-        //data.Records[0] = new Rect(8,9,34,3432);
-        //print("creato");
-        //SaveData();
-        //print("salvato");
-        //LoadData();
-        //print("width 0: "+data.Records[0].width );
-        #endregion
+
+        LoadData();
 
         bengalaButton = GameObject.Find("BengalaButton");
         movementButton = GameObject.Find("LeftTouchPad");

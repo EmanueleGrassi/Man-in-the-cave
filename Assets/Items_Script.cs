@@ -234,7 +234,8 @@ public class Items_Script : MonoBehaviour
             if (GUI.Button(new Rect((Screen.width / 2 - elementSize / 2) + margin + availableLights * (elementSize + margin) + (trovatoSetected ? difference * 2 : 0),
                     positionYButtons, elementSize, elementSize), buyButton))
             {
-                Application.LoadLevel("BuyItems");
+                if (impressing)
+                    Application.LoadLevel("BuyItems");
             }
         }
         GUI.EndScrollView();
