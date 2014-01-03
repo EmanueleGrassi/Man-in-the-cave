@@ -17,7 +17,7 @@ public class MenuScript : MonoBehaviour
     public Texture Title, facebook, twitter, review, celialab;
     public Texture myAppFreeBanner, normalBanner;
     public static event EventHandler GOReviews;
-    public AudioClip promotionSound;
+    public AudioClip promotionSound,buttonSound;
 
 
     private Quaternion cameraBase = Quaternion.identity;
@@ -216,6 +216,7 @@ public class MenuScript : MonoBehaviour
         if (GUI.Button(new Rect((Screen.width / 2) - playSize / 2, UnTerzo + ((UnTerzo / 2) - playSize / 2), playSize, playSize), PlayButton))
         {
             Application.LoadLevel("main");
+            audio.PlayOneShot(buttonSound);
         }
 
         float posizioneButton;
@@ -228,6 +229,7 @@ public class MenuScript : MonoBehaviour
                                      BottoniHeight, BottoniHeight), ScoreButton))
             {
                 Application.LoadLevel("Scores");
+                //audio.PlayOneShot(buttonSound);
             }
             numBottone++;
         }
@@ -239,6 +241,7 @@ public class MenuScript : MonoBehaviour
                                  BottoniHeight, BottoniHeight), BuyItemsButton))
         {
             Application.LoadLevel("BuyItems");
+            //audio.PlayOneShot(buttonSound);
         }
         numBottone++;
         if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight) * numBottone,
@@ -246,6 +249,7 @@ public class MenuScript : MonoBehaviour
                                 BottoniHeight, BottoniHeight), ItemsButton))
         {
             Application.LoadLevel("Items");
+           // audio.PlayOneShot(buttonSound);
         }
         numBottone++;
         if (GUI.Button(new Rect(posizioneButton + (margin + BottoniHeight) * numBottone,
@@ -253,6 +257,7 @@ public class MenuScript : MonoBehaviour
                                  BottoniHeight, BottoniHeight), SettingsButton))
         {
             Application.LoadLevel("Settings");
+            //audio.PlayOneShot(buttonSound);
         }
         if (GUI.Button(new Rect(Screen.width - (SocialSize + margin), Screen.height - (SocialSize * 3 + margin), SocialSize, SocialSize), facebook))
         {
