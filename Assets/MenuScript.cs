@@ -198,10 +198,8 @@ public class MenuScript : MonoBehaviour
     // Update is called once per frame
     void OnGUI()
     {
-        if (CameraScript.data == null)
-        {
-            GUI.Label(new Rect(0, 0, 2000, 100), CameraScript.s);
-        }
+        GUI.Label(new Rect(0, 0, 2000, 100), CameraScript.s);
+        
         if (GUI.skin != custom)
             GUI.skin = custom;
         float piccoliBottoniSize = Screen.width / 4.6f;
