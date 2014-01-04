@@ -130,9 +130,9 @@ public class Data
                 CameraScript.data = serializer.Deserialize(stream) as Data;
             }
         }
-        catch (Exception e)  //System.IO.FileNotFoundException
+        catch (Exception e)  //System.IO.FileNotFoundException per wp, System.IO.IsolatedStorage.IsolatedStorageException su android(?)
         {
-            CameraScript.s = e.ToString();
+            CameraScript.s = e.ToString();  //ELIMINARE
             CameraScript.data = new Data();
             CameraScript.data.Save();
         }
@@ -189,7 +189,7 @@ public class CameraScript : MonoBehaviour
         public static bool replayGame;
 
 
-        public static string s;
+        public static string s; //ELIMINARE
     #endregion
 #endregion
 

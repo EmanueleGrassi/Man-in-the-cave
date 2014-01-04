@@ -198,7 +198,7 @@ public class MenuScript : MonoBehaviour
     // Update is called once per frame
     void OnGUI()
     {
-        GUI.Label(new Rect(0, 0, 2000, 100), CameraScript.s);
+        GUI.Label(new Rect(0, 0, 2000, 100), CameraScript.s);  //ELIMINARE
         
         if (GUI.skin != custom)
             GUI.skin = custom;
