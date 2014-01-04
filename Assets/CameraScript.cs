@@ -40,74 +40,74 @@ public class Data
     public Helmet helmet = Helmet.white;
 
 
-    #region SAVE
-    // serialize this class to JSON
-    public static implicit operator JSON(Data value)
-    {
-        JSON js = new JSON();
-        JSON jsTransform = new JSON();
-        js["transform"] = jsTransform;
+    //#region SAVE
+    //// serialize this class to JSON
+    //public static implicit operator JSON(Data value)
+    //{
+    //    JSON js = new JSON();
+    //    JSON jsTransform = new JSON();
+    //    js["transform"] = jsTransform;
 
-        js["points"] = value.points;
-        js["pickaxeState"] = value.pickaxeState;
-        js["NumberPickaxe"] = value.NumberPickaxe;
-        js["NumberReborn"] = value.NumberReborn;
-        js["numBengala"] = value.numBengala;
-        js["lightRed"] = value.lightRed;
-        js["lightBlue"] = value.lightBlue;
-        js["lightGreen"] = value.lightGreen;
-        js["lightPink"] = value.lightPink;
-        js["lightRainbow"] = value.lightRainbow;
-        js["helmet"] = (int)value.helmet;
-        Debug.Log(" len:" + value.Records.Length);
-        js["Record"] = new JSON[] {
-			(JSON)(value.Records[0]),
-			(JSON)(value.Records[1]),
-			(JSON)(value.Records[2]),
-			(JSON)(value.Records[3]),
-			(JSON)(value.Records[4]),
-			(JSON)(value.Records[5]),
-			(JSON)(value.Records[6]),
-			(JSON)(value.Records[7]),
-			(JSON)(value.Records[8]),
-			(JSON)(value.Records[9]),
-			(JSON)(value.Records[10]),
-			(JSON)(value.Records[11]),
-			(JSON)(value.Records[12]),
-			(JSON)(value.Records[13]),
-			(JSON)(value.Records[14]),
-			(JSON)(value.Records[15]),
-			(JSON)(value.Records[16]),
-			(JSON)(value.Records[17]),
-			(JSON)(value.Records[18]),
-			(JSON)(value.Records[19])
-		};
-        return js;
-    }
+    //    js["points"] = value.points;
+    //    js["pickaxeState"] = value.pickaxeState;
+    //    js["NumberPickaxe"] = value.NumberPickaxe;
+    //    js["NumberReborn"] = value.NumberReborn;
+    //    js["numBengala"] = value.numBengala;
+    //    js["lightRed"] = value.lightRed;
+    //    js["lightBlue"] = value.lightBlue;
+    //    js["lightGreen"] = value.lightGreen;
+    //    js["lightPink"] = value.lightPink;
+    //    js["lightRainbow"] = value.lightRainbow;
+    //    js["helmet"] = (int)value.helmet;
+    //    Debug.Log(" len:" + value.Records.Length);
+    //    js["Record"] = new JSON[] {
+    //        (JSON)(value.Records[0]),
+    //        (JSON)(value.Records[1]),
+    //        (JSON)(value.Records[2]),
+    //        (JSON)(value.Records[3]),
+    //        (JSON)(value.Records[4]),
+    //        (JSON)(value.Records[5]),
+    //        (JSON)(value.Records[6]),
+    //        (JSON)(value.Records[7]),
+    //        (JSON)(value.Records[8]),
+    //        (JSON)(value.Records[9]),
+    //        (JSON)(value.Records[10]),
+    //        (JSON)(value.Records[11]),
+    //        (JSON)(value.Records[12]),
+    //        (JSON)(value.Records[13]),
+    //        (JSON)(value.Records[14]),
+    //        (JSON)(value.Records[15]),
+    //        (JSON)(value.Records[16]),
+    //        (JSON)(value.Records[17]),
+    //        (JSON)(value.Records[18]),
+    //        (JSON)(value.Records[19])
+    //    };
+    //    return js;
+    //}
 
-    // JSON to class conversion
-    public static explicit operator Data(JSON value)
-    {
-        checked
-        {
-            JSON jsTransform = value.ToJSON("transform");
-            var deserislizedClass = new Data();
-            deserislizedClass.points = value.ToInt("points");
-            deserislizedClass.pickaxeState = value.ToInt("pickaxeState");
-            deserislizedClass.NumberPickaxe = value.ToInt("NumberPickaxe");
-            deserislizedClass.NumberReborn = value.ToInt("NumberReborn");
-            deserislizedClass.numBengala = value.ToInt("numBengala");
-            deserislizedClass.lightRed = value.ToBoolean("lightRed");
-            deserislizedClass.lightBlue = value.ToBoolean("lightBlue");
-            deserislizedClass.lightGreen = value.ToBoolean("lightGreen");
-            deserislizedClass.lightPink = value.ToBoolean("lightPink");
-            deserislizedClass.lightRainbow = value.ToBoolean("lightRainbow");
-            deserislizedClass.helmet = (Helmet)value.ToInt("helmet");
-            deserislizedClass.Records = value.ToArray<Rect>("Record");
-            return deserislizedClass;
-        }
-    }
-    #endregion
+    //// JSON to class conversion
+    //public static explicit operator Data(JSON value)
+    //{
+    //    checked
+    //    {
+    //        JSON jsTransform = value.ToJSON("transform");
+    //        var deserislizedClass = new Data();
+    //        deserislizedClass.points = value.ToInt("points");
+    //        deserislizedClass.pickaxeState = value.ToInt("pickaxeState");
+    //        deserislizedClass.NumberPickaxe = value.ToInt("NumberPickaxe");
+    //        deserislizedClass.NumberReborn = value.ToInt("NumberReborn");
+    //        deserislizedClass.numBengala = value.ToInt("numBengala");
+    //        deserislizedClass.lightRed = value.ToBoolean("lightRed");
+    //        deserislizedClass.lightBlue = value.ToBoolean("lightBlue");
+    //        deserislizedClass.lightGreen = value.ToBoolean("lightGreen");
+    //        deserislizedClass.lightPink = value.ToBoolean("lightPink");
+    //        deserislizedClass.lightRainbow = value.ToBoolean("lightRainbow");
+    //        deserislizedClass.helmet = (Helmet)value.ToInt("helmet");
+    //        deserislizedClass.Records = value.ToArray<Rect>("Record");
+    //        return deserislizedClass;
+    //    }
+    //}
+    //#endregion
 
     public void Save()
     {
@@ -130,8 +130,9 @@ public class Data
                 CameraScript.data = serializer.Deserialize(stream) as Data;
             }
         }
-        catch (System.IO.FileNotFoundException e)
+        catch (Exception e)  //System.IO.FileNotFoundException
         {
+            CameraScript.s = e.ToString();
             CameraScript.data = new Data();
             CameraScript.data.Save();
         }
@@ -186,7 +187,9 @@ public class CameraScript : MonoBehaviour
 
         public static GameObject bengalaButton, movementButton, jumpButton;
         public static bool replayGame;
-       
+
+
+        public static string s;
     #endregion
 #endregion
 
