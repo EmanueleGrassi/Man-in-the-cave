@@ -200,6 +200,7 @@ public class CameraScript : MonoBehaviour
         float instrTime;
         bool showInstru;
         public static bool IsTouch = false;
+        public static event EventHandler saveEvent, loadEvent;
 #endif
 #if UNITY_METRO || UNITY_WP8
         public static event EventHandler shareEvent;
@@ -208,7 +209,12 @@ public class CameraScript : MonoBehaviour
 #region Save and Load
         public static void SaveData()
         {
+            #if UNITY_METRO
+            if (saveEvent != null)
+                saveEvent(new object(), new EventArgs());
+            #else
             data.Save();
+            #endif
           
 //#else
             
@@ -225,7 +231,12 @@ public class CameraScript : MonoBehaviour
         }
     public static void LoadData()
     {
-         Data.Load();
+            #if UNITY_METRO
+            if (loadEvent != null)
+                loadEvent(new object(), new EventArgs());
+            #else
+            data.Load();
+            #endif
 //#else
 //        if (PlayerPrefs.GetString("salvataggio") != "")
 //        {
