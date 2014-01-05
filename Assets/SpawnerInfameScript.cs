@@ -38,7 +38,7 @@ public class SpawnerInfameScript : MonoBehaviour {
     IEnumerator controllo(Vector3 actualPos)
     {
         stoControllando = true;
-        yield return new WaitForSeconds(2.5f);  //aspetto 2 secondi e mezzo
+        yield return new WaitForSeconds(3.7f);  //aspetto 2 secondi e mezzo
         if (pg.transform.position.x < actualPos.x+2 && pg.transform.position.x > actualPos.x-2)  //se la sua posizione non è cambiata più di tanto, cazzi sua
             iHaveToSpawn = true;
         stoControllando = false;
