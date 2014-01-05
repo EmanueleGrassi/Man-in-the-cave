@@ -47,7 +47,6 @@ public class BombBehaviour : MonoBehaviour {
 		{
             //explosiontime = CameraScript.PlayTime + Random.Range(2.5f,5.0f);
             grounded = true;
-            print(Time.time);
             StartCoroutine(Bgrounded());
 		}
         if (collision.gameObject.tag == "rock")
