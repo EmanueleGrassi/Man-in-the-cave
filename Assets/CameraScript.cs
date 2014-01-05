@@ -235,7 +235,7 @@ public class CameraScript : MonoBehaviour
             if (loadEvent != null)
                 loadEvent(new object(), new EventArgs());
             #else
-            data.Load();
+            Data.Load();
             #endif
 //#else
 //        if (PlayerPrefs.GetString("salvataggio") != "")

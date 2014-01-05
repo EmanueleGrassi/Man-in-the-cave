@@ -24,36 +24,44 @@ public class BombBehaviour : MonoBehaviour {
 	
     //float timeAfterExplosion;
 	// Update is called once per frame
-	void Update () 
-	{
-		
-		if(esplosioneAvvenuta && !audio.isPlaying)
-        {
-	        if (killed)
-	        {
-                GameManager_script.spanForResult(true, CameraScript.PlayTime);
-                CameraScript.ManageButton(false);
-	        }
-			Destroy(gameObject);
-		}
+    //void Update () 
+    //{
+    //    //if (esplosioneAvvenuta && !audio.isPlaying)
+    //    //{
+    //    //    if (killed)
+    //    //    {
+    //    //        GameManager_script.spanForResult(true, CameraScript.PlayTime);
+    //    //        CameraScript.ManageButton(false);
+    //    //    }
+    //    //    Destroy(gameObject);
+    //    //}
 
-        if (grounded && CameraScript.PlayTime > explosiontime && !esplosioneAvvenuta)
-        {
-            explode();
-        }
-	}
+    ////    //if (grounded && CameraScript.PlayTime > explosiontime && !esplosioneAvvenuta)
+    ////    //{
+    ////    //    explode();
+    ////    //}
+    //}
 	void OnCollisionEnter(Collision collision) 
 	{
 		if(collision.gameObject.tag=="ground")
 		{
-			explosiontime = CameraScript.PlayTime + Random.Range(2.5f,5.0f);
-			grounded=true;
+            //explosiontime = CameraScript.PlayTime + Random.Range(2.5f,5.0f);
+            grounded = true;
+            print(Time.time);
+            StartCoroutine(Bgrounded());
 		}
         if (collision.gameObject.tag == "rock")
             explode();
         if (collision.gameObject.tag == "Player" && !grounded)
             explode();
 	}
+
+    IEnumerator Bgrounded()
+    {
+        yield return new WaitForSeconds(Random.Range(2.5f, 5.0f));
+        //print("esegue qui");
+        explode();
+    }
 
     void explode()
     {
@@ -93,11 +101,22 @@ public class BombBehaviour : MonoBehaviour {
             pg.SetActive(false);
             print("disattivato");
             //
-            killed = true;
-            killTime = CameraScript.PlayTime;
+            //killed = true;
+            //killTime = CameraScript.PlayTime;
+            StartCoroutine("killMitch");
             //
             print("" + killTime);
         }
+    }
+
+    IEnumerator killMitch()
+    {
+        CameraScript.ManageButton(false);
+        //GameManager_script.spanForResult(true, CameraScript.PlayTime);
+        yield return new WaitForSeconds(1.4f);
+        if (CameraScript.replayGame)
+            CameraScript.replayGame = false;
+        PlayScript.State = PlayScript.PlayState.result;
     }
 
 	void Vibrate()
