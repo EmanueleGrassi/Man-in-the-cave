@@ -80,7 +80,8 @@ public class BombBehaviour : MonoBehaviour {
         //
         esplosioneAvvenuta = true;
 
-        if (pg.transform.position.x < transform.position.x + 7 && pg.transform.position.x > transform.position.x - 7 && transform.position.y < 5)
+        if (Vector3.Distance(pg.transform.position, transform.position) < 7)
+            //(pg.transform.position.x < transform.position.x + 7 && pg.transform.position.x > transform.position.x - 7 && transform.position.y < 5)
         {
             Vibrate();
 
