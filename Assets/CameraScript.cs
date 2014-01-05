@@ -170,8 +170,8 @@ public class CameraScript : MonoBehaviour
         public GUISkin custom;
         public Transform playerPG;
         public Transform _20bis;
-        public AudioClip rockSound, gameoverSound;
-        public AudioClip background;
+        public AudioClip[] rockSound;
+        public AudioClip background,gameoverSound;
         public float Volume;
         
         public static float PlayTime;
@@ -320,7 +320,7 @@ public class CameraScript : MonoBehaviour
 
         if (RockBehaviour.Play)
         {
-            AudioSource.PlayClipAtPoint(rockSound, RockBehaviour.deathP);
+            AudioSource.PlayClipAtPoint(rockSound[UnityEngine.Random.Range(0,rockSound.Length)], RockBehaviour.deathP);
             RockBehaviour.Play = false;
         }
         if (PlayScript.State == PlayScript.PlayState.play)
