@@ -192,8 +192,6 @@ public class CameraScript : MonoBehaviour
         public static string s; //ELIMINARE
     #endregion
 #endregion
-
-
 #if UNITY_METRO 
         private Boolean VisualizeButtonsOnW8=false;
 		public Texture Istruction;
@@ -284,6 +282,10 @@ public class CameraScript : MonoBehaviour
             showInstru = false;
         }
     #endif
+        if (SystemInfo.supportsGyroscope)
+        {
+            Input.gyro.enabled = false;
+        }
         PlayScript.State = PlayScript.PlayState.play;
     }
 

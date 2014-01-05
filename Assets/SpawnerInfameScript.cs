@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpawnerInfameScript : MonoBehaviour {
 
-    GameObject pg;
+    public Transform pg;
     public Transform rock1, rock2, rock3, rock4, rock5, rock6, marker;
     Vector3 MarkerPosition;
     float w, h;
@@ -11,15 +11,16 @@ public class SpawnerInfameScript : MonoBehaviour {
     Vector3 spawnPosition;
 
 	// Use this for initialization
-	void Start () {
-        pg = GameObject.Find("Player");
+	void Start () 
+    {        
         w = Screen.width;
         h = Screen.height;
         stoControllando = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
         if ( !stoControllando)
         {
             StartCoroutine(controllo(pg.transform.position));
@@ -39,7 +40,7 @@ public class SpawnerInfameScript : MonoBehaviour {
     {
         stoControllando = true;
         yield return new WaitForSeconds(3.7f);  //aspetto 2 secondi e mezzo
-        if (pg.transform.position.x < actualPos.x+2 && pg.transform.position.x > actualPos.x-2)  //se la sua posizione non è cambiata più di tanto, cazzi sua
+        if (pg.transform.position.x < actualPos.x+2.5 && pg.transform.position.x > actualPos.x-2.5)  //se la sua posizione non è cambiata più di tanto, cazzi sua
             iHaveToSpawn = true;
         stoControllando = false;
     }
@@ -47,7 +48,6 @@ public class SpawnerInfameScript : MonoBehaviour {
     private void istanziaRoccia()
     {
         int rnd = Random.Range(1, 7);
-
         switch (rnd)
         {
             case 1:
@@ -75,10 +75,5 @@ public class SpawnerInfameScript : MonoBehaviour {
                 rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
                 break;
         }
-    }
-
-    void OnGUI()
-    {
-        GUI.Label(new Rect(0, 0, 2000, 200), "" + pg.rigidbody.velocity.x);
     }
 }
