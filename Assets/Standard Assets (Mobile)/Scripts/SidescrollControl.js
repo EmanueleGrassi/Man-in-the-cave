@@ -151,6 +151,7 @@ function Update()
            #else
 	            if ( canJump && touchPad.IsFingerDown() )//qui salto
             {
+            	animator.SetBool("JumpUp", true);
                 jump = true;
                 canJump = false;
                 var t:int =  Random.Range(0,2);
