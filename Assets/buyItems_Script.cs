@@ -195,11 +195,7 @@ public class buyItems_Script : MonoBehaviour
         {
             CurrentState = buyState.money;
         }
-        Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent("Powers"), custom.label);
-        GUI.Label(new Rect(margin + size * 1.5f, UnTerzo / 6 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Powers"); 
-        Rect label2Position = GUILayoutUtility.GetRect(new GUIContent("Powers"), custom.label);
-        GUI.Label(new Rect(margin *3 + size * 1.5f + labelPosition.width, UnTerzo / 6 - label2Position.height / 2, label2Position.width, label2Position.height), "Lights");
-
+        
 #if UNITY_METRO
         custom.verticalScrollbarThumb.normal.background = thumb;
 #endif
