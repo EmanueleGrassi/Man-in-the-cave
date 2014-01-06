@@ -7,7 +7,7 @@ public class SpawnerInfameScript : MonoBehaviour {
     public Transform rock1, rock2, rock3, rock4, rock5, rock6, marker;
     Vector3 MarkerPosition;
     float w, h;
-    bool iHaveToSpawn, stoControllando;
+    bool iHaveToSpawn, stoControllando,initFinished, flag;
     Vector3 spawnPosition;
 
 	// Use this for initialization
@@ -16,23 +16,39 @@ public class SpawnerInfameScript : MonoBehaviour {
         w = Screen.width;
         h = Screen.height;
         stoControllando = false;
+        initFinished = false;
+        flag = true;
 	}
+
+    IEnumerator Init()
+    {
+        yield return new WaitForSeconds(10);
+        initFinished = true;
+    }
 	
 	// Update is called once per frame
-	void Update () 
+	void Update ()
     {
-        if ( !stoControllando)
+        if (!initFinished && flag)
         {
-            StartCoroutine(controllo(pg.transform.position));
+            StartCoroutine(Init());
+            flag = false;
         }
-        if (iHaveToSpawn)
+        else
         {
-            spawnPosition = new Vector3(pg.transform.position.x, transform.position.y, transform.position.z);
-            transform.position = spawnPosition;
-            istanziaRoccia();
-            MarkerPosition = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
-            Instantiate(marker, new Vector3(transform.position.x, MarkerPosition.y, 5.3f), Quaternion.identity);
-            iHaveToSpawn = false;
+            if (!stoControllando)
+            {
+                StartCoroutine(controllo(pg.transform.position));
+            }
+            if (iHaveToSpawn)
+            {
+                spawnPosition = new Vector3(pg.transform.position.x, transform.position.y, transform.position.z);
+                transform.position = spawnPosition;
+                istanziaRoccia();
+                MarkerPosition = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
+                Instantiate(marker, new Vector3(transform.position.x, MarkerPosition.y, 5.3f), Quaternion.identity);
+                iHaveToSpawn = false;
+            }
         }
 	}
 

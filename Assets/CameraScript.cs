@@ -121,8 +121,14 @@ public class Data
 
     public static void Load()
     {
+#if UNITY_WP8
+        System.IO.FileNotFoundException ex;
+#else
+        System.IO.IsolatedStorage.IsolatedStorageException ex;
+#endif
         string path = Path.Combine(Application.persistentDataPath, "data.xml");
         var serializer = new XmlSerializer(typeof(Data));
+        
         try
         {
             using (var stream = new FileStream(path, FileMode.Open))
@@ -130,9 +136,13 @@ public class Data
                 CameraScript.data = serializer.Deserialize(stream) as Data;
             }
         }
-        catch (Exception e)  //System.IO.FileNotFoundException per wp, System.IO.IsolatedStorage.IsolatedStorageException su android(?)
+        #if UNITY_WP8
+        catch(System.IO.FileNotFoundException e)
+        #else
+        catch(System.IO.IsolatedStorage.IsolatedStorageException e)
+        #endif
         {
-            CameraScript.s = e.ToString();  //ELIMINARE
+            CameraScript.s = e.ToString(); //ELIMINARE
             CameraScript.data = new Data();
             CameraScript.data.Save();
         }
