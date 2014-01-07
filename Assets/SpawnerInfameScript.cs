@@ -9,6 +9,7 @@ public class SpawnerInfameScript : MonoBehaviour {
     float w, h;
     bool iHaveToSpawn, stoControllando,initFinished, flag;
     Vector3 spawnPosition;
+    GameObject bis;
 
 	// Use this for initialization
 	void Start () 
@@ -18,6 +19,7 @@ public class SpawnerInfameScript : MonoBehaviour {
         stoControllando = false;
         initFinished = false;
         flag = true;
+        bis = GameObject.Find("20bis");
 	}
 
     IEnumerator Init()
@@ -34,7 +36,7 @@ public class SpawnerInfameScript : MonoBehaviour {
             StartCoroutine(Init());
             flag = false;
         }
-        else
+        else if (initFinished && bis.active)
         {
             if (!stoControllando)
             {
