@@ -1252,6 +1252,10 @@ MonoBehaviour:
   CancelButton_Texture: {fileID: 2800000, guid: 36002339e780c5241a4ac0de7c2ca74c,
     type: 3}
   Vignette_Texture: {fileID: 2800000, guid: a3cce153200572e408efef0006bf5423, type: 3}
+  back: {fileID: 2800000, guid: ca80a9f4819da1540b6e8dc4cf6780d5, type: 3}
+  right: {fileID: 2800000, guid: 1d3304a9bf12f204189c3e60548414e5, type: 3}
+  left: {fileID: 2800000, guid: b25a9d5e8667dd54ab4fa3f9441d5dfd, type: 3}
+  holding: {fileID: 2800000, guid: 3fe8aa71ae08bae49927ce7cac7c36d4, type: 3}
 --- !u!114 &458439275
 MonoBehaviour:
   m_ObjectHideFlags: 0
