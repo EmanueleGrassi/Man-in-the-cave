@@ -118,6 +118,9 @@ public class buyItems_Script : MonoBehaviour
         #endif
         #endregion
 
+        CameraScript.data.points += 5000;
+        CameraScript.SaveData();
+
         imbuying = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
@@ -277,8 +280,9 @@ public class buyItems_Script : MonoBehaviour
         }
         //scrollview
         int elem = 0;
+        int n = helmetToBuy();
         position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, Screen.height - (margin * 7)), position,
-                                       new Rect(0, 0, size * 10, size * 14));
+                                       new Rect(0, 0, size * 10, size * n));
         if (!CameraScript.data.lightRed)
         {
             elem++;
@@ -371,6 +375,22 @@ public class buyItems_Script : MonoBehaviour
             }
         }
         GUI.EndScrollView();
+    }
+
+    private int helmetToBuy()
+    {
+        int ret = 14;
+        if (CameraScript.data.lightBlue)
+            ret -= 3;
+        if (CameraScript.data.lightGreen)
+            ret -= 3;
+        if (CameraScript.data.lightPink)
+            ret -= 3;
+        if (CameraScript.data.lightRainbow)
+            ret -= 3;
+        if (CameraScript.data.lightRed)
+            ret -= 3;
+        return ret;
     }
 
     void Update()
