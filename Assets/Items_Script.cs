@@ -15,6 +15,7 @@ public class Items_Script : MonoBehaviour
     float UnTerzo;
     Vector2 position = Vector2.zero;
     float scrollparam;
+    int n;
     // Use this for initialization
     void Start()
     {
@@ -48,9 +49,27 @@ public class Items_Script : MonoBehaviour
             default:
                 break;
         }
+
+        n = helmetAvailable();
         //test
         //CameraScript.LoadData();
         //CameraScript.data.lightRed = CameraScript.data.lightBlue = CameraScript.data.lightGreen = CameraScript.data.lightPink = CameraScript.data.lightRainbow = true;
+    }
+
+    private int helmetAvailable()
+    {
+        int ret = 1;
+        if (CameraScript.data.lightBlue)
+            ret++;
+        if (CameraScript.data.lightGreen)
+            ret++;
+        if (CameraScript.data.lightPink)
+            ret++;
+        if (CameraScript.data.lightRainbow)
+            ret++;
+        if (CameraScript.data.lightRed)
+            ret++;
+        return ret;
     }
 
     void OnGUI()
@@ -89,8 +108,9 @@ public class Items_Script : MonoBehaviour
 
         //scrollview
         int elem = 0;
+        
         position = GUI.BeginScrollView(new Rect(0, UnTerzo / 3, Screen.width, Screen.height - (UnTerzo / 3)), position,
-                                       new Rect(0, 0, (6 * elementSize) + (margin * 5) + (Screen.width / 2 - elementSize / 2) * 2, Screen.height - (UnTerzo / 3)), true, false);
+                                       new Rect(0, 0, (n * elementSize) + (margin * 5) + (Screen.width / 2 - elementSize / 2) * 2, Screen.height - (UnTerzo / 3)), true, false);
         availableLights = 0;
         trovatoSetected = false;
         if (CameraScript.data.helmet == Helmet.white)

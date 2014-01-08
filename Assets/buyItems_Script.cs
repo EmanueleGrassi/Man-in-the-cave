@@ -118,9 +118,6 @@ public class buyItems_Script : MonoBehaviour
         #endif
         #endregion
 
-        CameraScript.data.points += 5000;
-        CameraScript.SaveData();
-
         imbuying = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
