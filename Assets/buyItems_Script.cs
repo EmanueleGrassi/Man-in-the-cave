@@ -98,11 +98,11 @@ public class buyItems_Script : MonoBehaviour
     {
         #region Android inapp
         #if UNITY_ANDROID
-            //com.celialab.ManInTheCave.UnityPlayerNativeActivity
-            //jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
-            unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            activity.Call("init");
+            ////com.celialab.ManInTheCave.UnityPlayerNativeActivity
+            ////jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
+            //unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            //activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            //activity.Call("init");
         #endif
         #endregion
 
@@ -171,15 +171,19 @@ public class buyItems_Script : MonoBehaviour
                 return money;
         }
     }
+    //spostare
+    float UnTerzo = Screen.height / 3;
+
     void OnGUI()
     {
         if (Input.GetKey(KeyCode.Escape))
             Application.LoadLevel(0);
         if (GUI.skin != custom)
             GUI.skin = custom;
-        float UnTerzo = Screen.height / 3;
+        
         if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
             Application.LoadLevel(0);
+
         custom.label.fontSize = (int)(size);
         if (GUI.Button(new Rect(margin * 2 + ((UnTerzo / 3) * 168) / 141, margin / 3, ((UnTerzo / 3) * 500) / 141, UnTerzo / 3), getStateTextures(0)))
         {
@@ -200,178 +204,192 @@ public class buyItems_Script : MonoBehaviour
         custom.verticalScrollbarThumb.normal.background = thumb;
 #endif
         custom.label.normal.textColor = new Color(255, 255, 255);
-        custom.label.fontSize = (int)(size * 1.5);
-        
-        
         custom.label.fontSize = (int)(size * 0.5f);
        
-        GUI.DrawTexture(new Rect(size * 10, margin , size, size), coins);
+        GUI.DrawTexture(new Rect(Screen.width-size*3-margin, margin , size, size), coins);
         custom.label.fontSize = (int)(size * 0.7);
-        GUI.Label(new Rect(size * 11 + margin, margin , size * 2, size), "" + CameraScript.data.points);
+        GUI.Label(new Rect(Screen.width - size*2 , margin*0.5f, size * 2, size+margin+0.5f), "" + CameraScript.data.points);
         custom.label.fontSize = (int)(size * 0.5f);
-        //purchases
-        custom.button.normal.textColor = new Color(205, 127, 50);
-        custom.button.fontSize = (int)(size * 0.7f);
-        if (GUI.Button(new Rect(size * 13, margin , size + 2 * margin, size), "+500"))
+
+        #region money
+        //DA FARE ANCORA
+        if (CurrentState == buyState.money)
         {
-            if (plus500 != null)
-                plus500(this, new EventArgs());
+            //purchases
+            custom.button.normal.textColor = new Color(205, 127, 50);
+            custom.button.fontSize = (int)(size * 0.7f);
+            if (GUI.Button(new Rect(size * 13, margin, size + 2 * margin, size), "+500"))
+            {
+                if (plus500 != null)
+                    plus500(this, new EventArgs());
 #if UNITY_ANDROID
-            activity.Call("buy","plus500");
+                activity.Call("buy", "plus500");
 #endif
 #if UNITY_IPHONE
             
 #endif
-        }
+            }
 
-        custom.button.normal.textColor = new Color(192, 192, 192);
-        custom.button.fontSize = (int)(size * 0.8f);
-        if (GUI.Button(new Rect(size * 15 - margin, margin, size + margin * 4, size), "+1000"))
-        {
-            if (plus1000 != null)
-                plus1000(this, new EventArgs());
+            custom.button.normal.textColor = new Color(192, 192, 192);
+            custom.button.fontSize = (int)(size * 0.8f);
+            if (GUI.Button(new Rect(size * 15 - margin, margin, size + margin * 4, size), "+1000"))
+            {
+                if (plus1000 != null)
+                    plus1000(this, new EventArgs());
 #if UNITY_ANDROID
-            activity.Call("buy", "plus1000");
+                activity.Call("buy", "plus1000");
 #endif
 #if UNITY_IPHONE
 #endif
-        }
+            }
 
-        custom.button.normal.textColor = new Color(246, 193, 0);
-        custom.button.fontSize = (int)(size * 0.9f);
-        if (GUI.Button(new Rect(size * 17, margin , size + 5 * margin, size), "+5000"))
-        {
-            if (plus5000 != null)
-                plus5000(this, new EventArgs());
+            custom.button.normal.textColor = new Color(246, 193, 0);
+            custom.button.fontSize = (int)(size * 0.9f);
+            if (GUI.Button(new Rect(size * 17, margin, size + 5 * margin, size), "+5000"))
+            {
+                if (plus5000 != null)
+                    plus5000(this, new EventArgs());
 #if UNITY_ANDROID
-            activity.Call("buy", "plus5k");
+                activity.Call("buy", "plus5k");
 #endif
 #if UNITY_IPHONE
 #endif
+            }
         }
+        #endregion
 
-        //colonna di sinistra
-        if (GUI.Button(new Rect(margin, margin * 13, size * 9, size * 3), bengal))
+        #region powers
+        if (CurrentState == buyState.Powers)
         {
-            if (CameraScript.data.points >= 90)
+            //colonna di sinistra
+            if (GUI.Button(new Rect(size*2, size*4, size * 7, size * 7), bengal))
             {
-                CameraScript.data.points -= 90;
-                CameraScript.data.numBengala += 2;
-                CameraScript.SaveData();
-                audio.PlayOneShot(cashsound);
-            }
-            else
-                audio.PlayOneShot(noMoney);
-        }
-        if (GUI.Button(new Rect(margin, unmarginino + size * 3, size * 9, size * 3), reborn))
-        {
-            if (CameraScript.data.points >= 300)
-            {
-                CameraScript.data.points -= 300;
-                CameraScript.data.NumberReborn++;
-                CameraScript.SaveData();
-                audio.PlayOneShot(cashsound);
-            }
-            else
-                audio.PlayOneShot(noMoney);
-        }
-        //scrollview
-        int elem = 0;
-        int n = helmetToBuy();
-        position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, Screen.height - (margin * 7)), position,
-                                       new Rect(0, 0, size * 10, size * n));
-        if (!CameraScript.data.lightRed)
-        {
-            elem++;
-            if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), redLight))
-            {
-                if (CameraScript.data.points >= 500 && imbuying)
+                if (CameraScript.data.points >= 90)
                 {
-                    CameraScript.data.points -= 500;
-                    CameraScript.data.lightRed = true;
-                    CameraScript.data.helmet = Helmet.red;
+                    CameraScript.data.points -= 90;
+                    CameraScript.data.numBengala += 2;
                     CameraScript.SaveData();
-                    elem++;
-                    //SUONA CASSA
+                    audio.PlayOneShot(cashsound);
+                }
+                else
+                    audio.PlayOneShot(noMoney);
+            }
+            if (GUI.Button(new Rect(size*12, size*4 , size * 7, size * 7), reborn))
+            {
+                if (CameraScript.data.points >= 300)
+                {
+                    CameraScript.data.points -= 300;
+                    CameraScript.data.NumberReborn++;
+                    CameraScript.SaveData();
                     audio.PlayOneShot(cashsound);
                 }
                 else
                     audio.PlayOneShot(noMoney);
             }
         }
-        if (!CameraScript.data.lightBlue)
+        #endregion
+
+        #region lights
+        if (CurrentState == buyState.lights)
         {
-            elem++;
-            if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), bluLight))
+            int elem = 0;
+            int n = helmetToBuy();
+            position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, Screen.height - (margin * 7)), position,
+                                           new Rect(0, 0, size * 10, size * n));
+            if (!CameraScript.data.lightRed)
             {
-                if (CameraScript.data.points >= 550 && imbuying)
+                elem++;
+                if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), redLight))
                 {
-                    CameraScript.data.points -= 550;
-                    CameraScript.data.lightBlue = true;
-                    CameraScript.data.helmet = Helmet.blue;
-                    CameraScript.SaveData();
-                    //SUONA CASSA
-                    audio.PlayOneShot(cashsound);
+                    if (CameraScript.data.points >= 500 && imbuying)
+                    {
+                        CameraScript.data.points -= 500;
+                        CameraScript.data.lightRed = true;
+                        CameraScript.data.helmet = Helmet.red;
+                        CameraScript.SaveData();
+                        elem++;
+                        //SUONA CASSA
+                        audio.PlayOneShot(cashsound);
+                    }
+                    else
+                        audio.PlayOneShot(noMoney);
                 }
-                else
-                    audio.PlayOneShot(noMoney);
             }
-        }
-        if (!CameraScript.data.lightGreen)
-        {
-            elem++;
-            if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), greenLight))
+            if (!CameraScript.data.lightBlue)
             {
-                if (CameraScript.data.points >= 750 && imbuying)
+                elem++;
+                if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), bluLight))
                 {
-                    CameraScript.data.points -= 750;
-                    CameraScript.data.lightGreen = true;
-                    CameraScript.data.helmet = Helmet.green;
-                    CameraScript.SaveData();
-                    //SUONA CASSA
-                    audio.PlayOneShot(cashsound);
+                    if (CameraScript.data.points >= 550 && imbuying)
+                    {
+                        CameraScript.data.points -= 550;
+                        CameraScript.data.lightBlue = true;
+                        CameraScript.data.helmet = Helmet.blue;
+                        CameraScript.SaveData();
+                        //SUONA CASSA
+                        audio.PlayOneShot(cashsound);
+                    }
+                    else
+                        audio.PlayOneShot(noMoney);
                 }
-                else
-                    audio.PlayOneShot(noMoney);
             }
-        }
-        if (!CameraScript.data.lightPink)
-        {
-            elem++;
-            if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), pinkLight))
+            if (!CameraScript.data.lightGreen)
             {
-                if (CameraScript.data.points >= 800 && imbuying)
+                elem++;
+                if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), greenLight))
                 {
-                    CameraScript.data.points -= 800;
-                    CameraScript.data.lightPink = true;
-                    CameraScript.data.helmet = Helmet.pink;
-                    CameraScript.SaveData();
-                    //SUONA CASSA
-                    audio.PlayOneShot(cashsound);
+                    if (CameraScript.data.points >= 750 && imbuying)
+                    {
+                        CameraScript.data.points -= 750;
+                        CameraScript.data.lightGreen = true;
+                        CameraScript.data.helmet = Helmet.green;
+                        CameraScript.SaveData();
+                        //SUONA CASSA
+                        audio.PlayOneShot(cashsound);
+                    }
+                    else
+                        audio.PlayOneShot(noMoney);
                 }
-                else
-                    audio.PlayOneShot(noMoney);
             }
-        }
-        if (!CameraScript.data.lightRainbow)
-        {
-            elem++;
-            if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), arcoLight))
+            if (!CameraScript.data.lightPink)
             {
-                if (CameraScript.data.points >= 6000 && imbuying)
+                elem++;
+                if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), pinkLight))
                 {
-                    CameraScript.data.points -= 6000;
-                    CameraScript.data.lightRainbow = true;
-                    CameraScript.data.helmet = Helmet.rainbow;
-                    CameraScript.SaveData();
-                    //SUONA CASSA
-                    audio.PlayOneShot(cashsound);
+                    if (CameraScript.data.points >= 800 && imbuying)
+                    {
+                        CameraScript.data.points -= 800;
+                        CameraScript.data.lightPink = true;
+                        CameraScript.data.helmet = Helmet.pink;
+                        CameraScript.SaveData();
+                        //SUONA CASSA
+                        audio.PlayOneShot(cashsound);
+                    }
+                    else
+                        audio.PlayOneShot(noMoney);
                 }
-                else
-                    audio.PlayOneShot(noMoney);
             }
+            if (!CameraScript.data.lightRainbow)
+            {
+                elem++;
+                if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), arcoLight))
+                {
+                    if (CameraScript.data.points >= 6000 && imbuying)
+                    {
+                        CameraScript.data.points -= 6000;
+                        CameraScript.data.lightRainbow = true;
+                        CameraScript.data.helmet = Helmet.rainbow;
+                        CameraScript.SaveData();
+                        //SUONA CASSA
+                        audio.PlayOneShot(cashsound);
+                    }
+                    else
+                        audio.PlayOneShot(noMoney);
+                }
+            }
+            GUI.EndScrollView();
         }
-        GUI.EndScrollView();
+        #endregion
     }
 
     private int helmetToBuy()
@@ -393,7 +411,8 @@ public class buyItems_Script : MonoBehaviour
     void Update()
     {
         #if !UNITY_METRO
-        
+        if (Input.touchCount > 0)
+        {
             Touch touch = Input.touches[0];
             bool fInsideList = IsTouchInsideList(touch.position);
             if (touch.phase == TouchPhase.Began)
@@ -403,17 +422,21 @@ public class buyItems_Script : MonoBehaviour
                 position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
                 imbuying = false;
             }
+        }
         #else
             if (CameraScript.IsTouch)
             {
-                Touch touch = Input.touches[0];
-                bool fInsideList = IsTouchInsideList(touch.position);
-                if (touch.phase == TouchPhase.Began)
-                    imbuying = true;
-                if (touch.phase == TouchPhase.Moved && fInsideList)
-                {
-                    position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
-                    imbuying = false;
+                if (Input.touchCount > 0)
+                    {
+                    Touch touch = Input.touches[0];
+                    bool fInsideList = IsTouchInsideList(touch.position);
+                    if (touch.phase == TouchPhase.Began)
+                        imbuying = true;
+                    if (touch.phase == TouchPhase.Moved && fInsideList)
+                    {
+                        position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
+                        imbuying = false;
+                    }
                 }
             }
 #endif
