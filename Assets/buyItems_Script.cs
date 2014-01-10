@@ -14,7 +14,7 @@ public class buyItems_Script : MonoBehaviour
     float[] span;
     bool imbuying;
     public Texture back;
-    float unmarginino, scrollparam;
+    float unmarginino, scrollparam, elemSize;
     public Texture2D thumb;
     buyState CurrentState = buyState.Powers;
     enum buyState
@@ -121,20 +121,14 @@ public class buyItems_Script : MonoBehaviour
         imbuying = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
-        //#if UNITY_WP8                
-        //    span = new float[] {0, 0, size * 2 + margin ,
-        //                              margin * 2 + size * 4,
-        //                              margin * 3 + size * 6,
-        //                              margin * 4 + size * 8};
-        //    unmarginino = margin * 11;
-        //#else
             span = new float[] {0, 0, size * 2 + 2 * margin ,
 								      margin * 4 + size * 4,
 								      margin * 6 + size * 6,
 								      margin * 8 + size * 8};
             unmarginino = margin * 12;
-        //#endif
         scrollparam = (Screen.height * 2) / 768;
+
+        elemSize = size * 5;
 
         #if UNITY_METRO
             if (CameraScript.IsTouch)
@@ -171,6 +165,7 @@ public class buyItems_Script : MonoBehaviour
                 return money;
         }
     }
+
     //spostare
     float UnTerzo = Screen.height / 3;
 
@@ -292,14 +287,14 @@ public class buyItems_Script : MonoBehaviour
         #region lights
         if (CurrentState == buyState.lights)
         {
-            int elem = 0;
+            int elem = -1;
             int n = helmetToBuy();
-            position = GUI.BeginScrollView(new Rect(size * 10, margin * 7, size * 10, Screen.height - (margin * 7)), position,
-                                           new Rect(0, 0, size * 10, size * n));
+            position = GUI.BeginScrollView(new Rect(size, size*5, Screen.width-size, size*6), position,
+                                           new Rect(0, 0, size * (16-n), size *6));
             if (!CameraScript.data.lightRed)
             {
                 elem++;
-                if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), redLight))
+                if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), redLight))
                 {
                     if (CameraScript.data.points >= 500 && imbuying)
                     {
@@ -318,7 +313,7 @@ public class buyItems_Script : MonoBehaviour
             if (!CameraScript.data.lightBlue)
             {
                 elem++;
-                if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), bluLight))
+                if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), bluLight))
                 {
                     if (CameraScript.data.points >= 550 && imbuying)
                     {
@@ -336,7 +331,7 @@ public class buyItems_Script : MonoBehaviour
             if (!CameraScript.data.lightGreen)
             {
                 elem++;
-                if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), greenLight))
+                if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), greenLight))
                 {
                     if (CameraScript.data.points >= 750 && imbuying)
                     {
@@ -354,7 +349,7 @@ public class buyItems_Script : MonoBehaviour
             if (!CameraScript.data.lightPink)
             {
                 elem++;
-                if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), pinkLight))
+                if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), pinkLight))
                 {
                     if (CameraScript.data.points >= 800 && imbuying)
                     {
@@ -372,7 +367,7 @@ public class buyItems_Script : MonoBehaviour
             if (!CameraScript.data.lightRainbow)
             {
                 elem++;
-                if (GUI.Button(new Rect(0, span[elem], size * 9, size * 3), arcoLight))
+                if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), arcoLight))
                 {
                     if (CameraScript.data.points >= 6000 && imbuying)
                     {
@@ -419,7 +414,7 @@ public class buyItems_Script : MonoBehaviour
                 imbuying = true;
             if (touch.phase == TouchPhase.Moved && fInsideList)
             {
-                position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
+                position.x -= touch.deltaPosition.x * scrollparam; //2:768= x:Screen.height
                 imbuying = false;
             }
         }
@@ -445,7 +440,7 @@ public class buyItems_Script : MonoBehaviour
     bool IsTouchInsideList(Vector2 touchPos)
     {
         Vector2 screenPos = new Vector2(touchPos.x, touchPos.y);
-        Rect rAdjustedBounds = new Rect(size * 10, margin * 7, size * 10, size * 16);
+        Rect rAdjustedBounds = new Rect(size, size * 5, Screen.width - size, size * 6);
 
         return rAdjustedBounds.Contains(screenPos);
     }
