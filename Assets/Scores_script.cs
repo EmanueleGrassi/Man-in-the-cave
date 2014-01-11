@@ -66,8 +66,9 @@ public class Scores_script : MonoBehaviour
         if (CameraScript.data.Records[0].x != 0)
         {
             int i = 0;
+            int n = scoresMade();
             pos = GUI.BeginScrollView(new Rect(margin * 3 + size, barSize, Screen.width - (margin * 3 + size), Screen.height - barSize),
-                pos, new Rect(0, 0, Screen.width, size * 30));
+                pos, new Rect(0, 0, Screen.width, size * 2 + size * n * 1.5f));
             for (i = 0; i < 20; i++)
             {
                 if (CameraScript.data.Records[i].x == 0)
@@ -101,6 +102,19 @@ public class Scores_script : MonoBehaviour
             GUI.EndScrollView();
         }
     }
+
+    private int scoresMade()
+    {
+        int j = 0;
+        for (int i = 0; i < 20; i++)
+        {
+            if (CameraScript.data.Records[i].x == 0)
+                break;
+            j++;
+        }
+        return j;
+    }
+
     void DrawAchiv()
     {
         GUILayout.BeginArea(new Rect(margin, barSize+margin, Screen.width, Screen.height - barSize));
