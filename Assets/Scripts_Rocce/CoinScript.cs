@@ -6,31 +6,31 @@ public class CoinScript : MonoBehaviour
 
     float groundedTime;
     bool grounded;
-    int value;
+    public int value;
     public AudioClip collected1;
     public AudioClip collected2;
     public AudioClip collected3;
 
     void Start()
     {
-        switch (gameObject.tag)
-        {
-            case "gold":
-                value = 5;
-                break;
-            case "silver":
-                value = 4;
-                break;
-            case "diam":
-                value = 10;
-                break;
-            case "ruby":
-                value = 8;
-                break;
-            case "zaff":
-                value = 7;
-                break;
-        }
+        //switch (gameObject.tag)
+        //{
+        //    case "gold":
+        //        value = 5;
+        //        break;
+        //    case "silver":
+        //        value = 4;
+        //        break;
+        //    case "diam":
+        //        value = 10;
+        //        break;
+        //    case "ruby":
+        //        value = 8;
+        //        break;
+        //    case "zaff":
+        //        value = 7;
+        //        break;
+        //}
     }
 
     // Update is called once per frame
