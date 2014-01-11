@@ -287,18 +287,7 @@ public class Items_Script : MonoBehaviour
     void Update()
     {
 #if !UNITY_METRO
-
-        Touch touch = Input.touches[0];
-        bool fInsideList = IsTouchInsideList(touch.position);
-        if (touch.phase == TouchPhase.Began)
-            impressing = true;
-        if (touch.phase == TouchPhase.Moved && fInsideList)
-        {
-            position.x -= touch.deltaPosition.x * scrollparam; //2:768= x:Screen.height
-            impressing = false;
-        }
-#else
-        if (CameraScript.IsTouch)
+        if (Input.touchCount > 0)
         {
             Touch touch = Input.touches[0];
             bool fInsideList = IsTouchInsideList(touch.position);
@@ -306,8 +295,23 @@ public class Items_Script : MonoBehaviour
                 impressing = true;
             if (touch.phase == TouchPhase.Moved && fInsideList)
             {
-                position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
+                position.x -= touch.deltaPosition.x * scrollparam; //2:768= x:Screen.height
                 impressing = false;
+            }
+        }
+#else
+        if (Input.touchCount >0) {
+            if (CameraScript.IsTouch)
+            {
+                Touch touch = Input.touches[0];
+                bool fInsideList = IsTouchInsideList(touch.position);
+                if (touch.phase == TouchPhase.Began)
+                    impressing = true;
+                if (touch.phase == TouchPhase.Moved && fInsideList)
+                {
+                    position.x -= touch.deltaPosition.x * scrollparam; //2:768= x:Screen.height
+                    impressing = false;
+                }
             }
         }
 #endif

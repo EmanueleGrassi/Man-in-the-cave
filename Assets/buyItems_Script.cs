@@ -303,7 +303,7 @@ public class buyItems_Script : MonoBehaviour
             int elem = -1;
             int n = helmetToBuy();
             position = GUI.BeginScrollView(new Rect(size, size*5, Screen.width-size, size*6), position,
-                                           new Rect(0, 0, size * (16-n), size *6));
+                                           new Rect(0, 0, size * n, size *6));
             if (!CameraScript.data.lightRed)
             {
                 elem++;
@@ -402,24 +402,24 @@ public class buyItems_Script : MonoBehaviour
 
     private int helmetToBuy()
     {
-        int ret = 14;
-        if (CameraScript.data.lightBlue)
-            ret -= 3;
-        if (CameraScript.data.lightGreen)
-            ret -= 3;
-        if (CameraScript.data.lightPink)
-            ret -= 3;
-        if (CameraScript.data.lightRainbow)
-            ret -= 3;
-        if (CameraScript.data.lightRed)
-            ret -= 3;
+        int ret = 0;
+        if (!CameraScript.data.lightBlue)
+            ret += 5;
+        if (!CameraScript.data.lightGreen)
+            ret += 5;
+        if (!CameraScript.data.lightPink)
+            ret += 5;
+        if (!CameraScript.data.lightRainbow)
+            ret += 5;
+        if (!CameraScript.data.lightRed)
+            ret += 5;
         return ret;
     }
 
     void Update()
     {
         #if !UNITY_METRO
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && CurrentState == buyState.lights)
         {
             Touch touch = Input.touches[0];
             bool fInsideList = IsTouchInsideList(touch.position);
@@ -572,7 +572,7 @@ public class buyItems_Script : MonoBehaviour
     bool IsTouchInsideList(Vector2 touchPos)
     {
         Vector2 screenPos = new Vector2(touchPos.x, touchPos.y);
-        Rect rAdjustedBounds = new Rect(size, size * 5, Screen.width - size, size * 6);
+        Rect rAdjustedBounds = new Rect(size, size * 5, Screen.width - size, size * 12);
 
         return rAdjustedBounds.Contains(screenPos);
     }
