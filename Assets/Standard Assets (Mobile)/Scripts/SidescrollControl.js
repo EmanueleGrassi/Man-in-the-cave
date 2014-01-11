@@ -151,7 +151,7 @@ function Update()
            #else
 	            if ( canJump && touchPad.IsFingerDown() )//qui salto
             {
-            	animator.SetBool("JumpUp", true);
+            	//animator.SetBool("JumpUp", true);  //QUESTO ERA IL VECCHIO SALTO DA FERMO, RISISTEMARE
                 jump = true;
                 canJump = false;
                 var t:int =  Random.Range(0,2);

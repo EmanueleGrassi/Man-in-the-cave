@@ -69,7 +69,7 @@ public class SpawnerInfameScript : MonoBehaviour {
         switch (rnd)
         {
             case 1:
-                Instantiate(rock1, transform.position, Quaternion.Euler(new Vector3(90, 0, 0)));
+                Instantiate(rock1, transform.position, Quaternion.Euler(new Vector3(270, 0, 0)));
                 rock1.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
                 break;
             case 2:
