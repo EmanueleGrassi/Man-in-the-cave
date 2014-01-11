@@ -345,14 +345,23 @@ public class CameraScript : MonoBehaviour
              * z=6
              * x=
              */
-            transform.position = new Vector3(playerPG.position.x,
+            /*transform.position = new Vector3(playerPG.position.x,
                             Mathf.Sqrt((1 - (playerPGxPOW / 3600)) * 25f),
-                -1 * Mathf.Sqrt((1 - (playerPGxPOW / 1550)) * 25f));
+                -1 * Mathf.Sqrt((1 - (playerPGxPOW / 1550)) * 25f));*/
+			transform.position = new Vector3(playerPG.position.x,
+			                                 Mathf.Sqrt((1 - (playerPGxPOW / 6400)) * 25f),
+			                                 -1 * Mathf.Sqrt((1 - (playerPGxPOW / 4900)) * 25f));
+			/*transform.position = new Vector3(playerPG.position.x,
+			                                 3.3f,
+			                                 1.84f);*/
 
+			transform.rotation = Quaternion.Euler(2.9f,
+			                                      Mathf.Tan(-(playerPG.position.x/(350* Mathf.Sqrt(9800-2*playerPGxPOW)))) * 180 / Mathf.PI,
+			                                      0);
 
-            transform.rotation = Quaternion.Euler(2.9f,
+            /* vecchio transform.rotation = Quaternion.Euler(2.9f,
                 Mathf.Tan(-((2 * playerPG.position.x) / (5 * Mathf.Sqrt(2500 - playerPGxPOW)))) * 180 / Mathf.PI,
-                0);
+                0);*/
         }
         PlayTime += Time.deltaTime;
     }
@@ -521,8 +530,8 @@ public class CameraScript : MonoBehaviour
 		var rot = (CameraScript.PlayTime) * 6;
 		var height2 = Screen.width / 6;
 		Matrix4x4 startMatrix = GUI.matrix;
-		Rect ClockRect = new Rect(20, 20, height2, height2);
-		Vector2 Centerpoint = new Vector2(21+(height2 / 2),15+(height2 / 2));
+		Rect ClockRect = new Rect(margin, margin, height2, height2);
+		Vector2 Centerpoint = new Vector2(margin+(height2 / 2),margin+(height2 / 2));
 		//inizio orologio
 		GUI.DrawTexture(ClockRect, back, ScaleMode.ScaleToFit, true);
 		if ((CameraScript.PlayTime % 60) > 30 * multime)

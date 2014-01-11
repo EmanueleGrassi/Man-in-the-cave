@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
   - 64: {fileID: 6400000}
   - 54: {fileID: 5400000}
@@ -27,9 +26,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: -8.42920969e-08, y: .707106948, z: -.70710665, w: 2.24780248e-08}
+  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .806408405, y: .768577039, z: 1.49788356}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
@@ -59,7 +58,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: 7f5c10cefe7ee4be19b97f530edf6061, type: 3}
+  m_Mesh: {fileID: 4300000, guid: af478dce05309ed48b11f0355e424e86, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -87,7 +86,7 @@ MeshCollider:
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: 655a3cdd8969248caaa6308832ef4381, type: 3}
+  m_Mesh: {fileID: 4300000, guid: af478dce05309ed48b11f0355e424e86, type: 3}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2

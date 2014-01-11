@@ -249,7 +249,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Dive
-  m_Speed: 1
+  m_Speed: 1.29999995
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400002, guid: fda10879bc947a44db95ce2174d9adb6, type: 3}
@@ -284,7 +284,7 @@ State:
   m_Motions:
   - {fileID: 7400006, guid: 4ad69484d4a4863449069ca37f3c57ad, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 204, y: 132, z: 0}
+  m_Position: {x: 180, y: 168, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -321,28 +321,28 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110247764}
-      second:
-      - {fileID: 110102689}
-    data:
       first: {fileID: 110200000}
       second:
       - {fileID: 110100000}
       - {fileID: 110160120}
+    data:
+      first: {fileID: 110209082}
+      second:
+      - {fileID: 110199139}
+    data:
+      first: {fileID: 110246486}
+      second:
+      - {fileID: 110170435}
+    data:
+      first: {fileID: 110247764}
+      second:
+      - {fileID: 110102689}
     data:
       first: {fileID: 110287193}
       second:
       - {fileID: 110192737}
       - {fileID: 110181839}
       - {fileID: 110120064}
-    data:
-      first: {fileID: 110246486}
-      second:
-      - {fileID: 110170435}
-    data:
-      first: {fileID: 110209082}
-      second:
-      - {fileID: 110199139}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 132, y: -48, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

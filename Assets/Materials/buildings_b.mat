@@ -27,42 +27,12 @@ Material:
           m_Texture: {fileID: 2800000, guid: 0642ab2e7fd045c4da3725fe08638413, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Illum
-        second:
-          m_Texture: {fileID: 2800000, guid: 23fd39ef5d90b64418062693f721282a, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Cube
-        second:
-          m_Texture: {fileID: 8900000, guid: 23fd39ef5d90b64418062693f721282a, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _Shininess
-        second: 1
-      data:
-        first:
-          name: _EmissionLM
-        second: 0
-    m_Colors:
-      data:
-        first:
-          name: _Color
-        second: {r: .301470578, g: .258573711, b: .166252151, a: 1}
-      data:
-        first:
-          name: _SpecColor
-        second: {r: .25, g: .233772814, b: .191176474, a: 1}
-      data:
-        first:
-          name: _ReflectColor
-        second: {r: 1, g: 1, b: 1, a: 0}
+        second: .078125
+    m_Colors: {}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6
