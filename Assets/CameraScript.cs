@@ -517,11 +517,29 @@ public class CameraScript : MonoBehaviour
 
     void drawPlay()
     {
-        var height2 = Screen.width / 6;
-        //inizio orologio
-
-
-        //fine orologio
+		var multime = 1;
+		var rot = (CameraScript.PlayTime) * 6;
+		var height2 = Screen.width / 6;
+		Matrix4x4 startMatrix = GUI.matrix;
+		Rect ClockRect = new Rect(20, 20, height2, height2);
+		Vector2 Centerpoint = new Vector2(21+(height2 / 2),15+(height2 / 2));
+		//inizio orologio
+		GUI.DrawTexture(ClockRect, back, ScaleMode.ScaleToFit, true);
+		if ((CameraScript.PlayTime % 60) > 30 * multime)
+		{
+			GUIUtility.RotateAroundPivot(rot + 180, Centerpoint);
+			GUI.DrawTexture(ClockRect, left, ScaleMode.ScaleToFit, true);
+			GUI.matrix = startMatrix;
+			GUI.DrawTexture(ClockRect, holding, ScaleMode.ScaleToFit, true);
+			multime = multime * 3;
+		}
+		else
+		{
+			GUIUtility.RotateAroundPivot(rot - 180, Centerpoint);
+			GUI.DrawTexture(ClockRect, left, ScaleMode.ScaleToFit, true);
+			GUI.matrix = startMatrix;
+			GUI.DrawTexture(ClockRect, left, ScaleMode.ScaleToFit, true);
+		}
         GUI.DrawTexture(new Rect(margin, margin, height2, height2*700/600), Infobox_Texture, ScaleMode.ScaleToFit, true);
         TimeSpan t = (TimeSpan.FromSeconds(PlayTime));
         string TimeText;
@@ -543,31 +561,6 @@ public class CameraScript : MonoBehaviour
         if (GUI.Button(new Rect(Screen.width - (margin + height2/2), margin, height2/2, height2/2), pause))
         {
             PlayScript.State = PlayScript.PlayState.pause;
-        }
-        //OROLOGIO
-        var multime = 1;
-        var rot = (CameraScript.PlayTime) * 6;
-        var height3 = Screen.width / 6;
-        Matrix4x4 startMatrix = GUI.matrix;
-        Rect ClockRect = new Rect(20, 20, height3, height3);
-        Vector2 Centerpoint = new Vector2(20 + (height3 / 2), 20 + (height3 / 2));
-        //inizio orologio
-        GUI.DrawTexture(ClockRect, back, ScaleMode.ScaleToFit, true);
-        if ((CameraScript.PlayTime % 60) > 30 * multime)
-        {
-            Debug.Log("Entrato");
-            GUIUtility.RotateAroundPivot(rot + 180, Centerpoint);
-            GUI.DrawTexture(ClockRect, left, ScaleMode.ScaleToFit, true);
-            GUI.matrix = startMatrix;
-            GUI.DrawTexture(ClockRect, holding, ScaleMode.ScaleToFit, true);
-            multime = multime * 3;
-        }
-        else
-        {
-            GUIUtility.RotateAroundPivot(rot - 180, Centerpoint);
-            GUI.DrawTexture(ClockRect, left, ScaleMode.ScaleToFit, true);
-            GUI.matrix = startMatrix;
-            GUI.DrawTexture(ClockRect, left, ScaleMode.ScaleToFit, true);
         }
     }
 #endregion
