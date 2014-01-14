@@ -519,7 +519,7 @@ public class CameraScript : MonoBehaviour
             i++;
         }        
     }
-
+    Rect labelPositionSec ;
     void drawPlay()
     {
 		var multime = 1;
@@ -529,41 +529,35 @@ public class CameraScript : MonoBehaviour
 		Rect ClockRect = new Rect(margin, margin, height2, height2);
 		Vector2 Centerpoint = new Vector2(margin+(height2 / 2),margin+(height2 / 2));
 		//inizio orologio
-		GUI.DrawTexture(ClockRect, backclock, ScaleMode.ScaleToFit, true);
-		if ((CameraScript.PlayTime % 60) > 30 * multime)
-		{
-			GUIUtility.RotateAroundPivot(rot + 180, Centerpoint);
-            GUI.DrawTexture(ClockRect, leftClock, ScaleMode.ScaleToFit, true);
-			GUI.matrix = startMatrix;
-			GUI.DrawTexture(ClockRect, holdingClock, ScaleMode.ScaleToFit, true);
-			multime = multime * 3;
-		}
-		else
-		{
-			GUIUtility.RotateAroundPivot(rot - 180, Centerpoint);
-            GUI.DrawTexture(ClockRect, leftClock, ScaleMode.ScaleToFit, true);
-			GUI.matrix = startMatrix;
-            GUI.DrawTexture(ClockRect, leftClock, ScaleMode.ScaleToFit, true);
-		}
-        //fine orologio
-        GUI.DrawTexture(new Rect(margin, margin, height2, height2*700/600), Infobox_Texture, ScaleMode.ScaleToFit, true);
-        TimeSpan t = (TimeSpan.FromSeconds(PlayTime));
-        string TimeText;
-        string minSec = "min";
-        if (t.Minutes >= 1)
+        GUI.DrawTexture(ClockRect, backclock, ScaleMode.ScaleToFit, true);
+        if ((CameraScript.PlayTime % 60) > 30 * multime)
         {
-            TimeText = string.Format("{0}:{1:00}", t.Minutes, t.Seconds);
+            GUIUtility.RotateAroundPivot(rot + 180, Centerpoint);
+            GUI.DrawTexture(ClockRect, leftClock, ScaleMode.ScaleToFit, true);
+            GUI.matrix = startMatrix;
+            GUI.DrawTexture(ClockRect, holdingClock, ScaleMode.ScaleToFit, true);
+            multime = multime * 3;
         }
         else
         {
-            minSec = "sec";
-            TimeText = string.Format("{0:#0}", t.Seconds);
+            GUIUtility.RotateAroundPivot(rot - 180, Centerpoint);
+            GUI.DrawTexture(ClockRect, leftClock, ScaleMode.ScaleToFit, true);
+            GUI.matrix = startMatrix;
+            GUI.DrawTexture(ClockRect, leftClock, ScaleMode.ScaleToFit, true);
         }
+        //fine orologio
+        GUI.DrawTexture(new Rect(margin, margin, height2, height2 * 700 / 600), Infobox_Texture, ScaleMode.ScaleToFit, true);
+        TimeSpan t = (TimeSpan.FromSeconds(PlayTime));
+        string TimeText;
+        if (t.Minutes >= 1)
+            TimeText = string.Format("{0}:{1:00}", t.Minutes, t.Seconds);
+        else
+            TimeText = string.Format("{0:#0}", t.Seconds);
+        GUI.skin.label.fontSize = (int)(height * 1.2);
         Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent(TimeText), custom.label);
-        GUI.Label(new Rect(margin + ((height2 - labelPosition.width) / 2), ((height2 - labelPosition.height) / 2),
+        GUI.Label(new Rect(margin + ((height2 - labelPosition.width) / 2), ((height2*0.8f - labelPosition.height) / 2),
             labelPosition.width, labelPosition.height), TimeText);
-        GUI.skin.label.fontSize = (int)(height*0.9);  
-        	
+
         if (GUI.Button(new Rect(Screen.width - (margin + height2/2), margin, height2/2, height2/2), pause))
         {
             PlayScript.State = PlayScript.PlayState.pause;

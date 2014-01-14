@@ -1402,16 +1402,16 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 2e3e014330770dc4dacfd208f2b143e1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .5
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 35
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1419,14 +1419,19 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      value: .0454545915
+      inSlope: -.0823622718
+      outSlope: -.0823622718
       tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+    - time: .592175484
+      value: .0159184821
+      inSlope: -.0936396942
+      outSlope: -.0936396942
+      tangentMode: 0
+    - time: .939622641
+      value: .00928381644
+      inSlope: -.0290953089
+      outSlope: -.0290953089
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -1434,7 +1439,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: .684000015
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1444,10 +1449,10 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: .122222222
+      value: 0
       inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      outSlope: 2.62626195
+      tangentMode: 17
     m_PreInfinity: 2
     m_PostInfinity: 2
 --- !u!108 &10800000
@@ -1456,11 +1461,11 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100034}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .5
+  m_Intensity: .400000006
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1510,7 +1515,7 @@ Light:
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1529,8 +1534,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 0, g: .213793039, b: 1, a: 1}
-  m_Intensity: .5
+  m_Color: {r: 0, g: .625, b: .443965495, a: 1}
+  m_Intensity: 1.29999995
   m_Range: 23
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1545,7 +1550,7 @@ Light:
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
