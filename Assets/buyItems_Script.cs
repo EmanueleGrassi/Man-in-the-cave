@@ -113,8 +113,9 @@ public class buyItems_Script : MonoBehaviour
         #if UNITY_ANDROID
             ////com.celialab.ManInTheCave.UnityPlayerNativeActivity
             ////jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
-        unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            //unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            //activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            //activity.Call("init");
         #endif
         #endregion
 
@@ -576,19 +577,19 @@ public class buyItems_Script : MonoBehaviour
         return rAdjustedBounds.Contains(screenPos);
     }
 
-    void add500(string ciao)
+    void add500(String ciao)
     {
         CameraScript.data.points += 500;
         CameraScript.SaveData();
     }
 
-    void add1000(string ciao)
+    void add1000(String ciao)
     {
         CameraScript.data.points += 1000;
         CameraScript.SaveData();
     }
 
-    void add5k(string ciao)
+    void add5k(String ciao)
     {
         CameraScript.data.points += 5000;
         CameraScript.SaveData();
