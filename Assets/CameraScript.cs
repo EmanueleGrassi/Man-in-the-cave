@@ -142,7 +142,6 @@ public class Data
         catch(System.IO.IsolatedStorage.IsolatedStorageException e)
         #endif
         {
-            CameraScript.s = e.ToString(); //ELIMINARE
             CameraScript.data = new Data();
             CameraScript.data.Save();
         }
