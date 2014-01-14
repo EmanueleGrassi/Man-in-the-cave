@@ -113,8 +113,8 @@ public class buyItems_Script : MonoBehaviour
         #if UNITY_ANDROID
             ////com.celialab.ManInTheCave.UnityPlayerNativeActivity
             ////jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
-            //unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            //activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
             //activity.Call("init");
         #endif
         #endregion
