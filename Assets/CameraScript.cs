@@ -198,9 +198,7 @@ public class CameraScript : MonoBehaviour
         public static GameObject bengalaButton, movementButton, jumpButton;
         public static bool replayGame;
 
-        public Texture2D back, right, left, holding;
-
-        public static string s; //ELIMINARE
+        public Texture2D backclock, leftClock, holdingClock;
     #endregion
 #endregion
 #if UNITY_METRO 
@@ -266,8 +264,7 @@ public class CameraScript : MonoBehaviour
 
     void Start()
     {
-        ////carica i salvataggi
-
+        //carica i salvataggi
         LoadData();
 
         bengalaButton = GameObject.Find("BengalaButton");
@@ -533,22 +530,23 @@ public class CameraScript : MonoBehaviour
 		Rect ClockRect = new Rect(margin, margin, height2, height2);
 		Vector2 Centerpoint = new Vector2(margin+(height2 / 2),margin+(height2 / 2));
 		//inizio orologio
-		GUI.DrawTexture(ClockRect, back, ScaleMode.ScaleToFit, true);
+		GUI.DrawTexture(ClockRect, backclock, ScaleMode.ScaleToFit, true);
 		if ((CameraScript.PlayTime % 60) > 30 * multime)
 		{
 			GUIUtility.RotateAroundPivot(rot + 180, Centerpoint);
-			GUI.DrawTexture(ClockRect, left, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(ClockRect, leftClock, ScaleMode.ScaleToFit, true);
 			GUI.matrix = startMatrix;
-			GUI.DrawTexture(ClockRect, holding, ScaleMode.ScaleToFit, true);
+			GUI.DrawTexture(ClockRect, holdingClock, ScaleMode.ScaleToFit, true);
 			multime = multime * 3;
 		}
 		else
 		{
 			GUIUtility.RotateAroundPivot(rot - 180, Centerpoint);
-			GUI.DrawTexture(ClockRect, left, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(ClockRect, leftClock, ScaleMode.ScaleToFit, true);
 			GUI.matrix = startMatrix;
-			GUI.DrawTexture(ClockRect, left, ScaleMode.ScaleToFit, true);
+            GUI.DrawTexture(ClockRect, leftClock, ScaleMode.ScaleToFit, true);
 		}
+        //fine orologio
         GUI.DrawTexture(new Rect(margin, margin, height2, height2*700/600), Infobox_Texture, ScaleMode.ScaleToFit, true);
         TimeSpan t = (TimeSpan.FromSeconds(PlayTime));
         string TimeText;
