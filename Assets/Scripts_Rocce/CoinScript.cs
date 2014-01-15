@@ -53,7 +53,7 @@ public class CoinScript : MonoBehaviour
         }
         if (col.gameObject.tag == "Player")
         {
-            PlayScript.gamePoints += value;
+            PlayScript.GameCredits += value;
             //SUONI
             int random = Random.Range(0, 3);
             switch (random)

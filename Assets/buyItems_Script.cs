@@ -9,12 +9,12 @@ public class buyItems_Script : MonoBehaviour
     public Texture arcoLight, bengal, bluLight, greenLight, piccone, pinkLight, reborn, redLight, coins;
     float size, margin;
     public GUISkin custom;
-    public AudioClip cashsound,noMoney;
+    public AudioClip cashsound, noMoney;
     public static event EventHandler plus500, plus1000, plus5000;
     float[] span;
     bool imbuying;
     public Texture back;
-    float unmarginino, scrollparam, elemSize;
+    float unmarginino, scrollparam, elemSize, UnTerzo;
     public Texture2D thumb;
     buyState CurrentState = buyState.Powers;
     enum buyState
@@ -110,17 +110,17 @@ public class buyItems_Script : MonoBehaviour
     void Start()
     {
         #region Android inapp
-        #if UNITY_ANDROID
+#if UNITY_ANDROID
             ////com.celialab.ManInTheCave.UnityPlayerNativeActivity
             ////jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
         unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
             //activity.Call("init");
-        #endif
+#endif
         #endregion
 
         #region iOS inapp
-        #if UNITY_IPHONE
+#if UNITY_IPHONE
             /*  OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");   //scoprire cosa sono "some.ios.sku" forse mentre pubblichiamo lo scopriamo
             OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
             OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
@@ -128,29 +128,30 @@ public class buyItems_Script : MonoBehaviour
             OpenIAB.init(new Dictionary<string, string> {
             {OpenIAB_iOS.STORE, "public key"}
             });*/
-        #endif
+#endif
         #endregion
 
         imbuying = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
-            span = new float[] {0, 0, size * 2 + 2 * margin ,
+        UnTerzo = Screen.height / 3;
+        span = new float[] {0, 0, size * 2 + 2 * margin ,
 								      margin * 4 + size * 4,
 								      margin * 6 + size * 6,
 								      margin * 8 + size * 8};
-            unmarginino = margin * 12;
+        unmarginino = margin * 12;
         scrollparam = (Screen.height * 2) / 768;
 
         elemSize = size * 5;
 
-        #if UNITY_METRO
+#if UNITY_METRO
             if (CameraScript.IsTouch)
             {
                 imbuying = true;
             }
-        #endif
+#endif
 
-            CameraScript.LoadData();
+        CameraScript.LoadData();
     }
 
     Vector2 position = Vector2.zero;
@@ -162,7 +163,7 @@ public class buyItems_Script : MonoBehaviour
                 return powersP;
             else
                 return powers;
-        } 
+        }
         else if (ButtonNumb == 1)
         {
             if (CurrentState == buyState.lights)
@@ -179,16 +180,13 @@ public class buyItems_Script : MonoBehaviour
         }
     }
 
-    //spostare
-    float UnTerzo = Screen.height / 3;
-
     void OnGUI()
     {
         if (Input.GetKey(KeyCode.Escape))
             Application.LoadLevel(0);
         if (GUI.skin != custom)
             GUI.skin = custom;
-        
+
         if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
             Application.LoadLevel(0);
 
@@ -207,198 +205,178 @@ public class buyItems_Script : MonoBehaviour
         {
             CurrentState = buyState.money;
         }
-        
+
 #if UNITY_METRO
         custom.verticalScrollbarThumb.normal.background = thumb;
 #endif
-        custom.label.normal.textColor = new Color(255, 255, 255);
-        custom.label.fontSize = (int)(size * 0.5f);
-       
-        GUI.DrawTexture(new Rect(Screen.width-size*3-margin, margin , size, size), coins);
-        custom.label.fontSize = (int)(size * 0.7);
-        GUI.Label(new Rect(Screen.width - size*2 , margin*0.5f, size * 2, size+margin+0.5f), "" + CameraScript.data.points);
-        custom.label.fontSize = (int)(size * 0.5f);
 
-        #region money
-        //DA FARE ANCORA
+
+        GUI.DrawTexture(new Rect(Screen.width - size * 3 - margin, margin, size, size), coins);
+        custom.label.fontSize = (int)(size * 0.7);
+        GUI.Label(new Rect(Screen.width - size * 2, margin * 0.5f, size * 2, size + margin + 0.5f), "" + CameraScript.data.Credits);
+
         if (CurrentState == buyState.money)
         {
-            //purchases
-            custom.button.normal.textColor = new Color(205, 127, 50);
-            custom.button.fontSize = (int)(size * 0.7f);
-            if (GUI.Button(new Rect(size * 13, margin, size + 2 * margin, size), "+500"))
-            {
-                if (plus500 != null)
-                    plus500(this, new EventArgs());
+           DrawMoney();
+        }
+        else if (CurrentState == buyState.Powers)
+        {
+            DrawPowers();
+        }
+        else if (CurrentState == buyState.lights)
+        {
+            DrawLights();
+        }
+    }
+    #region METODI GUI
+    void DrawMoney()
+    {
+        //purchases
+        custom.button.normal.textColor = new Color(205, 127, 50);
+        custom.button.fontSize = (int)(size * 0.7f);
+        if (GUI.Button(new Rect(size * 13, margin, size + 2 * margin, size), "+500"))
+        {
+            if (plus500 != null)
+                plus500(this, new EventArgs());
 #if UNITY_ANDROID
                 activity.Call("buy", "plus500");
 #endif
 #if UNITY_IPHONE
             
 #endif
-            }
+        }
 
-            custom.button.normal.textColor = new Color(192, 192, 192);
-            custom.button.fontSize = (int)(size * 0.8f);
-            if (GUI.Button(new Rect(size * 15 - margin, margin, size + margin * 4, size), "+1000"))
-            {
-                if (plus1000 != null)
-                    plus1000(this, new EventArgs());
+        custom.button.normal.textColor = new Color(192, 192, 192);
+        custom.button.fontSize = (int)(size * 0.8f);
+        if (GUI.Button(new Rect(size * 15 - margin, margin, size + margin * 4, size), "+1000"))
+        {
+            if (plus1000 != null)
+                plus1000(this, new EventArgs());
 #if UNITY_ANDROID
                 activity.Call("buy", "plus1000");
 #endif
 #if UNITY_IPHONE
 #endif
-            }
+        }
 
-            custom.button.normal.textColor = new Color(246, 193, 0);
-            custom.button.fontSize = (int)(size * 0.9f);
-            if (GUI.Button(new Rect(size * 17, margin, size + 5 * margin, size), "+5000"))
-            {
-                if (plus5000 != null)
-                    plus5000(this, new EventArgs());
+        custom.button.normal.textColor = new Color(246, 193, 0);
+        custom.button.fontSize = (int)(size * 0.9f);
+        if (GUI.Button(new Rect(size * 17, margin, size + 5 * margin, size), "+5000"))
+        {
+            if (plus5000 != null)
+                plus5000(this, new EventArgs());
 #if UNITY_ANDROID
                 activity.Call("buy", "plus5k");
 #endif
 #if UNITY_IPHONE
 #endif
-            }
         }
-        #endregion
-
-        #region powers
-        if (CurrentState == buyState.Powers)
-        {
-            //colonna di sinistra
-            if (GUI.Button(new Rect(size*2, size*4, size * 7, size * 7), bengal))
-            {
-                if (CameraScript.data.points >= 90)
-                {
-                    CameraScript.data.points -= 90;
-                    CameraScript.data.numBengala += 2;
-                    CameraScript.SaveData();
-                    audio.PlayOneShot(cashsound);
-                }
-                else
-                    audio.PlayOneShot(noMoney);
-            }
-            if (GUI.Button(new Rect(size*12, size*4 , size * 7, size * 7), reborn))
-            {
-                if (CameraScript.data.points >= 300)
-                {
-                    CameraScript.data.points -= 300;
-                    CameraScript.data.NumberReborn++;
-                    CameraScript.SaveData();
-                    audio.PlayOneShot(cashsound);
-                }
-                else
-                    audio.PlayOneShot(noMoney);
-            }
-        }
-        #endregion
-
-        #region lights
-        if (CurrentState == buyState.lights)
-        {
-            int elem = -1;
-            int n = helmetToBuy();
-            position = GUI.BeginScrollView(new Rect(size, size*5, Screen.width-size, size*6), position,
-                                           new Rect(0, 0, size * n, size *6));
-            if (!CameraScript.data.lightRed)
-            {
-                elem++;
-                if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), redLight))
-                {
-                    if (CameraScript.data.points >= 500 && imbuying)
-                    {
-                        CameraScript.data.points -= 500;
-                        CameraScript.data.lightRed = true;
-                        CameraScript.data.helmet = Helmet.red;
-                        CameraScript.SaveData();
-                        elem++;
-                        //SUONA CASSA
-                        audio.PlayOneShot(cashsound);
-                    }
-                    else
-                        audio.PlayOneShot(noMoney);
-                }
-            }
-            if (!CameraScript.data.lightBlue)
-            {
-                elem++;
-                if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), bluLight))
-                {
-                    if (CameraScript.data.points >= 550 && imbuying)
-                    {
-                        CameraScript.data.points -= 550;
-                        CameraScript.data.lightBlue = true;
-                        CameraScript.data.helmet = Helmet.blue;
-                        CameraScript.SaveData();
-                        //SUONA CASSA
-                        audio.PlayOneShot(cashsound);
-                    }
-                    else
-                        audio.PlayOneShot(noMoney);
-                }
-            }
-            if (!CameraScript.data.lightGreen)
-            {
-                elem++;
-                if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), greenLight))
-                {
-                    if (CameraScript.data.points >= 750 && imbuying)
-                    {
-                        CameraScript.data.points -= 750;
-                        CameraScript.data.lightGreen = true;
-                        CameraScript.data.helmet = Helmet.green;
-                        CameraScript.SaveData();
-                        //SUONA CASSA
-                        audio.PlayOneShot(cashsound);
-                    }
-                    else
-                        audio.PlayOneShot(noMoney);
-                }
-            }
-            if (!CameraScript.data.lightPink)
-            {
-                elem++;
-                if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), pinkLight))
-                {
-                    if (CameraScript.data.points >= 800 && imbuying)
-                    {
-                        CameraScript.data.points -= 800;
-                        CameraScript.data.lightPink = true;
-                        CameraScript.data.helmet = Helmet.pink;
-                        CameraScript.SaveData();
-                        //SUONA CASSA
-                        audio.PlayOneShot(cashsound);
-                    }
-                    else
-                        audio.PlayOneShot(noMoney);
-                }
-            }
-            if (!CameraScript.data.lightRainbow)
-            {
-                elem++;
-                if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), arcoLight))
-                {
-                    if (CameraScript.data.points >= 6000 && imbuying)
-                    {
-                        CameraScript.data.points -= 6000;
-                        CameraScript.data.lightRainbow = true;
-                        CameraScript.data.helmet = Helmet.rainbow;
-                        CameraScript.SaveData();
-                        //SUONA CASSA
-                        audio.PlayOneShot(cashsound);
-                    }
-                    else
-                        audio.PlayOneShot(noMoney);
-                }
-            }
-            GUI.EndScrollView();
-        }
-        #endregion
     }
+    void DrawPowers()
+    { 
+          
+            if (GUI.Button(new Rect(size * 2, size * 4, size * 7, size * 7), bengal))
+            {
+                compra("Bengala", 90);
+            }
+            if (GUI.Button(new Rect(size * 12, size * 4, size * 7, size * 7), reborn))
+            {
+                compra("Reborn", 300);
+            }
+    }
+    void compra(string typeAcquisto, int costo)
+    {
+        if (CameraScript.data.Credits >= costo)
+                {
+                    CameraScript.data.Credits -= costo;
+            switch (typeAcquisto)
+	{
+                case "Reborn":CameraScript.data.NumberReborn++;
+                    break;
+                     case "Bengala":   CameraScript.data.NumBengala += 2;
+                    break;
+	}
+                    
+                    CameraScript.SaveData();
+                    audio.PlayOneShot(cashsound);
+                }
+                else
+                    audio.PlayOneShot(noMoney);
+    }
+    void DrawLights()
+    {
+        int elem = -1;
+        int n = helmetToBuy();
+        position = GUI.BeginScrollView(new Rect(size, size * 5, Screen.width - size, size * 6), position,
+                                       new Rect(0, 0, size * n, size * 6));
+        if (!CameraScript.data.lightRed)
+        {
+            elem++;
+            if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), redLight))
+            {
+                compraLuce(Helmet.red, 500);
+            }
+        }
+        if (!CameraScript.data.lightBlue)
+        {
+            elem++;
+            if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), bluLight))
+            {
+                compraLuce(Helmet.blue, 550);
+            }
+        }
+        if (!CameraScript.data.lightGreen)
+        {
+            elem++;
+            if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), greenLight))
+            {
+                compraLuce(Helmet.green, 750);
+            }
+        }
+        if (!CameraScript.data.lightPink)
+        {
+            elem++;
+            if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), pinkLight))
+            {
+                compraLuce(Helmet.pink, 800);
+            }
+        }
+        if (!CameraScript.data.lightRainbow)
+        {
+            elem++;
+            if (GUI.Button(new Rect(elemSize * elem, 0, elemSize, elemSize), arcoLight))
+            {
+                compraLuce(Helmet.rainbow, 6000);
+            }
+        }
+        GUI.EndScrollView();
+    }
+    void compraLuce(Helmet typeAcquisto, int costo)
+    {
+        if (CameraScript.data.Credits >= costo && imbuying)
+        {
+            CameraScript.data.Credits -= costo;
+            switch (typeAcquisto)
+            {               
+                case Helmet.red: CameraScript.data.lightRed = true;
+                    break;
+                case Helmet.blue: CameraScript.data.lightRed = true;
+                    break;
+                case Helmet.green: CameraScript.data.lightGreen = true;
+                    break;
+                case Helmet.pink: CameraScript.data.lightPink = true;
+                    break;
+                case Helmet.rainbow: CameraScript.data.lightRainbow = true; 
+                    break;
+            }
+            CameraScript.data.Helmet = Helmet.rainbow;
+            CameraScript.SaveData();
+            audio.PlayOneShot(cashsound);//SUONA CASSA
+        }
+        else
+            audio.PlayOneShot(noMoney);
+    }
+    #endregion
 
     private int helmetToBuy()
     {
@@ -418,7 +396,7 @@ public class buyItems_Script : MonoBehaviour
 
     void Update()
     {
-        #if !UNITY_METRO
+#if !UNITY_METRO
         if (Input.touchCount > 0 && CurrentState == buyState.lights)
         {
             Touch touch = Input.touches[0];
@@ -431,7 +409,7 @@ public class buyItems_Script : MonoBehaviour
                 imbuying = false;
             }
         }
-        #else
+#else
             if (CameraScript.IsTouch)
             {
                 if (Input.touchCount > 0)
@@ -442,12 +420,14 @@ public class buyItems_Script : MonoBehaviour
                         imbuying = true;
                     if (touch.phase == TouchPhase.Moved && fInsideList)
                     {
-                        position.y += touch.deltaPosition.y * scrollparam; //2:768= x:Screen.height
+                        position.y += touch.deltaPosition.y * scrollparam;
                         imbuying = false;
                     }
                 }
             }
 #endif
+
+
         if (SystemInfo.supportsGyroscope)
         {
             if (start)
@@ -462,27 +442,18 @@ public class buyItems_Script : MonoBehaviour
         }
         else if (SystemInfo.supportsAccelerometer)
         {
-            // filter the jerky acceleration in the variable accel:
+
             accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
             float x = -((accel.y * 100)); //si muove in alto e basso
-            //if(x<-5)
-            //    x=-5;
-            //else if(x>+33)
-            //    x=33;
-
             float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra
-            //if (y < -55)
-            //    y = -55;
-            //else if (x > +55)
-            //    y = 55;
-
             float Altobasso = (accel.y * 90) + 90;
             if (accel.z >= 0)
                 Altobasso *= -1;
-            //print(Altobasso);
             transform.rotation = Quaternion.Euler(Altobasso, DestraSinistra, 0f);
         }
     }
+
+    #region GYRO CONTROL
     bool start = true;
     private void AttachGyro()
     {
@@ -567,7 +538,7 @@ public class buyItems_Script : MonoBehaviour
     {
         referanceRotation = Quaternion.Inverse(baseOrientation) * Quaternion.Inverse(calibration);
     }
-    
+
 
     bool IsTouchInsideList(Vector2 touchPos)
     {
@@ -576,22 +547,23 @@ public class buyItems_Script : MonoBehaviour
 
         return rAdjustedBounds.Contains(screenPos);
     }
+    #endregion
 
     void add500(String ciao)
     {
-        CameraScript.data.points += 500;
+        CameraScript.data.Credits += 500;
         CameraScript.SaveData();
     }
 
     void add1000(String ciao)
     {
-        CameraScript.data.points += 1000;
+        CameraScript.data.Credits += 1000;
         CameraScript.SaveData();
     }
 
     void add5k(String ciao)
     {
-        CameraScript.data.points += 5000;
+        CameraScript.data.Credits += 5000;
         CameraScript.SaveData();
     }
 }

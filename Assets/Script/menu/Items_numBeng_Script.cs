@@ -20,14 +20,14 @@ public class Items_numBeng_Script : MonoBehaviour
     {
         if (GUI.skin != custom)
             GUI.skin = custom;
-        Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent(CameraScript.data.numBengala.ToString()), custom.label);
+        Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent(CameraScript.data.NumBengala.ToString()), custom.label);
         Rect label2Position = GUILayoutUtility.GetRect(new GUIContent(CameraScript.data.NumberReborn.ToString()), custom.label);
 
         float firstPosition = Screen.width - (size * 2 + labelPosition.width + label2Position.width + margin * 4);
         GUI.DrawTexture(new Rect(firstPosition, UnTerzo / 6 - size / 2, size, size), bengala, ScaleMode.ScaleToFit, true);
         firstPosition += margin + size;
         GUI.Label(new Rect(firstPosition, UnTerzo / 6 - labelPosition.height / 2, labelPosition.width, labelPosition.height),
-                                                                                          CameraScript.data.numBengala.ToString());
+                                                                                          CameraScript.data.NumBengala.ToString());
         firstPosition += margin + labelPosition.width;
         GUI.DrawTexture(new Rect(firstPosition, UnTerzo / 6 - size / 2, size, size), reborn, ScaleMode.ScaleToFit, true);
         firstPosition += margin + size;

@@ -6,7 +6,7 @@ public class PlayScript : MonoBehaviour
     public Transform player;
     public GameObject wplight, pglight;
     public Transform bengala;
-    public static int gamePoints;
+    public static int GameCredits;
     public JoystickC BengalaTouchPad;
     public enum PlayState
     {
@@ -61,7 +61,7 @@ public class PlayScript : MonoBehaviour
 			wplight.light.range=6f;
             pglight.SetActive(true);
         }
-        gamePoints = 0;
+        GameCredits = 0;
     }
 
     public static bool BenngalaAvailable = true;
@@ -70,11 +70,11 @@ public class PlayScript : MonoBehaviour
     {
         if (!audio.isPlaying)
             audio.volume = 1;
-        if (CameraScript.data.numBengala == 0)
+        if (CameraScript.data.NumBengala == 0)
         {
             BengalaTouchPad.Disable();
         }
-        else if (BengalaTouchPad.IsFingerDown() && BenngalaAvailable && CameraScript.data.numBengala > 0)
+        else if (BengalaTouchPad.IsFingerDown() && BenngalaAvailable && CameraScript.data.NumBengala > 0)
         {
             LanciaBengala();
         }
@@ -86,7 +86,7 @@ public class PlayScript : MonoBehaviour
 
     private void LanciaBengala()
     {
-        CameraScript.data.numBengala--;
+        CameraScript.data.NumBengala--;
         BenngalaAvailable = false;
         //lancia		
         Vector3 pos = player.position;

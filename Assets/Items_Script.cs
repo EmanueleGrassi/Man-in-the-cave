@@ -47,7 +47,7 @@ public class Items_Script : MonoBehaviour
         custom.label.fontSize = (int)(size);
         custom.button.fontSize = (int)(size / 2);
         custom.button.normal.textColor = Color.white;
-        switch (CameraScript.data.helmet)
+        switch (CameraScript.data.Helmet)
         {
 
             case Helmet.red: position = new Vector2(elementSize,0);
@@ -127,7 +127,7 @@ public class Items_Script : MonoBehaviour
                                        new Rect(0, 0, (n * elementSize) + (margin * 5) + (Screen.width / 2 - elementSize / 2) * 2, Screen.height - (UnTerzo / 3)), true, false);
         availableLights = 0;
         trovatoSetected = false;
-        if (CameraScript.data.helmet == Helmet.white)
+        if (CameraScript.data.Helmet == Helmet.white)
         {
             if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                 positionYButtons - selected / 4, selected, selected), white))
@@ -149,7 +149,7 @@ public class Items_Script : MonoBehaviour
 
         if (CameraScript.data.lightRed)
         {
-            if (CameraScript.data.helmet == Helmet.red)
+            if (CameraScript.data.Helmet == Helmet.red)
             {
                 if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                     positionYButtons - selected / 4, selected, selected), redligth))
@@ -172,7 +172,7 @@ public class Items_Script : MonoBehaviour
 
         if (CameraScript.data.lightBlue)
         {
-            if (CameraScript.data.helmet == Helmet.blue)
+            if (CameraScript.data.Helmet == Helmet.blue)
             {
                 if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                     positionYButtons - selected / 4, selected, selected), blueligth))
@@ -196,7 +196,7 @@ public class Items_Script : MonoBehaviour
 
         if (CameraScript.data.lightGreen)
         {
-            if (CameraScript.data.helmet == Helmet.green)
+            if (CameraScript.data.Helmet == Helmet.green)
             {
                 if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                     positionYButtons - selected / 4, selected, selected), greenligth))
@@ -219,7 +219,7 @@ public class Items_Script : MonoBehaviour
 
         if (CameraScript.data.lightPink)
         {
-            if (CameraScript.data.helmet == Helmet.pink)
+            if (CameraScript.data.Helmet == Helmet.pink)
             {
                 if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                     positionYButtons - selected / 4, selected, selected), pinkligth))
@@ -242,7 +242,7 @@ public class Items_Script : MonoBehaviour
 
         if (CameraScript.data.lightRainbow)
         {
-            if (CameraScript.data.helmet == Helmet.rainbow)
+            if (CameraScript.data.Helmet == Helmet.rainbow)
             {
                 if (GUI.Button(new Rect((Screen.width / 2 - selected / 2) + availableLights * (elementSize + margin) + difference,
                     positionYButtons - selected / 4, selected, selected), ranbowligth))
@@ -279,7 +279,7 @@ public class Items_Script : MonoBehaviour
     {
         if (impressing)
         {
-            CameraScript.data.helmet = e;
+            CameraScript.data.Helmet = e;
             audio.PlayOneShot(equipSound);
         }
     }

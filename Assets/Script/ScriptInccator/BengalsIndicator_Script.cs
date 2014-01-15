@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BengalsIndicator_Script : MonoBehaviour
 {
-
     float margin, height2, height;
     int fontSize;
     public GUISkin custom;
@@ -15,11 +14,14 @@ public class BengalsIndicator_Script : MonoBehaviour
     }
     void OnGUI()
     {
-        if (GUI.skin != custom)
-            GUI.skin = custom;
-        GUI.skin.label.fontSize = fontSize;
-        var labelPositionSec = GUILayoutUtility.GetRect(new GUIContent(CameraScript.data.numBengala.ToString()), GUI.skin.label);
-        GUI.Label(new Rect(margin + ((height2 - labelPositionSec.width) / 2), height2 * 1.67f,
-            labelPositionSec.width, labelPositionSec.height), CameraScript.data.numBengala.ToString());
+        if (PlayScript.State == PlayScript.PlayState.play)
+        {
+            if (GUI.skin != custom)
+                GUI.skin = custom;
+            GUI.skin.label.fontSize = fontSize;
+            var labelPositionSec = GUILayoutUtility.GetRect(new GUIContent(CameraScript.data.NumBengala.ToString()), GUI.skin.label);
+            GUI.Label(new Rect(margin + ((height2 - labelPositionSec.width) / 2), height2 * 1.67f,
+                labelPositionSec.width, labelPositionSec.height), CameraScript.data.NumBengala.ToString());
+        }
     }
 }

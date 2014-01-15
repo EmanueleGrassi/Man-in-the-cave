@@ -9,27 +9,27 @@ public class LightBehaviour : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {       
-		if (CameraScript.data.helmet == Helmet.white)
+		if (CameraScript.data.Helmet == Helmet.white)
         {
             this.light.color = Color.white;
         }
-        else if (CameraScript.data.helmet == Helmet.red)
+        else if (CameraScript.data.Helmet == Helmet.red)
         {
             this.light.color = Color.red;
         }
-        else if (CameraScript.data.helmet == Helmet.blue)
+        else if (CameraScript.data.Helmet == Helmet.blue)
         {
             this.light.color = Color.cyan;
         }
-        else if (CameraScript.data.helmet == Helmet.pink)
+        else if (CameraScript.data.Helmet == Helmet.pink)
         {
             this.light.color = Color.magenta;
         }
-        else if (CameraScript.data.helmet == Helmet.green)
+        else if (CameraScript.data.Helmet == Helmet.green)
         {
             this.light.color = Color.green;
         }
-		else if (CameraScript.data.helmet == Helmet.rainbow)
+		else if (CameraScript.data.Helmet == Helmet.rainbow)
         {
             //if (Application.platform == RuntimePlatform.WP8Player)
             light.intensity = 0.01f;

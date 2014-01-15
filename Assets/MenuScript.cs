@@ -36,8 +36,6 @@ public class MenuScript : MonoBehaviour
         PlayScript.State = PlayScript.PlayState.menu;
         height = Screen.width / 20;
         margin = Screen.width / 60;
-        ////Data.LoadFromText();
-
         CameraScript.LoadData();
 
         if (PlayerPrefs.GetString("gift1") == "")
@@ -83,25 +81,17 @@ public class MenuScript : MonoBehaviour
             // filter the jerky acceleration in the variable accel:
             accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
             float x = -((accel.y * 100)); //si muove in alto e basso
-            //if(x<-5)
-            //    x=-5;
-            //else if(x>+33)
-            //    x=33;
-
-            float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra
-            //if (y < -55)
-            //    y = -55;
-            //else if (x > +55)
-            //    y = 55;
+            float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra          
 
             float Altobasso = (accel.y * 90) + 90;
             if (accel.z >= 0)
                 Altobasso *= -1;
-            //print(Altobasso);
             transform.rotation = Quaternion.Euler(Altobasso, DestraSinistra, 0f);
         }
     }
     bool start = true;
+
+    #region GYRO CONTROL
     private void AttachGyro()
     {
         ResetBaseOrientation();
@@ -177,17 +167,15 @@ public class MenuScript : MonoBehaviour
         baseOrientationRotationFix = GetRotFix();
         baseOrientation = baseOrientationRotationFix * baseIdentity;
     }
-
-    /// <summary>
-    /// Recalculates reference rotation.
-    /// </summary>
     private void RecalculateReferenceRotation()
     {
         referanceRotation = Quaternion.Inverse(baseOrientation) * Quaternion.Inverse(calibration);
     }
+    #endregion
+
     private void addPoints(int p)
     {
-        CameraScript.data.points += p;
+        CameraScript.data.Credits += p;
         CameraScript.SaveData();
         PlayerPrefs.SetString("gift1", "done");//  salvataggio su unity
         PlayerPrefs.Save();
@@ -195,7 +183,7 @@ public class MenuScript : MonoBehaviour
         StartPromotion = true;
     }
 
-    // Update is called once per frame
+
     void OnGUI()
     {        
         if (GUI.skin != custom)
@@ -205,8 +193,6 @@ public class MenuScript : MonoBehaviour
         float playSize = UnTerzo - margin;
         float BottoniHeight = UnTerzo * 0.7f - margin;
         float SocialSize = UnTerzo * 0.5f - margin;
-        //print("width: "+((BottoniHeight * 4 + margin * 3)));
-        //print("h : " + BottoniHeight);
         GUI.DrawTexture(new Rect((Screen.width / 2) - (((BottoniHeight * 4 + margin * 3)) / 2),
                                 UnTerzo / 2 - (BottoniHeight/2), 
                                 ((BottoniHeight * 4 + margin * 3)),
@@ -220,7 +206,7 @@ public class MenuScript : MonoBehaviour
 
         float posizioneButton;
         int numBottone = 0;
-        if (CameraScript.data.Records[0].x != 0)
+        if (CameraScript.data.Records.Count != 0)
         {
             posizioneButton = Screen.width / 2 - ((BottoniHeight * 4 + margin * 3)) / 2;
             if (GUI.Button(new Rect(posizioneButton,

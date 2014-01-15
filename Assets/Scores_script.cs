@@ -13,8 +13,8 @@ public class Scores_script : MonoBehaviour
     float scrollparam;
     public Texture2D thumb;
     float UnTerzo;
-    bool IsScore = true; //fae false visualizza achivements
-    // Use this for initialization
+    bool IsScore = true; //se false visualizza achivements
+
     void Start()
     {
         size = Screen.width / 20;      
@@ -30,7 +30,7 @@ public class Scores_script : MonoBehaviour
                 CameraScript.LoadData();
     }
 
-    // Update is called once per frame
+    
     void OnGUI()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -51,30 +51,21 @@ public class Scores_script : MonoBehaviour
         }
 
         if (IsScore)
-        {
             DrawScore();
-        }
         else
-        {
             DrawAchiv();//visualizza gli achiv
-        }
-        GUI.skin.label.normal.textColor = Color.white;
     }
     void DrawScore()
     { 
         GUI.skin.label.fontSize = (int)(size * 0.7f);
-        if (CameraScript.data.Records[0].x != 0)
+        if (CameraScript.data.Records.Count != 0)
         {
             int i = 0;
-            int n = scoresMade();
+            int n = CameraScript.data.Records.Count;
             pos = GUI.BeginScrollView(new Rect(margin * 3 + size, barSize, Screen.width - (margin * 3 + size), Screen.height - barSize),
                 pos, new Rect(0, 0, Screen.width, size * 2 + size * n * 1.5f));
             for (i = 0; i < 20; i++)
-            {
-                if (CameraScript.data.Records[i].x == 0)
-                {
-                    break;
-                }
+            {                
                 if (i == 0)
                 {
                     GUI.skin.label.normal.textColor = new Color(246, 193, 0);
@@ -95,24 +86,13 @@ public class Scores_script : MonoBehaviour
                     GUI.skin.label.fontSize = (int)(size * 0.6);
                     GUI.skin.label.normal.textColor = Color.white;
                 }
-                GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), formatScore(CameraScript.data.Records[i].x));
-                GUI.Label(new Rect(size * 7, (i * (size * 1.3f)), size * 10, size * 1.5f), CameraScript.data.Records[i].y +
-                    "/" + CameraScript.data.Records[i].width + "/" + CameraScript.data.Records[i].height);
+                GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), formatScoreSecond(CameraScript.data.Records[i].Seconds));
+                GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), formatScoreSecond(CameraScript.data.Records[i].Points));
+                GUI.Label(new Rect(size * 7, (i * (size * 1.3f)), size * 10, size * 1.5f), CameraScript.data.Records[i].Day +
+                    "/" + CameraScript.data.Records[i].Month + "/" + CameraScript.data.Records[i].Year);
             }
             GUI.EndScrollView();
         }
-    }
-
-    private int scoresMade()
-    {
-        int j = 0;
-        for (int i = 0; i < 20; i++)
-        {
-            if (CameraScript.data.Records[i].x == 0)
-                break;
-            j++;
-        }
-        return j;
     }
 
     void DrawAchiv()
@@ -135,7 +115,6 @@ public class Scores_script : MonoBehaviour
         //GUI.DrawTexture(new Rect(Screen.width / 4 - achiveSize / 2, barSize + achiveSize, achiveSize, achiveSize), moneyAchiv);
     }
 
-
     void Update()
     {
        #if UNITY_METRO
@@ -152,13 +131,13 @@ public class Scores_script : MonoBehaviour
         #endif
     }
 
-    public static string formatScore(float a)
+    public static string formatScoreSecond(float a)
     {
         TimeSpan t = TimeSpan.FromSeconds(a);
         if(t.Minutes>0)
             return (String.Format("{0:0}:{1:00} min", t.Minutes, t.Seconds));
         else
-            return (String.Format("{0:00} sec", t.Seconds));
+            return (String.Format("{0:#0} sec", t.Seconds));
     }
 
     bool IsTouchInsideList(Vector2 touchPos)

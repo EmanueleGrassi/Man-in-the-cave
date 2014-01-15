@@ -10,8 +10,8 @@ using System.Xml;
 
 public class Data
 {
-    public int points = 0;
-    public Rect[] Records = new Rect[20];
+    public int Credits = 0;
+    public List<Record> Records = new List<Record>();
     int pickaxeState;/*50 max*/
     public int PickaxeState
     {
@@ -25,90 +25,20 @@ public class Data
             }
             else
                 pickaxeState = value;
-
         }
     }
 
-    public int NumberPickaxe;
+    public int NumberPickaxe = 0;
     public int NumberReborn = 2;
-    public int numBengala = 3;
+    public int NumBengala = 3;
     public bool lightRed = false;
     public bool lightBlue = false;
     public bool lightGreen = false;
     public bool lightPink = false;
     public bool lightRainbow = false;
-    public Helmet helmet = Helmet.white;
+    public Helmet Helmet = Helmet.white;
 
-
-    //#region SAVE
-    //// serialize this class to JSON
-    //public static implicit operator JSON(Data value)
-    //{
-    //    JSON js = new JSON();
-    //    JSON jsTransform = new JSON();
-    //    js["transform"] = jsTransform;
-
-    //    js["points"] = value.points;
-    //    js["pickaxeState"] = value.pickaxeState;
-    //    js["NumberPickaxe"] = value.NumberPickaxe;
-    //    js["NumberReborn"] = value.NumberReborn;
-    //    js["numBengala"] = value.numBengala;
-    //    js["lightRed"] = value.lightRed;
-    //    js["lightBlue"] = value.lightBlue;
-    //    js["lightGreen"] = value.lightGreen;
-    //    js["lightPink"] = value.lightPink;
-    //    js["lightRainbow"] = value.lightRainbow;
-    //    js["helmet"] = (int)value.helmet;
-    //    Debug.Log(" len:" + value.Records.Length);
-    //    js["Record"] = new JSON[] {
-    //        (JSON)(value.Records[0]),
-    //        (JSON)(value.Records[1]),
-    //        (JSON)(value.Records[2]),
-    //        (JSON)(value.Records[3]),
-    //        (JSON)(value.Records[4]),
-    //        (JSON)(value.Records[5]),
-    //        (JSON)(value.Records[6]),
-    //        (JSON)(value.Records[7]),
-    //        (JSON)(value.Records[8]),
-    //        (JSON)(value.Records[9]),
-    //        (JSON)(value.Records[10]),
-    //        (JSON)(value.Records[11]),
-    //        (JSON)(value.Records[12]),
-    //        (JSON)(value.Records[13]),
-    //        (JSON)(value.Records[14]),
-    //        (JSON)(value.Records[15]),
-    //        (JSON)(value.Records[16]),
-    //        (JSON)(value.Records[17]),
-    //        (JSON)(value.Records[18]),
-    //        (JSON)(value.Records[19])
-    //    };
-    //    return js;
-    //}
-
-    //// JSON to class conversion
-    //public static explicit operator Data(JSON value)
-    //{
-    //    checked
-    //    {
-    //        JSON jsTransform = value.ToJSON("transform");
-    //        var deserislizedClass = new Data();
-    //        deserislizedClass.points = value.ToInt("points");
-    //        deserislizedClass.pickaxeState = value.ToInt("pickaxeState");
-    //        deserislizedClass.NumberPickaxe = value.ToInt("NumberPickaxe");
-    //        deserislizedClass.NumberReborn = value.ToInt("NumberReborn");
-    //        deserislizedClass.numBengala = value.ToInt("numBengala");
-    //        deserislizedClass.lightRed = value.ToBoolean("lightRed");
-    //        deserislizedClass.lightBlue = value.ToBoolean("lightBlue");
-    //        deserislizedClass.lightGreen = value.ToBoolean("lightGreen");
-    //        deserislizedClass.lightPink = value.ToBoolean("lightPink");
-    //        deserislizedClass.lightRainbow = value.ToBoolean("lightRainbow");
-    //        deserislizedClass.helmet = (Helmet)value.ToInt("helmet");
-    //        deserislizedClass.Records = value.ToArray<Rect>("Record");
-    //        return deserislizedClass;
-    //    }
-    //}
-    //#endregion
-
+#region SAVE LOAD
     public void Save()
     {
         string path = Path.Combine(Application.persistentDataPath, "data.xml");
@@ -128,7 +58,7 @@ public class Data
 #endif
         string path = Path.Combine(Application.persistentDataPath, "data.xml");
         var serializer = new XmlSerializer(typeof(Data));
-        
+
         try
         {
             using (var stream = new FileStream(path, FileMode.Open))
@@ -136,16 +66,18 @@ public class Data
                 CameraScript.data = serializer.Deserialize(stream) as Data;
             }
         }
-        #if UNITY_WP8
-        catch(System.IO.FileNotFoundException e)
-        #else
+#if UNITY_WP8
+        catch (System.IO.FileNotFoundException e)
+#else
         catch(System.IO.IsolatedStorage.IsolatedStorageException e)
-        #endif
+#endif
         {
             CameraScript.data = new Data();
             CameraScript.data.Save();
         }
     }
+#endregion
+
 }
 public enum Helmet
 {
@@ -156,110 +88,135 @@ public enum Helmet
     pink = 4,
     rainbow = 5
 }
-public class Record
+public class Record : IComparable<Record>
 {
     public int Seconds;
-    public DateTime When;
+    public int Credits, Points;
+    public int Day, Month, Year;
+
+    public Record(int seconds, int credits, int points, int day, int month, int year)
+    {
+        Seconds = seconds;
+        Credits = credits;
+        Points = points;
+        Day = day;
+        Month = month;
+        Year = year;
+    }
+
+    public int CompareTo(Record b)
+    {
+        // Alphabetic sort name[A to Z]
+        return this.Seconds.CompareTo(b.Seconds);
+    }
 }
+
+
+
+
+
+
 
 public class CameraScript : MonoBehaviour
 {
-#region variabili
-    #region private 
-    
-    //menu
+    #region variabili
+    #region private
     float height;
-    float margin, margin2;
+    float margin, UnTerzo;
     bool rebornUsed, playgameover = true;
+    float BottoniSize;
     #endregion
+
     #region pubbliche
     /*CLASSE SALVATAGGIO*/
     public static Data data;
     /*CLASSE SALVATAGGIO*/
-        public GUISkin custom;
-        public Transform playerPG;
-        public Transform _20bis;
-        public AudioClip[] rockSound;
-        public AudioClip background,gameoverSound;
-        public float Volume;
-        
-        public static float PlayTime;
-        public static float TempoRecord = 0;
-        public static bool replay;
-        //Gui Pause e result
-        public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, homeButton, playAgainButton, likebtn;
-        //Gui Play
-        public Texture coin, pause;
-        public Texture Infobox_Texture; 
-        public Texture useReborn_Texture, OKbutton_Texture, CancelButton_Texture;
-        public Texture Vignette_Texture;
+    public GUISkin custom;
+    public Transform playerPG;
+    public Transform _20bis;
+    public AudioClip[] rockSound;
+    public AudioClip background, gameoverSound;
+    public float Volume;
 
-        public static GameObject bengalaButton, movementButton, jumpButton;
-        public static bool replayGame;
+    public static float PlayTime;
+    public static float TempoRecord = 0;
+    public static bool replay;
+    //Gui Pause e result
+    public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, homeButton, playAgainButton, likebtn;
+    //Gui Play
+    public Texture coin, pause;
+    public Texture Infobox_Texture;
+    public Texture useReborn_Texture, OKbutton_Texture, CancelButton_Texture;
+    public Texture Vignette_Texture;
 
-        public Texture2D backclock, leftClock, holdingClock;
+    public static GameObject bengalaButton, movementButton, jumpButton;
+    public static bool replayGame;
+
+    public Texture2D backclock, leftClock, holdingClock;
     #endregion
-#endregion
+
 #if UNITY_METRO 
-        private Boolean VisualizeButtonsOnW8=false;
-		public Texture Istruction;
-        float instrTime;
-        bool showInstru;
-        public static bool IsTouch = false;
-        public static event EventHandler saveEvent, loadEvent;
+    private Boolean VisualizeButtonsOnW8=false;
+	public Texture Istruction;
+    float instrTime;
+    bool showInstru;
+    public static bool IsTouch = false;
+    public static event EventHandler saveEvent, loadEvent;
 #endif
 #if UNITY_METRO || UNITY_WP8
-        public static event EventHandler shareEvent;
-        public static event EventHandler GOReviews;
+    public static event EventHandler shareEvent;
+    public static event EventHandler GOReviews;
 #endif
-#region Save and Load
-        public static void SaveData()
-        {
-            #if UNITY_METRO
+    #endregion
+
+    #region Save and Load
+    public static void SaveData()
+    {
+#if UNITY_METRO
             if (saveEvent != null)
                 saveEvent(new object(), new EventArgs());
-            #else
-            data.Save();
-            #endif
-          
-//#else
-            
-//            foreach(var item in data.Records)
-//            {
-//                print("day rec: "+item.y);
-//            }
-//            JSON js = new JSON();
-//            print (((JSON)data).serialized);
-//            js["salvataggio"] = ((JSON)data);
-//            PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
-//            PlayerPrefs.Save();
-//#endif
-        }
+#else
+        data.Save();
+#endif
+
+        //#else
+
+        //            foreach(var item in data.Records)
+        //            {
+        //                print("day rec: "+item.y);
+        //            }
+        //            JSON js = new JSON();
+        //            print (((JSON)data).serialized);
+        //            js["salvataggio"] = ((JSON)data);
+        //            PlayerPrefs.SetString("salvataggio", js.serialized);//  salvataggio su unity
+        //            PlayerPrefs.Save();
+        //#endif
+    }
     public static void LoadData()
     {
-            #if UNITY_METRO
+#if UNITY_METRO
             if (loadEvent != null)
                 loadEvent(new object(), new EventArgs());
-            #else
-            Data.Load();
-            #endif
-//#else
-//        if (PlayerPrefs.GetString("salvataggio") != "")
-//        {
-//            JSON js = new JSON();
-//            js.serialized = PlayerPrefs.GetString("salvataggio"); //devo prendere quella dei settings 
-//            data = (Data)js.ToJSON("salvataggio");
-//        }
-//        else
-//        {
-//            data = new Data();
-//            for (int i =0; i<20; i++)
-//                data.Records[i]= new Rect(0,0,0,0);
-//            SaveData();
-//        }
-//#endif
+#else
+        Data.Load();
+#endif
+        //#else
+        //        if (PlayerPrefs.GetString("salvataggio") != "")
+        //        {
+        //            JSON js = new JSON();
+        //            js.serialized = PlayerPrefs.GetString("salvataggio"); //devo prendere quella dei settings 
+        //            data = (Data)js.ToJSON("salvataggio");
+        //        }
+        //        else
+        //        {
+        //            data = new Data();
+        //            for (int i =0; i<20; i++)
+        //                data.Records[i]= new Rect(0,0,0,0);
+        //            SaveData();
+        //        }
+        //#endif
     }
-#endregion
+    #endregion
 
     void Start()
     {
@@ -275,8 +232,10 @@ public class CameraScript : MonoBehaviour
         PlayTime = 0;
         height = Screen.width / 20;
         margin = Screen.width / 60;
-        margin2 = 0;// Screen.width / 70;
-    #if UNITY_METRO
+        UnTerzo = Screen.height / 3;
+        BottoniSize = UnTerzo * 0.7f - margin;
+
+#if UNITY_METRO
         if (IsTouch)
         {
             VisualizeButtonsOnW8 = true;
@@ -288,7 +247,7 @@ public class CameraScript : MonoBehaviour
         {
             showInstru = false;
         }
-    #endif
+#endif
         if (SystemInfo.supportsGyroscope)
         {
             Input.gyro.enabled = false;
@@ -296,30 +255,24 @@ public class CameraScript : MonoBehaviour
         PlayScript.State = PlayScript.PlayState.play;
     }
 
-   
+
     void Update()
     {
-    #if UNITY_METRO
+#if UNITY_METRO
         if (PlayTime > instrTime)
         {
             showInstru = false;
             PlayerPrefs.SetInt("instru", 10);
             PlayerPrefs.Save();
         }
-    #endif
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            if (PlayScript.State == PlayScript.PlayState.play)
-                PlayScript.State = PlayScript.PlayState.pause;
-            else if (PlayScript.State == PlayScript.PlayState.pause)
-                PlayScript.State = PlayScript.PlayState.play;
-        }
+#endif
+
         if (replayGame)
         {
             PlayScript.State = PlayScript.PlayState.play;
             replayGame = false;
         }
-        
+
         if (!audio.isPlaying)
         {
             audio.clip = background;
@@ -329,31 +282,21 @@ public class CameraScript : MonoBehaviour
 
         if (RockBehaviour.Play)
         {
-            AudioSource.PlayClipAtPoint(rockSound[UnityEngine.Random.Range(0,rockSound.Length)], RockBehaviour.deathP);
+            AudioSource.PlayClipAtPoint(rockSound[UnityEngine.Random.Range(0, rockSound.Length)], RockBehaviour.deathP);
             RockBehaviour.Play = false;
         }
         if (PlayScript.State == PlayScript.PlayState.play)
         {
             // SEGUE IL PERSONAGGIO CON LA TELECAMERA
             float playerPGxPOW = (playerPG.position.x * playerPG.position.x);
-            /*ellisse 
-             * semiassi:
-             * z=6
-             * x=
-             */
-            /*transform.position = new Vector3(playerPG.position.x,
-                            Mathf.Sqrt((1 - (playerPGxPOW / 3600)) * 25f),
-                -1 * Mathf.Sqrt((1 - (playerPGxPOW / 1550)) * 25f));*/
-			transform.position = new Vector3(playerPG.position.x,
-			                                 Mathf.Sqrt((1 - (playerPGxPOW / 6400)) * 25f),
-			                                 -1 * Mathf.Sqrt((1 - (playerPGxPOW / 4900)) * 25f));
-			/*transform.position = new Vector3(playerPG.position.x,
-			                                 3.3f,
-			                                 1.84f);*/
 
-			transform.rotation = Quaternion.Euler(2.9f,
-			                                      Mathf.Tan(-(playerPG.position.x/(350* Mathf.Sqrt(9800-2*playerPGxPOW)))) * 180 / Mathf.PI,
-			                                      0);
+            transform.position = new Vector3(playerPG.position.x,
+                                             Mathf.Sqrt((1 - (playerPGxPOW / 6400)) * 25f),
+                                             -1 * Mathf.Sqrt((1 - (playerPGxPOW / 4900)) * 25f));
+
+            transform.rotation = Quaternion.Euler(2.9f,
+                                                  Mathf.Tan(-(playerPG.position.x / (350 * Mathf.Sqrt(9800 - 2 * playerPGxPOW)))) * 180 / Mathf.PI,
+                                                  0);
 
             /* vecchio transform.rotation = Quaternion.Euler(2.9f,
                 Mathf.Tan(-((2 * playerPG.position.x) / (5 * Mathf.Sqrt(2500 - playerPGxPOW)))) * 180 / Mathf.PI,
@@ -368,25 +311,25 @@ public class CameraScript : MonoBehaviour
         jumpButton.SetActive(visibility);
     }
 
-#region OnGUI
+    #region OnGUI
     void OnGUI()
     {
-        if(GUI.skin!=custom)
+        if (GUI.skin != custom)
             GUI.skin = custom;
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Vignette_Texture);
         if (PlayScript.State == PlayScript.PlayState.play)
         {
-        #if UNITY_METRO
+#if UNITY_METRO
             ManageButton(VisualizeButtonsOnW8);
             if (showInstru)
                 GUI.DrawTexture(new Rect((Screen.width / 2) - Screen.width / 4, 0, Screen.width / 2, (Screen.width / 2) * 115 / 488), Istruction);
-        #endif
-        #if !UNITY_METRO
+#endif
+#if !UNITY_METRO
             ManageButton(true);
-        #endif
+#endif
 
             drawPlay();
-        }       
+        }
         else if (PlayScript.State == PlayScript.PlayState.pause)
         {
             ManageButton(false);
@@ -401,13 +344,20 @@ public class CameraScript : MonoBehaviour
 
     private void drawPause()
     {
-        if (GUI.Button(new Rect(height * 5, height * 4, height * 3, height * 3), PlayButton))
+        if (Input.GetKey(KeyCode.Escape))
+        {
             PlayScript.State = PlayScript.PlayState.play;
-        if (GUI.Button(new Rect(height * 9, height * 4, height * 3, height * 3), playAgainButton))
+        }
+        float middle = Screen.height / 2 - (BottoniSize / 2);
+        if (GUI.Button(new Rect((Screen.width / 4) - (BottoniSize / 2), middle, BottoniSize, BottoniSize), PlayButton))
+        {
+            PlayScript.State = PlayScript.PlayState.play;
+        }
+        if (GUI.Button(new Rect((Screen.width * 2 / 4) - (BottoniSize / 2), middle, BottoniSize, BottoniSize), playAgainButton))
         {
             Application.LoadLevel(1);
         }
-        if (GUI.Button(new Rect(height * 13, height * 4, height * 3, height * 3), homeButton))
+        if (GUI.Button(new Rect((Screen.width * 3 / 4) - (BottoniSize / 2), middle, BottoniSize, BottoniSize), homeButton))
         {
             PlayScript.State = PlayScript.PlayState.menu;
             Application.LoadLevel(0);
@@ -419,25 +369,24 @@ public class CameraScript : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
             Application.LoadLevel(0);
 
-        bool? vis = false;
+        bool visualizeReborn = false;
         if (data.NumberReborn > 0 && !rebornUsed)
-            vis = null;
+            visualizeReborn = true;
 
-        if (vis == null)
+        if (visualizeReborn == true)//chiede su vui usare il reborn
         {
-            //vis = false;
-            GUI.DrawTexture(new Rect(height * 2 - 6 * margin, height * 2, height * 20, height * 5), useReborn_Texture, ScaleMode.ScaleToFit, true);
-            if (GUI.Button(new Rect(height * 5 + margin * 5, height * 8, height * 3, height * 3), OKbutton_Texture))
+            float rebornWidth= Screen.width*2/4;
+            float rebornHeight = rebornWidth * 210 / 512;
+            GUI.DrawTexture(new Rect(Screen.width / 2 - rebornWidth/2, (Screen.height / 2) - margin - (rebornHeight), rebornWidth, rebornHeight),
+                useReborn_Texture, ScaleMode.ScaleToFit, true);
+            if (GUI.Button(new Rect(Screen.width / 3 - BottoniSize / 2, Screen.height / 2 + margin, BottoniSize, BottoniSize), OKbutton_Texture))
             {
-
                 data.NumberReborn--;
-                //SaveData();
-                //torna alla partita, da dove stavi
                 if (playerPG != null)
                 {
                     Vector3 pos = playerPG.transform.position;
                     playerPG.transform.position = new Vector3(pos.x, pos.y + 10, pos.z);
-                    playerPG.gameObject.SetActive(true); 
+                    playerPG.gameObject.SetActive(true);
                     _20bis.gameObject.SetActive(true);
                     ManageButton(true);
                 }
@@ -445,90 +394,80 @@ public class CameraScript : MonoBehaviour
                 GameManager_script.PGdead = false;
                 replayGame = true;
             }
-            if (GUI.Button(new Rect(height * 9 + margin * 5, height * 8, height * 3, height * 3), CancelButton_Texture))
+            if (GUI.Button(new Rect(Screen.width * 2 / 3 - BottoniSize/2, Screen.height/2 + margin, BottoniSize, BottoniSize), CancelButton_Texture))
             {
-                vis = false;
+                visualizeReborn = false;
                 rebornUsed = true;
             }
         }
-        else if (vis == false)
+        else if (visualizeReborn == false) //visualizza i result
         {
             if (playgameover)
             {
 
-				audio.volume = 0.75f;
+                audio.volume = 0.75f;
                 audio.PlayOneShot(gameoverSound);
                 playgameover = false;
             }
-            GUI.skin.label.fontSize = (int)(height * 1.3f);
+            GUI.skin.label.fontSize = (int)(height * 1.3);
             GUI.Label(new Rect(height, height * 2, height * 20, height * 2), "You survived inside the cave for:");
             TimeSpan t = TimeSpan.FromSeconds(CameraScript.PlayTime);
-            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, height * 20, height * 2), String.Format("{0:00}:{1:00}", t.Minutes, t.Seconds));
-            //HAI GUADAGNATO TOT MONETE
-            if (GUI.Button(new Rect(height * 3, height * 8, height * 5, height * 3 + margin), playAgainButton))
+            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, BottoniSize, BottoniSize), String.Format("{0:00}:{1:00}", t.Minutes, t.Seconds));
+            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, BottoniSize, BottoniSize), String.Format("cretits"));
+            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, BottoniSize, BottoniSize), String.Format(PlayScript.GameCredits.ToString()));
+            int totalPoints = (int)((CameraScript.PlayTime + PlayScript.GameCredits) * 1.7);
+            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, BottoniSize, BottoniSize), String.Format("Points"));
+            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, BottoniSize, BottoniSize), String.Format(totalPoints.ToString()));
+
+            if (GUI.Button(new Rect((Screen.width / 4) - (BottoniSize / 2), height * 8, BottoniSize, BottoniSize), playAgainButton))
             {
-                CameraScript.data.points += PlayScript.gamePoints;
-				Rect record = new Rect(PlayTime, (float)DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
-                salvaRecord(record);
-                //Data.Save();
+                CameraScript.data.Credits += PlayScript.GameCredits;                
+                salvaRecord(new Record((int)PlayTime, PlayScript.GameCredits, totalPoints, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
                 SaveData();
                 Application.LoadLevel(1);
             }
-            if (GUI.Button(new Rect(height * 13, height * 8, height * 5, height * 3 + margin), homeButton))
+            if (GUI.Button(new Rect((Screen.width * 3 / 4) - (BottoniSize / 2), height * 8, BottoniSize, BottoniSize), homeButton))
             {
-                CameraScript.data.points += PlayScript.gamePoints;
-				Rect record = new Rect(PlayTime, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
-				print("day: "+DateTime.Now.Day+ " || rec: "+record.y);
-                salvaRecord(record);
-                //Data.Save();
+                CameraScript.data.Credits += PlayScript.GameCredits;
+                salvaRecord(new Record((int)PlayTime, PlayScript.GameCredits, totalPoints, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
                 SaveData();
                 Application.LoadLevel(0);
             }
-            #if (UNITY_WP8 || UNITY_METRO)           
-                TempoRecord = CameraScript.PlayTime;
-                if (GUI.Button(new Rect(height * 8, height * 8, height * 5, height * 3 + margin), likebtn))
-                {                    
-                    if (shareEvent != null)
-                        shareEvent(this, new EventArgs());
-                }           
-            #endif
+#if (UNITY_WP8 || UNITY_METRO)
+            TempoRecord = CameraScript.PlayTime;
+            if (GUI.Button(new Rect((Screen.width * 2 / 4) - (BottoniSize / 2), height * 8, BottoniSize, BottoniSize), likebtn))
+            {
+                if (shareEvent != null)
+                    shareEvent(this, new EventArgs());
+            }
+#endif
         }
     }
 
-    private void salvaRecord(Rect rec)
-    {
-        List<Rect> t = new List<Rect>();
-        foreach (var item in data.Records)
+    private void salvaRecord(Record rec)
+    {     
+        data.Records.Add(rec);
+        data.Records.Sort();
+
+        if(data.Records.Count<=20)
         {
-            t.Add(item);
+            //taglia dopo i venti
         }
-        int i = 0;
-        foreach (var item in t)
-        {
-            if (rec.x > item.x)
-            {
-                t.Insert(i, rec);
-                break;
-            }
-            i++;
-        }
-        i = 0;
-        foreach (var item in data.Records)
-        {
-            data.Records[i]= t[i];
-            i++;
-        }        
     }
-    Rect labelPositionSec ;
+
     void drawPlay()
     {
-		var multime = 1;
-		var rot = (CameraScript.PlayTime) * 6;
-		var height2 = Screen.width / 6;
-		Matrix4x4 startMatrix = GUI.matrix;
-		Rect ClockRect = new Rect(margin, margin, height2, height2);
-		Vector2 Centerpoint = new Vector2(margin+(height2 / 2),margin+(height2 / 2));
-		//inizio orologio
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            PlayScript.State = PlayScript.PlayState.pause;
+        }
+        var multime = 1;
+        var rot = (CameraScript.PlayTime) * 6;
+        var height2 = Screen.width / 6;
+        Matrix4x4 startMatrix = GUI.matrix;
+        Rect ClockRect = new Rect(margin, margin, height2, height2);
+        Vector2 Centerpoint = new Vector2(margin + (height2 / 2), margin + (height2 / 2));
+        //inizio orologio
         GUI.DrawTexture(ClockRect, backclock, ScaleMode.ScaleToFit, true);
         if ((CameraScript.PlayTime % 60) > 30 * multime)
         {
@@ -555,866 +494,13 @@ public class CameraScript : MonoBehaviour
             TimeText = string.Format("{0:#0}", t.Seconds);
         GUI.skin.label.fontSize = (int)(height * 1.2);
         Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent(TimeText), custom.label);
-        GUI.Label(new Rect(margin + ((height2 - labelPosition.width) / 2), ((height2*0.8f - labelPosition.height) / 2),
+        GUI.Label(new Rect(margin + ((height2 - labelPosition.width) / 2), ((height2 * 0.8f - labelPosition.height) / 2),
             labelPosition.width, labelPosition.height), TimeText);
 
-        if (GUI.Button(new Rect(Screen.width - (margin + height2/2), margin, height2/2, height2/2), pause))
+        if (GUI.Button(new Rect(Screen.width - (margin + height2 / 2), margin, height2 / 2, height2 / 2), pause))
         {
             PlayScript.State = PlayScript.PlayState.pause;
         }
     }
-#endregion
-
-}
-
-
-
-
-/*
- * 2013 WyrmTale Games | MIT License
- *
- * Based on   MiniJSON.cs by Calvin Rien | https://gist.github.com/darktable/1411710
- * that was Based on the JSON parser by Patrick van Bergen | http://techblog.procurios.nl/k/618/news/view/14605/14863/How-do-I-write-my-own-parser-for-JSON.html
- *
- * Extended it so it includes/returns a JSON object that can be accessed using 
- * indexers. also easy custom class to JSON object mapping by implecit and explicit asignment  overloading
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
-public class JSON
-{
-
-    public Dictionary<string, object> fields = new Dictionary<string, object>();
-
-    // Indexer to provide read/write access to the fields
-    public object this[string fieldName]
-    {
-        // Read one byte at offset index and return it.
-        get
-        {
-            if (fields.ContainsKey(fieldName))
-                return (fields[fieldName]);
-            return null;
-        }
-        // Write one byte at offset index and return it.
-        set
-        {
-            if (fields.ContainsKey(fieldName))
-                fields[fieldName] = value;
-            else
-                fields.Add(fieldName, value);
-        }
-    }
-
-    public string ToString(string fieldName)
-    {
-        if (fields.ContainsKey(fieldName))
-            return System.Convert.ToString(fields[fieldName]);
-        else
-            return "";
-    }
-    public int ToInt(string fieldName)
-    {
-        if (fields.ContainsKey(fieldName))
-            return System.Convert.ToInt32(fields[fieldName]);
-        else
-            return 0;
-    }
-    public float ToFloat(string fieldName)
-    {
-        if (fields.ContainsKey(fieldName))
-            return System.Convert.ToSingle(fields[fieldName]);
-        else
-            return 0.0f;
-    }
-    public bool ToBoolean(string fieldName)
-    {
-        if (fields.ContainsKey(fieldName))
-            return System.Convert.ToBoolean(fields[fieldName]);
-        else
-            return false;
-    }
-
-    public string serialized
-    {
-        get
-        {
-            return _JSON.Serialize(this);
-        }
-        set
-        {
-            JSON o = _JSON.Deserialize(value);
-            if (o != null)
-                fields = o.fields;
-        }
-    }
-
-    public JSON ToJSON(string fieldName)
-    {
-        if (!fields.ContainsKey(fieldName))
-            fields.Add(fieldName, new JSON());
-
-        return (JSON)this[fieldName];
-    }
-
-    // to serialize/deserialize a Vector2
-    public static implicit operator Vector2(JSON value)
-    {
-        return new Vector3(
-             System.Convert.ToSingle(value["x"]),
-             System.Convert.ToSingle(value["y"]));
-    }
-    public static explicit operator JSON(Vector2 value)
-    {
-        checked
-        {
-            JSON o = new JSON();
-            o["x"] = value.x;
-            o["y"] = value.y;
-            return o;
-        }
-
-    }
-
-
-    // to serialize/deserialize a Vector3
-    public static implicit operator Vector3(JSON value)
-    {
-        return new Vector3(
-             System.Convert.ToSingle(value["x"]),
-             System.Convert.ToSingle(value["y"]),
-             System.Convert.ToSingle(value["z"]));
-    }
-
-    public static explicit operator JSON(Vector3 value)
-    {
-        checked
-        {
-            JSON o = new JSON();
-            o["x"] = value.x;
-            o["y"] = value.y;
-            o["z"] = value.z;
-            return o;
-        }
-    }
-
-    // to serialize/deserialize a Quaternion
-    public static implicit operator Quaternion(JSON value)
-    {
-        return new Quaternion(
-             System.Convert.ToSingle(value["x"]),
-             System.Convert.ToSingle(value["y"]),
-             System.Convert.ToSingle(value["z"]),
-             System.Convert.ToSingle(value["w"])
-             );
-    }
-    public static explicit operator JSON(Quaternion value)
-    {
-        checked
-        {
-            JSON o = new JSON();
-            o["x"] = value.x;
-            o["y"] = value.y;
-            o["z"] = value.z;
-            o["w"] = value.w;
-            return o;
-        }
-    }
-
-    // to serialize/deserialize a Color
-    public static implicit operator Color(JSON value)
-    {
-        return new Color(
-             System.Convert.ToSingle(value["r"]),
-             System.Convert.ToSingle(value["g"]),
-             System.Convert.ToSingle(value["b"]),
-             System.Convert.ToSingle(value["a"])
-             );
-    }
-    public static explicit operator JSON(Color value)
-    {
-        checked
-        {
-            JSON o = new JSON();
-            o["r"] = value.r;
-            o["g"] = value.g;
-            o["b"] = value.b;
-            o["a"] = value.a;
-            return o;
-        }
-    }
-
-    // to serialize/deserialize a Color32
-    public static implicit operator Color32(JSON value)
-    {
-        return new Color32(
-             System.Convert.ToByte(value["r"]),
-             System.Convert.ToByte(value["g"]),
-             System.Convert.ToByte(value["b"]),
-             System.Convert.ToByte(value["a"])
-             );
-    }
-    public static explicit operator JSON(Color32 value)
-    {
-        checked
-        {
-            JSON o = new JSON();
-            o["r"] = value.r;
-            o["g"] = value.g;
-            o["b"] = value.b;
-            o["a"] = value.a;
-            return o;
-        }
-    }
-
-    // to serialize/deserialize a Rect
-    public static implicit operator Rect(JSON value)
-    {
-        return new Rect(
-             System.Convert.ToInt32(value["left"]),
-         System.Convert.ToInt32(value["top"]),
-         System.Convert.ToInt32(value["width"]),
-         System.Convert.ToInt32(value["height"])
-         );
-    }
-    public static explicit operator JSON(Rect value)
-    {
-        checked
-        {
-            JSON o = new JSON();
-            o["left"] = value.x;
-            o["top"] = value.y;
-            o["width"] = value.width;
-            o["height"] = value.height;
-            return o;
-        }
-    }
-
-
-    // get typed array out of the object as object[] 
-    public T[] ToArray<T>(string fieldName)
-    {
-        if (fields.ContainsKey(fieldName))
-        {
-            if (fields[fieldName] is IEnumerable)
-            {
-                List<T> l = new List<T>();
-                foreach (object o in (fields[fieldName] as IEnumerable))
-                {
-                    if (l is List<string>)
-                        (l as List<string>).Add(System.Convert.ToString(o));
-                    else
-                        if (l is List<int>)
-                            (l as List<int>).Add(System.Convert.ToInt32(o));
-                        else
-                            if (l is List<float>)
-                                (l as List<float>).Add(System.Convert.ToSingle(o));
-                            else
-                                if (l is List<bool>)
-                                    (l as List<bool>).Add(System.Convert.ToBoolean(o));
-                                else
-                                    if (l is List<Vector2>)
-                                        (l as List<Vector2>).Add((Vector2)((JSON)o));
-                                    else
-                                        if (l is List<Vector3>)
-                                            (l as List<Vector3>).Add((Vector3)((JSON)o));
-                                        else
-                                            if (l is List<Rect>)
-                                                (l as List<Rect>).Add((Rect)((JSON)o));
-                                            else
-                                                if (l is List<Color>)
-                                                    (l as List<Color>).Add((Color)((JSON)o));
-                                                else
-                                                    if (l is List<Color32>)
-                                                        (l as List<Color32>).Add((Color32)((JSON)o));
-                                                    else
-                                                        if (l is List<Quaternion>)
-                                                            (l as List<Quaternion>).Add((Quaternion)((JSON)o));
-                                                        else
-                                                            if (l is List<JSON>)
-                                                                (l as List<JSON>).Add((JSON)o);
-                }
-                return l.ToArray();
-            }
-        }
-        return new T[] { };
-    }
-
-
-
-    /// <summary>
-    /// This class encodes and decodes JSON strings.
-    /// Spec. details, see http://www.json.org/
-    ///
-    /// JSON uses Arrays and Objects. These correspond here to the datatypes IList and IDictionary.
-    /// All numbers are parsed to doubles.
-    /// </summary>
-    sealed class _JSON
-    {
-        /// <summary>
-        /// Parses the string json into a value
-        /// </summary>
-        /// <param name="json">A JSON string.</param>
-        /// <returns>An List&lt;object&gt;, a Dictionary&lt;string, object&gt;, a double, an integer,a string, null, true, or false</returns>
-        public static JSON Deserialize(string json)
-        {
-            // save the string for debug information
-            if (json == null)
-            {
-                return null;
-            }
-
-            return Parser.Parse(json);
-        }
-
-        sealed class Parser : IDisposable
-        {
-            const string WHITE_SPACE = " \t\n\r";
-            const string WORD_BREAK = " \t\n\r{}[],:\"";
-
-            enum TOKEN
-            {
-                NONE,
-                CURLY_OPEN,
-                CURLY_CLOSE,
-                SQUARED_OPEN,
-                SQUARED_CLOSE,
-                COLON,
-                COMMA,
-                STRING,
-                NUMBER,
-                TRUE,
-                FALSE,
-                NULL
-            };
-
-            StringReader json;
-
-            Parser(string jsonString)
-            {
-                json = new StringReader(jsonString);
-            }
-
-            public static JSON Parse(string jsonString)
-            {
-                using (var instance = new Parser(jsonString))
-                {
-                    return (instance.ParseValue() as JSON);
-                }
-            }
-
-            public void Dispose()
-            {
-                json.Dispose();
-                json = null;
-            }
-
-            JSON ParseObject()
-            {
-                Dictionary<string, object> table = new Dictionary<string, object>();
-                JSON obj = new JSON();
-                obj.fields = table;
-
-                // ditch opening brace
-                json.Read();
-
-                // {
-                while (true)
-                {
-                    switch (NextToken)
-                    {
-                        case TOKEN.NONE:
-                            return null;
-                        case TOKEN.COMMA:
-                            continue;
-                        case TOKEN.CURLY_CLOSE:
-                            return obj;
-                        default:
-                            // name
-                            string name = ParseString();
-                            if (name == null)
-                            {
-                                return null;
-                            }
-
-                            // :
-                            if (NextToken != TOKEN.COLON)
-                            {
-                                return null;
-                            }
-                            // ditch the colon
-                            json.Read();
-
-                            // value
-                            table[name] = ParseValue();
-                            break;
-                    }
-                }
-            }
-
-            List<object> ParseArray()
-            {
-                List<object> array = new List<object>();
-
-                // ditch opening bracket
-                json.Read();
-
-                // [
-                var parsing = true;
-                while (parsing)
-                {
-                    TOKEN nextToken = NextToken;
-
-                    switch (nextToken)
-                    {
-                        case TOKEN.NONE:
-                            return null;
-                        case TOKEN.COMMA:
-                            continue;
-                        case TOKEN.SQUARED_CLOSE:
-                            parsing = false;
-                            break;
-                        default:
-                            object value = ParseByToken(nextToken);
-
-                            array.Add(value);
-                            break;
-                    }
-                }
-
-                return array;
-            }
-
-            object ParseValue()
-            {
-                TOKEN nextToken = NextToken;
-                return ParseByToken(nextToken);
-            }
-
-            object ParseByToken(TOKEN token)
-            {
-                switch (token)
-                {
-                    case TOKEN.STRING:
-                        return ParseString();
-                    case TOKEN.NUMBER:
-                        return ParseNumber();
-                    case TOKEN.CURLY_OPEN:
-                        return ParseObject();
-                    case TOKEN.SQUARED_OPEN:
-                        return ParseArray();
-                    case TOKEN.TRUE:
-                        return true;
-                    case TOKEN.FALSE:
-                        return false;
-                    case TOKEN.NULL:
-                        return null;
-                    default:
-                        return null;
-                }
-            }
-
-            string ParseString()
-            {
-                StringBuilder s = new StringBuilder();
-                char c;
-
-                // ditch opening quote
-                json.Read();
-
-                bool parsing = true;
-                while (parsing)
-                {
-
-                    if (json.Peek() == -1)
-                    {
-                        parsing = false;
-                        break;
-                    }
-
-                    c = NextChar;
-                    switch (c)
-                    {
-                        case '"':
-                            parsing = false;
-                            break;
-                        case '\\':
-                            if (json.Peek() == -1)
-                            {
-                                parsing = false;
-                                break;
-                            }
-
-                            c = NextChar;
-                            switch (c)
-                            {
-                                case '"':
-                                case '\\':
-                                case '/':
-                                    s.Append(c);
-                                    break;
-                                case 'b':
-                                    s.Append('\b');
-                                    break;
-                                case 'f':
-                                    s.Append('\f');
-                                    break;
-                                case 'n':
-                                    s.Append('\n');
-                                    break;
-                                case 'r':
-                                    s.Append('\r');
-                                    break;
-                                case 't':
-                                    s.Append('\t');
-                                    break;
-                                case 'u':
-                                    var hex = new StringBuilder();
-
-                                    for (int i = 0; i < 4; i++)
-                                    {
-                                        hex.Append(NextChar);
-                                    }
-
-                                    s.Append((char)Convert.ToInt32(hex.ToString(), 16));
-                                    break;
-                            }
-                            break;
-                        default:
-                            s.Append(c);
-                            break;
-                    }
-                }
-
-                return s.ToString();
-            }
-
-            object ParseNumber()
-            {
-                string number = NextWord;
-
-                if (number.IndexOf('.') == -1)
-                {
-                    long parsedInt;
-                    Int64.TryParse(number, out parsedInt);
-                    return parsedInt;
-                }
-
-                double parsedDouble;
-                Double.TryParse(number, out parsedDouble);
-                return parsedDouble;
-            }
-
-            void EatWhitespace()
-            {
-                while (WHITE_SPACE.IndexOf(PeekChar) != -1)
-                {
-                    json.Read();
-
-                    if (json.Peek() == -1)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            char PeekChar
-            {
-                get
-                {
-                    return Convert.ToChar(json.Peek());
-                }
-            }
-
-            char NextChar
-            {
-                get
-                {
-                    return Convert.ToChar(json.Read());
-                }
-            }
-
-            string NextWord
-            {
-                get
-                {
-                    StringBuilder word = new StringBuilder();
-
-                    while (WORD_BREAK.IndexOf(PeekChar) == -1)
-                    {
-                        word.Append(NextChar);
-
-                        if (json.Peek() == -1)
-                        {
-                            break;
-                        }
-                    }
-
-                    return word.ToString();
-                }
-            }
-
-            TOKEN NextToken
-            {
-                get
-                {
-                    EatWhitespace();
-
-                    if (json.Peek() == -1)
-                    {
-                        return TOKEN.NONE;
-                    }
-
-                    char c = PeekChar;
-                    switch (c)
-                    {
-                        case '{':
-                            return TOKEN.CURLY_OPEN;
-                        case '}':
-                            json.Read();
-                            return TOKEN.CURLY_CLOSE;
-                        case '[':
-                            return TOKEN.SQUARED_OPEN;
-                        case ']':
-                            json.Read();
-                            return TOKEN.SQUARED_CLOSE;
-                        case ',':
-                            json.Read();
-                            return TOKEN.COMMA;
-                        case '"':
-                            return TOKEN.STRING;
-                        case ':':
-                            return TOKEN.COLON;
-                        case '0':
-                        case '1':
-                        case '2':
-                        case '3':
-                        case '4':
-                        case '5':
-                        case '6':
-                        case '7':
-                        case '8':
-                        case '9':
-                        case '-':
-                            return TOKEN.NUMBER;
-                    }
-
-                    string word = NextWord;
-
-                    switch (word)
-                    {
-                        case "false":
-                            return TOKEN.FALSE;
-                        case "true":
-                            return TOKEN.TRUE;
-                        case "null":
-                            return TOKEN.NULL;
-                    }
-
-                    return TOKEN.NONE;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Converts a IDictionary / IList object or a simple type (string, int, etc.) into a JSON string
-        /// </summary>
-        /// <param name="json">A Dictionary&lt;string, object&gt; / List&lt;object&gt;</param>
-        /// <returns>A JSON encoded string, or null if object 'json' is not serializable</returns>
-        public static string Serialize(JSON obj)
-        {
-            return Serializer.Serialize(obj);
-        }
-
-        sealed class Serializer
-        {
-            StringBuilder builder;
-
-            Serializer()
-            {
-                builder = new StringBuilder();
-            }
-
-            public static string Serialize(JSON obj)
-            {
-                var instance = new Serializer();
-
-                instance.SerializeValue(obj);
-
-                return instance.builder.ToString();
-            }
-
-            void SerializeValue(object value)
-            {
-                if (value == null)
-                {
-                    builder.Append("null");
-                }
-                else if (value as string != null)
-                {
-                    SerializeString(value as string);
-                }
-                else if (value is bool)
-                {
-                    builder.Append(value.ToString().ToLower());
-                }
-                else if (value as JSON != null)
-                {
-                    SerializeObject(value as JSON);
-                }
-                else if (value as IDictionary != null)
-                {
-                    SerializeDictionary(value as IDictionary);
-                }
-                else if (value as IList != null)
-                {
-                    SerializeArray(value as IList);
-                }
-                else if (value is char)
-                {
-                    SerializeString(value.ToString());
-                }
-                else
-                {
-                    SerializeOther(value);
-                }
-            }
-
-            void SerializeObject(JSON obj)
-            {
-                SerializeDictionary(obj.fields);
-            }
-
-            void SerializeDictionary(IDictionary obj)
-            {
-                bool first = true;
-
-                builder.Append('{');
-
-                foreach (object e in obj.Keys)
-                {
-                    if (!first)
-                    {
-                        builder.Append(',');
-                    }
-
-                    SerializeString(e.ToString());
-                    builder.Append(':');
-
-                    SerializeValue(obj[e]);
-
-                    first = false;
-                }
-
-                builder.Append('}');
-            }
-
-            void SerializeArray(IList anArray)
-            {
-                builder.Append('[');
-
-                bool first = true;
-
-                foreach (object obj in anArray)
-                {
-                    if (!first)
-                    {
-                        builder.Append(',');
-                    }
-
-                    SerializeValue(obj);
-
-                    first = false;
-                }
-
-                builder.Append(']');
-            }
-
-            void SerializeString(string str)
-            {
-                builder.Append('\"');
-
-                char[] charArray = str.ToCharArray();
-                foreach (var c in charArray)
-                {
-                    switch (c)
-                    {
-                        case '"':
-                            builder.Append("\\\"");
-                            break;
-                        case '\\':
-                            builder.Append("\\\\");
-                            break;
-                        case '\b':
-                            builder.Append("\\b");
-                            break;
-                        case '\f':
-                            builder.Append("\\f");
-                            break;
-                        case '\n':
-                            builder.Append("\\n");
-                            break;
-                        case '\r':
-                            builder.Append("\\r");
-                            break;
-                        case '\t':
-                            builder.Append("\\t");
-                            break;
-                        default:
-                            int codepoint = Convert.ToInt32(c);
-                            if ((codepoint >= 32) && (codepoint <= 126))
-                            {
-                                builder.Append(c);
-                            }
-                            else
-                            {
-                                builder.Append("\\u" + Convert.ToString(codepoint, 16).PadLeft(4, '0'));
-                            }
-                            break;
-                    }
-                }
-
-                builder.Append('\"');
-            }
-
-            void SerializeOther(object value)
-            {
-                if (value is float
-                    || value is int
-                    || value is uint
-                    || value is long
-                    || value is double
-                    || value is sbyte
-                    || value is byte
-                    || value is short
-                    || value is ushort
-                    || value is ulong
-                    || value is decimal)
-                {
-                    builder.Append(value.ToString());
-                }
-                else
-                {
-                    SerializeString(value.ToString());
-                }
-            }
-        }
-    }
+    #endregion
 }
