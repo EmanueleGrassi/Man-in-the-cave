@@ -35,15 +35,6 @@ public class LightBehaviour : MonoBehaviour
             light.intensity = 0.01f;
             rainbow = true;            
         }
-        
-#if UNITY_IPHONE
-        iPhoneGeneration a = iPhoneGeneration.iPhone4;
-        if (iPhone.generation < a)
-        {
-            GameObject go = GameObject.Find("WPlight");
-            go.SetActive(false);
-        }
-#endif
     }
 	
 	// Update is called once per frame	

@@ -46,7 +46,11 @@ public class PlayScript : MonoBehaviour
         CameraScript.LoadData();
         State = PlayState.menu;
         //LUCE A SECONDA DELLA PIATTAFORMA
-        if (Application.platform == RuntimePlatform.WP8Player)
+        if (Application.platform == RuntimePlatform.WP8Player ||
+            iPhone.generation == iPhoneGeneration.iPodTouch4Gen || iPhone.generation == iPhoneGeneration.iPodTouch3Gen ||
+            iPhone.generation == iPhoneGeneration.iPodTouch2Gen || iPhone.generation == iPhoneGeneration.iPodTouch1Gen ||
+            iPhone.generation == iPhoneGeneration.iPhone3GS || iPhone.generation == iPhoneGeneration.iPhone3G ||
+            iPhone.generation == iPhoneGeneration.iPad2Gen || iPhone.generation == iPhoneGeneration.iPad1Gen)
         {
             pglight.SetActive(false);
             wplight.SetActive(true);
