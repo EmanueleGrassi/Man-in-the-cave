@@ -317,6 +317,8 @@ public class CameraScript : MonoBehaviour
     {
         if (GUI.skin != custom)
             GUI.skin = custom;
+
+        GUI.depth = 1;
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Vignette_Texture);
         if (PlayScript.State == PlayScript.PlayState.play)
         {

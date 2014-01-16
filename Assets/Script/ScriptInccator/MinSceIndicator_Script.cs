@@ -18,6 +18,8 @@ public class MinSceIndicator_Script : MonoBehaviour
         {
             if (GUI.skin != custom)
                 GUI.skin = custom;
+
+            GUI.depth = 0;
             TimeSpan t = (TimeSpan.FromSeconds(CameraScript.PlayTime));
             string TimeText;
             if (t.Minutes >= 1)

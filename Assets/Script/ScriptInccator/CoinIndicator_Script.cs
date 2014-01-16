@@ -18,6 +18,7 @@ public class CoinIndicator_Script : MonoBehaviour
         {
             if (GUI.skin != custom)
                 GUI.skin = custom;
+            GUI.depth = 0;
             GUI.skin.label.fontSize = fontSize;
             var labelPositionSec = GUILayoutUtility.GetRect(new GUIContent(PlayScript.GameCredits.ToString()), GUI.skin.label);
             GUI.Label(new Rect(margin + ((height2 - labelPositionSec.width) / 2), height2 * 1.47f,
