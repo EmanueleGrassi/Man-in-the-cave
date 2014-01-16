@@ -51,11 +51,6 @@ public class Data
 
     public static void Load()
     {
-#if UNITY_WP8
-        System.IO.FileNotFoundException ex;
-#else
-        System.IO.IsolatedStorage.IsolatedStorageException ex;
-#endif
         string path = Path.Combine(Application.persistentDataPath, "data.xml");
         var serializer = new XmlSerializer(typeof(Data));
 
@@ -88,12 +83,18 @@ public enum Helmet
     pink = 4,
     rainbow = 5
 }
+
 public class Record : IComparable<Record>
 {
     public int Seconds;
     public int Credits, Points;
     public int Day, Month, Year;
 
+    /// <summary>
+    /// NON CHIAMARE QUESTO COSTRUTTORE, USA I PARAMETRI
+    /// </summary>
+    public Record()
+    {   }
     public Record(int seconds, int credits, int points, int day, int month, int year)
     {
         Seconds = seconds;
