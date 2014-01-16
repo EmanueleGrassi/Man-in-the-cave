@@ -105,7 +105,6 @@ public class BombBehaviour : MonoBehaviour {
             //killTime = CameraScript.PlayTime;
             StartCoroutine("killMitch");
             //
-            print("" + killTime);
         }
     }
 
@@ -114,6 +113,7 @@ public class BombBehaviour : MonoBehaviour {
         CameraScript.ManageButton(false);
         //GameManager_script.spanForResult(true, CameraScript.PlayTime);
         yield return new WaitForSeconds(1.4f);
+        Destroy(gameObject);
         if (CameraScript.replayGame)
             CameraScript.replayGame = false;
         PlayScript.State = PlayScript.PlayState.result;

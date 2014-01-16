@@ -15,7 +15,7 @@ GameObject:
   - 64: {fileID: 6400000}
   - 82: {fileID: 8200000}
   m_Layer: 0
-  m_Name: zaffiro
+  m_Name: Ametista
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
-  m_LocalPosition: {x: 6.3569355, y: 2.57880497, z: 7.4487586}
+  m_LocalPosition: {x: -1.81843567, y: 3.25214291, z: 7.41647768}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,7 +44,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 65442e9f7e586e04dbf5d9563fed7bc4, type: 2}
+  - {fileID: 2100000, guid: 9b715cd23c7d5c440bab56d7e80cbbfd, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -59,7 +59,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: 5ec545103485f44479104a0002df8855, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 2367d10e8462a2040b65250de4a61c91, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -87,7 +87,7 @@ MeshCollider:
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: 5ec545103485f44479104a0002df8855, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 2367d10e8462a2040b65250de4a61c91, type: 3}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1

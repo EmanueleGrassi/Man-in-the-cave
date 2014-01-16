@@ -12,10 +12,10 @@ GameObject:
   - 23: {fileID: 2300000}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
+  - 64: {fileID: 6400000}
   - 82: {fileID: 8200000}
-  - 135: {fileID: 13500000}
   m_Layer: 0
-  m_Name: silver
+  m_Name: Smeraldo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
+  m_LocalPosition: {x: -12.6096096, y: 2.3593297, z: 7.54207182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,7 +44,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 04bcad4f0e2c94c0084460574a9f4150, type: 2}
+  - {fileID: 2100000, guid: 247e7435e14e13744b81376b7f1d8385, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -59,7 +59,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: 33cbff62c65844649a48d925bcf7cffe, type: 3}
+  m_Mesh: {fileID: 4300000, guid: bac8b0e3796058b4daf6d9f2adaa89d4, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -75,6 +75,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
+--- !u!64 &6400000
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: bac8b0e3796058b4daf6d9f2adaa89d4, type: 3}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -92,44 +105,24 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: .0500000007
+    - time: 0
       value: 1
-      inSlope: -20.007967
-      outSlope: -20.007967
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
-    - time: .100000001
-      value: .5
-      inSlope: -5.00199175
-      outSlope: -5.00199175
-      tangentMode: 0
-    - time: .200000003
-      value: .25
-      inSlope: -1.25049794
-      outSlope: -1.25049794
-      tangentMode: 0
-    - time: .400000006
-      value: .125
-      inSlope: -.312624484
-      outSlope: -.312624484
-      tangentMode: 0
-    - time: .800000012
-      value: .0625
-      inSlope: -.0781561211
-      outSlope: -.0781561211
-      tangentMode: 0
-    - time: .956678689
+    - time: 1
       value: 0
-      inSlope: -.0500199609
-      outSlope: -.0500199609
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -164,22 +157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97160bd52b321af43bd4e1d24ab14c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 4
+  value: 0
   collected1: {fileID: 8300000, guid: beb809e6ac89bd34d9666d3e4e3561d4, type: 3}
   collected2: {fileID: 8300000, guid: 78a299f3a205e0a4ca9e4a4da9d0947c, type: 3}
   collected3: {fileID: 8300000, guid: 58f1898b3edce49479007fe61b4ccd63, type: 3}
---- !u!135 &13500000
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .389999986
-  m_Center: {x: 0, y: 0, z: -.00257304893}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

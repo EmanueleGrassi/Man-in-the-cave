@@ -7,7 +7,7 @@ public class Spawner_script : MonoBehaviour {
     float speed;
     float nextShot;
     float lastSpawn;
-    public Transform rock1,rock2, rock3, rock4, rock5, rock6, diamond, gold, silver, ruby, zaffiro, marker, bomb;
+    public Transform rock1,rock2, rock3, rock4, rock5, rock6, diamante, ametista, quarzo, quarzorosa, smeraldo, olivina, rubino, zaffiro, marker, bomb;
 	float w, h;
 	Vector3 MarkerPosition;
     bool MarkerPositionCaptured;
@@ -139,22 +139,24 @@ public class Spawner_script : MonoBehaviour {
 
     private void istanziaGemma()
     {
-        int num = Random.Range(0, 44);
+        //AGGIUSTARE I VALORI
+        int num = Random.Range(0, 76);
         if (num <= 4)
-            //diamante
-            Instantiate(diamond, transform.position, Quaternion.identity);
+            Instantiate(diamante, transform.position, Quaternion.identity);
         else if (num <= 14)
-            //oro
-            Instantiate(gold, transform.position, Quaternion.identity);
+            Instantiate(smeraldo, transform.position, Quaternion.identity);
         else if (num <= 29)
-            //argento
-            Instantiate(silver, transform.position, Quaternion.identity);
-        else if (num <= 35)
-            //rubino
-            Instantiate(ruby, transform.position, Quaternion.identity);
-        else
-            //zaff
             Instantiate(zaffiro, transform.position, Quaternion.identity);
+        else if (num <= 35)
+            Instantiate(rubino, transform.position, Quaternion.identity);
+        else if(num <= 45)
+            Instantiate(olivina, transform.position, Quaternion.identity);
+        else if (num<=55)
+            Instantiate(quarzo, transform.position, Quaternion.identity);
+        else if (num <= 65)
+            Instantiate(quarzorosa, transform.position, Quaternion.identity);
+        else
+            Instantiate(ametista, transform.position, Quaternion.identity);
     } 
    
 
