@@ -412,15 +412,14 @@ public class CameraScript : MonoBehaviour
                 audio.PlayOneShot(gameoverSound);
                 playgameover = false;
             }
+            GUI.skin.label.fontSize = (int)(height * 1.7);
+            GUI.Label(new Rect(height*6-2*margin, margin, height*11, height * 3+margin), "GAME OVER");
             GUI.skin.label.fontSize = (int)(height * 1.3);
-            GUI.Label(new Rect(height, height * 2, height * 20, height * 2), "You survived inside the cave for:");
             TimeSpan t = TimeSpan.FromSeconds(CameraScript.PlayTime);
-            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, BottoniSize, BottoniSize), String.Format("{0:00}:{1:00}", t.Minutes, t.Seconds));
-            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, BottoniSize, BottoniSize), String.Format("cretits"));
-            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, BottoniSize, BottoniSize), String.Format(PlayScript.GameCredits.ToString()));
-            int totalPoints = (int)((CameraScript.PlayTime + PlayScript.GameCredits) * 1.7);
-            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, BottoniSize, BottoniSize), String.Format("Points"));
-            GUI.Label(new Rect(height * 8 + 2 * margin, height * 4.5f, BottoniSize, BottoniSize), String.Format(totalPoints.ToString()));
+            GUI.Label(new Rect(height*7, height*4-margin, height*8, height*2), String.Format("Time {0:00}:{1:00}", t.Minutes, t.Seconds));
+            GUI.Label(new Rect(height*7, height*5, height * 8, height * 2), String.Format("Credits " + PlayScript.GameCredits.ToString()));
+            int totalPoints = (int)((CameraScript.PlayTime + PlayScript.GameCredits) * 1.7); //tempo*1.7 + gamecredits * 5
+            GUI.Label(new Rect(height * 7, height * 6 +  margin, height * 8, height * 2), String.Format("Points " + totalPoints.ToString()));
 
             if (GUI.Button(new Rect((Screen.width / 4) - (BottoniSize / 2), height * 8, BottoniSize, BottoniSize), playAgainButton))
             {
