@@ -37,7 +37,7 @@ public var DirectionDampTime:float = .25f;
 public var ApplyGravity:boolean = true; 
 //fine animazioni
 #if UNITY_METRO
-static var isTouch:boolean=false;
+    static var isTouch:boolean=false;
 #endif
 function Start()
 {
@@ -54,7 +54,7 @@ function Start()
     animator =pgAnimato.gameObject.GetComponent("Animator");		
     if(animator.layerCount >= 2)
         animator.SetLayerWeight(1, 1);
-    //fine animazioni		
+    //fine animazioni	
 }
 
 function OnEndGame()
@@ -66,6 +66,7 @@ function OnEndGame()
     // Don't allow any more control changes when the game ends
     this.enabled = false;
 }
+
 
 function Update()
 {
@@ -108,13 +109,14 @@ function Update()
         
 	        #if UNITY_METRO
 	            var t:int;
-	        if(isTouch)
+            if(isTouch)
             {
-                if(canJump && (Input.GetAxis("Jump")> 0 ||touchPad.IsFingerDown()))//qui salto con tastiera
-                {
-                    //    print("dovrebbe essere qui");
+                if(canJump && (Input.GetAxis("Jump")> 0 ||touchPad.IsFingerDown()))//qui salto su computer con  tastiera ma da touch
+                {                    
                     jump = true;
                     canJump = false;
+
+                    animator.SetBool("saltaDaFermo", true);  
                     t =  Random.Range(0,2);
                     if(t==0)
                         animator.SetBool("Jump", true);
@@ -132,9 +134,10 @@ function Update()
             {
                 if(canJump && Input.GetAxis("Jump")> 0 )//qui salto con tastiera
                 {
-                    //    print("dovrebbe essere qui");
                     jump = true;
                     canJump = false;
+
+                    animator.SetBool("saltaDaFermo", true);  
                     t =  Random.Range(0,2);
                     if(t==0)
                         animator.SetBool("Jump", true);
@@ -149,16 +152,19 @@ function Update()
                 }
             }
            #else
-	            if ( canJump && touchPad.IsFingerDown() )//qui salto
+	        if ( canJump && touchPad.IsFingerDown() )//qui salto
             {
-            	//animator.SetBool("JumpUp", true);  //QUESTO ERA IL VECCHIO SALTO DA FERMO, RISISTEMARE
+                
                 jump = true;
                 canJump = false;
+                
+                animator.SetBool("saltaDaFermo", true);  
                 var t:int =  Random.Range(0,2);
                 if(t==0)
                     animator.SetBool("Jump", true);
                 else
                     animator.SetBool("Dive", true);
+
                 t = Random.Range(0, 3);
                 if(t==2)
                 {
@@ -177,6 +183,9 @@ function Update()
             {
                 animator.SetBool("Jump", false); 
                 animator.SetBool("Dive", false);
+
+                //serve per impedire che da idle passi al salto
+                animator.SetBool("saltaDaFermo", false);
             }
         }
         else// se sono in volo faccio questo
@@ -197,11 +206,7 @@ function Update()
         character.Move( movement );
 			
         //animazione		
-        //float h = Input.GetAxis("Horizontal");
         v = movement.normalized;
-        //print("x: "+ v.x);
-        //print("y: "+ movement.normalized.y);
-        //print("z: "+ movement.normalized.z);
         if(v.x < -0.05 && !turnback)
         {
             turnback=true;
