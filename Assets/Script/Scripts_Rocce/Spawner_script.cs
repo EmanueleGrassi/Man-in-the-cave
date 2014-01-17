@@ -41,19 +41,14 @@ public class Spawner_script : MonoBehaviour {
             if (CameraScript.PlayTime > lastSpawn + nextShot)
             {
                 int num = Random.Range(0, 100);
-                //if ((player.GetComponent < CharacterController>()).velocity.x == 0)
-                //{
-                //    istanziaRocciaperPos();
-                //}
-                //else
-                //{
+               
                     if (num <= 21)
                         istanziaGemma();
                     else if (num > 21 && num < 28)
                         Instantiate(bomb, transform.position, Quaternion.identity);
                     else
                         istanziaRoccia();
-                //}
+                
 
                 lastSpawn = CameraScript.PlayTime;
 				if(MarkerPositionCaptured==false)
@@ -61,48 +56,13 @@ public class Spawner_script : MonoBehaviour {
 					MarkerPosition = Camera.main.ScreenToWorldPoint(new Vector3(w, h, 7.5f));
 					MarkerPositionCaptured= true;
 				}
-                if (num > 14)
+                if (num > 21)
                     Instantiate(marker, new Vector3(transform.position.x, MarkerPosition.y, 5.3f), Quaternion.identity);
             }
             nextShot = 5 / (Mathf.Log(CameraScript.PlayTime + 2) - Mathf.Log(CameraScript.PlayTime + 2) / 2);
         }
 	}
-
-    //private void istanziaRocciaperPos()
-    //{
-    //    int rnd = Random.Range(1, 7);
-    //    Vector3 pos = player.transform.position;
-    //    pos.y = transform.position.y;
-
-
-    //    switch (rnd)
-    //    {
-    //        case 1:
-    //            Instantiate(rock1, pos, Quaternion.Euler(new Vector3(90, 0, 0)));
-    //            rock1.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-    //            break;
-    //        case 2:
-    //            Instantiate(rock2, pos, Quaternion.identity);
-    //            rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-    //            break;
-    //        case 3:
-    //            Instantiate(rock3, pos, Quaternion.identity);
-    //            rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-    //            break;
-    //        case 4:
-    //            Instantiate(rock4, pos, Quaternion.identity);
-    //            rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-    //            break;
-    //        case 5:
-    //            Instantiate(rock5, pos, Quaternion.identity);
-    //            rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-    //            break;
-    //        case 6:
-    //            Instantiate(rock6, pos, Quaternion.identity);
-    //            rock2.rigidbody.AddForce(new Vector3(0, Random.Range(-10, 0)));
-    //            break;
-    //    }
-    //}
+     
 
     private void istanziaRoccia()
     {
@@ -139,21 +99,20 @@ public class Spawner_script : MonoBehaviour {
 
     private void istanziaGemma()
     {
-        //AGGIUSTARE I VALORI
-        int num = Random.Range(0, 76);
-        if (num <= 4)
+        int num = Random.Range(0, 100);
+        if (num <= 9)
             Instantiate(diamante, transform.position, Quaternion.identity);
-        else if (num <= 14)
+        else if (num <= 19)
             Instantiate(smeraldo, transform.position, Quaternion.identity);
-        else if (num <= 29)
+        else if (num <= 30)
             Instantiate(zaffiro, transform.position, Quaternion.identity);
-        else if (num <= 35)
+        else if (num <= 40)
             Instantiate(rubino, transform.position, Quaternion.identity);
-        else if(num <= 45)
+        else if(num <= 52)
             Instantiate(olivina, transform.position, Quaternion.identity);
-        else if (num<=55)
+        else if (num<=68)
             Instantiate(quarzo, transform.position, Quaternion.identity);
-        else if (num <= 65)
+        else if (num <= 87)
             Instantiate(quarzorosa, transform.position, Quaternion.identity);
         else
             Instantiate(ametista, transform.position, Quaternion.identity);
