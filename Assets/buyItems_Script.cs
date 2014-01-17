@@ -29,68 +29,7 @@ public class buyItems_Script : MonoBehaviour
 #endif
 
 #if UNITY_IPHONE
-    private void OnEnable()
-    {
-        OpenIABEventManager.billingSupportedEvent += billingSupportedEvent;
-        OpenIABEventManager.billingNotSupportedEvent += billingNotSupportedEvent;
-        OpenIABEventManager.queryInventorySucceededEvent += queryInventorySucceededEvent;
-        OpenIABEventManager.queryInventoryFailedEvent += queryInventoryFailedEvent;
-        OpenIABEventManager.purchaseSucceededEvent += purchaseSucceededEvent;
-        OpenIABEventManager.purchaseFailedEvent += purchaseFailedEvent;
-        OpenIABEventManager.consumePurchaseSucceededEvent += consumePurchaseSucceededEvent;
-        OpenIABEventManager.consumePurchaseFailedEvent += consumePurchaseFailedEvent;
-    }
-
-    private void consumePurchaseFailedEvent(string obj)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void consumePurchaseSucceededEvent(OnePF.Purchase obj)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void purchaseFailedEvent(string obj)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void purchaseSucceededEvent(OnePF.Purchase obj)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void queryInventoryFailedEvent(string obj)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void queryInventorySucceededEvent(OnePF.Inventory obj)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void billingNotSupportedEvent(string obj)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void billingSupportedEvent()
-    {
-        throw new NotImplementedException();
-    }
-    private void OnDisable()
-    {
-        OpenIABEventManager.billingSupportedEvent -= billingSupportedEvent;
-        OpenIABEventManager.billingNotSupportedEvent -= billingNotSupportedEvent;
-        OpenIABEventManager.queryInventorySucceededEvent -= queryInventorySucceededEvent;
-        OpenIABEventManager.queryInventoryFailedEvent -= queryInventoryFailedEvent;
-        OpenIABEventManager.purchaseSucceededEvent -= purchaseSucceededEvent;
-        OpenIABEventManager.purchaseFailedEvent -= purchaseFailedEvent;
-        OpenIABEventManager.consumePurchaseSucceededEvent -= consumePurchaseSucceededEvent;
-        OpenIABEventManager.consumePurchaseFailedEvent -= consumePurchaseFailedEvent;
-    }
+    
 #endif
 
     //camera
@@ -121,13 +60,7 @@ public class buyItems_Script : MonoBehaviour
 
         #region iOS inapp
 #if UNITY_IPHONE
-            /*  OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");   //scoprire cosa sono "some.ios.sku" forse mentre pubblichiamo lo scopriamo
-            OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
-            OpenIAB.mapSku("SKU", OpenIAB_iOS.STORE, "some.ios.sku");
-
-            OpenIAB.init(new Dictionary<string, string> {
-            {OpenIAB_iOS.STORE, "public key"}
-            });*/
+            
 #endif
         #endregion
 
