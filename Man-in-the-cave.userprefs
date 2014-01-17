@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CameraScript.cs">
     <Files>
-      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="80" Column="20" />
       <File FileName="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" Line="1" Column="1" />
       <File FileName="Assets\Script\Scripts_Rocce\Spawner_script.cs" Line="1" Column="1" />
+      <File FileName="Assets\CameraScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -154,6 +154,7 @@ public class CameraScript : MonoBehaviour
     public static bool replayGame;
 
     public Texture2D backclock, leftClock, holdingClock;
+
     #endregion
 
 #if UNITY_METRO 
@@ -235,6 +236,7 @@ public class CameraScript : MonoBehaviour
         margin = Screen.width / 60;
         UnTerzo = Screen.height / 3;
         BottoniSize = UnTerzo * 0.7f - margin;
+
 
 #if UNITY_METRO
         if (IsTouch)
@@ -413,13 +415,15 @@ public class CameraScript : MonoBehaviour
                 playgameover = false;
             }
             GUI.skin.label.fontSize = (int)(height * 1.7);
-            GUI.Label(new Rect(height*6-2*margin, margin, height*11, height * 3+margin), "GAME OVER");
+            GUI.Label(new Rect(height*6-4*margin, margin, height*11, height * 3+margin), "GAME OVER");
             GUI.skin.label.fontSize = (int)(height * 1.3);
             TimeSpan t = TimeSpan.FromSeconds(CameraScript.PlayTime);
-            GUI.Label(new Rect(height*7, height*4-margin, height*8, height*2), String.Format("Time {0:00}:{1:00}", t.Minutes, t.Seconds));
-            GUI.Label(new Rect(height*7, height*5, height * 8, height * 2), String.Format("Credits " + PlayScript.GameCredits.ToString()));
             int totalPoints = (int)((CameraScript.PlayTime + PlayScript.GameCredits) * 1.7); //tempo*1.7 + gamecredits * 5
-            GUI.Label(new Rect(height * 7, height * 6 +  margin, height * 8, height * 2), String.Format("Points " + totalPoints.ToString()));
+            GUI.Label(new Rect(height * 7 - margin, height * 4 - margin, height * 8, height * 2), String.Format("Time {0:00}:{1:00}", t.Minutes, t.Seconds));
+            GUI.Label(new Rect(height * 7 - margin, height * 5, height * 8, height * 2), String.Format("Credits " + PlayScript.GameCredits.ToString()));
+            GUI.Label(new Rect(height * 7 - margin, height * 6 + margin, height * 8, height * 2), String.Format("Points " + totalPoints.ToString()));
+                
+            
 
             if (GUI.Button(new Rect((Screen.width / 4) - (BottoniSize / 2), height * 8, BottoniSize, BottoniSize), playAgainButton))
             {
@@ -445,6 +449,7 @@ public class CameraScript : MonoBehaviour
 #endif
         }
     }
+
 
     private void salvaRecord(Record rec)
     {     
