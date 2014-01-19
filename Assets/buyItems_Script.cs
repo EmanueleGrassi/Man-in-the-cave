@@ -10,7 +10,7 @@ public class buyItems_Script : MonoBehaviour
     public Texture arcoLight, bengal, bluLight, greenLight, piccone, pinkLight, reborn, redLight, coins;
     float size, margin, barraHeight, moneyTopMargin;
     public GUISkin custom;
-    public AudioClip cashsound, noMoney;
+    public AudioClip cashsound, noMoney, buttonsound;
     public static event EventHandler plus500, plus1000, plus5000;
     float[] span;
     bool imbuying;
@@ -176,12 +176,18 @@ public class buyItems_Script : MonoBehaviour
     void OnGUI()
     {
         if (Input.GetKey(KeyCode.Escape))
+        {
             Application.LoadLevel(0);
+            audio.PlayOneShot(buttonsound);
+        }
         if (GUI.skin != custom)
             GUI.skin = custom;
         float buttonsMarginLeft = margin;
         if (GUI.Button(new Rect(buttonsMarginLeft, margin / 3, ((barraHeight) * 168) / 141, barraHeight), back))
+        {
             Application.LoadLevel(0);
+            audio.PlayOneShot(buttonsound);
+        }
         buttonsMarginLeft += margin + ((barraHeight) * 168) / 141;
         if (GUI.Button(new Rect(buttonsMarginLeft, 0, ((barraHeight) * 351) / 141, barraHeight), getStateTextures(0)))
         {

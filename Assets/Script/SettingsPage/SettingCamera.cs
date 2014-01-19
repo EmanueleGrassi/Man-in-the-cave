@@ -6,6 +6,7 @@ public class SettingCamera : MonoBehaviour {
     float margin, titleWidth, titleHeight, barSize;
     public GUISkin custom;
     public Texture back, title;
+    public AudioClip buttonsound;
     Rect labelPosition;
     #if UNITY_METRO
         float istructionWidth,istructionHeight;
@@ -31,11 +32,15 @@ public class SettingCamera : MonoBehaviour {
     void OnGUI()
     {
         if (Input.GetKey(KeyCode.Escape))
+        {
             Application.LoadLevel(0);
+            audio.PlayOneShot(buttonsound);
+        }
         GUI.skin = custom;
         if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
         {
             Application.LoadLevel(0);
+            audio.PlayOneShot(buttonsound);
         }
         GUI.skin.label.fontSize = Screen.width / 30;
         GUI.DrawTexture(new Rect(Screen.width / 2 - (titleWidth) / 2, barSize, titleWidth, titleHeight), title);

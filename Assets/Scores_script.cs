@@ -12,6 +12,7 @@ public class Scores_script : MonoBehaviour
     public Texture jumpAchiv, bengalAchiv, moneyAchiv, timeAchiv;
     float scrollparam;
     public Texture2D thumb;
+    public AudioClip buttonsound;
     float UnTerzo;
     bool IsScore = true; //se false visualizza achivements
 
@@ -34,11 +35,15 @@ public class Scores_script : MonoBehaviour
     void OnGUI()
     {
         if (Input.GetKey(KeyCode.Escape))
+        {
             Application.LoadLevel(0);
+            audio.PlayOneShot(buttonsound);
+        }
         GUI.skin = custom;
         if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
         {
             Application.LoadLevel(0);
+            audio.PlayOneShot(buttonsound);
         }
         if (GUI.Button(new Rect(margin * 2 + ((UnTerzo / 3) * 168) / 141, margin / 3, ((UnTerzo / 3) * 500) / 141, UnTerzo / 3), IsScore?scoresPressed:scores))
         {

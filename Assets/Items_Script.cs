@@ -9,7 +9,7 @@ public class Items_Script : MonoBehaviour
     public GUISkin custom;
     int availableLights;
     bool draw, impressing;
-    public AudioClip equipSound;
+    public AudioClip equipSound, buttonsound;
     public Texture back;
     float elementSize, positionYButtons;
     float UnTerzo;
@@ -92,6 +92,7 @@ public class Items_Script : MonoBehaviour
         {
             CameraScript.SaveData();
             Application.LoadLevel(0);
+            audio.PlayOneShot(buttonsound);
         }
 
         if (GUI.skin != custom)
@@ -101,6 +102,7 @@ public class Items_Script : MonoBehaviour
         {
             CameraScript.SaveData();
             Application.LoadLevel(0);
+            audio.PlayOneShot(buttonsound);
         }
         Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent("Items"), GUI.skin.label);
         GUI.Label(new Rect(margin * 2 + ((barraHeight) * 168) / 141, barraHeight/2 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Items");

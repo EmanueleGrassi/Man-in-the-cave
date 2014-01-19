@@ -844,6 +844,7 @@ MonoBehaviour:
   custom: {fileID: 11400000, guid: e6365d348d530f646af3dec48a0f6edc, type: 2}
   cashsound: {fileID: 8300000, guid: 12a21488306dafd49bf3e94158ec7d2a, type: 3}
   noMoney: {fileID: 8300000, guid: 661a4645eb02ba24b903cb2dcecece91, type: 3}
+  buttonsound: {fileID: 8300000, guid: 7351f0f5d46cdb947a7fa2b5a73713ab, type: 3}
   back: {fileID: 2800000, guid: 6be4bb3a7e77b40408f3a12ad4b70281, type: 3}
   thumb: {fileID: 2800000, guid: e0b02e18ed674574b8d03f8d7f8bfecb, type: 3}
 --- !u!82 &1103718257
