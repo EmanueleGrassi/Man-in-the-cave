@@ -829,6 +829,9 @@ MonoBehaviour:
   lightsP: {fileID: 2800000, guid: c9daae112605f6948bd70268f94bee89, type: 3}
   money: {fileID: 2800000, guid: 92de9efd6d891bc4ba7bf94d9a6d3037, type: 3}
   moneyP: {fileID: 2800000, guid: de8bcf86690b3b64dae4705b30590e6b, type: 3}
+  Money500_texture: {fileID: 2800000, guid: 638d86fa7f8a33142a7b3c78f04dfe09, type: 3}
+  Money1000_texture: {fileID: 2800000, guid: ddf4be8d6fb309f4488448ddcb086b58, type: 3}
+  Money5000_texture: {fileID: 2800000, guid: fc4dcb78349d1e145997e073d150eb80, type: 3}
   arcoLight: {fileID: 2800000, guid: 687002cf2febd504d866a801d4960c29, type: 3}
   bengal: {fileID: 2800000, guid: 889d57299e8907e44bd9cc7082372010, type: 3}
   bluLight: {fileID: 2800000, guid: b0a3fd4f6dd11c24ea68e460861f3112, type: 3}

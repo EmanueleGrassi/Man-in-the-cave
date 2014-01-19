@@ -4,7 +4,7 @@ using System;
 
 public class Items_Script : MonoBehaviour
 {
-    float size, margin;
+    float size, margin, barraHeight;
     public Texture blueligth, pinkligth, redligth, greenligth, ranbowligth, white, buyButton;
     public GUISkin custom;
     int availableLights;
@@ -39,7 +39,7 @@ public class Items_Script : MonoBehaviour
         UnTerzo = Screen.height / 3;
         elementSize = UnTerzo;
         positionYButtons = UnTerzo;
-
+        barraHeight = Screen.width * 81 / 1024;
         scrollparam = (Screen.width * 2) / 768;
         impressing = false;
 
@@ -97,22 +97,17 @@ public class Items_Script : MonoBehaviour
         if (GUI.skin != custom)
             GUI.skin = custom;
 
-        if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
+        if (GUI.Button(new Rect(margin, 0, ((barraHeight) * 168) / 141, barraHeight), back))
         {
             CameraScript.SaveData();
             Application.LoadLevel(0);
         }
-        Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent("Items"), custom.label);
-        GUI.Label(new Rect(margin * 2 + ((UnTerzo / 3) * 168) / 141, UnTerzo / 6 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Items");
+        Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent("Items"), GUI.skin.label);
+        GUI.Label(new Rect(margin * 2 + ((barraHeight) * 168) / 141, barraHeight/2 - labelPosition.height / 2, labelPosition.width, labelPosition.height), "Items");
 
         drawElements();
     }
 
-    //float getSize(Helmet e)
-    //{
-    //    if(e==CameraScript.data.helmet)
-    //        sele
-    //}
     bool trovatoSetected = false;
 
     void drawElements()
@@ -122,9 +117,10 @@ public class Items_Script : MonoBehaviour
 
         //scrollview
         int elem = 0;
-        
-        position = GUI.BeginScrollView(new Rect(0, UnTerzo / 3, Screen.width, Screen.height - (UnTerzo / 3)), position,
-                                       new Rect(0, 0, (n * elementSize) + (margin * 5) + (Screen.width / 2 - elementSize / 2) * 2, Screen.height - (UnTerzo / 3)), true, false);
+
+        position = GUI.BeginScrollView(new Rect(0, barraHeight, Screen.width, Screen.height - barraHeight), position,
+                                       new Rect(0, 0, (n * elementSize) + (margin * 5) + (Screen.width / 2 - elementSize / 2) * 2,
+                                           Screen.height - barraHeight), true, false);
         availableLights = 0;
         trovatoSetected = false;
         if (CameraScript.data.Helmet == Helmet.white)

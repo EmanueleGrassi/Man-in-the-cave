@@ -6,8 +6,9 @@ using System.Collections.Generic;
 public class buyItems_Script : MonoBehaviour
 {
     public Texture powers, powersP, lights, lightsP, money, moneyP;
+    public Texture Money500_texture, Money1000_texture, Money5000_texture;
     public Texture arcoLight, bengal, bluLight, greenLight, piccone, pinkLight, reborn, redLight, coins;
-    float size, margin;
+    float size, margin, barraHeight, moneyTopMargin;
     public GUISkin custom;
     public AudioClip cashsound, noMoney;
     public static event EventHandler plus500, plus1000, plus5000;
@@ -44,50 +45,6 @@ public class buyItems_Script : MonoBehaviour
     private readonly Quaternion upsideDown = Quaternion.Euler(0, 0, 180);
     Vector3 accel;
     float filter = 5.0f;
-
-    // Use this for initialization
-    void Start()
-    {
-        #region Android inapp
-#if UNITY_ANDROID
-            ////com.celialab.ManInTheCave.UnityPlayerNativeActivity
-            ////jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
-        unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            //activity.Call("init");
-#endif
-        #endregion
-
-        #region iOS inapp
-#if UNITY_IPHONE
-            
-#endif
-        #endregion
-
-        imbuying = false;
-        size = Screen.width / 20;
-        margin = Screen.width / 60;
-        UnTerzo = Screen.height / 3;
-        span = new float[] {0, 0, size * 2 + 2 * margin ,
-								      margin * 4 + size * 4,
-								      margin * 6 + size * 6,
-								      margin * 8 + size * 8};
-        unmarginino = margin * 12;
-        scrollparam = (Screen.height * 2) / 768;
-
-        elemSize = size * 5;
-
-#if UNITY_METRO
-            if (CameraScript.IsTouch)
-            {
-                imbuying = true;
-            }
-#endif
-
-        CameraScript.LoadData();
-    }
-
-    Vector2 position = Vector2.zero;
     Texture getStateTextures(int ButtonNumb)
     {
         if (ButtonNumb == 0)
@@ -112,6 +69,109 @@ public class buyItems_Script : MonoBehaviour
                 return money;
         }
     }
+    // Use this for initialization
+    void Start()
+    {
+        #region Android inapp
+#if UNITY_ANDROID
+            ////com.celialab.ManInTheCave.UnityPlayerNativeActivity
+            ////jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
+        unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            //activity.Call("init");
+#endif
+        #endregion
+
+        #region iOS inapp
+#if UNITY_IPHONE
+            
+#endif
+        #endregion
+
+        imbuying = false;
+        size = Screen.width / 20;
+        margin = Screen.width / 60;
+        UnTerzo = Screen.height / 3;
+        barraHeight = Screen.width * 81 / 1024;
+        moneyTopMargin = barraHeight + (Screen.height) / 2 - (size * 6) / 2;
+        span = new float[] {0, 0, size * 2 + 2 * margin ,
+								      margin * 4 + size * 4,
+								      margin * 6 + size * 6,
+								      margin * 8 + size * 8};
+        unmarginino = margin * 12;
+        scrollparam = (Screen.height * 2) / 768;
+
+        elemSize = size * 5;
+
+#if UNITY_METRO
+            if (CameraScript.IsTouch)
+            {
+                imbuying = true;
+            }
+#endif
+
+        CameraScript.LoadData();
+    }
+
+    void Update()
+    {
+#if !UNITY_METRO
+        if (Input.touchCount > 0 && CurrentState == buyState.lights)
+        {
+            Touch touch = Input.touches[0];
+            bool fInsideList = IsTouchInsideList(touch.position);
+            if (touch.phase == TouchPhase.Began)
+                imbuying = true;
+            if (touch.phase == TouchPhase.Moved && fInsideList)
+            {
+                position.x -= touch.deltaPosition.x * scrollparam;
+                imbuying = false;
+            }
+        }
+#else
+            if (CameraScript.IsTouch)
+            {
+                if (Input.touchCount > 0)
+                    {
+                    Touch touch = Input.touches[0];
+                    bool fInsideList = IsTouchInsideList(touch.position);
+                    if (touch.phase == TouchPhase.Began)
+                        imbuying = true;
+                    if (touch.phase == TouchPhase.Moved && fInsideList)
+                    {
+                        position.y += touch.deltaPosition.y * scrollparam;
+                        imbuying = false;
+                    }
+                }
+            }
+#endif
+        if (SystemInfo.supportsGyroscope)
+        {
+            if (start)
+            {
+                Input.gyro.enabled = true;
+                AttachGyro();
+                start = false;
+            }
+
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+            cameraBase * (ConvertRotation(referanceRotation * Input.gyro.attitude) * GetRotFix()), 0.2f);
+        }
+        else if (SystemInfo.supportsAccelerometer)
+        {
+
+            accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
+            float x = -((accel.y * 100)); //si muove in alto e basso
+            float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra
+            float Altobasso = (accel.y * 90) + 90;
+            if (accel.z >= 0)
+                Altobasso *= -1;
+            transform.rotation = Quaternion.Euler(Altobasso, DestraSinistra, 0f);
+        }
+    }
+
+    Vector2 position = Vector2.zero;
+    
 
     void OnGUI()
     {
@@ -119,22 +179,23 @@ public class buyItems_Script : MonoBehaviour
             Application.LoadLevel(0);
         if (GUI.skin != custom)
             GUI.skin = custom;
-
-        if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
+        float buttonsMarginLeft = margin;
+        if (GUI.Button(new Rect(buttonsMarginLeft, margin / 3, ((barraHeight) * 168) / 141, barraHeight), back))
             Application.LoadLevel(0);
-
-        custom.label.fontSize = (int)(size);
-        if (GUI.Button(new Rect(margin * 2 + ((UnTerzo / 3) * 168) / 141, margin / 3, ((UnTerzo / 3) * 500) / 141, UnTerzo / 3), getStateTextures(0)))
+        buttonsMarginLeft += margin + ((barraHeight) * 168) / 141;
+        if (GUI.Button(new Rect(buttonsMarginLeft, 0, ((barraHeight) * 351) / 141, barraHeight), getStateTextures(0)))
         {
             CurrentState = buyState.Powers;
         }
-        if (GUI.Button(new Rect(margin * 3 + ((UnTerzo / 3) * 168) / 141 + ((UnTerzo / 3) * 500) / 141,
-            margin / 3, ((UnTerzo / 3) * 550) / 141, UnTerzo / 3), getStateTextures(1)))
+        buttonsMarginLeft += margin + ((barraHeight) * 351) / 141;
+        if (GUI.Button(new Rect(buttonsMarginLeft,
+            0, ((barraHeight) * 297) / 141, barraHeight), getStateTextures(1)))
         {
             CurrentState = buyState.lights;
         }
-        if (GUI.Button(new Rect(margin * 3 + ((UnTerzo / 3) * 168) / 141 + ((UnTerzo / 3) * 500) / 141,
-            margin / 3, ((UnTerzo / 3) * 550) / 141, UnTerzo / 3), getStateTextures(2)))
+        buttonsMarginLeft += margin + ((barraHeight) * 297) / 141;
+        if (GUI.Button(new Rect(buttonsMarginLeft,
+            0, ((barraHeight) * 321) / 141, barraHeight), getStateTextures(2)))
         {
             CurrentState = buyState.money;
         }
@@ -144,10 +205,12 @@ public class buyItems_Script : MonoBehaviour
 #endif
 
 
-        GUI.DrawTexture(new Rect(Screen.width - size * 3 - margin, margin, size, size), coins);
-        custom.label.fontSize = (int)(size * 0.7);
-        GUI.Label(new Rect(Screen.width - size * 2, margin * 0.5f, size * 2, size + margin + 0.5f), "" + CameraScript.data.Credits);
-
+        
+        GUI.skin.label.fontSize = (int)(size * 0.7);
+        Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent(CameraScript.data.Credits.ToString()), GUI.skin.label);
+        GUI.Label(new Rect(Screen.width - (labelPosition.width + margin), barraHeight / 2 - labelPosition.height / 2, labelPosition.width, labelPosition.height), CameraScript.data.Credits.ToString());
+        GUI.DrawTexture(new Rect(Screen.width - (labelPosition.width + margin * 2 + barraHeight * 0.8f),
+            barraHeight / 2f - barraHeight * 0.8f / 2f, barraHeight * 0.8f, barraHeight * 0.8f), coins);
         if (CurrentState == buyState.money)
         {
             DrawMoney();
@@ -165,36 +228,28 @@ public class buyItems_Script : MonoBehaviour
     void DrawMoney()
     {
         //purchases
-        custom.button.normal.textColor = new Color(205, 127, 50);
-        custom.button.fontSize = (int)(size * 0.7f);
-        if (GUI.Button(new Rect(size * 13, margin, size + 2 * margin, size), "+500"))
+        if (GUI.Button(new Rect(margin, moneyTopMargin, size * 6, size * 6), Money500_texture))
         {
             if (plus500 != null)
                 plus500(this, new EventArgs());
-#if UNITY_ANDROID
-                activity.Call("buy", "plus500");
-#endif
-#if UNITY_IPHONE
+            #if UNITY_ANDROID
+                            activity.Call("buy", "plus500");
+            #endif
+            #if UNITY_IPHONE
             
-#endif
+            #endif
         }
-
-        custom.button.normal.textColor = new Color(192, 192, 192);
-        custom.button.fontSize = (int)(size * 0.8f);
-        if (GUI.Button(new Rect(size * 15 - margin, margin, size + margin * 4, size), "+1000"))
+        if (GUI.Button(new Rect(Screen.width / 2 - size * 6/2, moneyTopMargin, size * 6, size * 6), Money1000_texture))
         {
             if (plus1000 != null)
                 plus1000(this, new EventArgs());
-#if UNITY_ANDROID
-                activity.Call("buy", "plus1000");
-#endif
-#if UNITY_IPHONE
-#endif
+            #if UNITY_ANDROID
+                            activity.Call("buy", "plus1000");
+            #endif
+            #if UNITY_IPHONE
+            #endif
         }
-
-        custom.button.normal.textColor = new Color(246, 193, 0);
-        custom.button.fontSize = (int)(size * 0.9f);
-        if (GUI.Button(new Rect(size * 17, margin, size + 5 * margin, size), "+5000"))
+        if (GUI.Button(new Rect(Screen.width-(margin+ size * 6), moneyTopMargin, size * 6, size * 6), Money5000_texture))
         {
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
@@ -207,11 +262,11 @@ public class buyItems_Script : MonoBehaviour
     }
     void DrawPowers()
     {
-        if (GUI.Button(new Rect(size * 2, size * 4, size * 7, size * 7), bengal))
+        if (GUI.Button(new Rect(size * 2, barraHeight +(Screen.height) / 2 - (size * 7) / 2, size * 7, size * 7), bengal))
         {
             compra("Bengala", 90);
         }
-        if (GUI.Button(new Rect(size * 12, size * 4, size * 7, size * 7), reborn))
+        if (GUI.Button(new Rect(size * 12, barraHeight + (Screen.height) / 2 - (size * 7) / 2, size * 7, size * 7), reborn))
         {
             compra("Reborn", 300);
         }
@@ -239,8 +294,8 @@ public class buyItems_Script : MonoBehaviour
     {
         int elem = -1;
         int n = helmetToBuy();
-        position = GUI.BeginScrollView(new Rect(size, size * 5, Screen.width - size, size * 6), position,
-                                       new Rect(0, 0, size * n, size * 6));
+        position = GUI.BeginScrollView(new Rect(0, barraHeight + (Screen.height / 2 - elemSize / 2), Screen.width, Screen.height - (barraHeight + (Screen.height / 2 - elemSize / 2))),
+                                        position, new Rect(0, 0, size * n, Screen.height - barraHeight));
         if (!CameraScript.data.lightRed)
         {
             elem++;
@@ -326,64 +381,7 @@ public class buyItems_Script : MonoBehaviour
         return ret;
     }
 
-    void Update()
-    {
-#if !UNITY_METRO
-        if (Input.touchCount > 0 && CurrentState == buyState.lights)
-        {
-            Touch touch = Input.touches[0];
-            bool fInsideList = IsTouchInsideList(touch.position);
-            if (touch.phase == TouchPhase.Began)
-                imbuying = true;
-            if (touch.phase == TouchPhase.Moved && fInsideList)
-            {
-                position.x -= touch.deltaPosition.x * scrollparam; //2:768= x:Screen.height
-                imbuying = false;
-            }
-        }
-#else
-            if (CameraScript.IsTouch)
-            {
-                if (Input.touchCount > 0)
-                    {
-                    Touch touch = Input.touches[0];
-                    bool fInsideList = IsTouchInsideList(touch.position);
-                    if (touch.phase == TouchPhase.Began)
-                        imbuying = true;
-                    if (touch.phase == TouchPhase.Moved && fInsideList)
-                    {
-                        position.y += touch.deltaPosition.y * scrollparam;
-                        imbuying = false;
-                    }
-                }
-            }
-#endif
-
-
-        if (SystemInfo.supportsGyroscope)
-        {
-            if (start)
-            {
-                Input.gyro.enabled = true;
-                AttachGyro();
-                start = false;
-            }
-
-            transform.rotation = Quaternion.Slerp(transform.rotation,
-            cameraBase * (ConvertRotation(referanceRotation * Input.gyro.attitude) * GetRotFix()), 0.2f);
-        }
-        else if (SystemInfo.supportsAccelerometer)
-        {
-
-            accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
-            float x = -((accel.y * 100)); //si muove in alto e basso
-            float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra
-            float Altobasso = (accel.y * 90) + 90;
-            if (accel.z >= 0)
-                Altobasso *= -1;
-            transform.rotation = Quaternion.Euler(Altobasso, DestraSinistra, 0f);
-        }
-    }
+    
 
     #region GYRO CONTROL
     bool start = true;
