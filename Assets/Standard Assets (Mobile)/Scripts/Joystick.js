@@ -93,8 +93,12 @@ function Disable()
 
 function ResetJoystick()
 {
-	// Release the finger control and set the joystick back to the default position
-	gui.pixelInset = defaultRect;
+    // Release the finger control and set the joystick back to the default position
+    try 
+    {
+        gui.pixelInset = defaultRect;
+    } catch () { }
+	
 	lastFingerId = -1;
 	position = Vector2.zero;
 	fingerDownPos = Vector2.zero;
