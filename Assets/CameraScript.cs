@@ -428,7 +428,7 @@ public class CameraScript : MonoBehaviour
                 
             
 
-            if (GUI.Button(new Rect((Screen.width / 4) - (BottoniSize / 2), height * 8, BottoniSize, BottoniSize), playAgainButton))
+            if (GUI.Button(new Rect((Screen.width / 4) - (BottoniSize / 2), height * 8.2f, BottoniSize, BottoniSize), playAgainButton))
             {
                 CameraScript.data.Credits += PlayScript.GameCredits;                
                 salvaRecord(new Record((int)PlayTime, PlayScript.GameCredits, totalPoints, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));

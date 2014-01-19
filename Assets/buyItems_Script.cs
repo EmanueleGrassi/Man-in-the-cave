@@ -183,7 +183,7 @@ public class buyItems_Script : MonoBehaviour
         if (GUI.skin != custom)
             GUI.skin = custom;
         float buttonsMarginLeft = margin;
-        if (GUI.Button(new Rect(buttonsMarginLeft, margin / 3, ((barraHeight) * 168) / 141, barraHeight), back))
+        if (GUI.Button(new Rect(buttonsMarginLeft, 0, ((barraHeight) * 168) / 141, barraHeight), back))
         {
             Application.LoadLevel(0);
             audio.PlayOneShot(buttonsound);

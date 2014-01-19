@@ -37,7 +37,7 @@ public class SettingCamera : MonoBehaviour {
             audio.PlayOneShot(buttonsound);
         }
         GUI.skin = custom;
-        if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
+        if (GUI.Button(new Rect(margin, 0, ((barSize) * 168) / 141, barSize), back))
         {
             Application.LoadLevel(0);
             audio.PlayOneShot(buttonsound);

@@ -40,12 +40,12 @@ public class Scores_script : MonoBehaviour
             audio.PlayOneShot(buttonsound);
         }
         GUI.skin = custom;
-        if (GUI.Button(new Rect(margin, margin / 3, ((UnTerzo / 3) * 168) / 141, UnTerzo / 3), back))
+        if (GUI.Button(new Rect(margin, 0 , ((barSize) * 168) / 141, barSize), back))
         {
             Application.LoadLevel(0);
             audio.PlayOneShot(buttonsound);
         }
-        if (GUI.Button(new Rect(margin * 2 + ((UnTerzo / 3) * 168) / 141, margin / 3, ((UnTerzo / 3) * 500) / 141, UnTerzo / 3), IsScore?scoresPressed:scores))
+        if (GUI.Button(new Rect(margin * 2 + ((barSize) * 168) / 141, 0, ((barSize) * 500) / 141, barSize), IsScore ? scoresPressed : scores))
         {
             IsScore = true;
         }
@@ -69,8 +69,8 @@ public class Scores_script : MonoBehaviour
             int n = CameraScript.data.Records.Count;
             pos = GUI.BeginScrollView(new Rect(margin * 3 + size, barSize, Screen.width - (margin * 3 + size), Screen.height - barSize),
                 pos, new Rect(0, 0, Screen.width, size * 2 + size * n * 1.5f));
-            for (i = 0; i < 20; i++)
-            {                
+            foreach (var item in CameraScript.data.Records)
+            { 
                 if (i == 0)
                 {
                     GUI.skin.label.normal.textColor = new Color(246, 193, 0);
@@ -95,6 +95,7 @@ public class Scores_script : MonoBehaviour
                 GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), CameraScript.data.Records[i].Points + " points");
                 GUI.Label(new Rect(size * 8, (i * (size * 1.3f)), size * 10, size * 1.5f), CameraScript.data.Records[i].Day +
                     "/" + CameraScript.data.Records[i].Month + "/" + CameraScript.data.Records[i].Year);
+                i++;
             }
             GUI.EndScrollView();
         }

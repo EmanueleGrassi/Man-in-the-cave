@@ -97,7 +97,8 @@ function ResetJoystick()
     try 
     {
         gui.pixelInset = defaultRect;
-    } catch () { }
+    } 
+    catch(e) { }
 	
 	lastFingerId = -1;
 	position = Vector2.zero;
