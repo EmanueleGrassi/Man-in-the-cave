@@ -88,6 +88,7 @@ public class buyItems_Script : MonoBehaviour
 #endif
         #endregion
 
+
         imbuying = false;
         size = Screen.width / 20;
         margin = Screen.width / 60;
@@ -353,7 +354,7 @@ public class buyItems_Script : MonoBehaviour
             {
                 case Helmet.red: CameraScript.data.lightRed = true;
                     break;
-                case Helmet.blue: CameraScript.data.lightRed = true;
+                case Helmet.blue: CameraScript.data.lightBlue = true;
                     break;
                 case Helmet.green: CameraScript.data.lightGreen = true;
                     break;

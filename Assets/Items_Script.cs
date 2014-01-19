@@ -121,7 +121,7 @@ public class Items_Script : MonoBehaviour
         int elem = 0;
 
         position = GUI.BeginScrollView(new Rect(0, barraHeight, Screen.width, Screen.height - barraHeight), position,
-                                       new Rect(0, 0, (n * elementSize) + (margin * 5) + (Screen.width / 2 - elementSize / 2) * 2,
+                                       new Rect(0, 0, (n * elementSize) + (margin * 7) + (Screen.width / 2 - elementSize / 2) * 2,
                                            Screen.height - barraHeight), true, false);
         availableLights = 0;
         trovatoSetected = false;
