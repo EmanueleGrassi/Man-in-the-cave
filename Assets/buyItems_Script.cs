@@ -150,7 +150,7 @@ public class buyItems_Script : MonoBehaviour
 
         if (CurrentState == buyState.money)
         {
-           DrawMoney();
+            DrawMoney();
         }
         else if (CurrentState == buyState.Powers)
         {
@@ -206,35 +206,34 @@ public class buyItems_Script : MonoBehaviour
         }
     }
     void DrawPowers()
-    { 
-          
-            if (GUI.Button(new Rect(size * 2, size * 4, size * 7, size * 7), bengal))
-            {
-                compra("Bengala", 90);
-            }
-            if (GUI.Button(new Rect(size * 12, size * 4, size * 7, size * 7), reborn))
-            {
-                compra("Reborn", 300);
-            }
+    {
+        if (GUI.Button(new Rect(size * 2, size * 4, size * 7, size * 7), bengal))
+        {
+            compra("Bengala", 90);
+        }
+        if (GUI.Button(new Rect(size * 12, size * 4, size * 7, size * 7), reborn))
+        {
+            compra("Reborn", 300);
+        }
     }
     void compra(string typeAcquisto, int costo)
     {
         if (CameraScript.data.Credits >= costo)
-                {
-                    CameraScript.data.Credits -= costo;
+        {
+            CameraScript.data.Credits -= costo;
             switch (typeAcquisto)
-	{
-                case "Reborn":CameraScript.data.NumberReborn++;
+            {
+                case "Reborn": CameraScript.data.NumberReborn++;
                     break;
-                     case "Bengala":   CameraScript.data.NumBengala += 2;
+                case "Bengala": CameraScript.data.NumBengala += 2;
                     break;
-	}
-                    
-                    CameraScript.SaveData();
-                    audio.PlayOneShot(cashsound);
-                }
-                else
-                    audio.PlayOneShot(noMoney);
+            }
+
+            CameraScript.SaveData();
+            audio.PlayOneShot(cashsound);
+        }
+        else
+            audio.PlayOneShot(noMoney);
     }
     void DrawLights()
     {
@@ -290,7 +289,7 @@ public class buyItems_Script : MonoBehaviour
         {
             CameraScript.data.Credits -= costo;
             switch (typeAcquisto)
-            {               
+            {
                 case Helmet.red: CameraScript.data.lightRed = true;
                     break;
                 case Helmet.blue: CameraScript.data.lightRed = true;
@@ -299,7 +298,7 @@ public class buyItems_Script : MonoBehaviour
                     break;
                 case Helmet.pink: CameraScript.data.lightPink = true;
                     break;
-                case Helmet.rainbow: CameraScript.data.lightRainbow = true; 
+                case Helmet.rainbow: CameraScript.data.lightRainbow = true;
                     break;
             }
             CameraScript.data.Helmet = Helmet.rainbow;

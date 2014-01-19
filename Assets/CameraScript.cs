@@ -108,7 +108,7 @@ public class Record : IComparable<Record>
     public int CompareTo(Record b)
     {
         // Alphabetic sort name[A to Z]
-        return -this.Seconds.CompareTo(b.Seconds);
+        return this.Seconds.CompareTo(b.Seconds);
     }
 }
 
@@ -459,10 +459,12 @@ public class CameraScript : MonoBehaviour
         data.Records.Add(rec);
         data.Records.Sort();
 
-        if(data.Records.Count<=20)
+        if(data.Records.Count>20)// fa si che se si superano i venti elementi si tagli quello in eccesso
         {
-            //taglia dopo i venti
+            if (data.Records[20] != null)
+                data.Records.RemoveAt(20);
         }
+        data.Records.Reverse();
     }
 
     void drawPlay()
