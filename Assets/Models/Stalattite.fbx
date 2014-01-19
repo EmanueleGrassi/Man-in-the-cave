@@ -10,10 +10,10 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2014
 		Month: 01
-		Day: 11
-		Hour: 15
-		Minute: 40
-		Second: 17
+		Day: 19
+		Hour: 19
+		Minute: 02
+		Second: 04
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2014-01-11 15:40:17:000"
+CreationTime: "2014-01-19 19:02:04:000"
 Creator: "Blender version 2.69 (sub 0)"
 
 ; Object definitions
@@ -57,7 +57,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Model: "Model::Cube", "Mesh" {
+	Model: "Model::StalattiteMesh", "Mesh" {
 		Version: 232
 		Properties60:  {
 			Property: "QuaternionInterpolate", "bool", "",0
@@ -328,7 +328,7 @@ Objects:  {
 		}
 		UseMipMap: 0
 		Filename: "Stalattite.png"
-		RelativeFilename: "C:\Users\Luca\Desktop\Stalattite.png"
+		RelativeFilename: "C:\Users\Luca\Desktop\modelli\Stalattite.png"
 	}
 	Texture: "Texture::Untitled_001", "TextureVideoClip" {
 		Type: "TextureVideoClip"
@@ -353,7 +353,7 @@ Objects:  {
 		}
 		Media: "Video::Untitled_001"
 		FileName: "Stalattite.png"
-		RelativeFilename: "C:\Users\Luca\Desktop\Stalattite.png"
+		RelativeFilename: "C:\Users\Luca\Desktop\modelli\Stalattite.png"
 		ModelUVTranslation: 0,0
 		ModelUVScaling: 1,1
 		Texture_Alpha_Source: "None"
@@ -366,7 +366,7 @@ Objects:  {
 		}
 		NbPoseNodes: 1
 		PoseNode:  {
-			Node: "Model::Cube"
+			Node: "Model::StalattiteMesh"
 			Matrix: 0.000000075497901,0.000000000000000,-1.000000000000000,0.000000000000000,-1.000000000000000,0.000000000000000,-0.000000075497901,0.000000000000000,0.000000000000000,1.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,1.000000000000000
 		}
 	}
@@ -388,7 +388,7 @@ Objects:  {
 ;------------------------------------------------------------------
 
 Relations:  {
-	Model: "Model::Cube", "Mesh" {
+	Model: "Model::StalattiteMesh", "Mesh" {
 	}
 	Model: "Model::Producer Perspective", "Camera" {
 	}
@@ -418,9 +418,9 @@ Relations:  {
 ;------------------------------------------------------------------
 
 Connections:  {
-	Connect: "OO", "Model::Cube", "Model::Scene"
-	Connect: "OO", "Material::StalattiteRock_Mat__Untitled_001", "Model::Cube"
-	Connect: "OO", "Texture::Untitled_001", "Model::Cube"
+	Connect: "OO", "Model::StalattiteMesh", "Model::Scene"
+	Connect: "OO", "Material::StalattiteRock_Mat__Untitled_001", "Model::StalattiteMesh"
+	Connect: "OO", "Texture::Untitled_001", "Model::StalattiteMesh"
 	Connect: "OO", "Video::Untitled_001", "Texture::Untitled_001"
 }
 ;Takes and animation section

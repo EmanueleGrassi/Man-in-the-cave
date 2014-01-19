@@ -1173,7 +1173,6 @@ MonoBehaviour:
   backclock: {fileID: 2800000, guid: 7712f7726449b6d4dbc263da06246cae, type: 3}
   leftClock: {fileID: 2800000, guid: 7c0a1f09c52d2744bbe618b753803806, type: 3}
   holdingClock: {fileID: 2800000, guid: c42459b7743c9e74fbada4f0de723497, type: 3}
-  Istruction: {fileID: 0}
 --- !u!114 &458439275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1352,7 +1351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock1: {fileID: 400000, guid: 1bbd9d8ff94fb3842b35d76c7a39369a, type: 2}
+  rock1: {fileID: 400000, guid: 00440ad200e4b964e9321ff4f70fd1e2, type: 2}
   rock2: {fileID: 400002, guid: dfef6368513e93b46b9a2b5366424cd5, type: 2}
   rock3: {fileID: 400002, guid: 8951da2cee6b0094a9874d073b0172f0, type: 2}
   rock4: {fileID: 400002, guid: 337f1c15eae202f4fbf6f82833f65438, type: 2}
@@ -3093,9 +3092,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1521826621}
-  - 114: {fileID: 1521826620}
   - 54: {fileID: 1521826619}
   - 65: {fileID: 1521826618}
+  - 114: {fileID: 1521826620}
   m_Layer: 0
   m_Name: Spawner2
   m_TagString: Untagged
@@ -3141,22 +3140,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock1: {fileID: 400000, guid: 1bbd9d8ff94fb3842b35d76c7a39369a, type: 2}
+  rock1: {fileID: 400002, guid: 8951da2cee6b0094a9874d073b0172f0, type: 2}
   rock2: {fileID: 400002, guid: dfef6368513e93b46b9a2b5366424cd5, type: 2}
-  rock3: {fileID: 400002, guid: 8951da2cee6b0094a9874d073b0172f0, type: 2}
+  rock3: {fileID: 400002, guid: 05accaac6faedd04aa51682ed2499125, type: 2}
   rock4: {fileID: 400002, guid: 337f1c15eae202f4fbf6f82833f65438, type: 2}
   rock5: {fileID: 400002, guid: 2fbe906e2c9278c42953de8a74dc7b17, type: 2}
-  rock6: {fileID: 400002, guid: 05accaac6faedd04aa51682ed2499125, type: 2}
-  diamante: {fileID: 0}
-  ametista: {fileID: 0}
-  quarzo: {fileID: 0}
-  quarzorosa: {fileID: 0}
-  smeraldo: {fileID: 0}
-  olivina: {fileID: 0}
-  rubino: {fileID: 0}
+  rock6: {fileID: 400000, guid: 00440ad200e4b964e9321ff4f70fd1e2, type: 2}
+  diamante: {fileID: 400000, guid: d98efcc16c0a29e449d617ff3425bfc1, type: 2}
+  ametista: {fileID: 400000, guid: 71135f3d1782d474985153e5c26d0681, type: 2}
+  quarzo: {fileID: 400000, guid: 5786ce877d84c7347ae9194b8e9062c1, type: 2}
+  quarzorosa: {fileID: 400000, guid: e92b3b338fdcf5140af09f705b78f47d, type: 2}
+  smeraldo: {fileID: 400000, guid: 0caefd322d5c45c4f9e2364fa82f3352, type: 2}
+  olivina: {fileID: 400000, guid: ce95b4163a48e8f43bca9ddce4f17e09, type: 2}
+  rubino: {fileID: 400000, guid: 4ede0bff7edd1de44b29c28ddf7a29de, type: 2}
   zaffiro: {fileID: 400000, guid: 22fe0ab0aff5c5241b25ae0a61e40182, type: 2}
   marker: {fileID: 400000, guid: 5dc701c1cc326ad4b8861c525d4fbf79, type: 2}
-  bomb: {fileID: 400000, guid: 2861f399c26c24d2889f47c699b38de0, type: 2}
+  bomb: {fileID: 400000, guid: 4ef490f8f7d399e4095b0d8e8f62737c, type: 2}
   player: {fileID: 67719946}
 --- !u!4 &1521826621
 Transform:
@@ -3424,9 +3423,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1595023229}
-  - 114: {fileID: 1595023230}
   - 54: {fileID: 1595023231}
   - 65: {fileID: 1595023232}
+  - 114: {fileID: 1595023230}
   m_Layer: 0
   m_Name: Spawner3
   m_TagString: spawnersin
@@ -3456,22 +3455,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ba08a6f92cbd943a196be52d0243d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock1: {fileID: 400000, guid: 1bbd9d8ff94fb3842b35d76c7a39369a, type: 2}
+  rock1: {fileID: 400002, guid: 8951da2cee6b0094a9874d073b0172f0, type: 2}
   rock2: {fileID: 400002, guid: dfef6368513e93b46b9a2b5366424cd5, type: 2}
-  rock3: {fileID: 400002, guid: 8951da2cee6b0094a9874d073b0172f0, type: 2}
+  rock3: {fileID: 400002, guid: 05accaac6faedd04aa51682ed2499125, type: 2}
   rock4: {fileID: 400002, guid: 337f1c15eae202f4fbf6f82833f65438, type: 2}
   rock5: {fileID: 400002, guid: 2fbe906e2c9278c42953de8a74dc7b17, type: 2}
-  rock6: {fileID: 400002, guid: 05accaac6faedd04aa51682ed2499125, type: 2}
-  diamante: {fileID: 0}
-  ametista: {fileID: 0}
-  quarzo: {fileID: 0}
-  quarzorosa: {fileID: 0}
-  smeraldo: {fileID: 0}
-  olivina: {fileID: 0}
-  rubino: {fileID: 0}
+  rock6: {fileID: 400000, guid: 00440ad200e4b964e9321ff4f70fd1e2, type: 2}
+  diamante: {fileID: 400000, guid: d98efcc16c0a29e449d617ff3425bfc1, type: 2}
+  ametista: {fileID: 400000, guid: 71135f3d1782d474985153e5c26d0681, type: 2}
+  quarzo: {fileID: 400000, guid: 5786ce877d84c7347ae9194b8e9062c1, type: 2}
+  quarzorosa: {fileID: 400000, guid: e92b3b338fdcf5140af09f705b78f47d, type: 2}
+  smeraldo: {fileID: 400000, guid: 0caefd322d5c45c4f9e2364fa82f3352, type: 2}
+  olivina: {fileID: 400000, guid: ce95b4163a48e8f43bca9ddce4f17e09, type: 2}
+  rubino: {fileID: 400000, guid: 4ede0bff7edd1de44b29c28ddf7a29de, type: 2}
   zaffiro: {fileID: 400000, guid: 22fe0ab0aff5c5241b25ae0a61e40182, type: 2}
   marker: {fileID: 400000, guid: 5dc701c1cc326ad4b8861c525d4fbf79, type: 2}
-  bomb: {fileID: 400000, guid: 2861f399c26c24d2889f47c699b38de0, type: 2}
+  bomb: {fileID: 400000, guid: 4ef490f8f7d399e4095b0d8e8f62737c, type: 2}
   player: {fileID: 67719946}
 --- !u!54 &1595023231
 Rigidbody:
@@ -4080,7 +4079,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 2ded7049d6a3c4510ad960d3d4c2c4af, type: 2}
   - {fileID: 2100000, guid: d7ce316f0c10d4bd48a3f58548ef6b6e, type: 2}
-  - {fileID: 2100000, guid: 2f10912dd187d461a891c608200fad3d, type: 2}
+  - {fileID: 2100000, guid: 5411bcb891c394a4cb78e7d9c69ad2bc, type: 2}
   - {fileID: 2100000, guid: d7bbe97f595a74a1b92dc199acb46cd9, type: 2}
   - {fileID: 2100000, guid: ef602e73ec4fe4152a358eecc6f25af9, type: 2}
   - {fileID: 2100000, guid: 0515969428df34cd9835947c46735c9f, type: 2}

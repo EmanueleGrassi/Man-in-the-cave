@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: af478dce05309ed48b11f0355e424e86
+guid: 0f4a2bf8c4ed8d04ca2fee33bcdf8eb0
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -7,9 +7,9 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube
-    4300002: StalattiteMesh
+    4300000: StalattiteColliderMesh
     9500000: //RootNode
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -46,7 +46,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
