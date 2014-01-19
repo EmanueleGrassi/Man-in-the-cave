@@ -108,7 +108,7 @@ public class Record : IComparable<Record>
     public int CompareTo(Record b)
     {
         // Alphabetic sort name[A to Z]
-        return this.Seconds.CompareTo(b.Seconds);
+        return -this.Seconds.CompareTo(b.Seconds);
     }
 }
 
