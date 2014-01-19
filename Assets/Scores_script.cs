@@ -44,11 +44,11 @@ public class Scores_script : MonoBehaviour
         {
             IsScore = true;
         }
-        if (GUI.Button(new Rect(margin * 3 + ((UnTerzo / 3) * 168) / 141 + ((UnTerzo / 3) * 500) / 141,
-            margin / 3, ((UnTerzo / 3) * 550) / 141, UnTerzo / 3), IsScore ? achivements : achivementsPressed))
-        {
-            IsScore = false;
-        }
+        //if (GUI.Button(new Rect(margin * 3 + ((UnTerzo / 3) * 168) / 141 + ((UnTerzo / 3) * 500) / 141,
+        //    margin / 3, ((UnTerzo / 3) * 550) / 141, UnTerzo / 3), IsScore ? achivements : achivementsPressed))
+        //{
+        //    IsScore = false;
+        //}
 
         if (IsScore)
             DrawScore();
@@ -86,9 +86,9 @@ public class Scores_script : MonoBehaviour
                     GUI.skin.label.fontSize = (int)(size * 0.6);
                     GUI.skin.label.normal.textColor = Color.white;
                 }
-                GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), formatScoreSecond(CameraScript.data.Records[i].Seconds));
-                GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), formatScoreSecond(CameraScript.data.Records[i].Points));
-                GUI.Label(new Rect(size * 7, (i * (size * 1.3f)), size * 10, size * 1.5f), CameraScript.data.Records[i].Day +
+                //GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), formatScoreSecond(CameraScript.data.Records[i].Seconds));
+                GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), CameraScript.data.Records[i].Points + "points");
+                GUI.Label(new Rect(size * 8, (i * (size * 1.3f)), size * 10, size * 1.5f), CameraScript.data.Records[i].Day +
                     "/" + CameraScript.data.Records[i].Month + "/" + CameraScript.data.Records[i].Year);
             }
             GUI.EndScrollView();

@@ -12,8 +12,8 @@ GameObject:
   - 23: {fileID: 2300000}
   - 54: {fileID: 5400002}
   - 114: {fileID: 11400002}
-  - 64: {fileID: 6400000}
   - 82: {fileID: 8200002}
+  - 65: {fileID: 6500000}
   m_Layer: 0
   m_Name: ruby
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
-  m_LocalPosition: {x: -7.02309036, y: 2.51291418, z: 7.62124872}
+  m_LocalPosition: {x: -.429111958, y: 29.4393959, z: -42.2896652}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!64 &6400000
-MeshCollider:
+--- !u!65 &6500000
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -85,9 +85,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: c403feff8c53c204e83c913cb1557dae, type: 3}
+  m_Size: {x: .899999976, y: .340000004, z: 2.02999997}
+  m_Center: {x: 0, y: -.0299999993, z: .230000004}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1

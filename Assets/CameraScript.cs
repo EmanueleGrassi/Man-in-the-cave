@@ -305,6 +305,10 @@ public class CameraScript : MonoBehaviour
                 Mathf.Tan(-((2 * playerPG.position.x) / (5 * Mathf.Sqrt(2500 - playerPGxPOW)))) * 180 / Mathf.PI,
                 0);*/
         }
+        if (Input.GetKey(KeyCode.Escape) && PlayScript.State == PlayScript.PlayState.play)
+        {
+            PlayScript.State = PlayScript.PlayState.pause;
+        }
         PlayTime += Time.deltaTime;
     }
     public static void ManageButton(bool visibility)
@@ -464,10 +468,6 @@ public class CameraScript : MonoBehaviour
 
     void drawPlay()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            PlayScript.State = PlayScript.PlayState.pause;
-        }
         var multime = 1;
         var rot = (CameraScript.PlayTime) * 6;
         var height2 = Screen.width / 6;

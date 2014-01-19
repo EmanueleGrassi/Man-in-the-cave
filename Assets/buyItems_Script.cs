@@ -476,7 +476,7 @@ public class buyItems_Script : MonoBehaviour
     bool IsTouchInsideList(Vector2 touchPos)
     {
         Vector2 screenPos = new Vector2(touchPos.x, touchPos.y);
-        Rect rAdjustedBounds = new Rect(size, size * 5, Screen.width - size, size * 12);
+        Rect rAdjustedBounds = new Rect(0, 0, Screen.width, Screen.height);
 
         return rAdjustedBounds.Contains(screenPos);
     }
