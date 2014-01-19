@@ -305,9 +305,12 @@ public class CameraScript : MonoBehaviour
                 Mathf.Tan(-((2 * playerPG.position.x) / (5 * Mathf.Sqrt(2500 - playerPGxPOW)))) * 180 / Mathf.PI,
                 0);*/
         }
-        if (Input.GetKey(KeyCode.Escape) && PlayScript.State == PlayScript.PlayState.play)
+        if (Input.GetKey(KeyCode.Escape))
         {
-            PlayScript.State = PlayScript.PlayState.pause;
+            if (PlayScript.State == PlayScript.PlayState.play)
+                PlayScript.State = PlayScript.PlayState.pause;
+            else if (PlayScript.State == PlayScript.PlayState.pause)
+                PlayScript.State = PlayScript.PlayState.play;
         }
         PlayTime += Time.deltaTime;
     }
@@ -353,10 +356,6 @@ public class CameraScript : MonoBehaviour
 
     private void drawPause()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            PlayScript.State = PlayScript.PlayState.play;
-        }
         float middle = Screen.height / 2 - (BottoniSize / 2);
         if (GUI.Button(new Rect((Screen.width / 4) - (BottoniSize / 2), middle, BottoniSize, BottoniSize), PlayButton))
         {
