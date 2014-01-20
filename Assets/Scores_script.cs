@@ -22,13 +22,12 @@ public class Scores_script : MonoBehaviour
         margin = Screen.width / 60;
         UnTerzo = Screen.height / 3;
         barSize = (Screen.width * 81 / 1024);
-        achiveSize = (Screen.height - barSize) / 2.15f;//   UnTerzo + 0.6f;
+        achiveSize = (Screen.height - barSize) / 2.15f;
         pos = Vector2.zero;
         scrollparam = (Screen.height * 2) / 768;
         #if UNITY_METRO
                 custom.verticalScrollbarThumb.normal.background = thumb;
         #endif   
-                CameraScript.LoadData();
     }
 
     

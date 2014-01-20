@@ -130,21 +130,21 @@ public class buyItems_Script : MonoBehaviour
             }
         }
 #else
-            if (CameraScript.IsTouch)
-            {
-                if (Input.touchCount > 0)
-                    {
-                    Touch touch = Input.touches[0];
-                    bool fInsideList = IsTouchInsideList(touch.position);
-                    if (touch.phase == TouchPhase.Began)
-                        imbuying = true;
-                    if (touch.phase == TouchPhase.Moved && fInsideList)
-                    {
-                        position.y += touch.deltaPosition.y * scrollparam;
-                        imbuying = false;
-                    }
+        if (CameraScript.IsTouch)
+        {
+            if (Input.touchCount > 0)
+                {
+                Touch touch = Input.touches[0];
+                bool fInsideList = IsTouchInsideList(touch.position);
+                if (touch.phase == TouchPhase.Began)
+                    imbuying = true;
+                if (touch.phase == TouchPhase.Moved && fInsideList)
+                {
+                    position.y += touch.deltaPosition.y * scrollparam;
+                    imbuying = false;
                 }
             }
+        }
 #endif
         if (SystemInfo.supportsGyroscope)
         {

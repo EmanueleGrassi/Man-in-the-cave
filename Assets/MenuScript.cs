@@ -40,13 +40,12 @@ public class MenuScript : MonoBehaviour
         PlayButtonPressed = false;
 
         CameraScript.LoadData();
-
-        if (PlayerPrefs.GetString("gift1") == "")
+        if (!(Application.platform == RuntimePlatform.WP8Player))
         {
-            if (Application.platform == RuntimePlatform.WP8Player)
-              ;//  StartWebRequest("http://celialab.com/Promotion.txt");
-            else
+            if (PlayerPrefs.GetString("gift1") == "")
+            {
                 addPoints(1000);
+            }
         }
         accel = Input.acceleration;
     }
@@ -187,7 +186,6 @@ public class MenuScript : MonoBehaviour
         StartPromotion = true;
     }
 
-
     void OnGUI()
     {        
         if (GUI.skin != custom)
@@ -290,34 +288,6 @@ public class MenuScript : MonoBehaviour
             }
             else
                 GUI.DrawTexture(new Rect(0, 0, Screen.width, (Screen.width * 250) / 2048), normalBanner, ScaleMode.ScaleToFit, true);
-        }
-
-    }
-
-    private void StartWebRequest(string url)
-    {
-        try
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.BeginGetResponse(new AsyncCallback(FinishWebRequest), request);
-        }
-        catch { }
-    }
-
-    private void FinishWebRequest(IAsyncResult result)
-    {
-        try
-        {
-            HttpWebResponse response = (result.AsyncState as HttpWebRequest).EndGetResponse(result) as HttpWebResponse;
-            // Debug.WriteLine(response.ContentType);
-            if (response.StatusCode == HttpStatusCode.NotFound)
-                print("non c'è");
-            else
-                addPoints(1000);//c'è
-        }
-        catch (Exception e)
-        {
-            print(e.Message);
         }
 
     }
