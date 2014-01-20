@@ -1154,6 +1154,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3210558756dcfef4e8355042415fa6b6, type: 3}
   background: {fileID: 8300000, guid: 166c0e5cb160a194ba7d51a0a9b79f31, type: 3}
   gameoverSound: {fileID: 8300000, guid: 753cdbc10cf2b71498775ed20c7876cf, type: 3}
+  buttonsound: {fileID: 8300000, guid: 7351f0f5d46cdb947a7fa2b5a73713ab, type: 3}
   Volume: .200000003
   PlayButton: {fileID: 2800000, guid: 1d285a50c257ac2448cc413c4a6dc3e7, type: 3}
   ScoreButton: {fileID: 2800000, guid: ee546dc630f40eb4d851a13c00ea3ea4, type: 3}
@@ -4048,7 +4049,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 2ded7049d6a3c4510ad960d3d4c2c4af, type: 2}
   - {fileID: 2100000, guid: d7ce316f0c10d4bd48a3f58548ef6b6e, type: 2}
-  - {fileID: 2100000, guid: 2f10912dd187d461a891c608200fad3d, type: 2}
+  - {fileID: 2100000, guid: 5411bcb891c394a4cb78e7d9c69ad2bc, type: 2}
   - {fileID: 2100000, guid: d7bbe97f595a74a1b92dc199acb46cd9, type: 2}
   - {fileID: 2100000, guid: ef602e73ec4fe4152a358eecc6f25af9, type: 2}
   - {fileID: 2100000, guid: 0515969428df34cd9835947c46735c9f, type: 2}

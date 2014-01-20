@@ -136,7 +136,7 @@ public class CameraScript : MonoBehaviour
     public Transform playerPG;
     public Transform _20bis;
     public AudioClip[] rockSound;
-    public AudioClip background, gameoverSound;
+    public AudioClip background, gameoverSound,buttonsound;
     public float Volume;
 
     public static float PlayTime;
@@ -307,6 +307,7 @@ public class CameraScript : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Escape))
         {
+            audio.PlayOneShot(buttonsound);
             if (PlayScript.State == PlayScript.PlayState.play)
                 PlayScript.State = PlayScript.PlayState.pause;
             else if (PlayScript.State == PlayScript.PlayState.pause)
@@ -360,13 +361,16 @@ public class CameraScript : MonoBehaviour
         if (GUI.Button(new Rect((Screen.width / 4) - (BottoniSize / 2), middle, BottoniSize, BottoniSize), PlayButton))
         {
             PlayScript.State = PlayScript.PlayState.play;
+            audio.PlayOneShot(buttonsound);
         }
         if (GUI.Button(new Rect((Screen.width * 2 / 4) - (BottoniSize / 2), middle, BottoniSize, BottoniSize), playAgainButton))
         {
+            audio.PlayOneShot(buttonsound);
             Application.LoadLevel(1);
         }
         if (GUI.Button(new Rect((Screen.width * 3 / 4) - (BottoniSize / 2), middle, BottoniSize, BottoniSize), homeButton))
         {
+            audio.PlayOneShot(buttonsound);
             PlayScript.State = PlayScript.PlayState.menu;
             Application.LoadLevel(0);
         }
@@ -375,7 +379,10 @@ public class CameraScript : MonoBehaviour
     private void drawResult()
     {
         if (Input.GetKey(KeyCode.Escape))
+        {
+            audio.PlayOneShot(buttonsound);
             Application.LoadLevel(0);
+        }
 
         bool visualizeReborn = false;
         if (data.NumberReborn > 0 && !rebornUsed)
@@ -389,6 +396,7 @@ public class CameraScript : MonoBehaviour
                 useReborn_Texture, ScaleMode.ScaleToFit, true);
             if (GUI.Button(new Rect(Screen.width / 3 - BottoniSize / 2, Screen.height / 2 + margin, BottoniSize, BottoniSize), OKbutton_Texture))
             {
+                audio.PlayOneShot(buttonsound);
                 data.NumberReborn--;
                 if (playerPG != null)
                 {
@@ -404,6 +412,7 @@ public class CameraScript : MonoBehaviour
             }
             if (GUI.Button(new Rect(Screen.width * 2 / 3 - BottoniSize/2, Screen.height/2 + margin, BottoniSize, BottoniSize), CancelButton_Texture))
             {
+                audio.PlayOneShot(buttonsound);
                 visualizeReborn = false;
                 rebornUsed = true;
             }
@@ -433,6 +442,7 @@ public class CameraScript : MonoBehaviour
                 CameraScript.data.Credits += PlayScript.GameCredits;                
                 salvaRecord(new Record((int)PlayTime, PlayScript.GameCredits, totalPoints, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
                 SaveData();
+                audio.PlayOneShot(buttonsound);
                 Application.LoadLevel(1);
             }
             if (GUI.Button(new Rect((Screen.width * 3 / 4) - (BottoniSize / 2), height * 8, BottoniSize, BottoniSize), homeButton))
@@ -440,6 +450,7 @@ public class CameraScript : MonoBehaviour
                 CameraScript.data.Credits += PlayScript.GameCredits;
                 salvaRecord(new Record((int)PlayTime, PlayScript.GameCredits, totalPoints, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
                 SaveData();
+                audio.PlayOneShot(buttonsound);
                 Application.LoadLevel(0);
             }
 #if (UNITY_WP8 || UNITY_METRO)
@@ -507,6 +518,7 @@ public class CameraScript : MonoBehaviour
 
         if (GUI.Button(new Rect(Screen.width - (margin + height2 / 2), margin, height2 / 2, height2 / 2), pause))
         {
+            audio.PlayOneShot(buttonsound);
             PlayScript.State = PlayScript.PlayState.pause;
         }
     }
