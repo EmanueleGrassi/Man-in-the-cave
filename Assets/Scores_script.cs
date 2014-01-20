@@ -18,6 +18,8 @@ public class Scores_script : MonoBehaviour
 
     void Start()
     {
+        if (CameraScript.data == null)
+            CameraScript.LoadData();
         size = Screen.width / 20;      
         margin = Screen.width / 60;
         UnTerzo = Screen.height / 3;

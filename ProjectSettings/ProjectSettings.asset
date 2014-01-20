@@ -9,7 +9,7 @@ PlayerSettings:
   targetDevice: 2
   targetGlesGraphics: 1
   targetResolution: 0
-  accelerometerFrequency: 60
+  accelerometerFrequency: 30
   companyName: celialab
   productName: Man in the Cave
   defaultCursor: {fileID: 0}
@@ -74,6 +74,8 @@ PlayerSettings:
     16:9: 1
     Others: 1
   iPhoneBundleIdentifier: com.celialab.ManInTheCave
+  metroEnableIndependentInputSource: 0
+  metroEnableLowLatencyPresentationAPI: 0
   productGUID: 5bf2c22cf6d9c9d46b824324f41af77d
   iPhoneBundleVersion: 1.0
   AndroidBundleVersionCode: 1
@@ -191,6 +193,7 @@ PlayerSettings:
     SharedUserCertificates: 0
     VideosLibrary: 0
     WebCam: 0
+  metroUnprocessedPlugins: []
   metroCompilationOverrides: 1
   blackberryDeviceAddress: 
   blackberryDevicePassword: 

@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using System.Xml;
+using UnityEditor;
 
 
 public class Data
@@ -198,11 +199,17 @@ public class CameraScript : MonoBehaviour
     #endregion
 
     void Start()
-    {       
+    {
+        if (CameraScript.data == null)
+            CameraScript.LoadData();
+        if (SystemInfo.supportsGyroscope)
+        {
+            Input.gyro.enabled = false;
+        }
+
         bengalaButton = GameObject.Find("BengalaButton");
         movementButton = GameObject.Find("LeftTouchPad");
         jumpButton = GameObject.Find("RightTouchPad");
-
         rebornUsed = false;
         Volume = 0.2f;
         PlayTime = 0;
@@ -225,10 +232,7 @@ public class CameraScript : MonoBehaviour
             showInstru = false;
         }
 #endif
-        if (SystemInfo.supportsGyroscope)
-        {
-            Input.gyro.enabled = false;
-        }
+        
         PlayScript.State = PlayScript.PlayState.play;
     }
 

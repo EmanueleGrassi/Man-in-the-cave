@@ -72,6 +72,8 @@ public class buyItems_Script : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (CameraScript.data == null)
+            CameraScript.LoadData();
         #region Android inapp
 #if UNITY_ANDROID
             ////com.celialab.ManInTheCave.UnityPlayerNativeActivity

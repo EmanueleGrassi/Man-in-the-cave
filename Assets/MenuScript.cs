@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Net;
 using System.Threading;
+using UnityEditor;
 
 public class MenuScript : MonoBehaviour
 {
@@ -34,12 +35,12 @@ public class MenuScript : MonoBehaviour
     float filter = 5.0f;
     void Start()
     {
+        if (CameraScript.data == null)
+            CameraScript.LoadData();
         PlayScript.State = PlayScript.PlayState.menu;
         height = Screen.width / 20;
         margin = Screen.width / 60;
-        PlayButtonPressed = false;
-
-        CameraScript.LoadData();
+        PlayButtonPressed = false;        
         if (!(Application.platform == RuntimePlatform.WP8Player))
         {
             if (PlayerPrefs.GetString("gift1") == "")
@@ -72,6 +73,7 @@ public class MenuScript : MonoBehaviour
             if (start)
             {
                 Input.gyro.enabled = true;
+                PlayerSettings.accelerometerFrequency = 0;
                 AttachGyro();
                 start = false;
             }
