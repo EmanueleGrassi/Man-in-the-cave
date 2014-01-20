@@ -1562,6 +1562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   custom: {fileID: 11400000, guid: e6365d348d530f646af3dec48a0f6edc, type: 2}
   PlayButton: {fileID: 2800000, guid: 1d285a50c257ac2448cc413c4a6dc3e7, type: 3}
+  PlayButtonP: {fileID: 2800000, guid: 7d6fc857d7bb1674ca3436da2e3aa4f5, type: 3}
   ScoreButton: {fileID: 2800000, guid: ee546dc630f40eb4d851a13c00ea3ea4, type: 3}
   ItemsButton: {fileID: 2800000, guid: 96d4247ae882a894aa2c9b4974a0217b, type: 3}
   BuyItemsButton: {fileID: 2800000, guid: 83651f3777234c744a6ea295e4ac7013, type: 3}

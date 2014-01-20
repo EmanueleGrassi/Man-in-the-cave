@@ -13,7 +13,8 @@ public class MenuScript : MonoBehaviour
     float height;
     float margin;
     static bool play = true;
-    public Texture PlayButton, ScoreButton, ItemsButton, BuyItemsButton, SettingsButton;
+    bool PlayButtonPressed;
+    public Texture PlayButton,PlayButtonP, ScoreButton, ItemsButton, BuyItemsButton, SettingsButton;
     public Texture Title, facebook, twitter, review, celialab;
     public Texture myAppFreeBanner, normalBanner;
     public static event EventHandler GOReviews;
@@ -36,6 +37,8 @@ public class MenuScript : MonoBehaviour
         PlayScript.State = PlayScript.PlayState.menu;
         height = Screen.width / 20;
         margin = Screen.width / 60;
+        PlayButtonPressed = false;
+
         CameraScript.LoadData();
 
         if (PlayerPrefs.GetString("gift1") == "")
@@ -47,6 +50,7 @@ public class MenuScript : MonoBehaviour
         }
         accel = Input.acceleration;
     }
+
     float StartPromotionSound;
     bool StartPromotion = false;
     float StayPromotionBannar;
@@ -198,8 +202,9 @@ public class MenuScript : MonoBehaviour
                                 ((BottoniHeight * 4 + margin * 3)),
                                 BottoniHeight),
                                 Title, ScaleMode.ScaleToFit, true);
-        if (GUI.Button(new Rect((Screen.width / 2) - playSize / 2, UnTerzo + ((UnTerzo / 2) - playSize / 2), playSize, playSize), PlayButton))
+        if (GUI.Button(new Rect((Screen.width / 2) - playSize / 2, UnTerzo + ((UnTerzo / 2) - playSize / 2), playSize, playSize),PlayButtonPressed? PlayButtonP:PlayButton ))
         {
+            PlayButtonPressed = true;
             Application.LoadLevel("main");
             audio.PlayOneShot(playSound);
         }

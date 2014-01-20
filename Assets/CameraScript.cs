@@ -445,7 +445,7 @@ public class CameraScript : MonoBehaviour
                 audio.PlayOneShot(buttonsound);
                 Application.LoadLevel(1);
             }
-            if (GUI.Button(new Rect((Screen.width * 3 / 4) - (BottoniSize / 2), height * 8, BottoniSize, BottoniSize), homeButton))
+            if (GUI.Button(new Rect((Screen.width * 3 / 4) - (BottoniSize / 2), height * 8.2f, BottoniSize, BottoniSize), homeButton))
             {
                 CameraScript.data.Credits += PlayScript.GameCredits;
                 salvaRecord(new Record((int)PlayTime, PlayScript.GameCredits, totalPoints, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
@@ -455,7 +455,7 @@ public class CameraScript : MonoBehaviour
             }
 #if (UNITY_WP8 || UNITY_METRO)
             TempoRecord = CameraScript.PlayTime;
-            if (GUI.Button(new Rect((Screen.width * 2 / 4) - (BottoniSize / 2), height * 8, BottoniSize, BottoniSize), likebtn))
+            if (GUI.Button(new Rect((Screen.width * 2 / 4) - (BottoniSize / 2), height * 8.2f, BottoniSize, BottoniSize), likebtn))
             {
                 if (shareEvent != null)
                     shareEvent(this, new EventArgs());
