@@ -6,7 +6,6 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using System.Xml;
-using UnityEditor;
 
 
 public class Data

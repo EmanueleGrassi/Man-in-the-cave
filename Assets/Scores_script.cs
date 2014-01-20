@@ -127,14 +127,28 @@ public class Scores_script : MonoBehaviour
        #if UNITY_METRO
             if (CameraScript.IsTouch)
             {
-                Touch touch = Input.touches[0];
-                bool fInsideList = IsTouchInsideList(touch.position);
-
-                if (touch.phase == TouchPhase.Moved && fInsideList)
+                if (Input.touchCount > 0)
                 {
-                    pos.y += touch.deltaPosition.y * scrollparam;
-                }
+                    Touch touch = Input.touches[0];
+                    bool fInsideList = IsTouchInsideList(touch.position);
+
+                    if (touch.phase == TouchPhase.Moved && fInsideList)
+                    {
+                        pos.y += touch.deltaPosition.y * scrollparam;
+                    }
+                }   
             }
+#else
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.touches[0];
+            bool fInsideList = IsTouchInsideList(touch.position);
+
+            if (touch.phase == TouchPhase.Moved && fInsideList)
+            {
+                pos.y += touch.deltaPosition.y * scrollparam*2;
+            }
+        }
         #endif
     }
 

@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 458439267}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ddcb1bb5086f9745bff9c1306887d5c, type: 3}
   m_Name: 
@@ -2184,7 +2184,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400042, guid: 47d0c29352cd94d3ab62999009abee41, type: 3}
   m_PrefabInternal: {fileID: 1413117709}
   m_GameObject: {fileID: 933672954}
-  m_LocalRotation: {x: -.0878932029, y: .996102989, z: -.00680220453, w: .00271315011}
+  m_LocalRotation: {x: -.0878918916, y: .996103108, z: -.00680342363, w: .00270762364}
   m_LocalPosition: {x: .0547796078, y: .0950593501, z: .00763106998}
   m_LocalScale: {x: 1.00000024, y: .99999994, z: .99999994}
   m_Children:
@@ -4167,7 +4167,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 2ded7049d6a3c4510ad960d3d4c2c4af, type: 2}
   - {fileID: 2100000, guid: d7ce316f0c10d4bd48a3f58548ef6b6e, type: 2}
-  - {fileID: 2100000, guid: 5411bcb891c394a4cb78e7d9c69ad2bc, type: 2}
+  - {fileID: 2100000, guid: 2f10912dd187d461a891c608200fad3d, type: 2}
   - {fileID: 2100000, guid: d7bbe97f595a74a1b92dc199acb46cd9, type: 2}
   - {fileID: 2100000, guid: ef602e73ec4fe4152a358eecc6f25af9, type: 2}
   - {fileID: 2100000, guid: 0515969428df34cd9835947c46735c9f, type: 2}
