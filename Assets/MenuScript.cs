@@ -6,7 +6,6 @@ using System.IO;
 using System.Text;
 using System.Net;
 using System.Threading;
-using UnityEditor;
 
 public class MenuScript : MonoBehaviour
 {
@@ -73,8 +72,8 @@ public class MenuScript : MonoBehaviour
             if (start)
             {
                 Input.gyro.enabled = true;
-                PlayerSettings.accelerometerFrequency = 0;
                 AttachGyro();
+               
                 start = false;
             }
 

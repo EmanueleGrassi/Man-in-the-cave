@@ -9,7 +9,7 @@ PlayerSettings:
   targetDevice: 2
   targetGlesGraphics: 1
   targetResolution: 0
-  accelerometerFrequency: 30
+  accelerometerFrequency: 15
   companyName: celialab
   productName: Man in the Cave
   defaultCursor: {fileID: 0}
