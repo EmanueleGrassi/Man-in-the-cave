@@ -30,7 +30,58 @@ public class buyItems_Script : MonoBehaviour
 #endif
 
 #if UNITY_IPHONE
-    
+     //const string STORE_CUSTOM = "store";
+	const string SKU5000 = "plus5000";
+    const string SKU1000 = "plus1000";
+    const string SKU500 = "plus500";
+
+    private void OnEnable() {
+        // Listen to all events for illustration purposes
+        OpenIABEventManager.billingSupportedEvent += billingSupportedEvent;
+        OpenIABEventManager.billingNotSupportedEvent += billingNotSupportedEvent;
+        OpenIABEventManager.queryInventorySucceededEvent += queryInventorySucceededEvent;
+        OpenIABEventManager.queryInventoryFailedEvent += queryInventoryFailedEvent;
+        OpenIABEventManager.purchaseSucceededEvent += purchaseSucceededEvent;
+        OpenIABEventManager.purchaseFailedEvent += purchaseFailedEvent;
+        OpenIABEventManager.consumePurchaseSucceededEvent += consumePurchaseSucceededEvent;
+        OpenIABEventManager.consumePurchaseFailedEvent += consumePurchaseFailedEvent;
+    }
+    private void OnDisable() {
+        // Remove all event handlers
+        OpenIABEventManager.billingSupportedEvent -= billingSupportedEvent;
+        OpenIABEventManager.billingNotSupportedEvent -= billingNotSupportedEvent;
+        OpenIABEventManager.queryInventorySucceededEvent -= queryInventorySucceededEvent;
+        OpenIABEventManager.queryInventoryFailedEvent -= queryInventoryFailedEvent;
+        OpenIABEventManager.purchaseSucceededEvent -= purchaseSucceededEvent;
+        OpenIABEventManager.purchaseFailedEvent -= purchaseFailedEvent;
+        OpenIABEventManager.consumePurchaseSucceededEvent -= consumePurchaseSucceededEvent;
+        OpenIABEventManager.consumePurchaseFailedEvent -= consumePurchaseFailedEvent;
+    }
+    private void billingSupportedEvent() {
+        Debug.Log("billingSupportedEvent");
+    }
+    private void billingNotSupportedEvent(string error) {
+        Debug.Log("billingNotSupportedEvent: " + error);
+    }
+    private void queryInventorySucceededEvent(Inventory inventory) {
+        Debug.Log("queryInventorySucceededEvent: " + inventory);
+    }
+    private void queryInventoryFailedEvent(string error) {
+        Debug.Log("queryInventoryFailedEvent: " + error);
+    }
+    private void purchaseSucceededEvent(Purchase purchase) {
+		Debug.Log("purchaseSucceededEvent: " + purchase);
+		OpenIAB.consumeProduct(purchase);
+	}
+    private void purchaseFailedEvent(string error) {
+        Debug.Log("purchaseFailedEvent: " + error);
+    }
+    private void consumePurchaseSucceededEvent(Purchase purchase) {
+        Debug.Log("consumePurchaseSucceededEvent: " + purchase);
+    }
+    private void consumePurchaseFailedEvent(string error) {
+        Debug.Log("consumePurchaseFailedEvent: " + error);
+    }
 #endif
 
     //camera
@@ -75,21 +126,26 @@ public class buyItems_Script : MonoBehaviour
         if (CameraScript.data == null)
             CameraScript.LoadData();
         #region Android inapp
-#if UNITY_ANDROID
-            ////com.celialab.ManInTheCave.UnityPlayerNativeActivity
-            ////jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
-        unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            //activity.Call("init");
-#endif
+        #if UNITY_ANDROID
+                ////com.celialab.ManInTheCave.UnityPlayerNativeActivity
+                ////jc = new AndroidJavaClass("com.celialab.ManInTheCave.UnityPlayerNativeActivity");
+                unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+                //activity.Call("init");
+        #endif
         #endregion
 
         #region iOS inapp
-#if UNITY_IPHONE
-            
-#endif
+        #if UNITY_IPHONE
+                // Map sku for different stores
+		        OpenIAB.mapSku(SKU5000, OpenIAB_iOS.STORE, SKU5000);
+                OpenIAB.mapSku(SKU1000, OpenIAB_iOS.STORE, SKU1000);
+                OpenIAB.mapSku(SKU500, OpenIAB_iOS.STORE, SKU500);
+                //OpenIAB.mapSku(SKU, STORE_CUSTOM, "onepf.sku");
+		        var options = new OnePF.Options();
+		        OpenIAB.init(options);
+        #endif
         #endregion
-
 
         imbuying = false;
         size = Screen.width / 20;
@@ -106,14 +162,14 @@ public class buyItems_Script : MonoBehaviour
 
         elemSize = size * 5;
 
-#if UNITY_METRO
+        #if UNITY_METRO
             if (CameraScript.IsTouch)
             {
                 imbuying = true;
             }
-#endif
-
-        CameraScript.LoadData();
+        #endif
+        if (CameraScript.data == null)
+            CameraScript.LoadData();
     }
 
     void Update()
@@ -176,6 +232,9 @@ public class buyItems_Script : MonoBehaviour
     Vector2 position = Vector2.zero;
     
 
+    
+
+    #region METODI GUI
     void OnGUI()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -213,8 +272,6 @@ public class buyItems_Script : MonoBehaviour
         custom.verticalScrollbarThumb.normal.background = thumb;
 #endif
 
-
-        
         GUI.skin.label.fontSize = (int)(size * 0.7);
         Rect labelPosition = GUILayoutUtility.GetRect(new GUIContent(CameraScript.data.Credits.ToString()), GUI.skin.label);
         GUI.Label(new Rect(Screen.width - (labelPosition.width + margin), barraHeight / 2 - labelPosition.height / 2, labelPosition.width, labelPosition.height), CameraScript.data.Credits.ToString());
@@ -233,7 +290,6 @@ public class buyItems_Script : MonoBehaviour
             DrawLights();
         }
     }
-    #region METODI GUI
     void DrawMoney()
     {
         //purchases
@@ -242,10 +298,10 @@ public class buyItems_Script : MonoBehaviour
             if (plus500 != null)
                 plus500(this, new EventArgs());
             #if UNITY_ANDROID
-                            activity.Call("buy", "plus500");
+                activity.Call("buy", "plus500");
             #endif
             #if UNITY_IPHONE
-            
+                OpenIAB.purchaseProduct(SKU500);
             #endif
         }
         if (GUI.Button(new Rect(Screen.width / 2 - size * 6/2, moneyTopMargin, size * 6, size * 6), Money1000_texture))
@@ -253,20 +309,22 @@ public class buyItems_Script : MonoBehaviour
             if (plus1000 != null)
                 plus1000(this, new EventArgs());
             #if UNITY_ANDROID
-                            activity.Call("buy", "plus1000");
+                activity.Call("buy", "plus1000");
             #endif
             #if UNITY_IPHONE
+                OpenIAB.purchaseProduct(SKU1000);
             #endif
         }
         if (GUI.Button(new Rect(Screen.width-(margin+ size * 6), moneyTopMargin, size * 6, size * 6), Money5000_texture))
         {
             if (plus5000 != null)
                 plus5000(this, new EventArgs());
-#if UNITY_ANDROID
+            #if UNITY_ANDROID
                 activity.Call("buy", "plus5k");
-#endif
-#if UNITY_IPHONE
-#endif
+            #endif
+            #if UNITY_IPHONE
+                OpenIAB.purchaseProduct(SKU5000);
+            #endif
         }
     }
     void DrawPowers()
@@ -389,7 +447,6 @@ public class buyItems_Script : MonoBehaviour
             ret += 5;
         return ret;
     }
-
     
 
     #region GYRO CONTROL
@@ -447,23 +504,13 @@ public class buyItems_Script : MonoBehaviour
     }
     private Quaternion GetRotFix()
     {
-#if UNITY_3_5
-		if (Screen.orientation == ScreenOrientation.Portrait)
-			return Quaternion.identity;
-		
-		if (Screen.orientation == ScreenOrientation.LandscapeLeft || Screen.orientation == ScreenOrientation.Landscape)
-			return landscapeLeft;
-				
-		if (Screen.orientation == ScreenOrientation.LandscapeRight)
-			return landscapeRight;
-				
-		if (Screen.orientation == ScreenOrientation.PortraitUpsideDown)
-			return upsideDown;
-		return Quaternion.identity;
-#else
+#if UNITY_METRO
+        return Quaternion.Euler(0, 0, 90);
+#else        
         return Quaternion.identity;
 #endif
     }
+
     private void ResetBaseOrientation()
     {
         baseOrientationRotationFix = GetRotFix();

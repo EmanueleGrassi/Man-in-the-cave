@@ -671,7 +671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &439557444
 Renderer:
   m_ObjectHideFlags: 0
@@ -1482,6 +1482,7 @@ GameObject:
   - 81: {fileID: 1103718251}
   - 114: {fileID: 1103718256}
   - 82: {fileID: 1103718257}
+  - 114: {fileID: 1103718258}
   m_Layer: 0
   m_Name: Buy Camera
   m_TagString: MainCamera
@@ -1643,6 +1644,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1103718258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1103718250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d85e0c26f156a4cb810be9c6ba64bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1120368537
 GameObject:
   m_ObjectHideFlags: 0
