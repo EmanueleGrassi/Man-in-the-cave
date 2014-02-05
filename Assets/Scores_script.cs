@@ -16,7 +16,6 @@ public class Scores_script : MonoBehaviour
     float UnTerzo;
     bool IsScore = true; //se false visualizza achivements
 
-    bool start = true;
     private Quaternion cameraBase = Quaternion.identity;
     private Quaternion calibration = Quaternion.identity;
     private Quaternion baseOrientation = Quaternion.Euler(90, 0, 0);
@@ -211,6 +210,7 @@ public class Scores_script : MonoBehaviour
     }
 
     #region GYRO CONTROL
+    bool start = true;
     private void AttachGyro()
     {
         ResetBaseOrientation();
@@ -264,28 +264,22 @@ public class Scores_script : MonoBehaviour
     }
     private Quaternion GetRotFix()
     {
-#if UNITY_3_5
-		if (Screen.orientation == ScreenOrientation.Portrait)
-			return Quaternion.identity;
-		
-		if (Screen.orientation == ScreenOrientation.LandscapeLeft || Screen.orientation == ScreenOrientation.Landscape)
-			return landscapeLeft;
-				
-		if (Screen.orientation == ScreenOrientation.LandscapeRight)
-			return landscapeRight;
-				
-		if (Screen.orientation == ScreenOrientation.PortraitUpsideDown)
-			return upsideDown;
-		return Quaternion.identity;
-#else
+#if UNITY_METRO
+        return Quaternion.Euler(0, 0, 90);
+#else        
         return Quaternion.identity;
 #endif
     }
+
     private void ResetBaseOrientation()
     {
         baseOrientationRotationFix = GetRotFix();
         baseOrientation = baseOrientationRotationFix * baseIdentity;
     }
+
+    /// <summary>
+    /// Recalculates reference rotation.
+    /// </summary>
     private void RecalculateReferenceRotation()
     {
         referanceRotation = Quaternion.Inverse(baseOrientation) * Quaternion.Inverse(calibration);

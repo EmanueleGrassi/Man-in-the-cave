@@ -12,9 +12,7 @@ public class SettingCamera : MonoBehaviour {
         float istructionWidth,istructionHeight;
         public Texture  istruction;
     #endif
-    float UnTerzo;
-
-    bool start = true;
+    float UnTerzo;    
     private Quaternion cameraBase = Quaternion.identity;
     private Quaternion calibration = Quaternion.identity;
     private Quaternion baseOrientation = Quaternion.Euler(90, 0, 0);
@@ -38,8 +36,6 @@ public class SettingCamera : MonoBehaviour {
             istructionWidth = Screen.width * 0.6f;
             istructionHeight = istructionWidth * 115 / 488;
         #endif
-
-        
     }
 	
 	// Update is called once per frame
@@ -90,7 +86,6 @@ public class SettingCamera : MonoBehaviour {
         {
             // filter the jerky acceleration in the variable accel:
             accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
-            float x = -((accel.y * 100)); //si muove in alto e basso
             float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra          
 
             float Altobasso = (accel.y * 90) + 90;
@@ -101,6 +96,7 @@ public class SettingCamera : MonoBehaviour {
     }
 
     #region GYRO CONTROL
+    bool start = true;
     private void AttachGyro()
     {
         ResetBaseOrientation();
@@ -154,31 +150,34 @@ public class SettingCamera : MonoBehaviour {
     }
     private Quaternion GetRotFix()
     {
-#if UNITY_3_5
-		if (Screen.orientation == ScreenOrientation.Portrait)
-			return Quaternion.identity;
-		
-		if (Screen.orientation == ScreenOrientation.LandscapeLeft || Screen.orientation == ScreenOrientation.Landscape)
-			return landscapeLeft;
-				
-		if (Screen.orientation == ScreenOrientation.LandscapeRight)
-			return landscapeRight;
-				
-		if (Screen.orientation == ScreenOrientation.PortraitUpsideDown)
-			return upsideDown;
-		return Quaternion.identity;
-#else
+#if UNITY_METRO
+        return Quaternion.Euler(0, 0, 90);
+#else        
         return Quaternion.identity;
 #endif
     }
+
     private void ResetBaseOrientation()
     {
         baseOrientationRotationFix = GetRotFix();
         baseOrientation = baseOrientationRotationFix * baseIdentity;
     }
+
+    /// <summary>
+    /// Recalculates reference rotation.
+    /// </summary>
     private void RecalculateReferenceRotation()
     {
         referanceRotation = Quaternion.Inverse(baseOrientation) * Quaternion.Inverse(calibration);
+    }
+
+
+    bool IsTouchInsideList(Vector2 touchPos)
+    {
+        Vector2 screenPos = new Vector2(touchPos.x, touchPos.y);
+        Rect rAdjustedBounds = new Rect(0, 0, Screen.width, Screen.height);
+
+        return rAdjustedBounds.Contains(screenPos);
     }
     #endregion
 }

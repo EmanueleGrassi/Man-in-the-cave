@@ -322,6 +322,7 @@ public class Items_Script : MonoBehaviour
             {
                 Input.gyro.enabled = true;
                 AttachGyro();
+
                 start = false;
             }
 
@@ -333,24 +334,15 @@ public class Items_Script : MonoBehaviour
             // filter the jerky acceleration in the variable accel:
             accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
             float x = -((accel.y * 100)); //si muove in alto e basso
-            //if(x<-5)
-            //    x=-5;
-            //else if(x>+33)
-            //    x=33;
-
-            float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra
-            //if (y < -55)
-            //    y = -55;
-            //else if (x > +55)
-            //    y = 55;
+            float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra          
 
             float Altobasso = (accel.y * 90) + 90;
             if (accel.z >= 0)
                 Altobasso *= -1;
-            //print(Altobasso);
             transform.rotation = Quaternion.Euler(Altobasso, DestraSinistra, 0f);
         }
     }
+    #region GYRO CONTROL
     bool start = true;
     private void AttachGyro()
     {
@@ -405,23 +397,13 @@ public class Items_Script : MonoBehaviour
     }
     private Quaternion GetRotFix()
     {
-#if UNITY_3_5
-		if (Screen.orientation == ScreenOrientation.Portrait)
-			return Quaternion.identity;
-		
-		if (Screen.orientation == ScreenOrientation.LandscapeLeft || Screen.orientation == ScreenOrientation.Landscape)
-			return landscapeLeft;
-				
-		if (Screen.orientation == ScreenOrientation.LandscapeRight)
-			return landscapeRight;
-				
-		if (Screen.orientation == ScreenOrientation.PortraitUpsideDown)
-			return upsideDown;
-		return Quaternion.identity;
-#else
+#if UNITY_METRO
+        return Quaternion.Euler(0, 0, 90);
+#else        
         return Quaternion.identity;
 #endif
     }
+
     private void ResetBaseOrientation()
     {
         baseOrientationRotationFix = GetRotFix();
@@ -435,6 +417,7 @@ public class Items_Script : MonoBehaviour
     {
         referanceRotation = Quaternion.Inverse(baseOrientation) * Quaternion.Inverse(calibration);
     }
+    #endregion
 
     bool IsTouchInsideList(Vector2 touchPos)
     {
