@@ -423,7 +423,7 @@ public class buyItems_Script : MonoBehaviour
                 case Helmet.rainbow: CameraScript.data.lightRainbow = true;
                     break;
             }
-            CameraScript.data.Helmet = Helmet.rainbow;
+            CameraScript.data.Helmet = typeAcquisto;
             CameraScript.SaveData();
             audio.PlayOneShot(cashsound);//SUONA CASSA
         }
