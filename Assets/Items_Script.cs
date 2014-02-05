@@ -41,6 +41,9 @@ public class Items_Script : MonoBehaviour
         positionYButtons = UnTerzo;
         barraHeight = Screen.width * 81 / 1024;
         scrollparam = (Screen.width * 2) / 768;
+#if UNITY_METRO
+        scrollparam = scrollparam*5;
+#endif
         impressing = false;
 
         availableLights = 0;
@@ -298,8 +301,8 @@ public class Items_Script : MonoBehaviour
             }
         }
 #else
-        if (Input.touchCount >0) {
-            if (CameraScript.IsTouch)
+        if (CameraScript.IsTouch) {
+            if (Input.touchCount >0)
             {
                 Touch touch = Input.touches[0];
                 bool fInsideList = IsTouchInsideList(touch.position);

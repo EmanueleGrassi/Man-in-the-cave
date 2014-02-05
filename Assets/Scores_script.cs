@@ -40,9 +40,10 @@ public class Scores_script : MonoBehaviour
         achiveSize = (Screen.height - barSize) / 2.15f;
         pos = Vector2.zero;
         scrollparam = (Screen.height * 2) / 768;
-        #if UNITY_METRO
-                custom.verticalScrollbarThumb.normal.background = thumb;
-        #endif   
+#if UNITY_METRO
+        scrollparam = scrollparam*5;
+        custom.verticalScrollbarThumb.normal.background = thumb;
+#endif
     }
 
     
@@ -106,8 +107,9 @@ public class Scores_script : MonoBehaviour
                     GUI.skin.label.normal.textColor = Color.white;
                 }
                 //GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), formatScoreSecond(CameraScript.data.Records[i].Seconds));
-                GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 8, size * 1.5f), CameraScript.data.Records[i].Points + " points");
-                GUI.Label(new Rect(size * 8, (i * (size * 1.3f)), size * 10, size * 1.5f), CameraScript.data.Records[i].Day +
+                GUI.Label(new Rect(0, (i * (size * 1.3f)), size * 12, size * 1.5f), CameraScript.data.Records[i].Points + " points  "
+                    + formatScoreSecond(CameraScript.data.Records[i].Seconds));
+                GUI.Label(new Rect(size * 12, (i * (size * 1.3f)), size * 10, size * 1.5f), CameraScript.data.Records[i].Day +
                     "/" + CameraScript.data.Records[i].Month + "/" + CameraScript.data.Records[i].Year);
                 i++;
             }
