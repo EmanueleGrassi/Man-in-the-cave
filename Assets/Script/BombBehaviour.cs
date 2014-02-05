@@ -10,7 +10,6 @@ public class BombBehaviour : MonoBehaviour {
     //public Transform pg;
     public bool killed;
     float killTime;
-    bool esplosioneAvvenuta;
 	// Use this for initialization
 	void Start ()
     {		
@@ -18,7 +17,6 @@ public class BombBehaviour : MonoBehaviour {
         pg = GameObject.Find("Player");
         // pg = GameObject.FindGameObjectWithTag("Player");
         killed = false;
-        esplosioneAvvenuta = false;
 	}
 	
 	
@@ -77,8 +75,6 @@ public class BombBehaviour : MonoBehaviour {
         gameObject.renderer.enabled = false;
         gameObject.collider.enabled = false;
         
-        //
-        esplosioneAvvenuta = true;
 
         if (Vector3.Distance(pg.transform.position, transform.position) < 7)
             //(pg.transform.position.x < transform.position.x + 7 && pg.transform.position.x > transform.position.x - 7 && transform.position.y < 5)

@@ -51,31 +51,33 @@
 		
 		if(cTag == "concrete")
 		{
-			volume = 0.8;
-			return concreteSteps[Random.Range(0, concreteSteps.length)];
+		    volume = 0.8;
+		    return concreteSteps[Random.Range(0, concreteSteps.length)];
 		}
-	/*	else if(cTag == "wood")
-		{
-			return woodSteps[Random.Range(0, woodSteps.length)];
-		}
-		else if(cTag == "metal")
-		{
-			return metalSteps[Random.Range(0, metalSteps.length)];
-		}
-		
-		else if(cTag == "dirt")
-		{
-			volume = 1.0;
-			return sandSteps[Random.Range(0, sandSteps.length)];
-		}
-		else if(cTag == "sand")
-		{
-			volume = 1.0;
-			return sandSteps[Random.Range(0, sandSteps.length)];
-		}
-		else
-		{
-			volume = 1.0;
-			return sandSteps[Random.Range(0, sandSteps.length)];
-		}*/
+
+		    /*	else if(cTag == "wood")
+                {
+                    return woodSteps[Random.Range(0, woodSteps.length)];
+                }
+                else if(cTag == "metal")
+                {
+                    return metalSteps[Random.Range(0, metalSteps.length)];
+                }
+                
+                else if(cTag == "dirt")
+                {
+                    volume = 1.0;
+                    return sandSteps[Random.Range(0, sandSteps.length)];
+                }
+                else if(cTag == "sand")
+                {
+                    volume = 1.0;
+                    return sandSteps[Random.Range(0, sandSteps.length)];
+                }
+                else
+                {
+                    volume = 1.0;
+                    return sandSteps[Random.Range(0, sandSteps.length)];
+                }*/
+		else return null;
 	}

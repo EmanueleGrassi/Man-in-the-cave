@@ -333,7 +333,6 @@ public class Items_Script : MonoBehaviour
         {
             // filter the jerky acceleration in the variable accel:
             accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
-            float x = -((accel.y * 100)); //si muove in alto e basso
             float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra          
 
             float Altobasso = (accel.y * 90) + 90;

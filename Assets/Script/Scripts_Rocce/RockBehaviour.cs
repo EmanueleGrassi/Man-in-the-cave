@@ -17,8 +17,6 @@ public class RockBehaviour : MonoBehaviour {
 	public Transform RockSmoke;
 	public Transform PGblood;
     bool ucciso;
-    bool a = false;
-    float b;
 
 	// Use this for initialization
 	void Start () {

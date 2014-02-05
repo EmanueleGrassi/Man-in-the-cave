@@ -188,7 +188,33 @@ public class Scores_script : MonoBehaviour
                 Altobasso *= -1;
             transform.rotation = Quaternion.Euler(Altobasso, DestraSinistra, 0f);
         }
-#endif
+#endif     
+
+        if (SystemInfo.supportsGyroscope)
+        {
+            if (start)
+            {
+                Input.gyro.enabled = true;
+                AttachGyro();
+
+                start = false;
+            }
+
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+            cameraBase * (ConvertRotation(referanceRotation * Input.gyro.attitude) * GetRotFix()), 0.2f);
+        }
+        else if (SystemInfo.supportsAccelerometer)
+        {
+            // filter the jerky acceleration in the variable accel:
+            accel = Vector3.Lerp(accel, Input.acceleration, filter * Time.deltaTime);
+            float x = -((accel.y * 100)); //si muove in alto e basso
+            float DestraSinistra = -90 * accel.x;//si muove a destra e sinistra          
+
+            float Altobasso = (accel.y * 90) + 90;
+            if (accel.z >= 0)
+                Altobasso *= -1;
+            transform.rotation = Quaternion.Euler(Altobasso, DestraSinistra, 0f);
+        }
      }
     
 
