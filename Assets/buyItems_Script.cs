@@ -2,13 +2,15 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+#if UNITY_IPHONE
 using OnePF;
+#endif
 
 public class buyItems_Script : MonoBehaviour
 {
     public Texture powers, powersP, lights, lightsP, money, moneyP;
     public Texture Money500_texture, Money1000_texture, Money5000_texture;
-    public Texture arcoLight, bengal, bluLight, greenLight, piccone, pinkLight, reborn, redLight, coins;
+    public Texture arcoLight, bengal, bluLight, greenLight,/* piccone,*/ pinkLight, reborn, redLight, coins;
     float size, margin, barraHeight, moneyTopMargin;
     public GUISkin custom;
     public AudioClip cashsound, noMoney, buttonsound;
@@ -18,7 +20,7 @@ public class buyItems_Script : MonoBehaviour
     public Texture back;
     float unmarginino, scrollparam, elemSize, UnTerzo;
     public Texture2D thumb;
-    buyState CurrentState = buyState.Powers;
+    private buyState CurrentState = buyState.Powers;
     enum buyState
     {
         Powers,
@@ -72,6 +74,14 @@ public class buyItems_Script : MonoBehaviour
     }
     private void purchaseSucceededEvent(Purchase purchase) {
 		Debug.Log("purchaseSucceededEvent: " + purchase);
+        switch (purchase.Sku)
+        {
+            case SKU500: add500(""); break;
+            case SKU1000: add1000(""); break;
+            case SKU5000: add5k(""); break;
+            default:
+                break;
+        }
 		OpenIAB.consumeProduct(purchase);
 	}
     private void purchaseFailedEvent(string error) {
@@ -169,8 +179,6 @@ public class buyItems_Script : MonoBehaviour
                 imbuying = true;
             }
         #endif
-        if (CameraScript.data == null)
-            CameraScript.LoadData();
     }
 
     void Update()
@@ -230,10 +238,7 @@ public class buyItems_Script : MonoBehaviour
         }
     }
 
-    Vector2 position = Vector2.zero;
-    
-
-    
+    Vector2 position = Vector2.zero;    
 
     #region METODI GUI
     void OnGUI()
@@ -243,8 +248,7 @@ public class buyItems_Script : MonoBehaviour
             Application.LoadLevel(0);
             audio.PlayOneShot(buttonsound);
         }
-        if (GUI.skin != custom)
-            GUI.skin = custom;
+        GUI.skin = custom;
         float buttonsMarginLeft = margin;
         if (GUI.Button(new Rect(buttonsMarginLeft, 0, ((barraHeight) * 168) / 141, barraHeight), back))
         {
@@ -433,6 +437,23 @@ public class buyItems_Script : MonoBehaviour
     }
     #endregion
 
+    void add500(String ciao)
+    {
+        CameraScript.data.Credits += 500;
+        CameraScript.SaveData();
+    }
+
+    void add1000(String ciao)
+    {
+        CameraScript.data.Credits += 1000;
+        CameraScript.SaveData();
+    }
+
+    void add5k(String ciao)
+    {
+        CameraScript.data.Credits += 5000;
+        CameraScript.SaveData();
+    }
     private int helmetToBuy()
     {
         int ret = 0;
@@ -535,22 +556,4 @@ public class buyItems_Script : MonoBehaviour
         return rAdjustedBounds.Contains(screenPos);
     }
     #endregion
-
-    void add500(String ciao)
-    {
-        CameraScript.data.Credits += 500;
-        CameraScript.SaveData();
-    }
-
-    void add1000(String ciao)
-    {
-        CameraScript.data.Credits += 1000;
-        CameraScript.SaveData();
-    }
-
-    void add5k(String ciao)
-    {
-        CameraScript.data.Credits += 5000;
-        CameraScript.SaveData();
-    }
 }

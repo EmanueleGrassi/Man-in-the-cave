@@ -1482,7 +1482,6 @@ GameObject:
   - 81: {fileID: 1103718251}
   - 114: {fileID: 1103718256}
   - 82: {fileID: 1103718257}
-  - 114: {fileID: 1103718258}
   m_Layer: 0
   m_Name: Buy Camera
   m_TagString: MainCamera
@@ -1575,7 +1574,6 @@ MonoBehaviour:
   bengal: {fileID: 2800000, guid: 889d57299e8907e44bd9cc7082372010, type: 3}
   bluLight: {fileID: 2800000, guid: b0a3fd4f6dd11c24ea68e460861f3112, type: 3}
   greenLight: {fileID: 2800000, guid: e4dade83334093e4eb52ed6874cb90f5, type: 3}
-  piccone: {fileID: 2800000, guid: e84acec62f2bdf94f8e1aab84af5a732, type: 3}
   pinkLight: {fileID: 2800000, guid: 27d566f709f38f242b354e9a05e881b8, type: 3}
   reborn: {fileID: 2800000, guid: 86cce878d4efc024caa7e1e7497ce048, type: 3}
   redLight: {fileID: 2800000, guid: 535f538abaef4c74aa82941f9849b84b, type: 3}
@@ -1605,7 +1603,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 40
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1644,17 +1642,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &1103718258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1103718250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d85e0c26f156a4cb810be9c6ba64bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1120368537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,6 +2112,44 @@ Prefab:
   m_RootGameObject: {fileID: 1771383331}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1594294443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1594294445}
+  - 114: {fileID: 1594294444}
+  m_Layer: 0
+  m_Name: appleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1594294444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1594294443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d85e0c26f156a4cb810be9c6ba64bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1594294445
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1594294443}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1642785393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,48 +2452,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1847311584}
   m_GameObject: {fileID: 1812582485}
   m_Mesh: {fileID: 4300010, guid: 8e026c49b86e9354ba510ad1b317625e, type: 3}
---- !u!1 &1836068125
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1836068127}
-  - 114: {fileID: 1836068126}
-  m_Layer: 0
-  m_Name: GUI Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1836068126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1836068125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c622de2929ad6904c97c7549f3ebe04f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  custom: {fileID: 11400000, guid: 58f2c999526d7e14b9cb45b9dad13f66, type: 2}
-  piccone: {fileID: 0}
-  bengala: {fileID: 2800000, guid: 9863f3d05b2bdb442bd8a6adf497246e, type: 3}
-  reborn: {fileID: 2800000, guid: 1e654cf25a497634f8fd85a7a15aa938, type: 3}
---- !u!4 &1836068127
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1836068125}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .5, y: .5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1001 &1847311584
 Prefab:
   m_ObjectHideFlags: 0

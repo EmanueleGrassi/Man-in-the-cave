@@ -4,7 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using OnePF;
 
-public class OpenIABEventManager : MonoBehaviour {
+public class OpenIABEventManager : MonoBehaviour
+{
+#if UNITY_IOS
     // Fired after init is called when billing is supported on the device
     public static event Action billingSupportedEvent;
     // Fired after init is called when billing is not supported on the device
@@ -34,69 +36,6 @@ public class OpenIABEventManager : MonoBehaviour {
         DontDestroyOnLoad(this);
     }
 
-#if UNITY_ANDROID
-    private void OnBillingSupported(string empty) {
-        if (billingSupportedEvent != null)
-            billingSupportedEvent();
-    }
-
-    private void OnBillingNotSupported(string error) {
-        if (billingNotSupportedEvent != null)
-            billingNotSupportedEvent(error);
-    }
-
-    private void OnQueryInventorySucceeded(string json) {
-        if (queryInventorySucceededEvent != null) {
-            Inventory inventory = new Inventory(json);
-            queryInventorySucceededEvent(inventory);
-        }
-    }
-
-    private void OnQueryInventoryFailed(string error) {
-        if (queryInventoryFailedEvent != null)
-            queryInventoryFailedEvent(error);
-    }
-
-    private void OnPurchaseSucceeded(string json) {
-        if (purchaseSucceededEvent != null)
-            purchaseSucceededEvent(new Purchase(json));
-    }
-
-    private void OnPurchaseFailed(string error) {
-        if (purchaseFailedEvent != null)
-            purchaseFailedEvent(error);
-    }
-
-    private void OnConsumePurchaseSucceeded(string json) {
-        if (consumePurchaseSucceededEvent != null)
-            consumePurchaseSucceededEvent(new Purchase(json));
-    }
-
-    private void OnConsumePurchaseFailed(string error) {
-        if (consumePurchaseFailedEvent != null)
-            consumePurchaseFailedEvent(error);
-    }
-
-    public void OnTransactionRestored(string sku) {
-        if (transactionRestoredEvent != null) {
-            transactionRestoredEvent(sku);
-        }
-    }
-
-    public void OnRestoreTransactionFailed(string error) {
-        if (restoreFailedEvent != null) {
-            restoreFailedEvent(error);
-        }
-    }
-
-    public void OnRestoreTransactionSucceeded(string message) {
-        if (restoreSucceededEvent != null) {
-            restoreSucceededEvent();
-        }
-    }
-#endif
-	
-#if UNITY_IOS 
 	private void OnBillingSupported(string productIdentifiers) {
 		string[] delimiters = new string[] { ";" };
 		string[] identifiers = productIdentifiers.Split(delimiters,System.StringSplitOptions.RemoveEmptyEntries);
