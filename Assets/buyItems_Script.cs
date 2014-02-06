@@ -441,18 +441,21 @@ public class buyItems_Script : MonoBehaviour
     {
         CameraScript.data.Credits += 500;
         CameraScript.SaveData();
+        audio.PlayOneShot(cashsound);
     }
 
     void add1000(String ciao)
     {
         CameraScript.data.Credits += 1000;
         CameraScript.SaveData();
+        audio.PlayOneShot(cashsound);
     }
 
     void add5k(String ciao)
     {
         CameraScript.data.Credits += 5000;
         CameraScript.SaveData();
+        audio.PlayOneShot(cashsound);
     }
     private int helmetToBuy()
     {
