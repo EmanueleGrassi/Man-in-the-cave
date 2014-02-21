@@ -264,7 +264,7 @@ public class MenuScript : MonoBehaviour
             if (Application.platform == RuntimePlatform.Android)
                 Application.OpenURL("market://details?id=com.celialab.ManInTheCave");
             else if (Application.platform == RuntimePlatform.IPhonePlayer)
-                Application.OpenURL("");//vai su review  mistery
+				Application.OpenURL("http://itunes.apple.com/app/id786236975");//id app: 786236975
             else if (Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.MetroPlayerARM ||
             Application.platform == RuntimePlatform.MetroPlayerX64 || Application.platform == RuntimePlatform.MetroPlayerX86)
             {
