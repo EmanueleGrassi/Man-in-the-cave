@@ -39,7 +39,8 @@ public class MenuScript : MonoBehaviour
         PlayScript.State = PlayScript.PlayState.menu;
         height = Screen.width / 20;
         margin = Screen.width / 60;
-        PlayButtonPressed = false;        
+        PlayButtonPressed = false; 
+#if ! (UNITY_WP8 || UNITY_METRO)
         if (!(Application.platform == RuntimePlatform.WP8Player))
         {
             if (PlayerPrefs.GetString("gift1") == "")
@@ -47,6 +48,7 @@ public class MenuScript : MonoBehaviour
                 addPoints(1000);
             }
         }
+#endif
         accel = Input.acceleration;
     }
 
